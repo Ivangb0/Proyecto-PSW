@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/sakila?enabledTLSProtocols=TLSv1.2";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdb?useSSL=true";
 
-    private static final String USERNAME = "root";
+    private static final String USERNAME = "KogMaw";
     private static final String PASSWORD = "WIXAdmin1";
     private Connection connection;
 
@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
             Statement statement = connection.createStatement();
             StringBuffer stringBuffer = new StringBuffer();
-            ResultSet resultSet = statement.executeQuery("select TABLE_NAME from cat");
+            ResultSet resultSet = statement.executeQuery("select * from perros");
 
             while (resultSet.next()){
-                stringBuffer.append(resultSet.getString(1) +  "\n");
+                stringBuffer.append(resultSet.getString(1) + resultSet.getString(2) + "\n");
 
             }
 

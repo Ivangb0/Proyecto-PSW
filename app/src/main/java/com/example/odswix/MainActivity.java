@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String USERNAME = "KogMaw";
     private static final String PASSWORD = "WIXAdmin1";
+
     private Connection connection;
 
     @Override
@@ -36,27 +37,25 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(threadPolicy);
     }
 
-    public void buttonConnectToMySQL(View view){
-        try{
+    public void buttonConnectToMySQL(View view) {
+        try {
             Class.forName(DRIVER);
-            this.connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            this.connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-            Toast.makeText(this,"CONNECTED",Toast.LENGTH_LONG);
+            Toast.makeText(this, "CONNECTED", Toast.LENGTH_LONG);
 
             Statement statement = connection.createStatement();
             StringBuffer stringBuffer = new StringBuffer();
             ResultSet resultSet = statement.executeQuery("select * from perros");
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 stringBuffer.append(resultSet.getString(1) + resultSet.getString(2) + "\n");
-
+                textView.setText(stringBuffer.toString());
+                connection.close();
             }
 
 
-            textView.setText(stringBuffer.toString());
-            connection.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             textView.setText(e.toString());
             System.out.print(e.toString());
         }

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             ResultSet resultSet = statement.executeQuery("select * from perros");
 
             while (resultSet.next()){
-                stringBuffer.append(resultSet.getString(1) + resultSet.getString(2) + "\n");
+                stringBuffer.append(resultSet.getString(1) + " " + resultSet.getString(2) +  "\n");
 
             }
 

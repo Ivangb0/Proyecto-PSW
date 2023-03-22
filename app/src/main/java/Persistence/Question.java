@@ -1,35 +1,42 @@
 package Persistence;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.Enumeration;
 
+@DatabaseTable
 public class Question {
     //Atributos de la clase Question
+    @DatabaseField(id = true)
     public int idPregunta;
-    public enum dificultad {
-        Facil,
-        Medio,
-        Dificil
-    }
-    public dificultad dificultad;
+    @DatabaseField
+    public String dificultad;
+    @DatabaseField
     public int ods;
+    @DatabaseField
     public String enunciado;
+    @DatabaseField
     public int puntosPregunta;
 
     //Constructor de la clase Question
 
-    public Question (int idPreg, dificultad difi, int ods, String enunci, int puntosPreg){
-        this.idPregunta = idPreg;
-        this.dificultad = difi;
-        this.ods = ods;
-        this.enunciado = enunci;
-        this.puntosPregunta = puntosPreg;
+    public Question (int idPreg, String difi, int ods, String enunci, int puntosPreg){
+        // Verificar que la dificultad sea "facil", "medio" o "dificil"
+        if (difi.equals("facil") || difi.equals("medio") || difi.equals("dificil")) {
+            this.idPregunta = idPreg;
+            this.dificultad = difi;
+            this.ods = ods;
+            this.enunciado = enunci;
+            this.puntosPregunta = puntosPreg;
+        }
     }
 
     //metodos get de la clase Question
 
     public int getIdPregunta() { return idPregunta; }
 
-    public dificultad getDificultad() { return dificultad; }
+    public String getDificultad() { return dificultad; }
 
     public int getOds(){
         return ods;
@@ -45,7 +52,11 @@ public class Question {
 
     public void setIdPregunta(int newIdPregunta){ this.idPregunta = newIdPregunta; }
 
-    public void setDificultad(dificultad newDificultad){ this.dificultad = newDificultad; }
+    public void setDificultad(String newDificultad){
+        if (newDificultad.equals("facil") || newDificultad.equals("medio") || newDificultad.equals("dificil")) {
+            this.dificultad = newDificultad;
+        }
+    }
 
     public void setOds(int newOds){ this.ods = newOds; }
 

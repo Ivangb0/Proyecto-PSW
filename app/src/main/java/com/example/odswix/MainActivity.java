@@ -14,13 +14,16 @@ import java.sql.Statement;
 
 import javax.xml.transform.Result;
 
+import Persistence.User;
+import Persistence.UserDAO;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdb?useSSL=true";
+    private static final String URL = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdatabase?useSSL=true";
 
     private static final String USERNAME = "KogMaw";
     private static final String PASSWORD = "WIXAdmin1";
@@ -37,24 +40,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonConnectToMySQL(View view){
-        try{
-            Class.forName(DRIVER);
-            this.connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        try {
+            UserDAO userPrueba = new UserDAO();
+            userPrueba.guardar(new User(15, "paquito","paquito2@gmail.com", "pacoelmejor",100,5,5));
 
-            Toast.makeText(this,"CONNECTED",Toast.LENGTH_LONG);
-
-            Statement statement = connection.createStatement();
-            StringBuffer stringBuffer = new StringBuffer();
-            ResultSet resultSet = statement.executeQuery("select * from perros");
-
-            while (resultSet.next()){
-                stringBuffer.append(resultSet.getString(1) + " " + resultSet.getString(2) +  "\n");
-
-            }
-
-
-            textView.setText(stringBuffer.toString());
-            connection.close();
         }
         catch (Exception e){
             textView.setText(e.toString());

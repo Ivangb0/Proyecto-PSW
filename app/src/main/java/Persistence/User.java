@@ -1,30 +1,44 @@
 package Persistence;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable
 public class User {
 
     //atributos de la clase user
-    public int idUser;
+    @DatabaseField(id = true)
+    public int id_user;
+    @DatabaseField
     public String username;
+    @DatabaseField
     public String email;
+    @DatabaseField
     public String password;
+    @DatabaseField
     public int puntosAcum;
-    public int medallas;
+    @DatabaseField
     public int trofeos;
+    @DatabaseField
+    public int medallas;
+
+    //constructor vacio para que la libreria del DAO funcione
+    User(){}
 
     //constructor de la clase user
-    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int medals, int trof){
-        this.idUser = idUs;
+    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals){
+        this.id_user = idUs;
         this.username = usern;
         this.email = email;
         this.password = pswrd;
         this.puntosAcum = ptosAcum;
-        this.medallas = medals;
         this.trofeos = trof;
+        this.medallas = medals;
     }
 
     //metodos get de los atributos de la clase user
     public int getIdUser() {
-        return idUser;
+        return id_user;
     }
 
     public String getUsername() {

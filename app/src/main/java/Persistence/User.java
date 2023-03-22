@@ -24,7 +24,7 @@ public class User {
 
     //constructor vacio para que la libreria del DAO funcione
     User(){}
-    //esto no es nada
+    
     //constructor de la clase user
     public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals){
         this.id_user = idUs;

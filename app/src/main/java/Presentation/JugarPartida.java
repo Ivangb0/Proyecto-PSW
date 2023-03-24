@@ -1,4 +1,4 @@
-package BusinessLogic;
+package Presentation;
 
 public class JugarPartida {
 

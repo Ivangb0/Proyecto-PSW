@@ -1,6 +1,6 @@
 package Persistence;
 
-import android.content.Context;
+import BusinessLogic.Answer;
 
 public class AnswerDAO extends DBA<Answer> {
     public AnswerDAO(){

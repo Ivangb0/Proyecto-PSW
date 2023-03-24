@@ -5,16 +5,10 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
-import javax.xml.transform.Result;
-
-import Persistence.User;
+import BusinessLogic.User;
 import Persistence.UserDAO;
 
 

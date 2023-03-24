@@ -1,6 +1,6 @@
 package Persistence;
 
-import android.content.Context;
+import BusinessLogic.User;
 
 public class UserDAO extends DBA<User>{
     public UserDAO(){

@@ -1,10 +1,12 @@
 package com.example.odswix;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Connection;
 
@@ -31,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
+    }
+
+    public void ejecutar_registrarse(View view){
+        Intent intent = new Intent(this, Registrarse.class);
+        startActivity(intent);
+
     }
 
     public void buttonConnectToMySQL(View view){

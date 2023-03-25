@@ -29,16 +29,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.texto);
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
+
     }
-
-    public void ejecutar_registrarse(View view){
+    //Metodo de prueba para transferir datos
+    public void ejecutar_registrarse(View view) {
         Intent intent = new Intent(this, Registrarse.class);
-        startActivity(intent);
 
+        TextView text = (TextView) findViewById(R.id.texto);
+        intent.putExtra("ejemplo", text.getText());
+
+        startActivity(intent);
     }
 
     public void buttonConnectToMySQL(View view){
@@ -51,5 +55,10 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(e.toString());
             System.out.print(e.toString());
         }
+    }
+
+    public void datosTrans(View vista){
+        TextView texto = (TextView) findViewById(R.id.texto);
+        texto.setText("");
     }
 }

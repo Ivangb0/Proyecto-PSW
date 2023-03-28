@@ -57,17 +57,18 @@
         android:ems="10"
         android:hint="email@dominio.com"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/Eemail"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/Eemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="119dp"
         android:layout_marginEnd="116dp"
         android:text="Formato de email incorrecto"
         android:textColor="#FF0000"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -84,13 +85,14 @@
         app:layout_constraintTop_toBottomOf="@+id/usuario" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/Epassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
         android:layout_marginBottom="61dp"
         android:text="Formato de contraseña incorrecto"
         android:textColor="#FF0000"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/bregistro"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,7 +105,7 @@
         android:ems="10"
         android:hint="*****"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/Epassword"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -147,6 +149,7 @@
         android:layout_marginEnd="136dp"
         android:text="Usuario ya registrado"
         android:textColor="#FF0000"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario" />

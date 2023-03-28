@@ -7,17 +7,34 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Registrarse extends Activity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrarusuario);
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        }catch(ClassNotFoundException e){
+            this.setTitle(".....Class com.mysql.jdbc.Driver not found!");
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            this.setTitle("Illegal access");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            this.setTitle("instantiation exc eption");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+         TextView Erruser = findViewById(R.id.Euser);
+         TextView Erremail = findViewById(R.id.Eemail);
+         TextView Errpassword = findViewById(R.id.Epassword);
+
+        Erruser.setVisibility(View.VISIBLE);
 
         //Prueba: paso de datos
         Bundle datos = getIntent().getExtras();
@@ -41,23 +58,22 @@ public class Registrarse extends Activity{
         String password = "WIXAdmin1";
         try {
             Connection con = DriverManager.getConnection(url, user, password);
+
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT *");
-
-
-            String sql = rs.getString(0);
-            EditText textUsuario= (EditText) findViewById(R.id.usuario);
-            textUsuario.setText("Error");
-            if(sql.isEmpty()){
-                textUsuario.setText("Error");
-            } else {
-                textUsuario.setText(sql);
+            ResultSet rs = stmt.executeQuery("SELECT username FROM user");
+            String sql = "";
+            while (rs.next()) {
+                sql = rs.getString(1);
             }
-        } catch (SQLException e) {
+            EditText textUsuario= (EditText) findViewById(R.id.usuario);
+
+                textUsuario.setText(sql);
+            
+
+
+        } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
 
-        EditText textUsuario= (EditText) findViewById(R.id.usuario);
-        textUsuario.setText("Error");
     }
 }

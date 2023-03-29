@@ -3,6 +3,7 @@ package BusinessLogic;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+
 @DatabaseTable
 public class User {
 
@@ -89,4 +90,6 @@ public class User {
     public void setTrofeos (int newTrofeos){
         this.trofeos = newTrofeos;
     }
+
+
 }

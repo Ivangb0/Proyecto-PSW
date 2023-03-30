@@ -68,7 +68,7 @@ public class Registrarse extends Activity{
             EditText textUsuario= (EditText) findViewById(R.id.usuario);
 
                 textUsuario.setText(sql);
-            
+
 
 
         } catch (java.sql.SQLException e) {

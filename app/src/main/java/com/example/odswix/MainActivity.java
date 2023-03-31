@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public void ejecutar_registrarse(View view) {
         Intent intent = new Intent(this, IniciarSesion.class);
 
-        TextView text = (TextView) findViewById(R.id.texto);
-        intent.putExtra("ejemplo", text.getText());
+        //TextView text = (TextView) findViewById(R.id.texto);
+        //intent.putExtra("ejemplo", text.getText());
 
         startActivity(intent);
     }

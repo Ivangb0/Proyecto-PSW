@@ -51,6 +51,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="24dp"
         android:lineSpacingExtra="8sp"
+        android:text="holaa"
         android:textAlignment="center"
         android:textColor="#FF2424"
         android:textSize="12sp"

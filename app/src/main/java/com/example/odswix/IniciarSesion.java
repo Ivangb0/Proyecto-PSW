@@ -24,9 +24,12 @@ public class IniciarSesion extends AppCompatActivity {
     private EditText name;
     private EditText pass;
     private TextView errorUsername;
-    String url = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdatabase?useSSL=true";
-    String user = "KogMaw";
-    String password = "WIXAdmin1";
+
+    private static final String URL = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdatabase?useSSL=true";
+    private static final String USERNAME = "KogMaw";
+    private static final String PASSWORD = "WIXAdmin1";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +40,26 @@ public class IniciarSesion extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.txt_password);
         errorUsername = (TextView) findViewById(R.id.txt_error);
 
+
+
     }
 
-    //Método para iniciar sesión
+    //Método para iniciar sesión (lo que se ejecuta cuando le das al boton iniciar sesion)
     public void iniciarSesion(View view){
 
-        if(loginCorrect() == 0) {
+        String username = name.getText().toString();
+        String password = pass.getText().toString();
+        String error;
+        int i = loginCorrect(username, password);
+        if(i == 0) {
             Intent iniciarSes = new Intent(this, Perfil.class);
             startActivity(iniciarSes);
-        }else if(loginCorrect() == 1){
-            errorUsername.setText("Contraseña incorrecta.");
-        }else if(loginCorrect() == 2){
-            errorUsername.setText("Usuario no encontrado.");
+        }else if(i == 1){
+            error = "Contraseña incorrecta.";
+            errorUsername.setText(error);
+        }else if(i == 2){
+            error = "Usuario no encontrado.";
+            errorUsername.setText(error);
         }
     }
 
@@ -59,26 +70,25 @@ public class IniciarSesion extends AppCompatActivity {
     }
 
     //Método para validar el inicio de sesión y si es erróneo saber el motivo
-    public int loginCorrect() {
+    public int loginCorrect(String username, String password) {
 
         try {
-            Connection con = DriverManager.getConnection(url, user, password);
+            Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             Statement stmt = con.createStatement();
-            ResultSet DBusername = stmt.executeQuery("SELECT username FROM user WHERE username = " + name);
+            ResultSet DBusername = stmt.executeQuery("SELECT username FROM user WHERE username = " + username);
             String DBname = "";
             while (DBusername.next()) {
                 DBname = DBusername.getString(1);
             }
 
-            ResultSet DBpassword = stmt.executeQuery("SELECT password FROM user WHERE username = " + name);
+            ResultSet DBpassword = stmt.executeQuery("SELECT password FROM user WHERE username = " + username);
             String DBpass = "";
             while (DBpassword.next()) {
                 DBpass = DBpassword.getString(1);
             }
 
-            String username = name.getText().toString();
-            String password = pass.getText().toString();
+
 
             if (username == DBname) {
                 if (password == DBpass) {

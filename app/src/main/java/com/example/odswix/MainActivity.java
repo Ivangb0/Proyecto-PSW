@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //Metodo de prueba para transferir datos
     public void ejecutar_registrarse(View view) {
-        Intent intent = new Intent(this, Registrarse.class);
+        Intent intent = new Intent(this, IniciarSesion.class);
 
         TextView text = (TextView) findViewById(R.id.texto);
         intent.putExtra("ejemplo", text.getText());

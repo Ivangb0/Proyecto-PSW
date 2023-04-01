@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Registrarse">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="201dp"
+        android:layout_marginBottom="12dp"
+        android:text="O"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/biniciarsesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bregistro" />
 
     <Button
         android:id="@+id/bregistro"
@@ -12,31 +28,29 @@
         android:layout_height="48dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="564dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="registro"
         android:text="Registrarse"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="registro"/>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="8dp"
-        android:text="O"
-        app:layout_constraintBottom_toTopOf="@+id/biniciarsesion"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/biniciarsesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="129dp"
         android:layout_marginBottom="36dp"
-        android:onClick="volver"
+        android:onClick="iniciarSes"
         android:text="Iniciar Sesión"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView7"
@@ -44,8 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="94dp"
+        android:layout_marginBottom="67dp"
         android:text="REGISTRARSE"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,22 +72,25 @@
         android:layout_width="212dp"
         android:layout_height="48dp"
         android:layout_marginStart="100dp"
+        android:layout_marginEnd="99dp"
         android:ems="10"
         android:hint="email@dominio.com"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/Eemail"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Eemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="158dp"
+        android:layout_height="20dp"
         android:layout_marginStart="119dp"
         android:layout_marginEnd="116dp"
         android:text="Formato de email incorrecto"
         android:textColor="#FF0000"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -79,21 +100,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="276dp"
         android:text="Email"
         app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario" />
 
     <TextView
         android:id="@+id/Epassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginBottom="61dp"
+        android:layout_width="197dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="94dp"
+        android:layout_marginBottom="24dp"
         android:text="Formato de contraseña incorrecto"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/bregistro"
+        app:layout_constraintBottom_toTopOf="@+id/Eempty"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -101,11 +126,13 @@
         android:layout_width="219dp"
         android:layout_height="49dp"
         android:layout_marginStart="100dp"
+        android:layout_marginEnd="92dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="*****"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/Epassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -113,8 +140,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
+        android:layout_marginEnd="239dp"
         android:text="Contraseña"
         app:layout_constraintBottom_toTopOf="@+id/contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -123,10 +152,12 @@
         android:layout_height="51dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="1dp"
+        android:layout_marginEnd="85dp"
         android:ems="10"
         android:hint="User123"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/Euser"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -136,8 +167,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="160dp"
+        android:layout_marginEnd="190dp"
         android:text="Nombre de Usuario"
         app:layout_constraintBottom_toTopOf="@+id/usuario"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,12 +179,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="142dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="136dp"
         android:text="Usuario ya registrado"
         android:textColor="#FF0000"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario" />
+
+    <TextView
+        android:id="@+id/Eempty"
+        android:layout_width="249dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="21dp"
+        android:text="Los campos no pueden quedar vacios"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bregistro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

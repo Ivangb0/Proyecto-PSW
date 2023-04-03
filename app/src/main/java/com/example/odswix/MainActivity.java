@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.texto);
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
@@ -34,23 +33,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-
+        try {
+            wait(6000);
+        }catch (java.lang.InterruptedException e){
+            e.printStackTrace();
+        }
         Intent intent = new Intent(this, Registrarse.class);
 
         startActivity(intent);
     }
 
-    //Metodo de prueba para transferir datos    //intent.putExtra("ejemplo", stmt);
-
-    public void ejecutar_registrarse(View view) {
-
-    }
-
-    public void buttonConnectToMySQL(View view){
-
-    }
-
-    public void datosTrans(View vista){
-
-    }
 }

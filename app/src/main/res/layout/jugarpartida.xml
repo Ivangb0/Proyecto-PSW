@@ -51,6 +51,7 @@
         android:layout_marginStart="146dp"
         android:layout_marginTop="49dp"
         android:layout_marginEnd="146dp"
+        android:onClick="perfil"
         android:text="Ver Perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="44dp"
-        android:onClick="cerrarSesion"
+        android:onClick="cerrarSes"
         android:text="Cerrar Sesión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -3,12 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="57dp">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="112dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="48dp"
+        android:text="Dificultad:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonResp1"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/buttonResp3"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp2" />
+
+    <Button
+        android:id="@+id/buttonResp4"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp3" />
 
     <TextView
         android:id="@+id/textView26"
         android:layout_width="112dp"
-        android:layout_height="42dp"
+        android:layout_height="18dp"
         android:layout_marginStart="184dp"
         android:layout_marginTop="25dp"
         android:text="Dificultad:"
@@ -20,42 +62,10 @@
         android:layout_width="196dp"
         android:layout_height="52dp"
         android:layout_marginStart="156dp"
-        android:layout_marginTop="25dp"
         android:layout_marginBottom="23dp"
         android:text="Puntos"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="309dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="309dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="309dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
@@ -66,16 +76,6 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="309dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/textView24"
@@ -92,10 +92,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="27dp"
         android:text="Pistas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -103,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="44dp"
+        android:contentDescription="Boton para pausar el juego"
         android:onClick="botonPausar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_pause"
-        android:contentDescription="Boton para pausar el juego"/>
+        app:srcCompat="@android:drawable/ic_media_pause" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -117,10 +117,20 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:max="30000"
+        android:progress="30000"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        android:max="30000"
-        android:progress="30000" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <Button
+        android:id="@+id/buttonResp2"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

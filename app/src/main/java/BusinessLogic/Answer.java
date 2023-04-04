@@ -20,6 +20,9 @@ public class Answer {
     @DatabaseField
     public boolean esCorrecta;
 
+    //constructor vacio para que la libreria del DAO funcione
+    Answer(){}
+
     //Constructor
     public Answer(int id_resp, String resp, int preg_id, boolean esCorrec) {
         this.id_respuesta = id_resp;

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.retopregunta);
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
@@ -33,14 +33,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-        try {
-            wait(6000);
+    /*    try {
+           wait(6000);
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
         }
         Intent intent = new Intent(this, Registrarse.class);
 
         startActivity(intent);
+    */
+        Intent intent = new Intent(MainActivity.this, RetoPregunta.class);
+        startActivity(intent);
     }
-
 }

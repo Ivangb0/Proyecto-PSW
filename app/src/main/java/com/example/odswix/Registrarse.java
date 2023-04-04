@@ -7,10 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,15 +53,15 @@ public class Registrarse extends Activity{
         String bduser = textUser.getText().toString();
         List<String> sql = new ArrayList<>();
         try {
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT username FROM user");
+            /*Connection con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();*/
+            ResultSet rs = SingletonSQL.consultar("SELECT username FROM user");
 
             while(rs.next()) {
                 sql.add(rs.getString("username"));
             }
 
-            rs.close(); stmt.close(); con.close();
+            SingletonSQL.finConexion();
 
             boolean encontrado = false;
             for (int i = 0; i < sql.size(); i++) {

@@ -36,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
            wait(6000);
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
-        }
-        Esto da error (?)*/
-
+        }*/
         Intent intent = new Intent(this, Registrarse.class);
 
         startActivity(intent);

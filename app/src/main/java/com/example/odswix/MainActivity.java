@@ -3,7 +3,6 @@ package com.example.odswix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-        try {
+        /*try {
            wait(6000);
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
         }
+        Esto da error (?)*/
+
         Intent intent = new Intent(this, Registrarse.class);
 
         startActivity(intent);

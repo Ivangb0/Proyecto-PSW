@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Registrarse extends Activity{
 
@@ -52,24 +54,36 @@ public class Registrarse extends Activity{
     public void userTest(){
         EditText textUser= findViewById(R.id.usuario);
         String bduser = textUser.getText().toString();
-        String sql = "";
+        List<String> sql = new ArrayList<>();
         try {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT username FROM user");
 
-            while (rs.next()) {
-                sql = rs.getString(1);
+            while(rs.next()) {
+                sql.add(rs.getString("username"));
             }
+
+            rs.close(); stmt.close(); con.close();
+
+            boolean encontrado = false;
+            for (int i = 0; i < sql.size(); i++) {
+                if (bduser.equals(sql.get(i))) {
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            TextView Erruser = findViewById(R.id.Euser);
+            if(encontrado){
+                Erruser.setVisibility(View.VISIBLE);
+            }
+            else{
+                Erruser.setVisibility(View.INVISIBLE);
+            }
+
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
-        }
-        TextView Erruser = findViewById(R.id.Euser);
-        if(sql.equals(bduser)){
-            Erruser.setVisibility(View.VISIBLE);
-        }
-        else{
-            Erruser.setVisibility(View.INVISIBLE);
         }
     }
     public void registro(View vista){
@@ -81,7 +95,9 @@ public class Registrarse extends Activity{
         TextView textPass = findViewById(R.id.contraseña);
 
         emptyTest(); userTest();
+        if(true){
 
+        }
     }
 
     @Override

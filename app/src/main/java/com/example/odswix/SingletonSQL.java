@@ -2,6 +2,7 @@ package com.example.odswix;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,16 +24,25 @@ public class SingletonSQL {
         }
         return connection;
     }
-        public static ResultSet consultar(String consulta) {
-            ResultSet rs = null;
-            try {
-                Statement statement = getConexion().createStatement();
-                rs = statement.executeQuery(consulta);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return rs;
+    public static ResultSet consultar(String consulta) {
+        ResultSet rs = null;
+        try {
+            Statement statement = getConexion().createStatement();
+            rs = statement.executeQuery(consulta);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return rs;
+    }
+    public static PreparedStatement insertar(String objeto){
+        PreparedStatement ps = null;
+        try {
+            ps = getConexion().prepareStatement(objeto);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ps;
+    }
     public static void finConexion() {
         try {
             if (connection != null) {

@@ -3,9 +3,11 @@ package BusinessLogic;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 
 @DatabaseTable
-public class User {
+public class User implements Serializable {
 
     //atributos de la clase user
     @DatabaseField(id = true)
@@ -90,6 +92,4 @@ public class User {
     public void setTrofeos (int newTrofeos){
         this.trofeos = newTrofeos;
     }
-
-
 }

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".IniciarSesion">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:onClick="registrarse"
+        android:text="REGISTRARSE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -51,7 +62,6 @@
         android:layout_height="36dp"
         android:layout_marginTop="24dp"
         android:lineSpacingExtra="8sp"
-        android:text="holaa"
         android:textAlignment="center"
         android:textColor="#FF2424"
         android:textSize="12sp"
@@ -71,23 +81,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_error" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="105dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="14dp"
-        android:onClick="registrarse"
-        android:text="@string/tv_registrarse"
-        android:textAlignment="center"
-        android:textColor="#03A9F4"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView11"

@@ -1,11 +1,12 @@
 package com.example.odswix;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Registrarse extends Activity{
+import BusinessLogic.User;
+
+public class Registrarse extends AppCompatActivity {
+    User usuario = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrarusuario);
@@ -75,9 +79,44 @@ public class Registrarse extends Activity{
         }
         return correcto;
     }
+    public boolean emailTest(){
+        EditText textEmail= findViewById(R.id.email);
+        String bdemail = textEmail.getText().toString();
+        List<String> sql = new ArrayList<>();
+        boolean correcto = false;
+
+        try {
+            ResultSet rs = SingletonSQL.consultar("SELECT email FROM user");
+
+            while(rs.next()) {
+                sql.add(rs.getString("email"));
+            }
+
+            boolean encontrado = false;
+            for (int i = 0; i < sql.size(); i++) {
+                if (bdemail.equals(sql.get(i))) {
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            TextView Erremail = findViewById(R.id.Eemail);
+            if(encontrado){
+                Erremail.setVisibility(View.VISIBLE);
+            }
+            else{
+                correcto = true;
+                Erremail.setVisibility(View.INVISIBLE);
+            }
+
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+        return correcto;
+    }
     public void registro(View vista){
         try {
-            if(emptyTest() && userTest()) {
+            if(emptyTest() && userTest() && emailTest()) {
                 PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcum, trofeos, medallas) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -99,8 +138,12 @@ public class Registrarse extends Activity{
 
                 ps.executeUpdate();
 
+                usuario = new User(id + 1, textUser.getText().toString(),
+                        textEmail.getText().toString(), textPassword.getText().toString(),
+                        0, 0, 0);
 
-                Intent intent = new Intent(this, IniciarSesion.class);
+                Intent intent = new Intent(this, JugarPartida.class);
+                intent.putExtra("user", usuario);
                 startActivity(intent);
             }
         } catch (SQLException e) {

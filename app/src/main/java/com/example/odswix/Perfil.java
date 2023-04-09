@@ -1,6 +1,5 @@
 package com.example.odswix;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +8,8 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import java.util.List;
 import BusinessLogic.User;
 
 
-public class Perfil extends Activity{
+public class Perfil extends AppCompatActivity {
     User usuario = null;
     String contraseña = "";
     boolean visible = false;
@@ -138,6 +139,7 @@ public class Perfil extends Activity{
                         ps.setString(2, email.getText().toString());
                         ps.executeUpdate();
                         password.setText(newPassword);
+                        contraseña = password.getText().toString();
                         usuario.setPassword(newPassword);
 
                     }

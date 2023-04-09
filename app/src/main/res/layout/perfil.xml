@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:text="Error"
         android:textAlignment="textStart"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:text="Puntos acumulados: "
         android:textAlignment="textEnd"
@@ -77,14 +77,14 @@
         android:id="@+id/Bvercontraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:contentDescription="@string/app_name"
         android:onClick="mostrarPassword"
-        app:layout_constraintStart_toEndOf="@+id/contraseñaUser"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailUser"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/ic_menu_view" />
 
     <TextView
         android:id="@+id/contraseñaUser"
@@ -122,7 +122,7 @@
 
     <TextView
         android:id="@+id/emailUser"
-        android:layout_width="173dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="60dp"
@@ -140,7 +140,7 @@
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <Button
         android:id="@+id/button5"
@@ -158,19 +158,20 @@
         android:layout_height="60dp"
         android:layout_marginTop="4dp"
         android:text="Perfil"
+        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="91dp"
+        android:layout_width="40dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="88dp"
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
     <TextView
         android:id="@+id/nombreUser"
@@ -224,17 +225,17 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/errUsername"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/btn_star" />
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="38dp"
+        android:layout_height="42dp"
         android:layout_marginStart="43dp"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/ic_lock_idle_lock" />
 
     <TextView
         android:id="@+id/errUsername"

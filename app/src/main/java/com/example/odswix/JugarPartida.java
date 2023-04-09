@@ -18,15 +18,13 @@ public class JugarPartida extends AppCompatActivity {
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
     }
-    //Método para ir a la pantalla de perfil
     public void perfil (View view){
         Intent perfil = new Intent(this, Perfil.class);
         perfil.putExtra("user", usuario);
+        finishAfterTransition();
         startActivity(perfil);
 
     }
-
-    //Método para cerrar sesion
     public void cerrarSes (View view){
         Intent cerrarSes = new Intent(this, IniciarSesion.class);
         startActivity(cerrarSes);

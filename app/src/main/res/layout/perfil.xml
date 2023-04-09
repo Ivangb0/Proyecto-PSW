@@ -11,47 +11,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="164dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:onClick="volver"
         android:text="Volver"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button14" />
 
     <Button
         android:id="@+id/button14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="152dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="72dp"
         android:layout_weight="1"
         android:text="Armario"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntosUser" />
 
     <TextView
         android:id="@+id/puntosUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:text="Error"
         android:textAlignment="textStart"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/Bcambiarcontr" />
+        app:layout_constraintTop_toBottomOf="@+id/errPassword" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:text="Puntos acumulados: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bcambiarcontr" />
+        app:layout_constraintTop_toBottomOf="@+id/errPassword" />
 
     <Button
         android:id="@+id/Bcambiarcontr"
@@ -59,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="23dp"
+        android:onClick="cambiarPassword"
         android:text="Cambiar Contraseña"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +81,7 @@
         android:layout_marginTop="48dp"
         android:layout_weight="1"
         android:contentDescription="@string/app_name"
+        android:onClick="mostrarPassword"
         app:layout_constraintStart_toEndOf="@+id/contraseñaUser"
         app:layout_constraintTop_toBottomOf="@+id/emailUser"
         app:srcCompat="@android:drawable/btn_dialog" />
@@ -137,6 +147,7 @@
         android:layout_width="184dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
+        android:onClick="cambiarUsername"
         android:text="Cambiar "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
@@ -182,38 +193,38 @@
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <ImageView
-        android:id="@+id/imageView13"
+    <TextView
+        android:id="@+id/nivelUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="1"
+        android:text="Error"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/errUsername" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:text="Nivel: "
         android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/errUsername" />
 
-    <TextView
-        android:id="@+id/nivelUser"
+    <ImageView
+        android:id="@+id/imageView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="71dp"
-        android:layout_weight="1"
-        android:text="Error"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errUsername"
+        app:srcCompat="@android:drawable/btn_dialog" />
 
     <ImageView
         android:id="@+id/imageView14"
@@ -224,5 +235,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <TextView
+        android:id="@+id/errUsername"
+        android:layout_width="260dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="24dp"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <TextView
+        android:id="@+id/errPassword"
+        android:layout_width="218dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:text="TextView"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bcambiarcontr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

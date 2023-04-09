@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="0dp"
@@ -23,6 +24,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="20dp"
+        android:onClick="comprobarCorrecta"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -33,6 +35,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
+        android:onClick="comprobarCorrecta"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonResp2" />
@@ -43,6 +46,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
+        android:onClick="comprobarCorrecta"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonResp3" />
@@ -88,7 +92,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/buttonPistas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
@@ -98,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/buttonPausa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -121,7 +125,7 @@
         android:progress="30000"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPausa" />
 
     <Button
         android:id="@+id/buttonResp2"
@@ -129,8 +133,35 @@
         android:layout_height="63dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
+        android:onClick="comprobarCorrecta"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonResp1" />
+
+    <RelativeLayout
+        android:id="@+id/contenedorRespuesta"
+        android:layout_width="198dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="156dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="26dp"
+            android:text="Respuesta incorrecta." />
+
+        <Button
+            android:id="@+id/buttonSiguiente"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="80dp"
+            android:text="Siguiente pregunta" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

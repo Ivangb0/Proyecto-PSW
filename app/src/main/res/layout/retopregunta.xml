@@ -140,8 +140,8 @@
 
     <RelativeLayout
         android:id="@+id/contenedorRespuesta"
-        android:layout_width="198dp"
-        android:layout_height="114dp"
+        android:layout_width="229dp"
+        android:layout_height="154dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="48dp"
         android:visibility="invisible"
@@ -157,10 +157,12 @@
 
         <Button
             android:id="@+id/buttonSiguiente"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView21"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
+            android:onClick="siguientePregunta"
             android:text="Siguiente pregunta" />
     </RelativeLayout>
 

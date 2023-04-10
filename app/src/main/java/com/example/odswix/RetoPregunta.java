@@ -15,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import BusinessLogic.Answer;
 import BusinessLogic.Question;
 import Persistence.AnswerDAO;
@@ -29,6 +31,14 @@ import java.util.Random;
 public class RetoPregunta extends AppCompatActivity{
 
     int puntos = 0;
+
+    int answeredQuestions = 0;
+
+    int answeredQuestionsFacil = 0;
+    int answeredQuestionsMedio = 0;
+    int answeredQuestionsDificil = 0;
+
+    String preguntaRandom = "";
 
     //Uso de las instancias creadas para guardar las preguntas y respuestas de la BD en listas
     List<Question> listaPreguntas;
@@ -65,7 +75,8 @@ public class RetoPregunta extends AppCompatActivity{
     Button buttonPistas;
     ImageButton buttonPausa;
     ConstraintLayout idLayout;
-
+    TextView textoPregunta;
+    TextView textoDificultad;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,44 +90,45 @@ public class RetoPregunta extends AppCompatActivity{
 
         listaPreguntas = questions.obtenerTodos();
         listaRespuestas = answers.obtenerTodos();
-        /*
-        listaPreguntasFacil = listaPreguntas.filtrarDificultad(facil);
-        listaPreguntasFacil = listaPreguntas.filtrarDificultad(medio);
-        listaPreguntasFacil = listaPreguntas.filtrarDificultad(dificil);
-        */
-        //Collections.shuffle(listaPreguntasFacil, new Random());
-        //Collections.shuffle(listaPreguntasMedio, new Random());
-        //Collections.shuffle(listaPreguntasDificil, new Random());
 
+        listaPreguntasFacil = filtrarDificultad("Facil");
+        listaPreguntasMedio = filtrarDificultad("Medio");
+        listaPreguntasDificil = filtrarDificultad("Dificil");
 
-        System.out.print(questions.obtenerTodos());
-        //guardamos una pregunta aleatoria
-        Random random = new Random();
-        int indiceRandom = 0;
-        pregActual = listaPreguntas.get(indiceRandom);
-        String preguntaRandom = (pregActual.getEnunciado());
+        Collections.shuffle(listaPreguntasFacil, new Random());
+        Collections.shuffle(listaPreguntasMedio, new Random());
+        Collections.shuffle(listaPreguntasDificil, new Random());
+
 
         //asignamos a los componentes del xml variables con el texto
-        TextView textoPregunta = findViewById(R.id.textView5);
-        TextView textoDificultad = findViewById(R.id.textView20);
+        textoPregunta = findViewById(R.id.textView5);
+        textoDificultad = findViewById(R.id.textView20);
 
         botonResp1 = (Button) findViewById(R.id.buttonResp1);
         botonResp2 = (Button) findViewById(R.id.buttonResp2);
         botonResp3 = (Button) findViewById(R.id.buttonResp3);
         botonResp4 = (Button) findViewById(R.id.buttonResp4);
+        textView20 = (TextView) findViewById(R.id.textView20);
+        buttonPistas = (Button) findViewById(R.id.buttonPistas);
+        buttonPausa = (ImageButton) findViewById(R.id.buttonPausa);
+        textView5 = (TextView) findViewById(R.id.textView5);
+        textView24 = (TextView) findViewById(R.id.textView24);
+        textView25 = (TextView) findViewById(R.id.textView25);
+        textView26 = (TextView) findViewById(R.id.textView26);
         contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
         textView21 = (TextView) findViewById(R.id.textView21);
         idLayout = (ConstraintLayout) findViewById(R.id.idLayout);
 
-        respuestasPreg = recuperarRespuestas(pregActual.getIdPregunta());
+
+        pregActual = listaPreguntasFacil.get(0);
+        respuestasPreg = recuperarRespuestas(listaPreguntasFacil.get(0).getIdPregunta());
         System.out.print(respuestasPreg);
-        textoPregunta.setText(preguntaRandom);
+        textoPregunta.setText(pregActual.getEnunciado());
         textoDificultad.setText(pregActual.getDificultad());
         botonResp1.setText(respuestasPreg.get(0).getRespuesta());
         botonResp2.setText(respuestasPreg.get(1).getRespuesta());
         botonResp3.setText(respuestasPreg.get(2).getRespuesta());
         botonResp4.setText(respuestasPreg.get(3).getRespuesta());
-        //textView20.setText(pregActual.getDificultad());
 
 
         //parte de la progressbar
@@ -145,6 +157,8 @@ public class RetoPregunta extends AppCompatActivity{
                 }
             }
         };
+
+
     }
 
 
@@ -168,6 +182,38 @@ public class RetoPregunta extends AppCompatActivity{
         return resp;
     }
 
+    public void siguientePregunta(View view){
+
+        if(answeredQuestions < 4){
+            contenedorRespuesta.setVisibility(View.INVISIBLE);
+            mostrarTodo();
+            pregActual = listaPreguntasFacil.get(answeredQuestionsFacil++);
+            answeredQuestions++;
+            preguntaRandom = pregActual.getEnunciado();
+        }
+        else if(answeredQuestions < 7){
+            contenedorRespuesta.setVisibility(View.INVISIBLE);
+            mostrarTodo();
+            pregActual = listaPreguntasMedio.get(answeredQuestionsMedio++);
+            answeredQuestions++;
+            preguntaRandom = pregActual.getEnunciado();
+        }
+        else if(answeredQuestions < 10){
+            contenedorRespuesta.setVisibility(View.INVISIBLE);
+            mostrarTodo();
+            pregActual = listaPreguntasDificil.get(answeredQuestionsDificil++);
+            answeredQuestions++;
+            preguntaRandom = pregActual.getEnunciado();
+        }
+        respuestasPreg = recuperarRespuestas(pregActual.getIdPregunta());
+        textoPregunta.setText(pregActual.getEnunciado());
+        textoDificultad.setText(pregActual.getDificultad());
+        botonResp1.setText(respuestasPreg.get(0).getRespuesta());
+        botonResp2.setText(respuestasPreg.get(1).getRespuesta());
+        botonResp3.setText(respuestasPreg.get(2).getRespuesta());
+        botonResp4.setText(respuestasPreg.get(3).getRespuesta());
+    }
+
     public void esconderTodo(){
         textView20.setVisibility(View.INVISIBLE);
         botonResp1.setVisibility(View.INVISIBLE);
@@ -182,7 +228,26 @@ public class RetoPregunta extends AppCompatActivity{
         textView25.setVisibility(View.INVISIBLE);
         textView26.setVisibility(View.INVISIBLE);
     }
+    public void mostrarTodo(){
+        textView20.setVisibility(View.VISIBLE);
+        botonResp1.setVisibility(View.VISIBLE);
+        botonResp2.setVisibility(View.VISIBLE);
+        botonResp3.setVisibility(View.VISIBLE);
+        botonResp4.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        buttonPausa.setVisibility(View.VISIBLE);
+        buttonPistas.setVisibility(View.VISIBLE);
+        textView5.setVisibility(View.VISIBLE);
+        textView24.setVisibility(View.VISIBLE);
+        textView25.setVisibility(View.VISIBLE);
+        textView26.setVisibility(View.VISIBLE);
+        botonResp1.setClickable(true);
+        botonResp2.setClickable(true);
+        botonResp3.setClickable(true);
+        botonResp4.setClickable(true);
+    }
     public void comprobarCorrecta(View view) {
+
 
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             puntos += 100;

@@ -1,21 +1,12 @@
 package com.example.odswix;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import BusinessLogic.User;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IniciarSesion extends AppCompatActivity {
 
@@ -49,7 +40,7 @@ public class IniciarSesion extends AppCompatActivity {
     }
     //Método para iniciar sesión (lo que se ejecuta cuando le das al boton iniciar sesion)
     public void iniciarSesion(View view){
-
+/*
         try {
             if(isEmptyTest()){
                 Intent intent = new Intent(this, JugarPartida.class);
@@ -58,7 +49,7 @@ public class IniciarSesion extends AppCompatActivity {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     //Método para ir a la pantalla de registrarse
@@ -69,7 +60,7 @@ public class IniciarSesion extends AppCompatActivity {
 
     //Método para validar el inicio de sesión y si es erróneo saber el motivo
     public int loginCorrect() {
-
+/*
         try {
             Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
@@ -99,7 +90,7 @@ public class IniciarSesion extends AppCompatActivity {
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         return -1;
     }
 }

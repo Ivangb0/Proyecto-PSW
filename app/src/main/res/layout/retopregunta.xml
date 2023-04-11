@@ -5,15 +5,45 @@
     android:id="@+id/idLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="57dp">
+    tools:layout_editor_absoluteX="7dp"
+    tools:layout_editor_absoluteY="-4dp">
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="68dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
+        android:text="Puntos:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPuntosXPreg"
+        android:layout_width="68dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="52dp"
+        android:text="Puntos:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNumPreg"
+        android:layout_width="59dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="25dp"
+        android:text="Pregunta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="112dp"
         android:layout_height="18dp"
         android:layout_marginStart="184dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="52dp"
         android:text="Dificultad:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +97,7 @@
         android:layout_height="52dp"
         android:layout_marginStart="156dp"
         android:layout_marginBottom="23dp"
-        android:text="Puntos"
+        android:text="Puntuación acumulada:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,10 +114,10 @@
     <TextView
         android:id="@+id/textView24"
         android:layout_width="112dp"
-        android:layout_height="42dp"
+        android:layout_height="20dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="25dp"
-        android:text="Pregunta"
+        android:text="Pregunta:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

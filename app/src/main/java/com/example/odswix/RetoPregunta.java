@@ -77,7 +77,10 @@ public class RetoPregunta extends AppCompatActivity{
     ConstraintLayout idLayout;
     TextView textoPregunta;
     TextView textoDificultad;
-
+    TextView textViewNumPreg;
+    int contadorPreguntas = 1;
+    TextView textViewPuntosXPreg;
+    TextView textView23;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +121,9 @@ public class RetoPregunta extends AppCompatActivity{
         contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
         textView21 = (TextView) findViewById(R.id.textView21);
         idLayout = (ConstraintLayout) findViewById(R.id.idLayout);
-
+        textViewNumPreg = (TextView) findViewById(R.id.textViewNumPreg);
+        textViewPuntosXPreg = (TextView) findViewById(R.id.textViewPuntosXPreg);
+        textView23 = (TextView) findViewById(R.id.textView23);
 
         pregActual = listaPreguntasFacil.get(0);
         respuestasPreg = recuperarRespuestas(listaPreguntasFacil.get(0).getIdPregunta());
@@ -129,6 +134,9 @@ public class RetoPregunta extends AppCompatActivity{
         botonResp2.setText(respuestasPreg.get(1).getRespuesta());
         botonResp3.setText(respuestasPreg.get(2).getRespuesta());
         botonResp4.setText(respuestasPreg.get(3).getRespuesta());
+        textViewNumPreg.setText("1");
+        textViewPuntosXPreg.setText("100");
+
 
 
         //parte de la progressbar
@@ -184,27 +192,42 @@ public class RetoPregunta extends AppCompatActivity{
 
     public void siguientePregunta(View view){
 
-        if(answeredQuestions < 4){
+
+
+        ++contadorPreguntas;
+        String stringContador = String.valueOf(contadorPreguntas);
+        textViewNumPreg.setText(stringContador);
+
+
+        if(answeredQuestions < 3){
             contenedorRespuesta.setVisibility(View.INVISIBLE);
             mostrarTodo();
             pregActual = listaPreguntasFacil.get(answeredQuestionsFacil++);
             answeredQuestions++;
             preguntaRandom = pregActual.getEnunciado();
         }
-        else if(answeredQuestions < 7){
+        else if(answeredQuestions < 6){
+            textViewPuntosXPreg.setText("200");
             contenedorRespuesta.setVisibility(View.INVISIBLE);
             mostrarTodo();
             pregActual = listaPreguntasMedio.get(answeredQuestionsMedio++);
             answeredQuestions++;
             preguntaRandom = pregActual.getEnunciado();
         }
-        else if(answeredQuestions < 10){
+        else if(answeredQuestions < 9){
+            textViewPuntosXPreg.setText("300");
             contenedorRespuesta.setVisibility(View.INVISIBLE);
             mostrarTodo();
             pregActual = listaPreguntasDificil.get(answeredQuestionsDificil++);
             answeredQuestions++;
             preguntaRandom = pregActual.getEnunciado();
         }
+        else if(answeredQuestions == 9){
+            //resultado final del reto
+            esconderTodo();
+            setContentView(R.layout.partidafinalizada);
+        }
+
         respuestasPreg = recuperarRespuestas(pregActual.getIdPregunta());
         textoPregunta.setText(pregActual.getEnunciado());
         textoDificultad.setText(pregActual.getDificultad());
@@ -227,6 +250,9 @@ public class RetoPregunta extends AppCompatActivity{
         textView24.setVisibility(View.INVISIBLE);
         textView25.setVisibility(View.INVISIBLE);
         textView26.setVisibility(View.INVISIBLE);
+        textViewNumPreg.setVisibility(View.INVISIBLE);
+        textViewPuntosXPreg.setVisibility(View.INVISIBLE);
+        textView23.setVisibility(View.INVISIBLE);
     }
     public void mostrarTodo(){
         textView20.setVisibility(View.VISIBLE);
@@ -241,6 +267,9 @@ public class RetoPregunta extends AppCompatActivity{
         textView24.setVisibility(View.VISIBLE);
         textView25.setVisibility(View.VISIBLE);
         textView26.setVisibility(View.VISIBLE);
+        textViewNumPreg.setVisibility(View.VISIBLE);
+        textViewPuntosXPreg.setVisibility(View.VISIBLE);
+        textView23.setVisibility(View.VISIBLE);
         botonResp1.setClickable(true);
         botonResp2.setClickable(true);
         botonResp3.setClickable(true);

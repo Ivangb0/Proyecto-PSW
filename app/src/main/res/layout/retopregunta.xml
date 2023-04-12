@@ -16,7 +16,9 @@
         android:layout_marginBottom="23dp"
         android:text="Puntuación acumulada:"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/textViewPuntAcum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
 
     <TextView
         android:id="@+id/textView23"
@@ -24,7 +26,9 @@
         android:layout_height="17dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="52dp"
+        android:layout_marginEnd="4dp"
         android:text="Puntos:"
+        app:layout_constraintEnd_toStartOf="@+id/textViewPuntosXPreg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +39,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="52dp"
         android:text="Puntos:"
+        app:layout_constraintEnd_toStartOf="@+id/textView20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +49,11 @@
         android:layout_height="21dp"
         android:layout_marginStart="112dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="6dp"
         android:text="Pregunta"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPuntosXPreg"
+        app:layout_constraintEnd_toStartOf="@+id/textView26"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +62,6 @@
         android:layout_width="112dp"
         android:layout_height="18dp"
         android:layout_marginStart="184dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="32dp"
         android:text="Dificultad:"
         app:layout_constraintEnd_toStartOf="@+id/buttonPausa"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +72,7 @@
         android:layout_width="321dp"
         android:layout_height="63dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="3dp"
         android:onClick="comprobarCorrecta"
@@ -97,10 +104,10 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="15dp"
         android:onClick="comprobarCorrecta"
         android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonResp3" />
@@ -113,6 +120,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="32dp"
         android:text="Dificultad:"
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
         app:layout_constraintEnd_toStartOf="@+id/buttonPausa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -121,19 +129,12 @@
         android:id="@+id/textViewPuntAcum"
         android:layout_width="102dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="12dp"
         android:text="500"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
-
-        android:id="@+id/textView25"
-        android:layout_width="247dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="23dp"
-        android:text="Puntuación acumulada:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
 
     <TextView
         android:id="@+id/textView5"
@@ -144,18 +145,24 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="12dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonResp1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="112dp"
-        android:layout_height="20dp"
+        android:layout_width="72dp"
+        android:layout_height="21dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="3dp"
         android:text="Pregunta:"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPuntosXPreg"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNumPreg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,38 +171,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="28dp"
         android:text="Pistas"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp4"
+        app:layout_constraintVertical_bias="0.937" />
 
     <ImageButton
         android:id="@+id/buttonPausa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginBottom="37dp"
         android:contentDescription="Boton para pausar el juego"
         android:onClick="botonPausar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_pause" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="320dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="10dp"
-        android:max="30000"
-        android:progress="30000"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPausa" />
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_media_pause" />
 
     <Button
         android:id="@+id/buttonResp2"
@@ -216,9 +215,11 @@
         android:id="@+id/contenedorRespuesta"
         android:layout_width="229dp"
         android:layout_height="154dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="48dp"
+        android:layout_marginBottom="22dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonResp1"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5">
 
@@ -238,6 +239,46 @@
             android:layout_marginTop="20dp"
             android:onClick="siguientePregunta"
             android:text="Siguiente pregunta" />
+
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="54dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Tiempo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textViewTiempo"
+        android:layout_width="58dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPuntosXPreg" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="64dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="18dp"
+        android:text="Vidas:"
+        app:layout_constraintStart_toEndOf="@+id/textViewTiempo"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textViewVidas"
+        android:layout_width="74dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="18dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

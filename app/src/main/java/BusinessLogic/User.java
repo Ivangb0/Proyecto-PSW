@@ -19,7 +19,7 @@ public class User implements Serializable {
     @DatabaseField
     public String password;
     @DatabaseField
-    public int puntosAcum;
+    public int puntosAcumTotales;
     @DatabaseField
     public int trofeos;
     @DatabaseField
@@ -34,7 +34,7 @@ public class User implements Serializable {
         this.username = usern;
         this.email = email;
         this.password = pswrd;
-        this.puntosAcum = ptosAcum;
+        this.puntosAcumTotales = ptosAcum;
         this.trofeos = trof;
         this.medallas = medals;
     }
@@ -57,7 +57,7 @@ public class User implements Serializable {
     }
 
     public int getPuntosAcum(){
-        return puntosAcum;
+        return puntosAcumTotales;
     }
 
     public int getMedallas(){
@@ -82,7 +82,7 @@ public class User implements Serializable {
     }
 
     public void setPuntosAcum (int newPuntosAcum){
-        this.puntosAcum = newPuntosAcum;
+        this.puntosAcumTotales = newPuntosAcum;
     }
 
     public void setMedallas (int newMedallas){

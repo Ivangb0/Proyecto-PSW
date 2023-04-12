@@ -1,5 +1,6 @@
 package com.example.odswix;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -15,17 +16,18 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import BusinessLogic.Answer;
-import BusinessLogic.Question;
-import Persistence.AnswerDAO;
-import Persistence.QuestionDAO;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import BusinessLogic.Answer;
+import BusinessLogic.Question;
+import Persistence.AnswerDAO;
+import Persistence.QuestionDAO;
 
 
 public class RetoPregunta extends AppCompatActivity{
@@ -364,7 +366,10 @@ public class RetoPregunta extends AppCompatActivity{
         }
     }
 
-    public void botonPausar(){;}
+    public void botonPausar(){
+
+
+    }
 
     public void onBackPressed() {
         // Código para evitar que se cierre la actividad al pulsar el botón de Atrás

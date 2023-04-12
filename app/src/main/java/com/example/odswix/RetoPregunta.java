@@ -1,9 +1,9 @@
 package com.example.odswix;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class RetoPregunta extends AppCompatActivity{
 
-    int puntos = 0;
+    int puntosAcum = 0;
 
     int answeredQuestions = 0;
 
@@ -81,6 +81,9 @@ public class RetoPregunta extends AppCompatActivity{
     int contadorPreguntas = 1;
     TextView textViewPuntosXPreg;
     TextView textView23;
+    Button buttonSiguiente;
+    TextView textViewPuntAcum;
+    TextView textView6;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +119,7 @@ public class RetoPregunta extends AppCompatActivity{
         buttonPausa = (ImageButton) findViewById(R.id.buttonPausa);
         textView5 = (TextView) findViewById(R.id.textView5);
         textView24 = (TextView) findViewById(R.id.textView24);
-        textView25 = (TextView) findViewById(R.id.textView25);
+        textView25 = (TextView) findViewById(R.id.textViewPuntAcum);
         textView26 = (TextView) findViewById(R.id.textView26);
         contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
         textView21 = (TextView) findViewById(R.id.textView21);
@@ -124,6 +127,9 @@ public class RetoPregunta extends AppCompatActivity{
         textViewNumPreg = (TextView) findViewById(R.id.textViewNumPreg);
         textViewPuntosXPreg = (TextView) findViewById(R.id.textViewPuntosXPreg);
         textView23 = (TextView) findViewById(R.id.textView23);
+        buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
+        textViewPuntAcum = (TextView) findViewById(R.id.textViewPuntAcum);
+        textView6 = (TextView) findViewById(R.id.textView6);
 
         pregActual = listaPreguntasFacil.get(0);
         respuestasPreg = recuperarRespuestas(listaPreguntasFacil.get(0).getIdPregunta());
@@ -136,6 +142,9 @@ public class RetoPregunta extends AppCompatActivity{
         botonResp4.setText(respuestasPreg.get(3).getRespuesta());
         textViewNumPreg.setText("1");
         textViewPuntosXPreg.setText("100");
+        buttonSiguiente.setText("Siguiente");
+        textViewPuntAcum.setText("0");
+
 
 
 
@@ -155,7 +164,7 @@ public class RetoPregunta extends AppCompatActivity{
                     handler.postDelayed(this, 1000);
                 }
                 else {
-                    if(puntos >= 100) puntos -= 100;
+                    if(puntosAcum >= 100) puntosAcum -= 100;
                     textView21.setText("Se acabó el tiempo.");
                     contenedorRespuesta.setVisibility(View.VISIBLE);
                     botonResp1.setClickable(false);
@@ -225,7 +234,9 @@ public class RetoPregunta extends AppCompatActivity{
         else if(answeredQuestions == 9){
             //resultado final del reto
             esconderTodo();
-            setContentView(R.layout.partidafinalizada);
+            Intent partidaFinalizada = new Intent(this, PartidaFinalizada.class);
+            startActivity(partidaFinalizada);
+            this.finish();
         }
 
         respuestasPreg = recuperarRespuestas(pregActual.getIdPregunta());
@@ -253,6 +264,8 @@ public class RetoPregunta extends AppCompatActivity{
         textViewNumPreg.setVisibility(View.INVISIBLE);
         textViewPuntosXPreg.setVisibility(View.INVISIBLE);
         textView23.setVisibility(View.INVISIBLE);
+        textView6.setVisibility(View.INVISIBLE);
+        textViewPuntAcum.setVisibility(View.INVISIBLE);
     }
     public void mostrarTodo(){
         textView20.setVisibility(View.VISIBLE);
@@ -270,6 +283,8 @@ public class RetoPregunta extends AppCompatActivity{
         textViewNumPreg.setVisibility(View.VISIBLE);
         textViewPuntosXPreg.setVisibility(View.VISIBLE);
         textView23.setVisibility(View.VISIBLE);
+        textView6.setVisibility(View.VISIBLE);
+        textViewPuntAcum.setVisibility(View.VISIBLE);
         botonResp1.setClickable(true);
         botonResp2.setClickable(true);
         botonResp3.setClickable(true);
@@ -277,9 +292,29 @@ public class RetoPregunta extends AppCompatActivity{
     }
     public void comprobarCorrecta(View view) {
 
+        if(answeredQuestions == 9) {
+            buttonSiguiente.setText("Acabar");
+        }
 
+        /*String stringPuntosAcum = "";
+        if(pregActual.getDificultad() == "Facil") {
+            puntosAcum += 100;
+            stringPuntosAcum = String.valueOf(puntosAcum);
+            textViewPuntAcum.setText(stringPuntosAcum);
+        }
+        else if(pregActual.getDificultad() == "Medio") {
+            puntosAcum += 200;
+            stringPuntosAcum = String.valueOf(puntosAcum);
+            textViewPuntAcum.setText(stringPuntosAcum);
+        }
+        else if(pregActual.getDificultad() == "Dificil") {
+            puntosAcum += 300;
+            stringPuntosAcum = String.valueOf(puntosAcum);
+            textViewPuntAcum.setText(stringPuntosAcum);
+        }
+        */
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
-            puntos += 100;
+            puntosAcum += 100;
             textView21.setText("Respuesta correcta.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -288,7 +323,7 @@ public class RetoPregunta extends AppCompatActivity{
             botonResp3.setClickable(false);
             botonResp4.setClickable(false);
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
-            puntos += 100;
+            puntosAcum += 100;
             textView21.setText("Respuesta correcta.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -298,7 +333,7 @@ public class RetoPregunta extends AppCompatActivity{
             botonResp4.setClickable(false);
         }
         else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
-            puntos += 100;
+            puntosAcum += 100;
             textView21.setText("Respuesta correcta.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -308,7 +343,7 @@ public class RetoPregunta extends AppCompatActivity{
             botonResp4.setClickable(false);
         }
         else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
-            puntos += 100;
+            puntosAcum += 100;
             textView21.setText("Respuesta correcta.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -318,7 +353,7 @@ public class RetoPregunta extends AppCompatActivity{
             botonResp4.setClickable(false);
         }
         else {
-            if(puntos >= 100) puntos -= 100;
+            if(puntosAcum >= 100) puntosAcum -= 100;
             textView21.setText("Respuesta incorrecta.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);

@@ -46,6 +46,10 @@
             android:name=".Perfil"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".PartidaFinalizada"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
     </application>
 

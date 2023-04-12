@@ -1,5 +1,6 @@
 package com.example.odswix;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ public class PartidaFinalizada extends AppCompatActivity {
     }
 
     public void irAlMenu(View view){
-        setContentView(R.layout.jugarpartida);
+        Intent jugarPartida = new Intent(this, JugarPartida.class);
+        startActivity(jugarPartida);
+        this.finish();
     }
 }

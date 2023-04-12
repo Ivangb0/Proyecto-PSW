@@ -9,16 +9,6 @@
     tools:layout_editor_absoluteY="-4dp">
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="155dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginBottom="23dp"
-        android:text="Puntuación acumulada:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/textView23"
         android:layout_width="68dp"
         android:layout_height="17dp"
@@ -60,51 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-    <Button
-        android:id="@+id/buttonResp1"
-        android:layout_width="321dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="3dp"
-        android:onClick="comprobarCorrecta"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResp2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <Button
-        android:id="@+id/buttonResp3"
-        android:layout_width="321dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="comprobarCorrecta"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResp4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp2" />
-
-    <Button
-        android:id="@+id/buttonResp4"
-        android:layout_width="321dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="26dp"
-        android:onClick="comprobarCorrecta"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp3" />
-
     <TextView
         android:id="@+id/textView26"
         android:layout_width="112dp"
@@ -118,14 +63,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewPuntAcum"
-        android:layout_width="102dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="27dp"
-        android:text="500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
-
         android:id="@+id/textView25"
         android:layout_width="247dp"
         android:layout_height="54dp"
@@ -142,9 +79,9 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="124dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="2dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResp1"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -197,21 +134,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPausa" />
 
-    <Button
-        android:id="@+id/buttonResp2"
-        android:layout_width="321dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="6dp"
-        android:onClick="comprobarCorrecta"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResp3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp1" />
-
     <RelativeLayout
         android:id="@+id/contenedorRespuesta"
         android:layout_width="229dp"
@@ -239,5 +161,69 @@
             android:onClick="siguientePregunta"
             android:text="Siguiente pregunta" />
     </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="410dp"
+        android:layout_height="327dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonResp1"
+                android:layout_width="321dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="comprobarCorrecta"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/buttonResp2"
+                android:layout_width="321dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="comprobarCorrecta"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/buttonResp3"
+                android:layout_width="321dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="45dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="comprobarCorrecta"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/buttonResp4"
+                android:layout_width="321dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="comprobarCorrecta"
+                android:text="Button" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

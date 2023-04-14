@@ -83,6 +83,7 @@ public class IniciarSesion extends AppCompatActivity {
                         correcto = true;
                     } else {
                         msgError.setText("Credenciales introducidas incorrectas");
+                        msgError.setVisibility(View.VISIBLE);
                     }
                 }
             }

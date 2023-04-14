@@ -18,6 +18,13 @@ public class JugarPartida extends AppCompatActivity {
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
     }
+    public void jugar (View view){
+        Intent intent = new Intent(this, Gestor.class);
+        //intent.putExtra("user", usuario);
+        finishAfterTransition();
+        startActivity(intent);
+
+    }
     public void perfil (View view){
         Intent perfil = new Intent(this, Perfil.class);
         perfil.putExtra("user", usuario);

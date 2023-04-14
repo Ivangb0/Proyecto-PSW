@@ -7,9 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
-
+/*
         String url = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdatabase?useSSL=true";
         String user = "KogMaw";
         String password = "WIXAdmin1";
@@ -32,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-        /*try {
+        try {
            wait(6000);
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
         }*/
-        Intent intent = new Intent(this, RetoPregunta.class);
+        Intent intent = new Intent(this, IniciarSesion.class);
 
         startActivity(intent);
 

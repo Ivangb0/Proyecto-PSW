@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 public class IniciarSesion extends AppCompatActivity {
 
     @Override
@@ -17,19 +21,20 @@ public class IniciarSesion extends AppCompatActivity {
 
 
     }
+
     public void onBackPressed() {
         // Código para evitar que se cierre la actividad al pulsar el botón de Atrás
     }
 
-    public boolean isEmptyTest(){
+    public boolean isEmptyTest() {
         TextView msgError = findViewById(R.id.txt_error);
         EditText name = findViewById(R.id.txt_username);
         EditText pass = findViewById(R.id.txt_password);
 
         boolean todoOK = false;
 
-        if(name.getText().toString().isEmpty() ||
-                pass.getText().toString().isEmpty()){
+        if (name.getText().toString().isEmpty() ||
+                pass.getText().toString().isEmpty()) {
             msgError.setText("Hay algún campo vacío, revise las credenciales");
             msgError.setVisibility(View.VISIBLE);
         } else {
@@ -38,59 +43,70 @@ public class IniciarSesion extends AppCompatActivity {
         }
         return todoOK;
     }
-    //Método para iniciar sesión (lo que se ejecuta cuando le das al boton iniciar sesion)
-    public void iniciarSesion(View view){
-/*
+
+    public boolean usernameTest() {
+        EditText textUser = findViewById(R.id.usuario);
+        EditText textPass = findViewById(R.id.txt_password);
+        String bduser = textUser.getText().toString();
+        String pass = textPass.getText().toString();
+        List<String> sql = new ArrayList<>();
+        String password;
+        boolean correcto = false;
+
         try {
-            if(isEmptyTest()){
-                Intent intent = new Intent(this, JugarPartida.class);
-                intent.putExtra("user", usuario);
-                startActivity(intent);
+            ResultSet rsUser = SingletonSQL.consultar("SELECT username FROM user");
+
+            while (rsUser.next()) {
+                sql.add(rsUser.getString("username"));
             }
-        } catch (SQLException e) {
+
+            boolean existe = false;
+            for (int i = 0; i < sql.size(); i++) {
+                if (bduser.equals(sql.get(i))) {
+                    existe = true;
+                    break;
+                }
+            }
+
+            TextView msgError = findViewById(R.id.Euser);
+            if (!existe) {
+                msgError.setText("No existe el usuario introducido");
+                msgError.setVisibility(View.VISIBLE);
+            } else {
+                //correcto = true;
+                msgError.setVisibility(View.INVISIBLE);
+                ResultSet rsPass = SingletonSQL.consultar("SELECT password FROM user WHERE username == " + bduser);
+
+                while (rsPass.next()) {
+                    password = rsPass.getString("password");
+                    if (pass == password) {
+                        correcto = true;
+                    } else {
+                        msgError.setText("Credenciales introducidas incorrectas");
+                        msgError.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+        } catch (java.sql.SQLException e) {
             e.printStackTrace();
-        }*/
+        }
+        return correcto;
+    }
+
+
+    //Método para iniciar sesión (lo que se ejecuta cuando le das al boton iniciar sesion)
+    public void iniciarSesion(View view) {
+        if (isEmptyTest() && usernameTest()) {
+            Intent jugarPartida = new Intent(this, JugarPartida.class);
+            startActivity(jugarPartida);
+        }
     }
 
     //Método para ir a la pantalla de registrarse
-    public void registrarse (View view){
+    public void registrarse(View view) {
         Intent registrarse = new Intent(this, Registrarse.class);
         startActivity(registrarse);
     }
 
-    //Método para validar el inicio de sesión y si es erróneo saber el motivo
-    public int loginCorrect() {
-/*
-        try {
-            Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-            Statement stmt = con.createStatement();
-            ResultSet DBusername = stmt.executeQuery("SELECT username FROM user WHERE username = " + username);
-            String DBname = "";
-            while (DBusername.next()) {
-                DBname = DBusername.getString(1);
-            }
-
-            ResultSet DBpassword = stmt.executeQuery("SELECT password FROM user WHERE username = " + username);
-            String DBpass = "";
-            while (DBpassword.next()) {
-                DBpass = DBpassword.getString(1);
-            }
-
-
-
-            if (username == DBname) {
-                if (password == DBpass) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            } else {
-                return 2;
-            }
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        }*/
-        return -1;
-    }
 }

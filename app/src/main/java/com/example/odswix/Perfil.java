@@ -45,7 +45,7 @@ public class Perfil extends AppCompatActivity {
         TextView password = findViewById(R.id.contraseñaUser);
         password.setText(user.getPassword());
         TextView score = findViewById(R.id.puntosUser);
-        score.setText(String.valueOf(user.getPuntosAcum()));
+        score.setText(String.valueOf(user.getPuntosAcumTotales()));
     }
 
     public void cambiarUsername(View view){

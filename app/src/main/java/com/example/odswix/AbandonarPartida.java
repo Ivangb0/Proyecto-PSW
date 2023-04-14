@@ -8,19 +8,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PartidaFinalizada extends AppCompatActivity {
-
-    Button buttonContinuarAlMenu;
+public class AbandonarPartida extends AppCompatActivity{
     TextView textView29;
+    TextView textViewNotBad;
+    TextView textView40;
+    Button buttonContinuarAlMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.partidafinalizada);
+        setContentView(R.layout.abandonarpartida);
 
         buttonContinuarAlMenu = (Button) findViewById(R.id.buttonContinuarAlMenu);
         textView29 = (TextView) findViewById(R.id.textView29);
+        textView40 = (TextView) findViewById(R.id.textView40);
         textView29.setText(String.valueOf(RetoPregunta.puntosAcum));
-
 
     }
 

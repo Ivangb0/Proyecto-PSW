@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
         }*/
-        Intent intent = new Intent(this, JugarPartida.class);
+<<<
+        Intent intent = new Intent(this, RetoPregunta.class);
+===
 
         startActivity(intent);
 

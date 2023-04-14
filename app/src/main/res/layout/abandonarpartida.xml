@@ -5,75 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="224dp"
-            android:layout_marginEnd="105dp"
-            android:text="Reanudar" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="105dp"
-            android:text="Consolidar" />
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="105dp"
-            android:text="Abandonar" />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="124dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="130dp"
-        android:text="Pausa"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:id="@+id/textViewNotBad"
+        android:layout_width="315dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="140dp"
+        android:text="No está mal"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="38sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="228dp"
+        android:layout_height="50dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="168dp"
-        android:text="Idioma"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="44dp"
+        android:text="Puntuación consolidada:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="76dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="168dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="89dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="2000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
+
+    <Button
+        android:id="@+id/buttonContinuarAlMenu"
+        android:layout_width="207dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:onClick="irAlMenu"
+        android:text="Volver al menú"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

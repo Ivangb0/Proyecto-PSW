@@ -13,7 +13,7 @@
         android:layout_width="155dp"
         android:layout_height="55dp"
         android:layout_marginStart="156dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="25dp"
         android:text="Puntuación acumulada:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewPuntAcum"
@@ -127,22 +127,23 @@
 
     <TextView
         android:id="@+id/textViewPuntAcum"
-        android:layout_width="102dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="85dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="5dp"
         android:text="500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonResp4"
+        app:layout_constraintVertical_bias="0.535" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="322dp"
-        android:layout_height="202dp"
+        android:layout_width="345dp"
+        android:layout_height="221dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="12dp"
         android:text="TextView"
         android:textSize="16sp"
@@ -151,6 +152,16 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewODS"
+        android:layout_width="76dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView24"
@@ -213,8 +224,8 @@
 
     <RelativeLayout
         android:id="@+id/contenedorRespuesta"
-        android:layout_width="229dp"
-        android:layout_height="154dp"
+        android:layout_width="345dp"
+        android:layout_height="220dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="22dp"
         android:visibility="invisible"
@@ -224,6 +235,48 @@
         app:layout_constraintTop_toTopOf="@+id/textView5">
 
         <TextView
+            android:id="@+id/textViewPtosTots"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonSiguiente"
+            android:layout_marginStart="37dp"
+            android:layout_marginBottom="50dp"
+            android:layout_toEndOf="@+id/buttonConsolidar"
+            android:text="Puntos Acumulados:" />
+
+        <TextView
+            android:id="@+id/textViewPtosAcums"
+            android:layout_width="82dp"
+            android:layout_height="24dp"
+            android:layout_alignEnd="@+id/textViewPtosTots"
+            android:layout_alignBottom="@+id/buttonSiguiente"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginBottom="14dp"
+            android:layout_toEndOf="@+id/buttonSiguiente"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewObtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewPtosTots"
+            android:layout_marginStart="38dp"
+            android:layout_marginBottom="47dp"
+            android:layout_toEndOf="@+id/buttonConsolidar"
+            android:text="Puntos obtenidos" />
+
+        <TextView
+            android:id="@+id/textViewPtosObtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewPtosAcums"
+            android:layout_marginStart="-110dp"
+            android:layout_marginBottom="51dp"
+            android:layout_toEndOf="@+id/textViewObtend"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/textView21"
             android:layout_width="156dp"
             android:layout_height="54dp"
@@ -231,14 +284,47 @@
             android:text="Respuesta incorrecta." />
 
         <Button
+            android:id="@+id/buttonConsolidar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView21"
+            android:layout_marginStart="-111dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/textView21"
+            android:onClick="pressConsolidar"
+            android:text="Consolidar" />
+
+        <Button
             android:id="@+id/buttonSiguiente"
             android:layout_width="137dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView21"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
             android:onClick="siguientePregunta"
             android:text="Siguiente pregunta" />
+
+        <TextView
+            android:id="@+id/textViewTiempoC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewObtend"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="14dp"
+            android:layout_toEndOf="@+id/textView21"
+            android:text="Tiempo:" />
+
+        <TextView
+            android:id="@+id/textViewTiempoCons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewObtend"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="18dp"
+            android:layout_toEndOf="@+id/textViewTiempoC"
+            android:text="TextView" />
 
     </RelativeLayout>
 

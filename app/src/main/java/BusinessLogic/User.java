@@ -56,7 +56,7 @@ public class User implements Serializable {
         return password;
     }
 
-    public int getPuntosAcum(){
+    public int getPuntosAcumTotales(){
         return puntosAcumTotales;
     }
 
@@ -81,7 +81,7 @@ public class User implements Serializable {
         this.password = newPassword;
     }
 
-    public void setPuntosAcum (int newPuntosAcum){
+    public void setPuntosAcumTotales (int newPuntosAcum){
         this.puntosAcumTotales = newPuntosAcum;
     }
 

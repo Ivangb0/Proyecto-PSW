@@ -156,7 +156,7 @@ public class PruebaLayout extends AppCompatActivity {
         } else if (pregunta.getDificultad().equals("Dificil")) {
             puntosPregunta = 300;
         }
-
+/*
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             puntosAcum += puntosPregunta;
             textView21.setText("Respuesta correcta.");
@@ -216,11 +216,11 @@ public class PruebaLayout extends AppCompatActivity {
             botonResp3.setClickable(false);
             botonResp4.setClickable(false);
             buttonSiguiente.setText("Volver al menu");
-        }
+        }*/
     }
-    public void siguientePregunta(View view){
+    public void siguientePregunta(View view) {
 
-        if(vidas == 0){
+        if (vidas == 0) {
             Intent intent = new Intent(this, JugarPartida.class);
             finishAfterTransition();
             startActivity(intent);
@@ -228,7 +228,7 @@ public class PruebaLayout extends AppCompatActivity {
 
         numPregunta++;
         textViewNumPreg.setText(String.valueOf(numPregunta));
-
+/*
         if(numPregunta < 4){
             contenedorRespuesta.setVisibility(View.INVISIBLE);
             mostrarTodo();
@@ -266,6 +266,7 @@ public class PruebaLayout extends AppCompatActivity {
         botonResp2.setText(respuestasPreg.get(1).getRespuesta());
         botonResp3.setText(respuestasPreg.get(2).getRespuesta());
         botonResp4.setText(respuestasPreg.get(3).getRespuesta());
+    
+*/
     }
-
 }

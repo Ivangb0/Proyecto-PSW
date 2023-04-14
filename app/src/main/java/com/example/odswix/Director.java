@@ -1,6 +1,8 @@
 package com.example.odswix;
 
-public class Director {
+import java.io.Serializable;
+
+public class Director implements Serializable {
 
     public Director(){}
 
@@ -9,7 +11,6 @@ public class Director {
         builder.buildDificultad("Facil");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildVidas();
         builder.buildPuntosAcum();
         builder.buildRespuestas();
     }
@@ -18,7 +19,6 @@ public class Director {
         builder.buildDificultad("Medio");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildVidas();
         builder.buildPuntosAcum();
         builder.buildRespuestas();
     }
@@ -27,7 +27,6 @@ public class Director {
         builder.buildDificultad("Dificil");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildVidas();
         builder.buildPuntosAcum();
         builder.buildRespuestas();
     }

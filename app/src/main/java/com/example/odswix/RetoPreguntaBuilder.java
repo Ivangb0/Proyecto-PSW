@@ -1,5 +1,6 @@
 package com.example.odswix;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import BusinessLogic.Question;
 import Persistence.AnswerDAO;
 import Persistence.QuestionDAO;
 
-public class RetoPreguntaBuilder implements Builder{
+public class RetoPreguntaBuilder implements Builder, Serializable {
     private Pregunta pregunta;
     private List<Question> listaPreguntas;
     private Question preguntaFiltrada;
@@ -39,9 +40,6 @@ public class RetoPreguntaBuilder implements Builder{
     }
     public void buildTimer(){
         pregunta.setTimer(30);
-    }
-    public void buildVidas(){
-        pregunta.setVidas(2);
     }
     public void buildPuntosAcum(){
         pregunta.setPuntosAcum(0);

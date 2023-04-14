@@ -5,14 +5,14 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Random;
-
 import BusinessLogic.Pregunta;
 
 public class Gestor extends AppCompatActivity {
 
-    private int numPreg = 0;
-    private int puntosAcum = 0;
+    private int numPreg;
+    private int puntosAcum;
+    private int vidas;
+    private boolean init;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,40 +21,42 @@ public class Gestor extends AppCompatActivity {
     }
 
     private void cuestionAleatoria() {
-        if(this.numPreg == 10){
-            Intent intent = new Intent(this, RetoSuperado.class);
-            finishAfterTransition();
-            startActivity(intent);
-        }
-        Random random = new Random();
-        int resultado = 0; // random.nextInt(4);
 
-        Intent intent = null;
+        Intent intent = new Intent(this, PruebaLayout.class);
 
+        setVariables();
         Director director = new Director();
-        Pregunta prueba = null;
 
-        if (resultado == 0) {
-            RetoPreguntaBuilder preguntaBuilder = new RetoPreguntaBuilder();
+        RetoPreguntaBuilder preguntaBuilder = new RetoPreguntaBuilder();
+
+        if (numPreg < 4) {
             director.construirPreguntaFacil(preguntaBuilder);
-            prueba = preguntaBuilder.getTipo();
-            intent = new Intent(this, PruebaLayout.class);
-            intent.putExtra("cuestion", prueba);
-        }
-
-
-        numPreg++;
+        } else if (numPreg < 7) {
+            director.construirPreguntaMedio(preguntaBuilder);
+        } else if (numPreg <= 10) {
+            director.construirPreguntaDificil(preguntaBuilder);
+        }else{
+            intent = new Intent(this, PartidaFinalizada.class);
+            startActivity(intent);
+    }
+        Pregunta prueba = preguntaBuilder.getTipo();
+        intent.putExtra("cuestion", prueba);
+        intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
         startActivity(intent);
-        //startActivityForResult(intent, 1);
     }
-    //Investigar como funciona este método <<<<
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 1) {
-            // Procesar el resultado devuelto por la actividad iniciada
-            String resultado = data.getStringExtra("resultado");
+
+    private void setVariables(){
+        Intent intent = getIntent();
+        init = (boolean) intent.getSerializableExtra("init");
+        if(init){
+            numPreg = 1;
+            puntosAcum = 0;
+            vidas = 2;
+        } else{
+            numPreg = (int) intent.getSerializableExtra("numPreg");
+            puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
+            vidas = (int) intent.getSerializableExtra("vidasPreg");
         }
     }
 }

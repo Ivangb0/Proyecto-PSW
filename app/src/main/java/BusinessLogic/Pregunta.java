@@ -8,10 +8,7 @@ public class Pregunta implements Serializable {
     private int timer;
     private String dificultad;
     private List<Answer> respuestas;
-    private int vidas;
     private int pntsAcum;
-
-    private boolean superada;
 
     public Pregunta(){}
 
@@ -26,15 +23,6 @@ public class Pregunta implements Serializable {
     }
     public int getTimer(){
         return this.timer;
-    }
-    public void setVidas(int vidas){
-        this.vidas = vidas;
-    }
-    public int getVidas(){
-        return this.vidas;
-    }
-    public void decreaseVidas(){
-        this.vidas--;
     }
     public void setPuntosAcum(int pntsAcum){
         this.pntsAcum = pntsAcum;
@@ -53,11 +41,5 @@ public class Pregunta implements Serializable {
     }
     public List<Answer> getRespuestas(){
         return this.respuestas;
-    }
-    public void setUperada(boolean superada){
-        this.superada = superada;
-    }
-    public boolean getSuperada(){
-        return this.superada;
     }
 }

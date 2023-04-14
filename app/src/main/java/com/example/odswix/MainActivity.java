@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (java.lang.InterruptedException e){
             e.printStackTrace();
         }*/
-        Intent intent = new Intent(this, IniciarSesion.class);
+        Intent intent = new Intent(this, JugarPartida.class);
 
         startActivity(intent);
 

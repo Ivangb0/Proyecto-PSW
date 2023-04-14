@@ -20,8 +20,8 @@ public class JugarPartida extends AppCompatActivity {
     }
     public void jugar (View view){
         Intent intent = new Intent(this, Gestor.class);
-        //intent.putExtra("user", usuario);
-        finishAfterTransition();
+        boolean init = true;
+        intent.putExtra("init", init);
         startActivity(intent);
 
     }

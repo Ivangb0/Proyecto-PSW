@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import BusinessLogic.Answer;
 import BusinessLogic.Pregunta;
 
 public class PruebaLayout extends AppCompatActivity {
@@ -18,6 +22,7 @@ public class PruebaLayout extends AppCompatActivity {
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
+    List<Answer> respuestasPreg = new ArrayList<Answer>();
 
     Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView20;
@@ -36,8 +41,14 @@ public class PruebaLayout extends AppCompatActivity {
         Intent intent = getIntent();
         pregunta = (Pregunta) intent.getSerializableExtra("cuestion");
         numPregunta = (int) intent.getSerializableExtra("numPregunta");
-        vidas = pregunta.getVidas();
-
+        vidas = (int) intent.getSerializableExtra("vidas");
+        /*if (vidas == 0) {
+            Intent fin = new Intent(this, JugarPartida.class);
+            finishAfterTransition();
+            startActivity(fin);
+        }*/
+        respuestasPreg = pregunta.getRespuestas();
+        puntosAcum = pregunta.getPuntosAcum();
 
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
@@ -67,17 +78,14 @@ public class PruebaLayout extends AppCompatActivity {
         textView33 = (TextView) findViewById(R.id.textView33);
         textViewVidas = (TextView) findViewById(R.id.textViewVidas);
 
-        /*
-        pregActual = listaPreguntasFacil.get(0);
-        respuestasPreg = recuperarRespuestas(listaPreguntasFacil.get(0).getIdPregunta());
-        System.out.print(respuestasPreg);
-        textoPregunta.setText(pregActual.getEnunciado());
-        textoDificultad.setText(pregActual.getDificultad());
+
+        textoPregunta.setText(pregunta.getEnunciado());
+        textoDificultad.setText(pregunta.getDificultad());
         botonResp1.setText(respuestasPreg.get(0).getRespuesta());
         botonResp2.setText(respuestasPreg.get(1).getRespuesta());
         botonResp3.setText(respuestasPreg.get(2).getRespuesta());
         botonResp4.setText(respuestasPreg.get(3).getRespuesta());
-        */
+
 
         textViewNumPreg.setText(String.valueOf(numPregunta));
         if (pregunta.getDificultad().equals("Facil")) {
@@ -148,125 +156,65 @@ public class PruebaLayout extends AppCompatActivity {
             buttonSiguiente.setText("Acabar");
         }
 
-        String stringPuntosAcum = "";
-        if (pregunta.getDificultad().equals("Facil")) {
-            puntosPregunta = 100;
-        } else if (pregunta.getDificultad().equals("Medio")) {
-            puntosPregunta = 200;
-        } else if (pregunta.getDificultad().equals("Dificil")) {
-            puntosPregunta = 300;
-        }
-/*
+        puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
+
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             puntosAcum += puntosPregunta;
+            pregunta.setPuntosAcum(puntosAcum);
             textView21.setText("Respuesta correcta.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
             puntosAcum += puntosPregunta;
+            pregunta.setPuntosAcum(puntosAcum);
             textView21.setText("Respuesta correcta.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
             puntosAcum += puntosPregunta;
+            pregunta.setPuntosAcum(puntosAcum);
             textView21.setText("Respuesta correcta.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
             puntosAcum += puntosPregunta;
+            pregunta.setPuntosAcum(puntosAcum);
             textView21.setText("Respuesta correcta.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
         } else {
-            pregunta.decreaseVidas();
-            if (puntosAcum >= puntosPregunta * 2) puntosAcum -= puntosPregunta * 2;
+            vidas--;
+            if (puntosAcum >= puntosPregunta * 2) {
+                puntosAcum -= puntosPregunta * 2;
+                pregunta.setPuntosAcum(puntosAcum);
+            }
             textView21.setText("Respuesta incorrecta.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
         }
-        stringPuntosAcum = String.valueOf(puntosAcum);
-        textViewPuntAcum.setText(stringPuntosAcum);
-        textViewVidas.setText(String.valueOf(vidas));
         if (vidas == 0) {
             textView21.setText("Te has quedado sin vidas.");
             esconderTodo();
-            contenedorRespuesta.setVisibility(View.VISIBLE);
-            botonResp1.setClickable(false);
-            botonResp2.setClickable(false);
-            botonResp3.setClickable(false);
-            botonResp4.setClickable(false);
+            mostrarSiguiente();
             buttonSiguiente.setText("Volver al menu");
-        }*/
+        }
+    }
+    private void mostrarSiguiente(){
+        contenedorRespuesta.setVisibility(View.VISIBLE);
+        botonResp1.setClickable(false);
+        botonResp2.setClickable(false);
+        botonResp3.setClickable(false);
+        botonResp4.setClickable(false);
     }
     public void siguientePregunta(View view) {
 
-        if (vidas == 0) {
-            Intent intent = new Intent(this, JugarPartida.class);
-            finishAfterTransition();
-            startActivity(intent);
-        }
-
         numPregunta++;
-        textViewNumPreg.setText(String.valueOf(numPregunta));
-/*
-        if(numPregunta < 4){
-            contenedorRespuesta.setVisibility(View.INVISIBLE);
-            mostrarTodo();
-            pregActual = listaPreguntasFacil.get(++answeredQuestionsFacil);
-            answeredQuestions++;
-            preguntaRandom = pregActual.getEnunciado();
-        }
-        else if(numPregunta < 7){
-            textViewPuntosXPreg.setText("200");
-            contenedorRespuesta.setVisibility(View.INVISIBLE);
-            mostrarTodo();
-            pregActual = listaPreguntasMedio.get(answeredQuestionsMedio++);
-            answeredQuestions++;
-            preguntaRandom = pregActual.getEnunciado();
-        }
-        else if(numPregunta < 10){
-            textViewPuntosXPreg.setText("300");
-            contenedorRespuesta.setVisibility(View.INVISIBLE);
-            mostrarTodo();
-            pregActual = listaPreguntasDificil.get(answeredQuestionsDificil++);
-            answeredQuestions++;
-            preguntaRandom = pregActual.getEnunciado();
-        }
-        else if(numPregunta == 10){
-            esconderTodo();
-            Intent partidaFinalizada = new Intent(this, PartidaFinalizada.class);
-            startActivity(partidaFinalizada);
-            this.finish();
-        }
-
-        respuestasPreg = recuperarRespuestas(pregActual.getIdPregunta());
-        textoPregunta.setText(pregActual.getEnunciado());
-        textoDificultad.setText(pregActual.getDificultad());
-        botonResp1.setText(respuestasPreg.get(0).getRespuesta());
-        botonResp2.setText(respuestasPreg.get(1).getRespuesta());
-        botonResp3.setText(respuestasPreg.get(2).getRespuesta());
-        botonResp4.setText(respuestasPreg.get(3).getRespuesta());
-    
-*/
+        Intent intent = intent = new Intent(this, Gestor.class);
+        intent.putExtra("numPreg", numPregunta);
+        intent.putExtra("puntosAcum", puntosAcum);
+        intent.putExtra("vidasPreg", vidas);
+        intent.putExtra("init", false);
+        finishAfterTransition();
+        startActivity(intent);
     }
 }

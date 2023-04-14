@@ -3,10 +3,10 @@ package BusinessLogic;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import com.j256.ormlite.table.DatabaseTable;
+import java.io.Serializable;
 
 @DatabaseTable
-public class Answer {
+public class Answer implements Serializable {
     //Atributos de la clase Answer
     @DatabaseField(id = true)
     public int id_respuesta;

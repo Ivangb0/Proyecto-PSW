@@ -50,6 +50,10 @@
             android:name=".PartidaFinalizada"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".AbandonarPartida"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
     </application>
 

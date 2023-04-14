@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/textViewNotBad"
         android:layout_width="291dp"
         android:layout_height="42dp"
         android:layout_marginStart="60dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/textView40"
         android:layout_width="196dp"
         android:layout_height="57dp"
         android:layout_marginStart="60dp"
@@ -27,7 +27,7 @@
         android:text="Puntuación obtenida:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
 
     <TextView
         android:id="@+id/textView29"
@@ -37,8 +37,8 @@
         android:layout_marginTop="140dp"
         android:text="2000"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintStart_toEndOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
 
     <Button
         android:id="@+id/buttonContinuarAlMenu"
@@ -49,7 +49,7 @@
         android:onClick="irAlMenu"
         android:text="Volver al menú"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -57,6 +57,6 @@
         android:layout_height="133dp"
         android:layout_marginStart="124dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad"
         app:srcCompat="@drawable/palmas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

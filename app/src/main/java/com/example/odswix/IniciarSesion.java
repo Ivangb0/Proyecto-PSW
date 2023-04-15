@@ -59,14 +59,14 @@ public class IniciarSesion extends AppCompatActivity {
 
         try {
             //Hacer consulta SQL
-            ResultSet rsUsuario = SingletonSQL.consultar("SELECT username FROM user");
+            ResultSet rsUsuario = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
 
             //Introducir datos de la DB en un array
             while (rsUsuario.next()) {
                 sqlUsernames.add(rsUsuario.getString("username"));
             }
 
-            ResultSet rsPass = SingletonSQL.consultar("SELECT password FROM user");
+            ResultSet rsPass = SingletonSQL.consultar("SELECT password FROM user ORDER BY id_user");
 
             while (rsPass.next()) {
                 sqlPasswords.add(rsPass.getString("password"));
@@ -80,21 +80,22 @@ public class IniciarSesion extends AppCompatActivity {
                 }
             }
 
-
             if (!existe) {
                 msgError.setText("No existe el usuario introducido");
                 msgError.setVisibility(View.VISIBLE);
             } else {
-
                 msgError.setVisibility(View.INVISIBLE);
 
-
-                if(pass.equals(sqlUsernames.get(i))){
+                if(pass.equals(sqlPasswords.get(i))){
                     correcto = true;
                 } else {
-                        msgError.setText("Credenciales introducidas incorrectas");
-                        msgError.setVisibility(View.VISIBLE);
-                        }
+                    String prueba1 = sqlUsernames.get(i);
+                    String prueba2 = sqlPasswords.get(i);
+                    msgError.setText("" + prueba1 + "" + prueba2 + "" + i + "");
+
+                    //msgError.setText("Credenciales introducidas incorrectas");
+                    msgError.setVisibility(View.VISIBLE);
+                }
             }
 
 

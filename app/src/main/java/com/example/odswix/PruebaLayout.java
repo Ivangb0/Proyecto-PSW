@@ -79,11 +79,6 @@ public class PruebaLayout extends AppCompatActivity {
         PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
         duration = pregunta.getTimer();
 
-        if (vidas <= 0) {
-            intent = new Intent(this, JugarPartida.class);
-            startActivity(intent);
-            this.finish();
-        }
 
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);

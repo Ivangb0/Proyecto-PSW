@@ -29,6 +29,12 @@ public class Gestor extends AppCompatActivity {
         setVariables();
         Director director = new Director();
 
+
+        if (vidas <= 0) {
+            intent = new Intent(this, JugarPartida.class);
+            startActivity(intent);
+            this.finish();
+        }
         RetoPreguntaBuilder preguntaBuilder = new RetoPreguntaBuilder();
 
         if (numPreg < 4) {

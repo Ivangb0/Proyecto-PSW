@@ -204,7 +204,7 @@ public class RetoPregunta extends AppCompatActivity{
         textView6.setText("Puntuación acumulada:");
         textViewPtosCon.setText("0");
 
-        usuario = userdao.obtener(15);
+        usuario = IniciarSesion.usuario;
         puntosAcumTotales = usuario.getPuntosAcumTotales();
     }
 

@@ -17,7 +17,7 @@ import BusinessLogic.User;
 
 public class IniciarSesion extends AppCompatActivity {
 
-    User usuario = null;
+    public static User usuario = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

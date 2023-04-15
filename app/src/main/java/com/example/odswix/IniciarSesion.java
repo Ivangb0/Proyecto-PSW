@@ -89,11 +89,7 @@ public class IniciarSesion extends AppCompatActivity {
                 if(pass.equals(sqlPasswords.get(i))){
                     correcto = true;
                 } else {
-                    String prueba1 = sqlUsernames.get(i);
-                    String prueba2 = sqlPasswords.get(i);
-                    msgError.setText("" + prueba1 + "" + prueba2 + "" + i + "");
-
-                    //msgError.setText("Credenciales introducidas incorrectas");
+                    msgError.setText("Credenciales introducidas incorrectas");
                     msgError.setVisibility(View.VISIBLE);
                 }
             }
@@ -123,43 +119,43 @@ public class IniciarSesion extends AppCompatActivity {
             int i;
 
             //Lista usernames
-            ResultSet rsUsernames = SingletonSQL.consultar("SELECT username FROM user");
+            ResultSet rsUsernames = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
             while (rsUsernames.next()) {
                 sqlUsernames.add(rsUsernames.getString("username"));
             }
 
             //Lista id
-            ResultSet rsId = SingletonSQL.consultar("SELECT id_user FROM user");
+            ResultSet rsId = SingletonSQL.consultar("SELECT id_user FROM user ORDER BY id_user");
             while (rsId.next()) {
                 sqlId.add(rsId.getInt("id_user"));
             }
 
             //Lista email
-            ResultSet rsEmail = SingletonSQL.consultar("SELECT email FROM user");
+            ResultSet rsEmail = SingletonSQL.consultar("SELECT email FROM user ORDER BY id_user");
             while (rsEmail.next()) {
                 sqlEmails.add(rsEmail.getString("email"));
             }
 
             //Lista passwords
-            ResultSet rsPassword = SingletonSQL.consultar("SELECT password FROM user");
+            ResultSet rsPassword = SingletonSQL.consultar("SELECT password FROM user ORDER BY id_user");
             while (rsPassword.next()) {
                 sqlPasswords.add(rsPassword.getString("password"));
             }
 
             //Lista puntos acumulados totales
-            ResultSet rsPuntos = SingletonSQL.consultar("SELECT puntosAcumTotales FROM user");
+            ResultSet rsPuntos = SingletonSQL.consultar("SELECT puntosAcumTotales FROM user ORDER BY id_user");
             while (rsPuntos.next()) {
                 sqlPuntos.add(rsPuntos.getInt("puntosAcumTotales"));
             }
 
             //Lista trofeos
-            ResultSet rsTrofeos = SingletonSQL.consultar("SELECT trofeos FROM user");
+            ResultSet rsTrofeos = SingletonSQL.consultar("SELECT trofeos FROM user ORDER BY id_user");
             while (rsTrofeos.next()) {
                 sqlTrofeos.add(rsTrofeos.getInt("trofeos"));
             }
 
             //Lista medallas
-            ResultSet rsMedallas = SingletonSQL.consultar("SELECT medallas FROM user");
+            ResultSet rsMedallas = SingletonSQL.consultar("SELECT medallas FROM user ORDER BY id_user");
             while (rsMedallas.next()) {
                 sqlMedallas.add(rsMedallas.getInt("medallas"));
             }

@@ -176,7 +176,7 @@ public class IniciarSesion extends AppCompatActivity {
                     int trofeos = sqlTrofeos.get(i);
                     int medallas = sqlMedallas.get(i);
 
-                        usuario = new User(id,username,password,email,puntos,trofeos,medallas);
+                        usuario = new User(id,username,email,password,puntos,trofeos,medallas);
 
                         Intent jugarPartida = new Intent(this, JugarPartida.class);
                         jugarPartida.putExtra("user", usuario);

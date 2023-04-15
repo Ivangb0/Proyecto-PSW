@@ -119,7 +119,7 @@ public class PruebaLayout extends AppCompatActivity {
         textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon);
         buttonAbandonar = (Button) findViewById(R.id.buttonAbandonar);
         song = MediaPlayer.create(getApplicationContext(),R.raw.goofy);
-        song.start();
+        //song.start();
         cambiarImagenODS();
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);

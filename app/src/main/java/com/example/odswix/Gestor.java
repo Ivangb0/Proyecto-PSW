@@ -45,6 +45,7 @@ public class Gestor extends AppCompatActivity {
             if(consolidado)intent.putExtra("pntsFin", puntosCons);
             else intent.putExtra("pntsFin", puntosAcum);
             startActivity(intent);
+            this.finish();
         }
 
         Pregunta prueba = preguntaBuilder.getTipo();
@@ -55,6 +56,7 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("pntsAcum", puntosAcum);
         intent.putExtra("pntsCons", puntosCons);
         startActivity(intent);
+        this.finish();
     }
 
     private void setVariables(){

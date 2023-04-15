@@ -177,8 +177,8 @@ public class PruebaLayout extends AppCompatActivity {
         intent.putExtra("init", false);
         intent.putExtra("consolidado", consolidado);
         intent.putExtra("puntosCons", PtosConsolidados);
-        finishAfterTransition();
         startActivity(intent);
+        this.finish();
     }
     public void reiniciarTimer() {
         countDownTimer = new CountDownTimer(duration * 1000, 1000) {

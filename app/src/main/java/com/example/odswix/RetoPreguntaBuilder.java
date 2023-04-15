@@ -2,6 +2,7 @@ package com.example.odswix;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class RetoPreguntaBuilder implements Builder, Serializable {
     }
     public void buildEnunciado(){
         preguntaFiltrada = filtrarDificultad(this.pregunta.getDificultad());
+        pregunta.setQuestion(preguntaFiltrada);
         pregunta.setEnunciado(preguntaFiltrada.getEnunciado());
     }
     private Question filtrarDificultad(String dificultad){
@@ -41,9 +43,6 @@ public class RetoPreguntaBuilder implements Builder, Serializable {
     public void buildTimer(){
         pregunta.setTimer(30);
     }
-    public void buildPuntosAcum(){
-        pregunta.setPuntosAcum(0);
-    }
     public void buildDificultad(String dificultad){ pregunta.setDificultad(dificultad); }
     public void buildRespuestas(){
         respuestasPreg = recuperarRespuestas(preguntaFiltrada.getIdPregunta());
@@ -58,6 +57,7 @@ public class RetoPreguntaBuilder implements Builder, Serializable {
                 resp.add(listaRespuestas.get(i));
             }
         }
+        Collections.shuffle(resp, new Random());
         return resp;
     }
     public Pregunta getTipo(){

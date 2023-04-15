@@ -11,7 +11,6 @@ public class Director implements Serializable {
         builder.buildDificultad("Facil");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildPuntosAcum();
         builder.buildRespuestas();
     }
     public void construirPreguntaMedio(Builder builder){
@@ -19,7 +18,6 @@ public class Director implements Serializable {
         builder.buildDificultad("Medio");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildPuntosAcum();
         builder.buildRespuestas();
     }
     public void construirPreguntaDificil(Builder builder){
@@ -27,7 +25,6 @@ public class Director implements Serializable {
         builder.buildDificultad("Dificil");
         builder.buildEnunciado();
         builder.buildTimer();
-        builder.buildPuntosAcum();
         builder.buildRespuestas();
     }
 }

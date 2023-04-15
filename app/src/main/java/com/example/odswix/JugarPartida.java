@@ -10,17 +10,17 @@ import BusinessLogic.User;
 
 public class JugarPartida extends AppCompatActivity {
     User usuario = null;
+    boolean init;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jugarpartida);
-
+        init = true;
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
     }
     public void jugar (View view){
         Intent intent = new Intent(this, Gestor.class);
-        boolean init = true;
         intent.putExtra("init", init);
         startActivity(intent);
 

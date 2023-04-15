@@ -11,8 +11,10 @@ public class Gestor extends AppCompatActivity {
 
     private int numPreg;
     private int puntosAcum;
+    private int puntosCons;
     private int vidas;
     private boolean init;
+    private boolean consolidado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +38,22 @@ public class Gestor extends AppCompatActivity {
         } else if (numPreg <= 10) {
             director.construirPreguntaDificil(preguntaBuilder);
         }else{
+            //puntosAcumTotales += puntosAcum;
+            //usuario.setPuntosAcumTotales(puntosAcumTotales);
+            //userdao.actualizar(usuario);
             intent = new Intent(this, PartidaFinalizada.class);
+            if(consolidado)intent.putExtra("pntsFin", puntosCons);
+            else intent.putExtra("pntsFin", puntosAcum);
             startActivity(intent);
-    }
+        }
+
         Pregunta prueba = preguntaBuilder.getTipo();
         intent.putExtra("cuestion", prueba);
         intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
+        intent.putExtra("consolidado", consolidado);
+        intent.putExtra("pntsAcum", puntosAcum);
+        intent.putExtra("pntsCons", puntosCons);
         startActivity(intent);
     }
 
@@ -52,11 +63,16 @@ public class Gestor extends AppCompatActivity {
         if(init){
             numPreg = 1;
             puntosAcum = 0;
+            puntosCons = 0;
             vidas = 2;
+            consolidado = false;
         } else{
             numPreg = (int) intent.getSerializableExtra("numPreg");
-            puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
+            consolidado = (boolean) intent.getSerializableExtra("consolidado");
             vidas = (int) intent.getSerializableExtra("vidasPreg");
+            if(consolidado)puntosCons = (int) intent.getSerializableExtra("puntosCons");
+            puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
+
         }
     }
 }

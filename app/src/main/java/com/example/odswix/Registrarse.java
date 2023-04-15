@@ -117,7 +117,7 @@ public class Registrarse extends AppCompatActivity {
     public void registro(View vista){
         try {
             if(emptyTest() && userTest() && emailTest()) {
-                PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcum, trofeos, medallas) " +
+                PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcumTotales, trofeos, medallas) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
                 ResultSet rs = SingletonSQL.consultar("SELECT MAX(id_user) FROM user");

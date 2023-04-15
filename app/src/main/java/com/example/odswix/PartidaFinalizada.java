@@ -19,7 +19,8 @@ public class PartidaFinalizada extends AppCompatActivity {
 
         buttonContinuarAlMenu = (Button) findViewById(R.id.buttonContinuarAlMenu);
         textView29 = (TextView) findViewById(R.id.textView29);
-        textView29.setText(String.valueOf(RetoPregunta.puntosAcum));
+        Intent intent = this.getIntent();
+        textView29.setText(Integer.valueOf((int)intent.getSerializableExtra("pntsFin")));
 
 
     }

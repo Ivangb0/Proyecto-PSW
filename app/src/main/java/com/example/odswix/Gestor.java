@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.Pregunta;
+import BusinessLogic.User;
+import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
 
@@ -15,6 +17,8 @@ public class Gestor extends AppCompatActivity {
     private int vidas;
     private boolean init;
     private boolean consolidado;
+    private int puntosAcumTotales;
+    User usuario = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +48,19 @@ public class Gestor extends AppCompatActivity {
         } else if (numPreg <= 10) {
             director.construirPreguntaDificil(preguntaBuilder);
         }else{
-            //puntosAcumTotales += puntosAcum;
-            //usuario.setPuntosAcumTotales(puntosAcumTotales);
-            //userdao.actualizar(usuario);
+            UserDAO userdao = new UserDAO();
+
             intent = new Intent(this, PartidaFinalizada.class);
-            if(consolidado) { intent.putExtra("pntsFin", puntosCons); }
-            else { intent.putExtra("pntsFin", puntosAcum); }
+            if(consolidado) {
+                intent.putExtra("pntsFin", puntosCons);
+                puntosAcumTotales = puntosCons + usuario.getPuntosAcumTotales();
+            } else {
+                intent.putExtra("pntsFin", puntosAcum);
+                puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
+            }
+            usuario.setPuntosAcumTotales(puntosAcumTotales);
+            userdao.actualizar(usuario);
+            intent.putExtra("user", usuario);
             startActivity(intent);
             this.finish();
         }
@@ -61,12 +72,14 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("consolidado", consolidado);
         intent.putExtra("pntsAcum", puntosAcum);
         intent.putExtra("pntsCons", puntosCons);
+        intent.putExtra("user", usuario);
         startActivity(intent);
         this.finish();
     }
 
     private void setVariables(){
         Intent intent = getIntent();
+        usuario = (User) intent.getSerializableExtra("user");
         init = (boolean) intent.getSerializableExtra("init");
         if(init){
             numPreg = 1;

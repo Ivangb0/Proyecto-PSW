@@ -152,7 +152,5 @@ public class Registrarse extends AppCompatActivity {
 
     }
     @Override
-    public void onBackPressed() {
-        // Código para evitar que se cierre la actividad al pulsar el botón de Atrás
-    }
+    public void onBackPressed() {}
 }

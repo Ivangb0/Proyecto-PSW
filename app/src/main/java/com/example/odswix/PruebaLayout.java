@@ -43,26 +43,14 @@ public class PruebaLayout extends AppCompatActivity {
     TextView textViewPuntosXPreg; TextView textView23; Button buttonSiguiente;
     TextView textViewPuntAcum; TextView textView6; TextView textViewTiempo;
     TextView textView30; TextView textView33; TextView textViewVidas;
-
-    Button buttonConsolidar;
+    Button buttonConsolidar; TextView textViewObtend; TextView textViewPtosObtend;
+    TextView textViewPtosTots; TextView textViewPtosAcums; CountDownTimer countDownTimerCons;
+    TextView textViewTiempoC; TextView textViewTiempoCons; ImageView imageViewODS;
+    MediaPlayer song; TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
     User usuario;
     int puntosAcumTotales = 0;
     int puntosPregunta = 0;
     int PtosConsolidados = 0;
-    TextView textViewObtend;
-    TextView textViewPtosObtend;
-    TextView textViewPtosTots;
-    TextView textViewPtosAcums;
-    CountDownTimer countDownTimerCons;
-    TextView textViewTiempoC;
-    TextView textViewTiempoCons;
-    UserDAO userdao;
-    ImageView imageViewODS;
-
-    MediaPlayer song;
-    TextView textViewPuntConsol;
-    TextView textViewPtosCon;
-    Button buttonAbandonar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +66,7 @@ public class PruebaLayout extends AppCompatActivity {
         respuestasPreg = pregunta.getRespuestas();
         PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
         duration = pregunta.getTimer();
+        usuario = (User) intent.getSerializableExtra("user");
 
 
         textoPregunta = findViewById(R.id.textView5);
@@ -165,13 +154,14 @@ public class PruebaLayout extends AppCompatActivity {
     }
     public void siguientePregunta(View view) {
         countDownTimerCons.cancel();
-        Intent intent = intent = new Intent(this, Gestor.class);
+        Intent intent = new Intent(this, Gestor.class);
         intent.putExtra("numPreg", numPregunta);
         intent.putExtra("puntosAcum", puntosAcum);
         intent.putExtra("vidasPreg", vidas);
         intent.putExtra("init", false);
         intent.putExtra("consolidado", consolidado);
         intent.putExtra("puntosCons", PtosConsolidados);
+        intent.putExtra("user", usuario);
         startActivity(intent);
         this.finish();
     }
@@ -338,12 +328,17 @@ public class PruebaLayout extends AppCompatActivity {
         }
     }
     public void botonAbandonar(View view){
-        puntosAcumTotales += PtosConsolidados;
+        countDownTimer.cancel();
+        puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
+        UserDAO userdao = new UserDAO();
         userdao.actualizar(usuario);
-        esconderTodo();
         Intent abandonarpartida = new Intent(this, AbandonarPartida.class);
+        abandonarpartida.putExtra("pntsFin", PtosConsolidados);
+        abandonarpartida.putExtra("user", usuario);
         startActivity(abandonarpartida);
         this.finish();
     }
+    @Override
+    public void onBackPressed() {}
 }

@@ -169,4 +169,6 @@ public class Perfil extends AppCompatActivity {
         finishAfterTransition();
         startActivity(perfil);
     }
+    @Override
+    public void onBackPressed() {}
 }

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import BusinessLogic.User;
 
 public class JugarPartida extends AppCompatActivity {
-    User usuario = null;
+    public User usuario = null;
     boolean init;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class JugarPartida extends AppCompatActivity {
     public void jugar (View view){
         Intent intent = new Intent(this, Gestor.class);
         intent.putExtra("init", init);
+        intent.putExtra("user", usuario);
         startActivity(intent);
 
     }
@@ -36,6 +37,8 @@ public class JugarPartida extends AppCompatActivity {
         Intent cerrarSes = new Intent(this, IniciarSesion.class);
         startActivity(cerrarSes);
     }
+    @Override
+    public void onBackPressed() {}
 }
 
 

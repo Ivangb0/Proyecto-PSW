@@ -8,10 +8,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import BusinessLogic.User;
+
 public class PartidaFinalizada extends AppCompatActivity {
 
     Button buttonContinuarAlMenu;
     TextView textView29;
+    public User usuario = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +23,7 @@ public class PartidaFinalizada extends AppCompatActivity {
         buttonContinuarAlMenu = (Button) findViewById(R.id.buttonContinuarAlMenu);
         textView29 = (TextView) findViewById(R.id.textView29);
         Intent intent = getIntent();
+        usuario = (User) intent.getSerializableExtra("user");
         textView29.setText(String.valueOf((int)intent.getSerializableExtra("pntsFin")));
 
 
@@ -27,7 +31,10 @@ public class PartidaFinalizada extends AppCompatActivity {
 
     public void irAlMenu(View view){
         Intent jugarPartida = new Intent(this, JugarPartida.class);
+        jugarPartida.putExtra("user", usuario);
         startActivity(jugarPartida);
         this.finish();
     }
+    @Override
+    public void onBackPressed() {}
 }

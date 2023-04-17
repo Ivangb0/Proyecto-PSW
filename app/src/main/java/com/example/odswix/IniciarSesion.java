@@ -24,9 +24,7 @@ public class IniciarSesion extends AppCompatActivity {
         setContentView(R.layout.activity_iniciar_sesion);
     }
 
-    public void onBackPressed() {
-        // Código para evitar que se cierre la actividad al pulsar el botón de Atrás
-    }
+    public void onBackPressed() {}
 
     public boolean isEmptyTest() {
         TextView msgError = findViewById(R.id.txt_error);
@@ -188,7 +186,6 @@ public class IniciarSesion extends AppCompatActivity {
             }
         }
 
-    //Método para ir a la pantalla de registrarse
     public void registrarse(View view) {
         Intent registrarse = new Intent(this, Registrarse.class);
         startActivity(registrarse);

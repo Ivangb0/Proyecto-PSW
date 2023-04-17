@@ -19,26 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
-/*
-        String url = "jdbc:mysql://wixserver.mysql.database.azure.com:3306/wixdatabase?useSSL=true";
-        String user = "KogMaw";
-        String password = "WIXAdmin1";
-
-        try {
-            Connection con = DriverManager.getConnection(url, user, password);
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-           wait(6000);
-        }catch (java.lang.InterruptedException e){
-            e.printStackTrace();
-        }*/
-
 
         Intent intent = new Intent(this, IniciarSesion.class);
-
-
+        
         startActivity(intent);
 
 

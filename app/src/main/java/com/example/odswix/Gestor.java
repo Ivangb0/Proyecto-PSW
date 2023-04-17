@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
+import CalsesBuilder.Director;
+import CalsesBuilder.RetoPreguntaBuilder;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class Gestor extends AppCompatActivity {
 
     private void cuestionAleatoria() {
 
-        Intent intent = new Intent(this, PruebaLayout.class);
+        Intent intent = new Intent(this, RetoPregunta.class);
 
         setVariables();
         Director director = new Director();

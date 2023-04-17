@@ -143,7 +143,6 @@ public class RetoPregunta extends AppCompatActivity{
         //asignamos a los componentes del xml variables con el texto
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
-
         botonResp1 = (Button) findViewById(R.id.buttonResp1);
         botonResp2 = (Button) findViewById(R.id.buttonResp2);
         botonResp3 = (Button) findViewById(R.id.buttonResp3);

@@ -165,6 +165,7 @@ public class PruebaLayout extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+
     public void reiniciarTimer() {
         countDownTimer = new CountDownTimer(duration * 1000, 1000) {
             @Override
@@ -240,6 +241,8 @@ public class PruebaLayout extends AppCompatActivity {
         imageViewODS.setVisibility(View.INVISIBLE);
         textViewPuntConsol.setVisibility(View.INVISIBLE);
         textViewPtosCon.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setClickable(false);
     }
     public void pressConsolidar(View view){
         textView5.setText("");
@@ -261,7 +264,19 @@ public class PruebaLayout extends AppCompatActivity {
         textViewPtosAcums.setText(String.valueOf(puntosAcum));
         textViewPtosAcums.setVisibility(View.VISIBLE);
     }
+
+    public void respuestaCorrecta() {
+        numPregunta++;
+        puntosAcum += puntosPregunta;
+        textView21.setText("Respuesta correcta.");
+        puntosCuandoCorrecta();
+        esconderTodo();
+        buttonSiguiente.setText("Siguiente");
+        mostrarSiguiente();
+    }
     public void comprobarCorrecta(View view) {
+        buttonAbandonar.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setClickable(false);
         textViewTiempoC.setVisibility(View.VISIBLE);
         textViewTiempoCons.setVisibility(View.VISIBLE);
         countDownTimer.cancel();
@@ -274,37 +289,13 @@ public class PruebaLayout extends AppCompatActivity {
         puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
-            numPregunta++;
-            puntosAcum += puntosPregunta;
-            textView21.setText("Respuesta correcta.");
-            puntosCuandoCorrecta();
-            esconderTodo();
-            buttonSiguiente.setText("Siguiente");
-            mostrarSiguiente();
+            respuestaCorrecta();
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
-            numPregunta++;
-            puntosAcum += puntosPregunta;
-            textView21.setText("Respuesta correcta.");
-            puntosCuandoCorrecta();
-            esconderTodo();
-            buttonSiguiente.setText("Siguiente");
-            mostrarSiguiente();
+            respuestaCorrecta();
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
-            numPregunta++;
-            puntosAcum += puntosPregunta;
-            textView21.setText("Respuesta correcta.");
-            puntosCuandoCorrecta();
-            esconderTodo();
-            buttonSiguiente.setText("Siguiente");
-            mostrarSiguiente();
+            respuestaCorrecta();
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
-            numPregunta++;
-            puntosAcum += puntosPregunta;
-            textView21.setText("Respuesta correcta.");
-            puntosCuandoCorrecta();
-            esconderTodo();
-            buttonSiguiente.setText("Siguiente");
-            mostrarSiguiente();
+            respuestaCorrecta();
         } else {
             vidas--;
             if (puntosAcum >= puntosPregunta * 2) {

@@ -3,7 +3,6 @@ package CalsesBuilder;
 import java.io.Serializable;
 
 public class Director implements Serializable {
-
     public Director(){}
 
     public void construirPreguntaFacil(Builder builder){

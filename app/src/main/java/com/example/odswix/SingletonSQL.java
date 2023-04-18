@@ -43,14 +43,4 @@ public class SingletonSQL {
         }
         return ps;
     }
-    public static void finConexion() {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connection = null;
-    }
 }

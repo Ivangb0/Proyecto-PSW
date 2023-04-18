@@ -8,7 +8,6 @@ public class Pregunta implements Serializable {
     private int timer;
     private String dificultad;
     private List<Answer> respuestas;
-    private int pnts;
     private Question question;
 
     public Pregunta(){}
@@ -24,12 +23,6 @@ public class Pregunta implements Serializable {
     }
     public int getTimer(){
         return this.timer;
-    }
-    public void setPuntosPreg(int pntsAcum){
-        this.pnts = pntsAcum;
-    }
-    public int getPuntosPreg(){
-        return this.pnts;
     }
     public void setDificultad(String dificultad){
         this.dificultad = dificultad;

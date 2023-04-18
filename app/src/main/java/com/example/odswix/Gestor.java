@@ -53,22 +53,17 @@ public class Gestor extends AppCompatActivity {
             UserDAO userdao = new UserDAO();
 
             intent = new Intent(this, PartidaFinalizada.class);
-            if(consolidado) {
-                intent.putExtra("pntsFin", puntosCons);
-                puntosAcumTotales = puntosCons + usuario.getPuntosAcumTotales();
-            } else {
-                intent.putExtra("pntsFin", puntosAcum);
-                puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
-            }
+            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
             usuario.setPuntosAcumTotales(puntosAcumTotales);
             userdao.actualizar(usuario);
+            intent.putExtra("pntsFin", puntosAcum);
             intent.putExtra("user", usuario);
             startActivity(intent);
             this.finish();
         }
 
-        Pregunta prueba = preguntaBuilder.getTipo();
-        intent.putExtra("cuestion", prueba);
+        Pregunta pregunta = preguntaBuilder.getTipo();
+        intent.putExtra("cuestion", pregunta);
         intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
         intent.putExtra("consolidado", consolidado);

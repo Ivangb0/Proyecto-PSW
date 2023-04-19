@@ -18,21 +18,6 @@ import BusinessLogic.User;
 public class IniciarSesion extends AppCompatActivity {
 
     public static User usuario = null;
-    EditText textUser = findViewById(R.id.txt_username);
-    EditText textPass = findViewById(R.id.txt_password);
-    TextView msgError = findViewById(R.id.txt_error);
-    String bduser = textUser.getText().toString();
-    String pass = textPass.getText().toString();
-
-    List<Integer> sqlId = new ArrayList<>();
-    List<String> sqlUsernames = new ArrayList<>();
-    List<String> sqlEmails = new ArrayList<>();
-    List<String> sqlPasswords = new ArrayList<>();
-    List<Integer> sqlPuntos = new ArrayList<>();
-    List<Integer> sqlTrofeos = new ArrayList<>();
-    List<Integer> sqlMedallas = new ArrayList<>();
-    int i;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +27,14 @@ public class IniciarSesion extends AppCompatActivity {
     public void onBackPressed() {}
 
     public boolean isEmptyTest() {
+        TextView msgError = findViewById(R.id.txt_error);
+        EditText name = findViewById(R.id.txt_username);
+        EditText pass = findViewById(R.id.txt_password);
 
         boolean todoOK = false;
 
-        if (textUser.getText().toString().isEmpty() ||
-                textPass.getText().toString().isEmpty()) {
+        if (name.getText().toString().isEmpty() ||
+                pass.getText().toString().isEmpty()) {
             msgError.setText("Hay algún campo vacío, revise las credenciales");
             msgError.setVisibility(View.VISIBLE);
         } else {
@@ -57,8 +45,16 @@ public class IniciarSesion extends AppCompatActivity {
     }
 
     public boolean usernameTest() {
-
+        EditText textUser = findViewById(R.id.txt_username);
+        EditText textPass = findViewById(R.id.txt_password);
+        TextView msgError = findViewById(R.id.txt_error);
+        String bduser = textUser.getText().toString();
+        String pass = textPass.getText().toString();
+        List<String> sqlUsernames = new ArrayList<>();
+        List<String> sqlPasswords = new ArrayList<>();
+        int i;
         boolean correcto = false;
+
         try {
             //Hacer consulta SQL
             ResultSet rsUsuario = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
@@ -95,9 +91,11 @@ public class IniciarSesion extends AppCompatActivity {
                     msgError.setVisibility(View.VISIBLE);
                 }
             }
-        } catch (java.sql.SQLException e) {
+
+
+            } catch (java.sql.SQLException e) {
                 e.printStackTrace();
-        }
+            }
         return correcto;
     }
 
@@ -106,6 +104,18 @@ public class IniciarSesion extends AppCompatActivity {
     public void iniciarSesion(View view) {
 
         try {
+            EditText textUser = findViewById(R.id.txt_username);
+            String bduser = textUser.getText().toString();
+
+            List<Integer> sqlId = new ArrayList<>();
+            List<String> sqlUsernames = new ArrayList<>();
+            List<String> sqlEmails = new ArrayList<>();
+            List<String> sqlPasswords = new ArrayList<>();
+            List<Integer> sqlPuntos = new ArrayList<>();
+            List<Integer> sqlTrofeos = new ArrayList<>();
+            List<Integer> sqlMedallas = new ArrayList<>();
+            int i;
+
             //Lista usernames
             ResultSet rsUsernames = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
             while (rsUsernames.next()) {

@@ -3,13 +3,13 @@ package Persistence;
 import java.sql.SQLException;
 import java.util.List;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+
+import android.content.Context;
+import android.util.Log;
 import com.j256.ormlite.table.TableUtils;
 
 
@@ -39,7 +39,6 @@ public abstract class DBA<T> {
             return null;
         }
     }
-
 
     public List<T> obtenerTodos(){
         try {

@@ -50,145 +50,98 @@ public class IniciarSesion extends AppCompatActivity {
         TextView msgError = findViewById(R.id.txt_error);
         String bduser = textUser.getText().toString();
         String pass = textPass.getText().toString();
-        List<String> sqlUsernames = new ArrayList<>();
-        List<String> sqlPasswords = new ArrayList<>();
+        List<String> sqlUsernames = getListStringsDB("username");
+        List<String> sqlPasswords = getListStringsDB("password");
         int i;
         boolean correcto = false;
 
-        try {
-            //Hacer consulta SQL
-            ResultSet rsUsuario = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
-
-            //Introducir datos de la DB en un array
-            while (rsUsuario.next()) {
-                sqlUsernames.add(rsUsuario.getString("username"));
+        boolean existe = false;
+        for (i = 0; i < sqlUsernames.size(); i++) {
+            if (bduser.equals(sqlUsernames.get(i))) {
+                existe = true;
+                break;
             }
+        }
 
-            ResultSet rsPass = SingletonSQL.consultar("SELECT password FROM user ORDER BY id_user");
+        if (!existe) {
+            msgError.setText("No existe el usuario introducido");
+            msgError.setVisibility(View.VISIBLE);
+        } else {
+            msgError.setVisibility(View.INVISIBLE);
 
-            while (rsPass.next()) {
-                sqlPasswords.add(rsPass.getString("password"));
-            }
-
-            boolean existe = false;
-            for (i = 0; i < sqlUsernames.size(); i++) {
-                if (bduser.equals(sqlUsernames.get(i))) {
-                    existe = true;
-                    break;
-                }
-            }
-
-            if (!existe) {
-                msgError.setText("No existe el usuario introducido");
-                msgError.setVisibility(View.VISIBLE);
+            if(pass.equals(sqlPasswords.get(i))){
+                correcto = true;
             } else {
-                msgError.setVisibility(View.INVISIBLE);
-
-                if(pass.equals(sqlPasswords.get(i))){
-                    correcto = true;
-                } else {
-                    msgError.setText("Credenciales introducidas incorrectas");
-                    msgError.setVisibility(View.VISIBLE);
-                }
+                msgError.setText("Credenciales introducidas incorrectas");
+                msgError.setVisibility(View.VISIBLE);
             }
-
-
-            } catch (java.sql.SQLException e) {
-                e.printStackTrace();
-            }
+        }
         return correcto;
     }
 
-
     //Método para iniciar sesión (lo que se ejecuta cuando le das al boton iniciar sesion)
     public void iniciarSesion(View view) {
+        EditText textUser = findViewById(R.id.txt_username);
+        String bduser = textUser.getText().toString();
+        int i;
 
-        try {
-            EditText textUser = findViewById(R.id.txt_username);
-            String bduser = textUser.getText().toString();
+        if (isEmptyTest() && usernameTest()) {
+            List<String> sqlUsernames = getListStringsDB("username");
 
-            List<Integer> sqlId = new ArrayList<>();
-            List<String> sqlUsernames = new ArrayList<>();
-            List<String> sqlEmails = new ArrayList<>();
-            List<String> sqlPasswords = new ArrayList<>();
-            List<Integer> sqlPuntos = new ArrayList<>();
-            List<Integer> sqlTrofeos = new ArrayList<>();
-            List<Integer> sqlMedallas = new ArrayList<>();
-            int i;
-
-            //Lista usernames
-            ResultSet rsUsernames = SingletonSQL.consultar("SELECT username FROM user ORDER BY id_user");
-            while (rsUsernames.next()) {
-                sqlUsernames.add(rsUsernames.getString("username"));
+            for (i = 0; i < sqlUsernames.size(); i++) {
+                    if (bduser.equals(sqlUsernames.get(i))) { break; }
             }
 
-            //Lista id
-            ResultSet rsId = SingletonSQL.consultar("SELECT id_user FROM user ORDER BY id_user");
-            while (rsId.next()) {
-                sqlId.add(rsId.getInt("id_user"));
-            }
+            int id = getListIntegersDB("id_user").get(i);
+            String username = sqlUsernames.get(i);
+            String password = getListStringsDB("password").get(i);
+            String email = getListStringsDB("email").get(i);
+            int puntos = getListIntegersDB("puntosAcumTotales").get(i);
+            int trofeos = getListIntegersDB("trofeos").get(i);
+            int medallas = getListIntegersDB("medallas").get(i);
 
-            //Lista email
-            ResultSet rsEmail = SingletonSQL.consultar("SELECT email FROM user ORDER BY id_user");
-            while (rsEmail.next()) {
-                sqlEmails.add(rsEmail.getString("email"));
-            }
+            usuario = new User(id,username,email,password,puntos,trofeos,medallas);
 
-            //Lista passwords
-            ResultSet rsPassword = SingletonSQL.consultar("SELECT password FROM user ORDER BY id_user");
-            while (rsPassword.next()) {
-                sqlPasswords.add(rsPassword.getString("password"));
-            }
-
-            //Lista puntos acumulados totales
-            ResultSet rsPuntos = SingletonSQL.consultar("SELECT puntosAcumTotales FROM user ORDER BY id_user");
-            while (rsPuntos.next()) {
-                sqlPuntos.add(rsPuntos.getInt("puntosAcumTotales"));
-            }
-
-            //Lista trofeos
-            ResultSet rsTrofeos = SingletonSQL.consultar("SELECT trofeos FROM user ORDER BY id_user");
-            while (rsTrofeos.next()) {
-                sqlTrofeos.add(rsTrofeos.getInt("trofeos"));
-            }
-
-            //Lista medallas
-            ResultSet rsMedallas = SingletonSQL.consultar("SELECT medallas FROM user ORDER BY id_user");
-            while (rsMedallas.next()) {
-                sqlMedallas.add(rsMedallas.getInt("medallas"));
-            }
-
-            if (isEmptyTest() && usernameTest()) {
-
-                    for (i = 0; i < sqlUsernames.size(); i++) {
-                        if (bduser.equals(sqlUsernames.get(i))) {
-                            break;
-                        }
-                    }
-
-                    int id = sqlId.get(i);
-                    String username = sqlUsernames.get(i);
-                    String password = sqlPasswords.get(i);
-                    String email = sqlEmails.get(i);
-                    int puntos = sqlPuntos.get(i);
-                    int trofeos = sqlTrofeos.get(i);
-                    int medallas = sqlMedallas.get(i);
-
-                        usuario = new User(id,username,email,password,puntos,trofeos,medallas);
-
-                        Intent jugarPartida = new Intent(this, JugarPartida.class);
-                        jugarPartida.putExtra("user", usuario);
-                        startActivity(jugarPartida);
-                    }
-
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
+            Intent jugarPartida = new Intent(this, JugarPartida.class);
+            jugarPartida.putExtra("user", usuario);
+            startActivity(jugarPartida);
         }
+    }
 
     public void registrarse(View view) {
         Intent registrarse = new Intent(this, Registrarse.class);
         startActivity(registrarse);
     }
 
+    public List<String> getListStringsDB(String columnName) {
+        List<String> sql = null;
+        try {
+            sql = new ArrayList<String>();
+            String consulta = "SELECT * FROM user ORDER BY id_user";
+            ResultSet rs = SingletonSQL.consultar(consulta);
+            while (rs.next()) {
+                sql.add(rs.getString(columnName));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sql;
+    }
+
+    public List<Integer> getListIntegersDB(String columnName) {
+        List<Integer> sql = null;
+        try {
+            sql = new ArrayList<Integer>();
+            String consulta = "SELECT * FROM user ORDER BY id_user";
+            ResultSet rs = SingletonSQL.consultar(consulta);
+            while (rs.next()) {
+                sql.add(rs.getInt(columnName));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sql;
+    }
 }

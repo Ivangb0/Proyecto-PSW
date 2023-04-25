@@ -1,10 +1,13 @@
 package com.example.odswix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -274,6 +277,7 @@ public class RetoPregunta extends AppCompatActivity {
         buttonSiguiente.setText("Siguiente");
         mostrarSiguiente();
     }
+    @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
@@ -289,27 +293,151 @@ public class RetoPregunta extends AppCompatActivity {
         puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
-            respuestaCorrecta();
-        } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
-            respuestaCorrecta();
-        } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
-            respuestaCorrecta();
-        } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
-            respuestaCorrecta();
-        } else {
-            vidas--;
-            if (puntosAcum >= puntosPregunta * 2) {
-                puntosAcum -= puntosPregunta * 2;
-            }else puntosAcum = 0;
-            buttonSiguiente.setText("Vuelve a intentarlo");
-            textView21.setText("Respuesta incorrecta.");
-            puntosCuandoCorrecta();
-            textViewPtosObtend.setText("0");
+            findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    respuestaCorrecta();
+                }
+            }, 5000);
 
-            buttonConsolidar.setVisibility(View.INVISIBLE);
-            buttonConsolidar.setClickable(false);
-            esconderTodo();
-            mostrarSiguiente();
+
+        } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
+            findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    respuestaCorrecta();
+                }
+            }, 5000);
+        } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
+            findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    respuestaCorrecta();
+                }
+            }, 5000);
+
+        } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    respuestaCorrecta();
+                }
+            }, 5000);
+
+        } else {
+            int preg;
+            for (preg = 0; preg < 4; preg++) {
+                if (respuestasPreg.get(preg).esCorrecta) {
+                    break;
+                }
+            }
+            switch (preg){
+                case 0:
+                    if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
+                    findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
+                    Handler handler0 = new Handler();
+                    handler0.postDelayed(new Runnable() {
+                        public void run() {
+                            vidas--;
+
+                            if (puntosAcum >= puntosPregunta * 2) {
+                                puntosAcum -= puntosPregunta * 2;
+                            } else puntosAcum = 0;
+                            buttonSiguiente.setText("Vuelve a intentarlo");
+                            textView21.setText("Respuesta incorrecta.");
+                            puntosCuandoCorrecta();
+                            textViewPtosObtend.setText("0");
+
+                            buttonConsolidar.setVisibility(View.INVISIBLE);
+                            buttonConsolidar.setClickable(false);
+                            esconderTodo();
+                            mostrarSiguiente();
+                        }
+                    }, 5000);
+                    break;
+                case 1:
+                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
+                    findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
+                    Handler handler1 = new Handler();
+                    handler1.postDelayed(new Runnable() {
+                        public void run() {
+                            vidas--;
+
+                            if (puntosAcum >= puntosPregunta * 2) {
+                                puntosAcum -= puntosPregunta * 2;
+                            } else puntosAcum = 0;
+                            buttonSiguiente.setText("Vuelve a intentarlo");
+                            textView21.setText("Respuesta incorrecta.");
+                            puntosCuandoCorrecta();
+                            textViewPtosObtend.setText("0");
+
+                            buttonConsolidar.setVisibility(View.INVISIBLE);
+                            buttonConsolidar.setClickable(false);
+                            esconderTodo();
+                            mostrarSiguiente();
+                        }
+                    }, 5000);
+                    break;
+                case 2:
+                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
+                    findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
+                    Handler handler2 = new Handler();
+                    handler2.postDelayed(new Runnable() {
+                        public void run() {
+                            vidas--;
+
+                            if (puntosAcum >= puntosPregunta * 2) {
+                                puntosAcum -= puntosPregunta * 2;
+                            } else puntosAcum = 0;
+                            buttonSiguiente.setText("Vuelve a intentarlo");
+                            textView21.setText("Respuesta incorrecta.");
+                            puntosCuandoCorrecta();
+                            textViewPtosObtend.setText("0");
+
+                            buttonConsolidar.setVisibility(View.INVISIBLE);
+                            buttonConsolidar.setClickable(false);
+                            esconderTodo();
+                            mostrarSiguiente();
+                        }
+                    }, 5000);
+                    break;
+                case 3:
+                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
+                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
+                    findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+                    Handler handler3 = new Handler();
+                    handler3.postDelayed(new Runnable() {
+                        public void run() {
+                            vidas--;
+
+                            if (puntosAcum >= puntosPregunta * 2) {
+                                puntosAcum -= puntosPregunta * 2;
+                            } else puntosAcum = 0;
+                            buttonSiguiente.setText("Vuelve a intentarlo");
+                            textView21.setText("Respuesta incorrecta.");
+                            puntosCuandoCorrecta();
+                            textViewPtosObtend.setText("0");
+
+                            buttonConsolidar.setVisibility(View.INVISIBLE);
+                            buttonConsolidar.setClickable(false);
+                            esconderTodo();
+                            mostrarSiguiente();
+                        }
+                    }, 5000);
+                    break;
+            }
+
         }
         if (vidas == 0) {
             textView21.setText("Game Over.");

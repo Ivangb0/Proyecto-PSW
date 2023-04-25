@@ -36,7 +36,7 @@ public class RetoPregunta extends AppCompatActivity {
     CountDownTimer countDownTimer;
     List<Answer> respuestasPreg = new ArrayList<Answer>();
     int duration;
-    int durationCons = 15;
+    int durationCons = 21;
 
     Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView20;
@@ -49,7 +49,9 @@ public class RetoPregunta extends AppCompatActivity {
     Button buttonConsolidar; TextView textViewObtend; TextView textViewPtosObtend;
     TextView textViewPtosTots; TextView textViewPtosAcums; CountDownTimer countDownTimerCons;
     TextView textViewTiempoC; TextView textViewTiempoCons; ImageView imageViewODS;
-    MediaPlayer song; TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
+    TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
+    MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
+    MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
     User usuario;
     int puntosAcumTotales = 0;
     int puntosPregunta = 0;
@@ -110,8 +112,14 @@ public class RetoPregunta extends AppCompatActivity {
         textViewPuntConsol = (TextView) findViewById(R.id.textViewPuntConsol);
         textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon);
         buttonAbandonar = (Button) findViewById(R.id.buttonAbandonar);
-        song = MediaPlayer.create(getApplicationContext(),R.raw.goofy);
-        //song.start();
+        soundAcierto = MediaPlayer.create(getApplicationContext(),R.raw.acierto);
+        soundFallo = MediaPlayer.create(getApplicationContext(),R.raw.musicafracaso);
+        soundBackground = MediaPlayer.create(getApplicationContext(),R.raw.backgroundmusic);
+        soundCountdown10s = MediaPlayer.create(getApplicationContext(),R.raw.countdown10secs);
+        soundVictoria = MediaPlayer.create(getApplicationContext(),R.raw.victoria);
+        soundDerrota = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+        soundBackground.start();
+
         cambiarImagenODS();
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
@@ -165,6 +173,7 @@ public class RetoPregunta extends AppCompatActivity {
         intent.putExtra("consolidado", consolidado);
         intent.putExtra("puntosCons", PtosConsolidados);
         intent.putExtra("user", usuario);
+        soundBackground.start();
         startActivity(intent);
         this.finish();
     }
@@ -179,10 +188,18 @@ public class RetoPregunta extends AppCompatActivity {
                         String time = String.format("%2d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
                         textViewTiempo.setText(time);
                     }
+
                 });
+                if(millisUntilFinished <= 11000){
+                    soundBackground.stop();
+                    System.out.print("bolas");
+                    soundCountdown10s.start();
+                }
             }
             @Override
             public void onFinish() {
+                soundCountdown10s.stop();
+                soundFallo.start();
                 duration = 30;
                 vidas--;
                 esconderTodo();
@@ -276,6 +293,17 @@ public class RetoPregunta extends AppCompatActivity {
         esconderTodo();
         buttonSiguiente.setText("Siguiente");
         mostrarSiguiente();
+
+    }
+
+    public void checkVidasACero(){
+        if (vidas == 0) {
+            textView21.setText("Game Over.");
+            esconderTodo();
+            mostrarSiguiente();
+            soundDerrota.start();
+            buttonSiguiente.setText("Volver al menu");
+        }
     }
     @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
@@ -283,16 +311,20 @@ public class RetoPregunta extends AppCompatActivity {
         buttonAbandonar.setClickable(false);
         textViewTiempoC.setVisibility(View.VISIBLE);
         textViewTiempoCons.setVisibility(View.VISIBLE);
+        soundBackground.stop();
         countDownTimer.cancel();
         timerConsolidar();
         puntosPregunta = 0;
+        puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
+
         if (numPregunta == 10) {
+            soundVictoria.start();
             buttonSiguiente.setText("Acabar");
         }
 
-        puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
+            if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -303,6 +335,7 @@ public class RetoPregunta extends AppCompatActivity {
 
 
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
+            if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -311,6 +344,7 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }, 5000);
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
+            if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -320,7 +354,8 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+            if(numPregunta < 10) soundAcierto.start();
+            findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -329,6 +364,7 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else {
+            soundFallo.start();
             int preg;
             for (preg = 0; preg < 4; preg++) {
                 if (respuestasPreg.get(preg).esCorrecta) {
@@ -345,7 +381,6 @@ public class RetoPregunta extends AppCompatActivity {
                     handler0.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-
                             if (puntosAcum >= puntosPregunta * 2) {
                                 puntosAcum -= puntosPregunta * 2;
                             } else puntosAcum = 0;
@@ -358,6 +393,8 @@ public class RetoPregunta extends AppCompatActivity {
                             buttonConsolidar.setClickable(false);
                             esconderTodo();
                             mostrarSiguiente();
+                            checkVidasACero();
+
                         }
                     }, 5000);
                     break;
@@ -370,7 +407,6 @@ public class RetoPregunta extends AppCompatActivity {
                     handler1.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-
                             if (puntosAcum >= puntosPregunta * 2) {
                                 puntosAcum -= puntosPregunta * 2;
                             } else puntosAcum = 0;
@@ -383,6 +419,8 @@ public class RetoPregunta extends AppCompatActivity {
                             buttonConsolidar.setClickable(false);
                             esconderTodo();
                             mostrarSiguiente();
+                            checkVidasACero();
+
                         }
                     }, 5000);
                     break;
@@ -395,7 +433,6 @@ public class RetoPregunta extends AppCompatActivity {
                     handler2.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-
                             if (puntosAcum >= puntosPregunta * 2) {
                                 puntosAcum -= puntosPregunta * 2;
                             } else puntosAcum = 0;
@@ -408,6 +445,8 @@ public class RetoPregunta extends AppCompatActivity {
                             buttonConsolidar.setClickable(false);
                             esconderTodo();
                             mostrarSiguiente();
+                            checkVidasACero();
+
                         }
                     }, 5000);
                     break;
@@ -420,7 +459,6 @@ public class RetoPregunta extends AppCompatActivity {
                     handler3.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-
                             if (puntosAcum >= puntosPregunta * 2) {
                                 puntosAcum -= puntosPregunta * 2;
                             } else puntosAcum = 0;
@@ -433,18 +471,15 @@ public class RetoPregunta extends AppCompatActivity {
                             buttonConsolidar.setClickable(false);
                             esconderTodo();
                             mostrarSiguiente();
+                            checkVidasACero();
+
                         }
                     }, 5000);
                     break;
             }
 
         }
-        if (vidas == 0) {
-            textView21.setText("Game Over.");
-            esconderTodo();
-            mostrarSiguiente();
-            buttonSiguiente.setText("Volver al menu");
-        }
+
     }
     public void botonAbandonar(View view){
         countDownTimer.cancel();

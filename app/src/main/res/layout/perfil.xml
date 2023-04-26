@@ -31,6 +31,7 @@
         android:layout_marginEnd="156dp"
         android:layout_marginBottom="72dp"
         android:layout_weight="1"
+        android:onClick="armario"
         android:text="Armario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

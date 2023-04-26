@@ -169,6 +169,13 @@ public class Perfil extends AppCompatActivity {
         finishAfterTransition();
         startActivity(perfil);
     }
+
+    public void armario (View view){
+        Intent intent = new Intent(this, Armario.class);
+        intent.putExtra("user", usuario);
+        startActivity(intent);
+        this.finish();
+    }
     @Override
     public void onBackPressed() {}
 }

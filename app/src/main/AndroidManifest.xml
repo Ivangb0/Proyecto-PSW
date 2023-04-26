@@ -50,6 +50,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Armario"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Perfil"
             android:exported="true"
             android:screenOrientation="portrait" />

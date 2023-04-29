@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -52,17 +51,20 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
-    User usuario;
-    int puntosAcumTotales = 0;
-    int puntosPregunta = 0;
-    int PtosConsolidados = 0;
+    private User usuario;
+    private int puntosAcumTotales = 0;
+    private int puntosPregunta = 0;
+    private int PtosConsolidados = 0;
+    private String tipo = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retopregunta);
 
-
         Intent intent = getIntent();
+
+        tipo = (String) intent.getSerializableExtra("tipo");
+
         pregunta = (Pregunta) intent.getSerializableExtra("cuestion");
         numPregunta = (int) intent.getSerializableExtra("numPregunta");
         vidas = (int) intent.getSerializableExtra("vidas");
@@ -173,6 +175,7 @@ public class RetoPregunta extends AppCompatActivity {
         intent.putExtra("consolidado", consolidado);
         intent.putExtra("puntosCons", PtosConsolidados);
         intent.putExtra("user", usuario);
+        intent.putExtra("tipo", tipo);
         soundBackground.start();
         startActivity(intent);
         this.finish();
@@ -483,6 +486,7 @@ public class RetoPregunta extends AppCompatActivity {
     }
     public void botonAbandonar(View view){
         countDownTimer.cancel();
+        soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
         UserDAO userdao = new UserDAO();

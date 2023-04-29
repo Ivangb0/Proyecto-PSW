@@ -10,7 +10,7 @@ public class RetoSopaBuilder implements Builder {
     public void buildTimer(){
 
     }
-    public void buildDificultad(String dificultad){
+    public void buildDificultad(){
 
     }
     public void buildRespuestas(){

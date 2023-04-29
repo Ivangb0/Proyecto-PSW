@@ -7,12 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
-import CalsesBuilder.Director;
-import CalsesBuilder.RetoPreguntaBuilder;
+import CalsesBuilder.*;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
-
     private int numPreg;
     private int puntosAcum;
     private int puntosCons;
@@ -20,35 +18,54 @@ public class Gestor extends AppCompatActivity {
     private boolean init;
     private boolean consolidado;
     private int puntosAcumTotales;
+    private String tipo;
     User usuario = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cuestionAleatoria();
+        setVariables();
+        switch (tipo) {
+            case "mixta":
+                cuestionAleatoria();
+                break;
+            case "pregunta":
+                cuestionPregunta();
+                break;
+            case "frase":
+                cuestionFrase();
+                break;
+        }
     }
-
     private void cuestionAleatoria() {
 
+    }
+    private void cuestionFrase() {
+
+    }
+    private void cuestionPregunta() {
+
         Intent intent = new Intent(this, RetoPregunta.class);
-
-        setVariables();
-        Director director = new Director();
-
 
         if (vidas <= 0) {
             intent = new Intent(this, JugarPartida.class);
             startActivity(intent);
             this.finish();
         }
-        RetoPreguntaBuilder preguntaBuilder = new RetoPreguntaBuilder();
-
+        Director director = new Director();
+        Pregunta pregunta = new Pregunta();
+        RetoPreguntaFacilBuilder preguntaFacilBuilder = new RetoPreguntaFacilBuilder();
+        RetoPreguntaMedioBuilder preguntaMedioBuilder = new RetoPreguntaMedioBuilder();
+        RetoPreguntaDificilBuilder preguntaDificilBuilder = new RetoPreguntaDificilBuilder();
         if (numPreg < 4) {
-            director.construirPreguntaFacil(preguntaBuilder);
+            director.construirPregunta(preguntaFacilBuilder);
+            pregunta = preguntaFacilBuilder.getTipo();
         } else if (numPreg < 7) {
-            director.construirPreguntaMedio(preguntaBuilder);
+            director.construirPregunta(preguntaMedioBuilder);
+            pregunta = preguntaMedioBuilder.getTipo();
         } else if (numPreg <= 10) {
-            director.construirPreguntaDificil(preguntaBuilder);
+            director.construirPregunta(preguntaDificilBuilder);
+            pregunta = preguntaDificilBuilder.getTipo();
         }else{
             UserDAO userdao = new UserDAO();
 
@@ -62,7 +79,6 @@ public class Gestor extends AppCompatActivity {
             this.finish();
         }
 
-        Pregunta pregunta = preguntaBuilder.getTipo();
         intent.putExtra("cuestion", pregunta);
         intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
@@ -70,8 +86,9 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("pntsAcum", puntosAcum);
         intent.putExtra("pntsCons", puntosCons);
         intent.putExtra("user", usuario);
+        intent.putExtra("tipo", tipo);
         startActivity(intent);
-        this.finish();
+
     }
 
     private void setVariables(){
@@ -90,7 +107,7 @@ public class Gestor extends AppCompatActivity {
             vidas = (int) intent.getSerializableExtra("vidasPreg");
             if(consolidado)puntosCons = (int) intent.getSerializableExtra("puntosCons");
             puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
-
         }
+        tipo = (String) intent.getSerializableExtra("tipo");
     }
 }

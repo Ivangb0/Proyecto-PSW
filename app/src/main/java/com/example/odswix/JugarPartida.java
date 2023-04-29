@@ -9,32 +9,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import BusinessLogic.User;
 
 public class JugarPartida extends AppCompatActivity {
-    public User usuario = null;
-    boolean init;
+    private User usuario = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jugarpartida);
-        init = true;
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
     }
     public void jugar (View view){
-        Intent intent = new Intent(this, Gestor.class);
-        intent.putExtra("init", init);
+        Intent intent = new Intent(this, CatalogoRetos.class);
         intent.putExtra("user", usuario);
+        finishAfterTransition();
         startActivity(intent);
-
     }
     public void perfil (View view){
         Intent perfil = new Intent(this, Perfil.class);
         perfil.putExtra("user", usuario);
         finishAfterTransition();
         startActivity(perfil);
-
     }
     public void cerrarSes (View view){
         Intent cerrarSes = new Intent(this, IniciarSesion.class);
+        finishAfterTransition();
         startActivity(cerrarSes);
     }
     @Override

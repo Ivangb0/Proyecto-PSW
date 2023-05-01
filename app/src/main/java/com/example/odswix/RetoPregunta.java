@@ -384,9 +384,13 @@ public class RetoPregunta extends AppCompatActivity {
                     handler0.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-                            if (puntosAcum >= puntosPregunta * 2) {
+                            if (puntosAcum >= puntosPregunta * 2 || PtosConsolidados >= puntosPregunta *2) {
                                 puntosAcum -= puntosPregunta * 2;
-                            } else puntosAcum = 0;
+                                PtosConsolidados -= puntosPregunta*2;
+                            } else {
+                                puntosAcum = 0;
+                                PtosConsolidados = 0;
+                            }
                             buttonSiguiente.setText("Vuelve a intentarlo");
                             textView21.setText("Respuesta incorrecta.");
                             puntosCuandoCorrecta();
@@ -410,9 +414,13 @@ public class RetoPregunta extends AppCompatActivity {
                     handler1.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-                            if (puntosAcum >= puntosPregunta * 2) {
+                            if (puntosAcum >= puntosPregunta * 2 || PtosConsolidados >= puntosPregunta *2) {
                                 puntosAcum -= puntosPregunta * 2;
-                            } else puntosAcum = 0;
+                                PtosConsolidados -= puntosPregunta*2;
+                            } else {
+                                puntosAcum = 0;
+                                PtosConsolidados = 0;
+                            }
                             buttonSiguiente.setText("Vuelve a intentarlo");
                             textView21.setText("Respuesta incorrecta.");
                             puntosCuandoCorrecta();
@@ -436,9 +444,13 @@ public class RetoPregunta extends AppCompatActivity {
                     handler2.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-                            if (puntosAcum >= puntosPregunta * 2) {
+                            if (puntosAcum >= puntosPregunta * 2 || PtosConsolidados >= puntosPregunta *2) {
                                 puntosAcum -= puntosPregunta * 2;
-                            } else puntosAcum = 0;
+                                PtosConsolidados -= puntosPregunta*2;
+                            } else {
+                                puntosAcum = 0;
+                                PtosConsolidados = 0;
+                            }
                             buttonSiguiente.setText("Vuelve a intentarlo");
                             textView21.setText("Respuesta incorrecta.");
                             puntosCuandoCorrecta();
@@ -462,9 +474,13 @@ public class RetoPregunta extends AppCompatActivity {
                     handler3.postDelayed(new Runnable() {
                         public void run() {
                             vidas--;
-                            if (puntosAcum >= puntosPregunta * 2) {
+                            if (puntosAcum >= puntosPregunta * 2 || PtosConsolidados >= puntosPregunta *2) {
                                 puntosAcum -= puntosPregunta * 2;
-                            } else puntosAcum = 0;
+                                PtosConsolidados -= puntosPregunta*2;
+                            } else{
+                                puntosAcum = 0;
+                                PtosConsolidados = 0;
+                            }
                             buttonSiguiente.setText("Vuelve a intentarlo");
                             textView21.setText("Respuesta incorrecta.");
                             puntosCuandoCorrecta();

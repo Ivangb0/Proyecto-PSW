@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewODS"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView26"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView24"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc14"
+            app:srcCompat="@drawable/ods17" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc16"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView26"
+            app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView25"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc13"
+            app:srcCompat="@drawable/ods16" />
+
+        <TextView
+            android:id="@+id/textViewPerc16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc16"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc16" />
+
+        <TextView
+            android:id="@+id/textViewPerc17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc17"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc17" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc17"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView27"
+            app:layout_constraintTop_toBottomOf="@+id/imageView27" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView21"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc12"
+            app:srcCompat="@drawable/ods13" />
+
+        <TextView
+            android:id="@+id/textViewPerc13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc15"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc15" />
+
+        <TextView
+            android:id="@+id/textViewPerc14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc13"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc13" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc13"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView24"
+            app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView20"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc10"
+            app:srcCompat="@drawable/ods15" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView22"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc11"
+            app:srcCompat="@drawable/ods14" />
+
+        <TextView
+            android:id="@+id/textViewPerc15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc14"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc14" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc15"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView25"
+            app:layout_constraintTop_toBottomOf="@+id/imageView25" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc14"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView23"
+            app:layout_constraintTop_toBottomOf="@+id/imageView23" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView17"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc8"
+            app:srcCompat="@drawable/ods12" />
+
+        <TextView
+            android:id="@+id/textViewPerc10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc10"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc10" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc7"
+            app:srcCompat="@drawable/ods10" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc10"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView20"
+            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView19"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc9"
+            app:srcCompat="@drawable/ods11" />
+
+        <TextView
+            android:id="@+id/textViewPerc11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc12"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc12" />
+
+        <TextView
+            android:id="@+id/textViewPerc12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc11"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc11" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc11"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView21"
+            app:layout_constraintTop_toBottomOf="@+id/imageView21" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc12"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView22"
+            app:layout_constraintTop_toBottomOf="@+id/imageView22" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc5"
+            app:srcCompat="@drawable/ods7" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc7"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView19"
+            app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+
+        <TextView
+            android:id="@+id/textViewPerc7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc8"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc8" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc4"
+            app:srcCompat="@drawable/ods9" />
+
+        <TextView
+            android:id="@+id/textViewPerc8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc9"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc9" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc8"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc9"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView17"
+            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+
+        <TextView
+            android:id="@+id/textViewPerc9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc7"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc7" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView16"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc6"
+            app:srcCompat="@drawable/ods8" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc1"
+            app:srcCompat="@drawable/ods4" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc3"
+            app:srcCompat="@drawable/ods6" />
+
+        <TextView
+            android:id="@+id/textViewPerc4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc4"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc4" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc5"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+        <TextView
+            android:id="@+id/textViewPerc5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc5"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc5" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc6"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView16"
+            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc2"
+            app:srcCompat="@drawable/ods5" />
+
+        <TextView
+            android:id="@+id/textViewPerc6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc6"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc6" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc4"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+        <TextView
+            android:id="@+id/textViewPerc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc3"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc3" />
+
+        <TextView
+            android:id="@+id/textViewPerc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc2"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc2" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc3"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCobertura"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
+            app:srcCompat="@drawable/ods1" />
+
+        <TextView
+            android:id="@+id/textViewCobertura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="124dp"
+            android:layout_marginTop="40dp"
+            android:text="Cobertura ODS"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/textViewCobertura"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
+            app:srcCompat="@drawable/ods2" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toEndOf="@+id/textViewCobertura"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
+            app:srcCompat="@drawable/ods3" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPerc1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:progressTint="#4CAF50"
+            app:layout_constraintStart_toStartOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <TextView
+            android:id="@+id/textViewPerc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="50%"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/progressBarPerc1"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarPerc1" />
+
+        <Button
+            android:id="@+id/buttonODSVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="150dp"
+            android:text="Volver"
+            app:layout_constraintStart_toEndOf="@+id/imageView26"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerc15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

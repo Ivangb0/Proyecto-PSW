@@ -315,6 +315,7 @@ public class RetoPregunta extends AppCompatActivity {
         textViewTiempoC.setVisibility(View.VISIBLE);
         textViewTiempoCons.setVisibility(View.VISIBLE);
         soundBackground.stop();
+        soundCountdown10s.stop();
         countDownTimer.cancel();
         timerConsolidar();
         puntosPregunta = 0;

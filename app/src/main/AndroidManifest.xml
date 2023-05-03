@@ -73,6 +73,10 @@
             android:name=".AbandonarPartida"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="CoberturaOds"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

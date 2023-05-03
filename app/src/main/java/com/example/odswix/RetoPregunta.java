@@ -308,6 +308,22 @@ public class RetoPregunta extends AppCompatActivity {
             buttonSiguiente.setText("Volver al menu");
         }
     }
+
+
+    public void handlerRespIncorrecta(){
+            buttonSiguiente.setText("Vuelve a intentarlo");
+            textView21.setText("Respuesta incorrecta.");
+            puntosCuandoCorrecta();
+            textViewPtosObtend.setText("0");
+
+            buttonConsolidar.setVisibility(View.INVISIBLE);
+            buttonConsolidar.setClickable(false);
+            esconderTodo();
+            mostrarSiguiente();
+            checkVidasACero();
+
+        }
+
     @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
         buttonAbandonar.setVisibility(View.INVISIBLE);
@@ -315,6 +331,7 @@ public class RetoPregunta extends AppCompatActivity {
         textViewTiempoC.setVisibility(View.VISIBLE);
         textViewTiempoCons.setVisibility(View.VISIBLE);
         soundBackground.stop();
+        soundCountdown10s.stop();
         countDownTimer.cancel();
         timerConsolidar();
         puntosPregunta = 0;
@@ -336,7 +353,6 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }, 5000);
 
-
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
@@ -346,6 +362,7 @@ public class RetoPregunta extends AppCompatActivity {
                     respuestaCorrecta();
                 }
             }, 5000);
+
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
@@ -391,17 +408,7 @@ public class RetoPregunta extends AppCompatActivity {
                                 puntosAcum = 0;
                                 PtosConsolidados = 0;
                             }
-                            buttonSiguiente.setText("Vuelve a intentarlo");
-                            textView21.setText("Respuesta incorrecta.");
-                            puntosCuandoCorrecta();
-                            textViewPtosObtend.setText("0");
-
-                            buttonConsolidar.setVisibility(View.INVISIBLE);
-                            buttonConsolidar.setClickable(false);
-                            esconderTodo();
-                            mostrarSiguiente();
-                            checkVidasACero();
-
+                            handlerRespIncorrecta();
                         }
                     }, 5000);
                     break;
@@ -421,16 +428,7 @@ public class RetoPregunta extends AppCompatActivity {
                                 puntosAcum = 0;
                                 PtosConsolidados = 0;
                             }
-                            buttonSiguiente.setText("Vuelve a intentarlo");
-                            textView21.setText("Respuesta incorrecta.");
-                            puntosCuandoCorrecta();
-                            textViewPtosObtend.setText("0");
-
-                            buttonConsolidar.setVisibility(View.INVISIBLE);
-                            buttonConsolidar.setClickable(false);
-                            esconderTodo();
-                            mostrarSiguiente();
-                            checkVidasACero();
+                            handlerRespIncorrecta();
 
                         }
                     }, 5000);
@@ -451,17 +449,7 @@ public class RetoPregunta extends AppCompatActivity {
                                 puntosAcum = 0;
                                 PtosConsolidados = 0;
                             }
-                            buttonSiguiente.setText("Vuelve a intentarlo");
-                            textView21.setText("Respuesta incorrecta.");
-                            puntosCuandoCorrecta();
-                            textViewPtosObtend.setText("0");
-
-                            buttonConsolidar.setVisibility(View.INVISIBLE);
-                            buttonConsolidar.setClickable(false);
-                            esconderTodo();
-                            mostrarSiguiente();
-                            checkVidasACero();
-
+                            handlerRespIncorrecta();
                         }
                     }, 5000);
                     break;
@@ -481,17 +469,7 @@ public class RetoPregunta extends AppCompatActivity {
                                 puntosAcum = 0;
                                 PtosConsolidados = 0;
                             }
-                            buttonSiguiente.setText("Vuelve a intentarlo");
-                            textView21.setText("Respuesta incorrecta.");
-                            puntosCuandoCorrecta();
-                            textViewPtosObtend.setText("0");
-
-                            buttonConsolidar.setVisibility(View.INVISIBLE);
-                            buttonConsolidar.setClickable(false);
-                            esconderTodo();
-                            mostrarSiguiente();
-                            checkVidasACero();
-
+                            handlerRespIncorrecta();
                         }
                     }, 5000);
                     break;

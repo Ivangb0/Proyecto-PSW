@@ -32,11 +32,13 @@ public class Registrarse extends AppCompatActivity {
         EditText textUser= findViewById(R.id.usuario);
         TextView textEmail = findViewById(R.id.email);
         TextView textPass = findViewById(R.id.contraseña);
+        TextView textPass2 = findViewById(R.id.confirmContr);
         boolean correcto = false;
 
         if(textUser.getText().toString().isEmpty() ||
                 textEmail.getText().toString().isEmpty() ||
-                textPass.getText().toString().isEmpty()){
+                textPass.getText().toString().isEmpty() ||
+                textPass2.getText().toString().isEmpty()){
             Eempty.setVisibility(View.VISIBLE);
         } else {
             correcto = true;
@@ -80,7 +82,7 @@ public class Registrarse extends AppCompatActivity {
         return correcto;
     }
     public boolean emailTest(){
-        EditText textEmail= findViewById(R.id.email);
+        EditText textEmail = findViewById(R.id.email);
         String bdemail = textEmail.getText().toString();
         List<String> sql = new ArrayList<>();
         boolean correcto = false;
@@ -114,9 +116,25 @@ public class Registrarse extends AppCompatActivity {
         }
         return correcto;
     }
+    private boolean passwordTest(){
+        EditText password = findViewById(R.id.contraseña);
+        EditText password2 = findViewById(R.id.confirmContr);
+        TextView Errpassword = findViewById(R.id.Epassword);
+
+        boolean correcto = false;
+
+        if(!password.getText().toString().equals(password2.getText().toString()) ){
+            Errpassword.setVisibility(View.VISIBLE);
+        } else {
+            correcto = true;
+            Errpassword.setVisibility(View.INVISIBLE);
+        }
+        return correcto;
+    }
+
     public void registro(View vista){
         try {
-            if(emptyTest() && userTest() && emailTest()) {
+            if(emptyTest() && userTest() && emailTest() && passwordTest()) {
                 PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcumTotales, trofeos, medallas) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)");
 

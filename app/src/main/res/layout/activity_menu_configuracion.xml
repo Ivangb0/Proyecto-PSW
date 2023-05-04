@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="silenciar"
-    tools:context=".menu_configuracion">
+    tools:context=".menu_configuracion"
+    android:background="@drawable/sosteniblesubsuelo">
 
     <TextView
         android:id="@+id/textViewVol"

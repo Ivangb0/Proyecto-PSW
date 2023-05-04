@@ -7,12 +7,14 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -51,6 +53,7 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
+    ImageButton muteButton; boolean appMuted;
     private User usuario;
     private int puntosAcumTotales = 0;
     private int puntosPregunta = 0;
@@ -75,6 +78,7 @@ public class RetoPregunta extends AppCompatActivity {
         duration = pregunta.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
 
+        appMuted = (boolean) intent.getSerializableExtra("muted");
 
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
@@ -121,6 +125,7 @@ public class RetoPregunta extends AppCompatActivity {
         soundVictoria = MediaPlayer.create(getApplicationContext(),R.raw.victoria);
         soundDerrota = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
         soundBackground.start();
+        muteButton = (ImageButton) findViewById(R.id.imageMute2);
 
         cambiarImagenODS();
         buttonAbandonar.setVisibility(View.INVISIBLE);
@@ -149,6 +154,18 @@ public class RetoPregunta extends AppCompatActivity {
         textViewPtosCon.setText(String.valueOf(PtosConsolidados));
         checkConsolidar(consolidado);
         reiniciarTimer();
+
+        muteButton.setImageResource(R.drawable.audio_on);
+        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+        if (appMuted){
+            soundBackground.setVolume(0,0);
+            soundAcierto.setVolume(0,0);
+            soundDerrota.setVolume(0,0);
+            soundFallo.setVolume(0,0);
+            soundVictoria.setVolume(0,0);
+            soundCountdown10s.setVolume(0,0);
+        }
+        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
     }
     private void checkConsolidar(Boolean consolidar){
         if(consolidar){
@@ -176,7 +193,10 @@ public class RetoPregunta extends AppCompatActivity {
         intent.putExtra("puntosCons", PtosConsolidados);
         intent.putExtra("user", usuario);
         intent.putExtra("tipo", tipo);
+        intent.putExtra("muted", appMuted);
         soundBackground.start();
+
+
         startActivity(intent);
         this.finish();
     }
@@ -195,9 +215,9 @@ public class RetoPregunta extends AppCompatActivity {
                 });
                 if(millisUntilFinished <= 11000){
                     soundBackground.stop();
-                    System.out.print("bolas");
                     soundCountdown10s.start();
                 }
+
             }
             @Override
             public void onFinish() {
@@ -266,6 +286,7 @@ public class RetoPregunta extends AppCompatActivity {
         textViewPtosCon.setVisibility(View.INVISIBLE);
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
+        muteButton.setVisibility(View.INVISIBLE);
     }
     public void pressConsolidar(View view){
         textView5.setText("");
@@ -490,6 +511,27 @@ public class RetoPregunta extends AppCompatActivity {
         abandonarpartida.putExtra("user", usuario);
         startActivity(abandonarpartida);
         this.finish();
+    }
+    public void silenciarReto(View view){
+        if (appMuted){
+            appMuted = false;
+            muteButton.setImageResource(R.drawable.audio_muted);
+            soundCountdown10s.setVolume(0,0);
+            soundVictoria.setVolume(0,0);
+            soundFallo.setVolume(0,0);
+            soundDerrota.setVolume(0,0);
+            soundBackground.setVolume(0,0);
+            soundAcierto.setVolume(0,0);
+        }else{
+            appMuted = true;
+            muteButton.setImageResource(R.drawable.audio_on);
+            soundCountdown10s.setVolume(1,1);
+            soundVictoria.setVolume(1,1);
+            soundFallo.setVolume(1,1);
+            soundDerrota.setVolume(1,1);
+            soundBackground.setVolume(1,1);
+            soundAcierto.setVolume(1,1);
+        }
     }
     @Override
     public void onBackPressed() {}

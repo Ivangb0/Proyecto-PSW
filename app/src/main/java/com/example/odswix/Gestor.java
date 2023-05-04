@@ -20,11 +20,15 @@ public class Gestor extends AppCompatActivity {
     private int puntosAcumTotales;
     private String tipo;
     User usuario = null;
+    boolean appMuted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setVariables();
+        Intent intent = getIntent();
+        appMuted = (boolean) intent.getSerializableExtra("muted");
+
         switch (tipo) {
             case "mixta":
                 cuestionAleatoria();
@@ -87,6 +91,7 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("pntsCons", puntosCons);
         intent.putExtra("user", usuario);
         intent.putExtra("tipo", tipo);
+        intent.putExtra("muted",appMuted);
         startActivity(intent);
 
     }

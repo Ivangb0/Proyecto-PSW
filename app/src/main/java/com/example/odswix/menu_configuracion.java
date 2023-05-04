@@ -2,56 +2,61 @@ package com.example.odswix;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import BusinessLogic.User;
 
 public class menu_configuracion extends AppCompatActivity {
-    SeekBar seekBar;
     TextView txtVol;
-
+    boolean appMuted;
+    ImageButton muteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_configuracion);
+        Intent intent = getIntent();
+        appMuted = (Boolean) intent.getSerializableExtra("muted");
 
-        seekBar = findViewById(R.id.seekBarVol);
         txtVol = findViewById(R.id.textViewVol);
+        muteButton = (ImageButton) findViewById(R.id.imageMute);
+        muteButton.setImageResource(R.drawable.audio_muted);
 
-        seekBar.setMax(10);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                //IMPLEMENTAR EL VOLUMEN EN FUNCION A LA i QUE ES EL NIVEL DEL SEEKBAR
-                txtVol.setText("Volumen: " + i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
     }
+    public void silenciarConfig(View view){
+        if (appMuted){
+            appMuted = false;
+            muteButton.setImageResource(R.drawable.audio_muted);
 
-    public void cerrarConfig(){
-        finish();
+        }else{
+            appMuted = true;
+            muteButton.setImageResource(R.drawable.audio_on);
+        }
+        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
     }
-    public void idiomaIngles(){
+    public void cerrarConfig(View view){
+        Intent intent = new Intent(this, JugarPartida.class);
+        intent.putExtra("muted", appMuted);
+        finishAfterTransition();
+        startActivity(intent);
+    }
+    public void idiomaIngles(View view){
         //IMPLEMENTAR METODO PARA CAMBIAR EL IDIOMA DE LA APP A INGLES
     }
 
-    public void idiomaEspañol(){
+    public void idiomaEspañol(View view){
         //IMPLEMENTAR METODO PARA CAMBIAR EL IDIOMA DE LA APP A ESPAÑOL
     }
 
-    public void cerrarApp(){
+    public void cerrarApp(View view){
         finishAffinity();
     }
 }

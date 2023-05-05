@@ -11,6 +11,7 @@ import BusinessLogic.User;
 public class JugarPartida extends AppCompatActivity {
     private User usuario = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,12 @@ public class JugarPartida extends AppCompatActivity {
         Intent cerrarSes = new Intent(this, IniciarSesion.class);
         finishAfterTransition();
         startActivity(cerrarSes);
+    }
+
+    public void clickCobertura(View view){
+        Intent irCobertura = new Intent(this, CoberturaOds.class);
+        finishAfterTransition();
+        startActivity(irCobertura);
     }
     @Override
     public void onBackPressed() {}

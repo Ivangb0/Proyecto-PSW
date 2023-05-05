@@ -2,6 +2,7 @@ package com.example.odswix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -10,149 +11,85 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import BusinessLogic.Cobertura;
-import BusinessLogic.Question;
 import BusinessLogic.User;
 import Persistence.CoberturaDAO;
 
 public class CoberturaOds extends AppCompatActivity {
-    ScrollView scrollViewODS;
-    TextView textViewCobertura;
-    ImageView imageViewODS1;
-    ProgressBar progressBarPerc1;
-    TextView textViewPerc1;
-    ImageView imageViewODS2;
-    ProgressBar progressBarPerc2;
-    TextView textViewPerc2;
-    ImageView imageViewODS3;
-    ProgressBar progressBarPerc3;
-    TextView textViewPerc3;
-    ImageView imageViewODS4;
-    ProgressBar progressBarPerc4;
-    TextView textViewPerc4;
-    ImageView imageViewODS5;
-    ProgressBar progressBarPerc5;
-    TextView textViewPerc5;
-    ImageView imageViewODS6;
-    ProgressBar progressBarPerc6;
-    TextView textViewPerc6;
-    ImageView imageViewODS7;
-    ProgressBar progressBarPerc7;
-    TextView textViewPerc7;
-    ImageView imageViewODS8;
-    ProgressBar progressBarPerc8;
-    TextView textViewPerc8;
-    ImageView imageViewODS9;
-    ProgressBar progressBarPerc9;
-    TextView textViewPerc9;
-    ImageView imageViewODS10;
-    ProgressBar progressBarPerc10;
-    TextView textViewPerc10;
-    ImageView imageViewODS11;
-    ProgressBar progressBarPerc11;
-    TextView textViewPerc11;
-    ImageView imageViewODS12;
-    ProgressBar progressBarPerc12;
-    TextView textViewPerc12;
-    ImageView imageViewODS13;
-    ProgressBar progressBarPerc13;
-    TextView textViewPerc13;
-    ImageView imageViewODS14;
-    ProgressBar progressBarPerc14;
-    TextView textViewPerc14;
-    ImageView imageViewODS15;
-    ProgressBar progressBarPerc15;
-    TextView textViewPerc15;
-    ImageView imageViewODS16;
-    ProgressBar progressBarPerc16;
-    TextView textViewPerc16;
-    ImageView imageViewODS17;
-    ProgressBar progressBarPerc17;
-    TextView textViewPerc17;
-    Button buttonODSVolver;
 
-    ProgressBar[] progressBarPerc = new ProgressBar[20];
-    private User usuario;
 
-    private Cobertura cobertura;
-    private List<Cobertura> listaAciertos;
-    private List<Cobertura> listaFallos;
+    //private Cobertura cobertura;
+
+    private List<Double> listaAciertos;
+    private List<Double> listaFallos;
+    
+    TextView[] textViewPerc;
+    ProgressBar[] progressBarPerc;
+    double porcentajeAciertos;
+    CoberturaDAO cobDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coberturaods);
 
-        Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
+        cobDAO = new CoberturaDAO();
+        textViewPerc = new TextView[17];
+        progressBarPerc = new ProgressBar[17];
 
-        scrollViewODS = (ScrollView) findViewById(R.id.scrollViewODS);
-        textViewCobertura = (TextView) findViewById(R.id.textViewCobertura);
-        imageViewODS1 = (ImageView) findViewById(R.id.imageViewODS1);
         progressBarPerc[0] = (ProgressBar) findViewById(R.id.progressBarPerc1);
-        textViewPerc1 = (TextView) findViewById(R.id.textViewPerc1);
-        imageViewODS2 = (ImageView) findViewById(R.id.imageViewODS2);
+        textViewPerc[0] = (TextView) findViewById(R.id.textViewPerc1);
         progressBarPerc[1] = (ProgressBar) findViewById(R.id.progressBarPerc2);
-        textViewPerc2 = (TextView) findViewById(R.id.textViewPerc2);
-        imageViewODS3 = (ImageView) findViewById(R.id.imageViewODS3);
+        textViewPerc[1] = (TextView) findViewById(R.id.textViewPerc2);
         progressBarPerc[2] = (ProgressBar) findViewById(R.id.progressBarPerc3);
-        textViewPerc3 = (TextView) findViewById(R.id.textViewPerc3);
-        imageViewODS4 = (ImageView) findViewById(R.id.imageViewODS4);
+        textViewPerc[2] = (TextView) findViewById(R.id.textViewPerc3);
         progressBarPerc[3] = (ProgressBar) findViewById(R.id.progressBarPerc4);
-        textViewPerc4 = (TextView) findViewById(R.id.textViewPerc4);
-        imageViewODS5 = (ImageView) findViewById(R.id.imageViewODS5);
+        textViewPerc[3] = (TextView) findViewById(R.id.textViewPerc4);
         progressBarPerc[4] = (ProgressBar) findViewById(R.id.progressBarPerc5);
-        textViewPerc5 = (TextView) findViewById(R.id.textViewPerc5);
-        imageViewODS6 = (ImageView) findViewById(R.id.imageViewODS6);
+        textViewPerc[4] = (TextView) findViewById(R.id.textViewPerc5);
         progressBarPerc[5] = (ProgressBar) findViewById(R.id.progressBarPerc6);
-        textViewPerc6 = (TextView) findViewById(R.id.textViewPerc6);
-        imageViewODS7 = (ImageView) findViewById(R.id.imageViewODS7);
+        textViewPerc[5] = (TextView) findViewById(R.id.textViewPerc6);
         progressBarPerc[6] = (ProgressBar) findViewById(R.id.progressBarPerc7);
-        textViewPerc7 = (TextView) findViewById(R.id.textViewPerc7);
-        imageViewODS8 = (ImageView) findViewById(R.id.imageViewODS8);
+        textViewPerc[6] = (TextView) findViewById(R.id.textViewPerc7);
         progressBarPerc[7] = (ProgressBar) findViewById(R.id.progressBarPerc8);
-        textViewPerc8 = (TextView) findViewById(R.id.textViewPerc8);
-        imageViewODS9 = (ImageView) findViewById(R.id.imageViewODS9);
+        textViewPerc[7] = (TextView) findViewById(R.id.textViewPerc8);
         progressBarPerc[8] = (ProgressBar) findViewById(R.id.progressBarPerc9);
-        textViewPerc9 = (TextView) findViewById(R.id.textViewPerc9);
-        imageViewODS10 = (ImageView) findViewById(R.id.imageViewODS10);
+        textViewPerc[8] = (TextView) findViewById(R.id.textViewPerc9);
         progressBarPerc[9] = (ProgressBar) findViewById(R.id.progressBarPerc10);
-        textViewPerc10 = (TextView) findViewById(R.id.textViewPerc10);
-        imageViewODS11 = (ImageView) findViewById(R.id.imageViewODS11);
+        textViewPerc[9] = (TextView) findViewById(R.id.textViewPerc10);
         progressBarPerc[10] = (ProgressBar) findViewById(R.id.progressBarPerc11);
-        textViewPerc11 = (TextView) findViewById(R.id.textViewPerc11);
-        imageViewODS12 = (ImageView) findViewById(R.id.imageViewODS12);
+        textViewPerc[10] = (TextView) findViewById(R.id.textViewPerc11);
         progressBarPerc[11] = (ProgressBar) findViewById(R.id.progressBarPerc12);
-        textViewPerc12 = (TextView) findViewById(R.id.textViewPerc12);
-        imageViewODS13 = (ImageView) findViewById(R.id.imageViewODS13);
+        textViewPerc[11] = (TextView) findViewById(R.id.textViewPerc12);
         progressBarPerc[12] = (ProgressBar) findViewById(R.id.progressBarPerc13);
-        textViewPerc13 = (TextView) findViewById(R.id.textViewPerc13);
-        imageViewODS14 = (ImageView) findViewById(R.id.imageViewODS14);
+        textViewPerc[12] = (TextView) findViewById(R.id.textViewPerc13);
         progressBarPerc[13] = (ProgressBar) findViewById(R.id.progressBarPerc14);
-        textViewPerc14 = (TextView) findViewById(R.id.textViewPerc14);
-        imageViewODS15 = (ImageView) findViewById(R.id.imageViewODS15);
+        textViewPerc[13] = (TextView) findViewById(R.id.textViewPerc14);
         progressBarPerc[14] = (ProgressBar) findViewById(R.id.progressBarPerc15);
-        textViewPerc15 = (TextView) findViewById(R.id.textViewPerc15);
-        imageViewODS16 = (ImageView) findViewById(R.id.imageViewODS16);
+        textViewPerc[14] = (TextView) findViewById(R.id.textViewPerc15);
         progressBarPerc[15] = (ProgressBar) findViewById(R.id.progressBarPerc16);
-        textViewPerc16 = (TextView) findViewById(R.id.textViewPerc16);
-        imageViewODS17 = (ImageView) findViewById(R.id.imageViewODS17);
+        textViewPerc[15] = (TextView) findViewById(R.id.textViewPerc16);
         progressBarPerc[16] = (ProgressBar) findViewById(R.id.progressBarPerc17);
-        textViewPerc17 = (TextView) findViewById(R.id.textViewPerc17);
-        buttonODSVolver = (Button) findViewById(R.id.buttonODSVolver);
-
-
+        textViewPerc[16] = (TextView) findViewById(R.id.textViewPerc17);
+        setProgresos();
     }
 
     public void setProgresos() {
-        CoberturaDAO coberturaDAO = new CoberturaDAO();
-        //listaAciertos = coberturaDAO.getAciertos();
-        listaFallos = coberturaDAO.obtenerTodos();
-        for (int i = 0; i <= progressBarPerc.length; i++) {
-            progressBarPerc[i].setProgress(20);
-
+        listaAciertos = cobDAO.getListaAciertos();
+        listaFallos = cobDAO.getListaFallos();
+        for (int i = 0; i < progressBarPerc.length; i++) {
+            porcentajeAciertos = Math.round(listaAciertos.get(i) / (listaAciertos.get(i) + listaFallos.get(i)) * 100);
+            progressBarPerc[i].setProgress( (int) porcentajeAciertos);
+            textViewPerc[i].setText(String.valueOf(porcentajeAciertos) + "%");
         }
+    }
+
+    public void volverDeCobertura(View view){
+        Intent salirCobertura = new Intent(this, JugarPartida.class);
+        finishAfterTransition();
+        startActivity(salirCobertura);
     }
 }

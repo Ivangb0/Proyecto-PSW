@@ -3,29 +3,18 @@ package com.example.odswix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import BusinessLogic.Cobertura;
-import BusinessLogic.User;
 import Persistence.CoberturaDAO;
 
 public class CoberturaOds extends AppCompatActivity {
-
-
-    //private Cobertura cobertura;
-
     private List<Double> listaAciertos;
     private List<Double> listaFallos;
-    
     TextView[] textViewPerc;
     ProgressBar[] progressBarPerc;
     double porcentajeAciertos;

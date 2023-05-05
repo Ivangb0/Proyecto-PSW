@@ -16,10 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import BusinessLogic.Cobertura;
 import BusinessLogic.User;
+import Persistence.CoberturaDAO;
 
 public class Registrarse extends AppCompatActivity {
     User usuario = null;
+    Cobertura[] arrayCoberturas;
+    CoberturaDAO coberturaDAO = new CoberturaDAO();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -167,6 +171,8 @@ public class Registrarse extends AppCompatActivity {
                         textEmail.getText().toString(), textPassword.getText().toString(),
                         0, 0, 0);
 
+                establecerCoberturaBD();
+
                 Intent intent = new Intent(this, JugarPartida.class);
                 intent.putExtra("user", usuario);
                 startActivity(intent);
@@ -174,8 +180,33 @@ public class Registrarse extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+    public void establecerCoberturaBD(){
+        arrayCoberturas = new Cobertura[17];
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i<arrayCoberturas.length;i++){
+                    int id_ods = i;
+                    PreparedStatement ps2 = SingletonSQL.insertar("INSERT INTO cobertura (id_ods, id_user, aciertos, fallos) " +
+                            "VALUES ( ?, ?, ?, ?)");
+
+                    try {
+                        ps2.setInt(1,id_ods+1);
+                        ps2.setInt(2,usuario.id_user);
+                        ps2.setInt(3,0);
+                        ps2.setInt(4,0);
+                        ps2.executeUpdate();
+                        arrayCoberturas[i] = new Cobertura(id_ods,usuario.id_user,0,0);
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {}
 }

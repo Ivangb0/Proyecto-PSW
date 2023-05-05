@@ -26,8 +26,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import BusinessLogic.Answer;
+import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
+import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
 public class RetoPregunta extends AppCompatActivity {
@@ -61,6 +63,13 @@ public class RetoPregunta extends AppCompatActivity {
     private int puntosPregunta = 0;
     private int PtosConsolidados = 0;
     private String tipo = null;
+    UserDAO userdao = new UserDAO();
+    int contadorAciertos;
+    int contadorFallos;
+    CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
+    Cobertura cob;
+
+    int numODS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -302,7 +311,7 @@ public class RetoPregunta extends AppCompatActivity {
         buttonSiguiente.performClick();
     }
     public void cambiarImagenODS(){
-        int numODS = pregunta.getQuestion().getOds();
+        numODS = pregunta.getQuestion().getOds();
         int pictureID = getResources().getIdentifier("ods" + numODS, "drawable", getPackageName());
         Drawable picture = getResources().getDrawable(pictureID);
         imageViewODS.setImageDrawable(picture);
@@ -352,6 +361,25 @@ public class RetoPregunta extends AppCompatActivity {
 
         }
 
+        /*public void getCoberturaBD(){
+            CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
+            coberturaDAOPreg.ob
+            contadorAciertos = coberturaDAOPreg.;
+            contadorFallos =
+                    usuario.esta
+        }*/
+
+    public void guardarAciertoCobertura(){
+        //cob = (this.numODS,this.usuario.id_user,this.cob.getAciertos(),this.cob.getFallos());
+        Cobertura cob2 = new Cobertura(numODS, usuario.id_user, cob.getAciertos()+1,cob.getFallos());
+        coberturaDAOPreg.actualizar(cob2);
+    }
+
+    public void guardarFalloCobertura(){
+        Cobertura cob3 = new Cobertura(numODS, usuario.id_user, cob.getAciertos(),cob.getFallos()+1);
+        coberturaDAOPreg.actualizar(cob3);
+    }
+
     @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
         buttonAbandonar.setVisibility(View.INVISIBLE);
@@ -371,9 +399,11 @@ public class RetoPregunta extends AppCompatActivity {
         }
 
 
+
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -384,6 +414,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -394,6 +425,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -404,6 +436,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -412,6 +445,7 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else {
+            guardarFalloCobertura();
             soundFallo.start();
             int preg;
             for (preg = 0; preg < 4; preg++) {
@@ -511,7 +545,6 @@ public class RetoPregunta extends AppCompatActivity {
         soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
-        UserDAO userdao = new UserDAO();
         userdao.actualizar(usuario);
         Intent abandonarpartida = new Intent(this, AbandonarPartida.class);
         abandonarpartida.putExtra("pntsFin", PtosConsolidados);

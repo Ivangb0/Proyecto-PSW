@@ -3,6 +3,9 @@ package com.example.odswix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,13 +15,22 @@ public class CatalogoRetos extends AppCompatActivity {
     private User usuario = null;
     private String tipo = null;
     boolean init;
+    boolean appMuted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Ocultar menu desplazable
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.catalogo_retos);
         init = true;
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
+
+        appMuted = (boolean) intent.getSerializableExtra("muted");
+        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG).show();
     }
     public void mixta(View view){
         Intent intent = new Intent(this, Gestor.class);
@@ -35,6 +47,7 @@ public class CatalogoRetos extends AppCompatActivity {
         intent.putExtra("tipo",tipo);
         intent.putExtra("init", init);
         intent.putExtra("user", usuario);
+        intent.putExtra("muted", appMuted);
         finishAfterTransition();
         startActivity(intent);
     }

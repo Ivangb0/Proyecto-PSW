@@ -2,6 +2,7 @@ package com.example.odswix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import BusinessLogic.User;
 public class IniciarSesion extends AppCompatActivity {
 
     public static User usuario = null;
+    private boolean visible = false;
+    private String contraseña = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +114,19 @@ public class IniciarSesion extends AppCompatActivity {
     public void registrarse(View view) {
         Intent registrarse = new Intent(this, Registrarse.class);
         startActivity(registrarse);
+    }
+    public void mostrarContraseña(View view){
+        TextView password = findViewById(R.id.txt_password);
+        password.clearFocus();
+        contraseña = password.getText().toString();
+        if(visible) {
+            password.setTransformationMethod(new PasswordTransformationMethod());
+            visible = false;
+        } else {
+            password.setText(contraseña);
+            password.setTransformationMethod(null);
+            visible = true;
+        }
     }
 
     public List<String> getListStringsDB(String columnName) {

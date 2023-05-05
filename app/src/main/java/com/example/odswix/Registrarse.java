@@ -2,6 +2,7 @@ package com.example.odswix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +18,10 @@ import java.util.List;
 import BusinessLogic.User;
 
 public class Registrarse extends AppCompatActivity {
-    User usuario = null;
+    private User usuario = null;
+    private boolean visible = false;
+    private String contraseña = "";
+    private String ConfirmContr = "";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrarusuario);
@@ -168,6 +172,32 @@ public class Registrarse extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+    public void mostrarContraseña(View view){
+        TextView password = findViewById(R.id.contraseña);
+        password.clearFocus();
+        contraseña = password.getText().toString();
+        if(visible) {
+            password.setTransformationMethod(new PasswordTransformationMethod());
+            visible = false;
+        } else {
+            password.setText(contraseña);
+            password.setTransformationMethod(null);
+            visible = true;
+        }
+    }
+    public void mostrarConfirmPassword(View view){
+        TextView password = findViewById(R.id.confirmContr);
+        password.clearFocus();
+        ConfirmContr = password.getText().toString();
+        if(visible) {
+            password.setTransformationMethod(new PasswordTransformationMethod());
+            visible = false;
+        } else {
+            password.setText(ConfirmContr);
+            password.setTransformationMethod(null);
+            visible = true;
+        }
     }
     @Override
     public void onBackPressed() {}

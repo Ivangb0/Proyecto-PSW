@@ -7,6 +7,16 @@
     android:background="#FFFFFF"
     tools:context=".Registrarse">
 
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:onClick="mostrarConfirmPassword"
+        app:layout_constraintStart_toEndOf="@+id/confirmContr"
+        app:layout_constraintTop_toBottomOf="@+id/textView31"
+        app:srcCompat="@android:drawable/ic_menu_view" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -130,7 +140,7 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="*****"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         app:layout_constraintBottom_toTopOf="@+id/textView31"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -231,5 +241,15 @@
         app:layout_constraintBottom_toTopOf="@+id/confirmContr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:onClick="mostrarContraseña"
+        app:layout_constraintStart_toEndOf="@+id/contraseña"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:srcCompat="@android:drawable/ic_menu_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

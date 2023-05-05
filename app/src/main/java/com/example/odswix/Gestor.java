@@ -7,6 +7,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
 import CalsesBuilder.*;
@@ -34,7 +35,7 @@ public class Gestor extends AppCompatActivity {
 
         setVariables();
         Intent intent = getIntent();
-        appMuted = (boolean) intent.getSerializableExtra("muted");
+        //appMuted = (boolean) intent.getSerializableExtra("muted");
 
         switch (tipo) {
             case "mixta":
@@ -48,11 +49,67 @@ public class Gestor extends AppCompatActivity {
                 break;
         }
     }
+
     private void cuestionAleatoria() {
 
     }
     private void cuestionFrase() {
 
+        Intent intent = new Intent(this, RetoFrasePrueba.class);
+
+        if (vidas <= 0) {
+            intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        }
+
+        Frase tipoFrase = new Frase();
+        tipoFrase.setDificultad("Facil");
+        tipoFrase.setTimer(120);
+        tipoFrase.setEnunciado("Descripción");
+        tipoFrase.setRespuesta("HOLA P");
+
+        /*
+        Director director = new Director();
+        RetoFraseFacilBuilder fraseFacilBuilder = new RetoPreguntaFacilBuilder();
+        RetoFraseMedioBuilder fraseMedioBuilder = new RetoPreguntaMedioBuilder();
+        RetoFraseDificilBuilder fraseDificilBuilder = new RetoPreguntaDificilBuilder();
+        if (numPreg < 4) {
+            director.construirPregunta(fraseFacilBuilder);
+            tipoFrase = fraseFacilBuilder.getTipo();
+        } else if (numPreg < 7) {
+            director.construirPregunta(fraseMedioBuilder);
+            tipoFrase = fraseMedioBuilder.getTipo();
+        } else if (numPreg <= 10) {
+            director.construirPregunta(fraseDificilBuilder);
+            tipoFrase = fraseDificilBuilder.getTipo();
+        }else{
+            UserDAO userdao = new UserDAO();
+
+            intent = new Intent(this, PartidaFinalizada.class);
+            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
+            usuario.setPuntosAcumTotales(puntosAcumTotales);
+            userdao.actualizar(usuario);
+            intent.putExtra("pntsFin", puntosAcum);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        }
+        */
+
+
+
+        intent.putExtra("cuestion", tipoFrase);
+        intent.putExtra("vidas", vidas);
+        intent.putExtra("numPregunta", numPreg);
+        intent.putExtra("consolidado", consolidado);
+        intent.putExtra("pntsAcum", puntosAcum);
+        intent.putExtra("pntsCons", puntosCons);
+        intent.putExtra("user", usuario);
+        intent.putExtra("tipo", tipo);
+        intent.putExtra("muted",appMuted);
+        startActivity(intent);
     }
     private void cuestionPregunta() {
 
@@ -60,9 +117,11 @@ public class Gestor extends AppCompatActivity {
 
         if (vidas <= 0) {
             intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
             startActivity(intent);
             this.finish();
         }
+
         Director director = new Director();
         Pregunta pregunta = new Pregunta();
         RetoPreguntaFacilBuilder preguntaFacilBuilder = new RetoPreguntaFacilBuilder();

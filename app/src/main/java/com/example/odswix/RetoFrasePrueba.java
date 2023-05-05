@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,20 +13,54 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import BusinessLogic.Frase;
+import BusinessLogic.User;
+import Persistence.UserDAO;
 
 public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragListener, View.OnTouchListener {
-    private String frase = "HOLA MUNDO";
+    private Frase tipoFrase = null;
+    private String frase = "";
+    private String comprFrase;
     private String respuesta = "";
     GridLayout gridLayoutHuecos;
+    private int numPregunta = 0;
+    private int vidas = 0;
+    private int puntosAcum = 0;
+    boolean consolidado;
+    CountDownTimer countDownTimer;
+    CountDownTimer countDownTimerCons;
+    int duration;
+    int durationCons = 21;
+    private User usuario;
+    private int puntosAcumTotales = 0;
+    private int puntosPregunta = 0;
+    private int PtosConsolidados = 0;
+    private String tipo = null;
 
+
+    RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
+    TextView textView28; TextView textView25; TextView enunciado; TextView textView35;
+    Button buttonPistas; ConstraintLayout idLayout; Button buttonComprobar;
+    TextView textoPregunta; TextView textoDificultad; TextView textViewNumPreg;
+    TextView textViewPuntosXPreg; TextView textView37; Button buttonSiguiente;
+    TextView textViewPuntAcum; TextView textView36; TextView textViewTiempo;
+    TextView textView34; TextView textView32; TextView textViewVidas;
+    Button buttonConsolidar; TextView textViewObtend; TextView textViewPtosObtend;
+    TextView textViewPtosTots; TextView textViewPtosAcums; ScrollView letras;
+    TextView textViewTiempoC; TextView textViewTiempoCons; ScrollView huecos;
+    TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +72,90 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
         setContentView(R.layout.retofrase);
 
-        TextView ejemplo = findViewById(R.id.respuesta);
-        String incompletePhrase = frase.replaceAll("[A-Z]", "_ ");
-        ejemplo.setText(incompletePhrase);
+
+
+        Intent intent = getIntent();
+
+        tipo = (String) intent.getSerializableExtra("tipo");
+
+        tipoFrase = (Frase) intent.getSerializableExtra("cuestion");
+        numPregunta = (int) intent.getSerializableExtra("numPregunta");
+        vidas = (int) intent.getSerializableExtra("vidas");
+        consolidado = (boolean) intent.getSerializableExtra("consolidado");
+        puntosAcum = (int) intent.getSerializableExtra("pntsAcum");;
+        frase = tipoFrase.getRespuesta();
+        PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
+        duration = tipoFrase.getTimer();
+        usuario = (User) intent.getSerializableExtra("user");
+
+
+        textView28 = (TextView) findViewById(R.id.textView28);
+        textView27 = (TextView) findViewById(R.id.textView27);
+        textViewNumPreg = (TextView) findViewById(R.id.textViewNumPreg2);
+        textView35 = (TextView) findViewById(R.id.textView35);
+        textView37 = (TextView) findViewById(R.id.textView37);
+        textView32 = (TextView) findViewById(R.id.textView32);
+        textViewPuntosXPreg = (TextView) findViewById(R.id.textViewPuntosXPreg2);
+        textView34 = (TextView) findViewById(R.id.textView34);
+        textViewTiempo = (TextView) findViewById(R.id.textTiempo);
+        textViewVidas = (TextView) findViewById(R.id.textViewVidas2);
+        buttonAbandonar = (Button) findViewById(R.id.buttonAbandonar2);
+        enunciado = (TextView) findViewById(R.id.enunciado);
+        letras = (ScrollView) findViewById(R.id.letras);
+        huecos = (ScrollView) findViewById(R.id.huecos);
+        buttonPistas = (Button) findViewById(R.id.buttonPistas2);
+        buttonComprobar = (Button) findViewById(R.id.button10);
+        textView36 = (TextView) findViewById(R.id.textView36);
+        textViewPuntConsol = (TextView) findViewById(R.id.textViewPuntConsol2);
+        textViewPuntAcum = (TextView) findViewById(R.id.textViewPuntAcum2);
+        textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon2);
+
+
+
+        contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
+        textViewPtosTots = (TextView) findViewById(R.id.textViewPtosTots);
+        textViewPtosAcums = (TextView) findViewById(R.id.textViewPtosAcums);
+        textViewObtend = (TextView) findViewById(R.id.textViewObtend);
+        textViewPtosObtend = (TextView) findViewById(R.id.textViewPtosObtend);
+        textView21 = (TextView) findViewById(R.id.textView21);
+        buttonConsolidar = (Button) findViewById(R.id.buttonConsolidar);
+        buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
+        textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
+        textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
+
+        buttonAbandonar.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setClickable(false);
+
+
+        comprFrase = frase.replace(" ", "");
+
+
+        textViewNumPreg.setText(String.valueOf(numPregunta));
+        if (tipoFrase.getDificultad().equals("Facil")) {
+            textViewPuntosXPreg.setText("100");
+        } else if (tipoFrase.getDificultad().equals("Medio")) {
+            textViewPuntosXPreg.setText("200");
+        } else if (tipoFrase.getDificultad().equals("Dificil")) {
+            textViewPuntosXPreg.setText("300");
+        }
+        buttonSiguiente.setText("Siguiente");
+        textViewPuntAcum.setText(String.valueOf(puntosAcum));
+        textViewTiempo.setText(String.valueOf(tipoFrase.getTimer()));
+        textViewVidas.setText(String.valueOf(vidas));
+        textViewPtosCon.setText(String.valueOf(PtosConsolidados));
+        checkConsolidar(consolidado);
+        enunciado.setText(tipoFrase.getEnunciado());
         setHuecos();
         setImages();
-
+        reiniciarTimer();
+    }
+    private void checkConsolidar(Boolean consolidar){
+        if(consolidar){
+            buttonConsolidar.setVisibility(View.INVISIBLE);
+            buttonConsolidar.setClickable(false);
+            buttonAbandonar.setVisibility(View.VISIBLE);
+            buttonAbandonar.setClickable(true);
+        }
     }
     private void setHuecos(){
         ScrollView layout = findViewById(R.id.huecos);
@@ -54,6 +167,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                 ImageButton ibutton = new ImageButton(this);
                 ibutton.setClickable(false);
 
+            ibutton.setOnDragListener(this);
+
                 GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
                 layoutParams.height = 100;
                 layoutParams.width = 100;
@@ -64,7 +179,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                 ibutton.setVisibility(View.INVISIBLE);
             }
             else {
-                ibutton.setOnDragListener(this);
+
                 ibutton.setBackgroundResource(R.drawable.hueco);
             }
         }
@@ -96,6 +211,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                 GridLayout gridLayout1 = (GridLayout)letraButton.getParent();
                 GridLayout gridLayout2 = (GridLayout)huecoButton.getParent();
 
+                if(gridLayout1 == gridLayout2){
+                    return false;
+                }
+
                 int indexLetra = gridLayout1.indexOfChild(letraButton);
                 int indexHueco = gridLayout2.indexOfChild(huecoButton);
 
@@ -104,19 +223,6 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
                 gridLayout1.addView(huecoButton, indexLetra);
                 gridLayout2.addView(letraButton, indexHueco);
-
-                /* Almacenar la letra en la respuesta y actualizar la vista del hueco
-                View letraView = (View) dragEvent.getLocalState();
-                Button letraButton = (Button) letraView;
-                ImageButton huecoButton = (ImageButton) view;
-                if (respuesta.equals("")) respuesta = letra;
-                else respuesta += letra;
-                String letra = letraButton.getText().toString();
-
-                TextView ejemplo = findViewById(R.id.respuesta);
-                ejemplo.setText(respuesta);*/
-
-                // Establecer las nuevas posiciones del botón
 
                 return true;
 
@@ -176,24 +282,172 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         String newFrase = sb.toString();
         return newFrase;
     }
+    public void pressConsolidar(View view){
+        PtosConsolidados = puntosAcum;
+        consolidado = true;
+        buttonSiguiente.performClick();
+    }
+    public void reiniciarTimer() {
+        countDownTimer = new CountDownTimer(duration * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String time = String.format("%2d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
+                        textViewTiempo.setText(time);
+                    }
+
+                });
+                if(millisUntilFinished <= 11000){
+                    //soundBackground.stop();
+                    //soundCountdown10s.start();
+                }
+
+            }
+            @Override
+            public void onFinish() {
+                duration = 30;
+                vidas--;
+                esconderTodo();
+                if(puntosAcum >= puntosPregunta*2) puntosAcum -= puntosPregunta*2;
+                else puntosAcum = 0;
+                textView21.setText("Se acabó el tiempo.");
+                puntosCuandoCorrecta();
+                textViewPtosObtend.setText("0");
+
+                buttonConsolidar.setVisibility(View.INVISIBLE);
+                buttonConsolidar.setClickable(false);
+                contenedorRespuesta.setVisibility(View.VISIBLE);
+                checkVidasACero();
+                esconderTodo();
+                timerConsolidar();
+            }
+        }.start();
+    }
+    public void timerConsolidar() {
+        countDownTimerCons = new CountDownTimer(durationCons * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String time = String.format("%2d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
+                        textViewTiempoCons.setText(time);
+                    }
+                });
+            }
+            @Override
+            public void onFinish() {
+                durationCons = 15;
+                buttonSiguiente.performClick();
+            }
+        }.start();
+    }
+    public void esconderTodo(){
+        textView28.setVisibility(View.INVISIBLE);
+        textView27.setVisibility(View.INVISIBLE);
+        textView32.setVisibility(View.INVISIBLE);
+        textViewNumPreg.setVisibility(View.INVISIBLE);
+        textView35.setVisibility(View.INVISIBLE);
+        textView37.setVisibility(View.INVISIBLE);
+        textViewPuntosXPreg.setVisibility(View.INVISIBLE);
+        textView34.setVisibility(View.INVISIBLE);
+        textViewTiempo.setVisibility(View.INVISIBLE);
+        textViewVidas.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setVisibility(View.INVISIBLE);
+        enunciado.setVisibility(View.INVISIBLE);
+        letras.setVisibility(View.INVISIBLE);
+        huecos.setVisibility(View.INVISIBLE);
+        buttonPistas.setVisibility(View.INVISIBLE);
+        buttonComprobar.setVisibility(View.INVISIBLE);
+        textView36.setVisibility(View.INVISIBLE);
+        textViewPuntConsol.setVisibility(View.INVISIBLE);
+        textViewPuntAcum.setVisibility(View.INVISIBLE);
+        textViewPtosCon.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setVisibility(View.INVISIBLE);
+        buttonAbandonar.setClickable(false);
+    }
+
     public void comprobar(View view) {
-        Intent intent = new Intent(this, Registrarse.class);
-        TextView texto = findViewById(R.id.respuesta);
-        texto.setText("");
+
+        puntosPregunta = 0;
+        puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
+
+        if (numPregunta == 10) {
+            buttonSiguiente.setText("Acabar");
+        }
+
         respuesta = "";
         for(int i = 0; i < gridLayoutHuecos.getChildCount(); i++) {
             View button = gridLayoutHuecos.getChildAt(i);
             if(button instanceof Button) {
                 respuesta += ((Button) gridLayoutHuecos.getChildAt(i)).getText();
-                texto.setText(respuesta);
             }
-            else {
-                texto.setText("error");
-            }
-
         }
+        if(comprFrase.equals(respuesta)) {
+            buttonAbandonar.setVisibility(View.INVISIBLE);
+            buttonAbandonar.setClickable(false);
+            countDownTimer.cancel();
+            respuestaCorrecta();
+            timerConsolidar();
+        }
+    }
+    public void puntosCuandoCorrecta(){
+        textViewObtend.setVisibility(View.VISIBLE);
+        textViewPtosObtend.setText(String.valueOf(puntosPregunta));
+        textViewPtosObtend.setVisibility(View.VISIBLE);
+        textViewPtosTots.setVisibility(View.VISIBLE);
+        textViewPtosAcums.setText(String.valueOf(puntosAcum));
+        textViewPtosAcums.setVisibility(View.VISIBLE);
+    }
 
-        //startActivity(intent);
+    public void respuestaCorrecta() {
+        numPregunta++;
+        puntosAcum += puntosPregunta;
+        textView21.setText("Respuesta correcta.");
+        puntosCuandoCorrecta();
+        esconderTodo();
+        buttonSiguiente.setText("Siguiente");
+        contenedorRespuesta.setVisibility(View.VISIBLE);
+    }
+
+
+    public void checkVidasACero(){
+        if (vidas == 0) {
+            textView21.setText("Game Over.");
+            esconderTodo();
+            contenedorRespuesta.setVisibility(View.VISIBLE);
+            buttonSiguiente.setText("Volver al menu");
+        }
+    }
+    public void botonAbandonar(View view){
+        countDownTimer.cancel();
+        //soundBackground.stop();
+        puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
+        usuario.setPuntosAcumTotales(puntosAcumTotales);
+        UserDAO userdao = new UserDAO();
+        userdao.actualizar(usuario);
+        Intent abandonarpartida = new Intent(this, AbandonarPartida.class);
+        abandonarpartida.putExtra("pntsFin", PtosConsolidados);
+        abandonarpartida.putExtra("user", usuario);
+        startActivity(abandonarpartida);
+        this.finish();
+    }
+    public void siguientePregunta(View view) {
+        countDownTimerCons.cancel();
+        Intent intent = new Intent(this, Gestor.class);
+        intent.putExtra("numPreg", numPregunta);
+        intent.putExtra("puntosAcum", puntosAcum);
+        intent.putExtra("vidasPreg", vidas);
+        intent.putExtra("init", false);
+        intent.putExtra("consolidado", consolidado);
+        intent.putExtra("puntosCons", PtosConsolidados);
+        intent.putExtra("user", usuario);
+        intent.putExtra("tipo", tipo);
+
+        startActivity(intent);
+        this.finish();
     }
     @Override
     public void onBackPressed() {}

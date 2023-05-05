@@ -1,13 +1,12 @@
 package BusinessLogic;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Frase implements Serializable {
     private String enunciado;
     private int timer;
     private String dificultad;
-    private List<Answer> respuestas;
+    private String respuesta;
     private Question question;
 
     public Frase(){}
@@ -30,11 +29,11 @@ public class Frase implements Serializable {
     public String getDificultad(){
         return this.dificultad;
     }
-    public void setRespuesta(List<Answer> respuestas){
-        this.respuestas = respuestas;
+    public void setRespuesta(String respuesta){
+        this.respuesta = respuesta;
     }
-    public List<Answer> getRespuesta(){
-        return this.respuestas;
+    public String getRespuesta(){
+        return this.respuesta;
     }
 
     /*public void setQuestion(Question question){

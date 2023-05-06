@@ -7,10 +7,18 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
-import CalsesBuilder.*;
+import CalsesBuilder.Director;
+import CalsesBuilder.RetoFraseDificilBuilder;
+import CalsesBuilder.RetoFraseFacilBuilder;
+import CalsesBuilder.RetoFraseMedioBuilder;
+import CalsesBuilder.RetoPreguntaDificilBuilder;
+import CalsesBuilder.RetoPreguntaFacilBuilder;
+import CalsesBuilder.RetoPreguntaMedioBuilder;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -51,7 +59,12 @@ public class Gestor extends AppCompatActivity {
     }
 
     private void cuestionAleatoria() {
-
+        Random random = new Random();
+        int resultado = random.nextInt(2);
+        if(resultado == 0)
+            cuestionFrase();
+        else
+            cuestionPregunta();
     }
     private void cuestionFrase() {
 

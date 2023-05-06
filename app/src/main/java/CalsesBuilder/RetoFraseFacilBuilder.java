@@ -1,31 +1,30 @@
 package CalsesBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import BusinessLogic.Frase;
-import BusinessLogic.Question;
-import Persistence.QuestionDAO;
+import BusinessLogic.Phrase;
+import Persistence.PhraseDAO;
 
-public class RetoFraseFacilBuilder implements Builder {
+public class RetoFraseFacilBuilder implements Builder, Serializable {
     private Frase frase;
-    private List<Question> listaPreguntas;
-    private Question preguntaFiltrada;
-    //private List<Answer> listaRespuestas;
-    //private List<Answer> respuestasPreg;
+    private List<Phrase> listaPreguntas;
+    private Phrase preguntaFiltrada;
+
     public void reset(){
         frase = new Frase();
     }
     public void buildEnunciado(){
         preguntaFiltrada = filtrarDificultad(this.frase.getDificultad());
-        //frase.setQuestion(preguntaFiltrada);
-        frase.setEnunciado(preguntaFiltrada.getEnunciado());
+        frase.setEnunciado(preguntaFiltrada.getDescripcion());
     }
-    private Question filtrarDificultad(String dificultad){
-        QuestionDAO questions = new QuestionDAO();
-        listaPreguntas = questions.obtenerTodos();
-        List<Question> aux = new ArrayList<>();
+    private Phrase filtrarDificultad(String dificultad){
+        PhraseDAO phrases = new PhraseDAO();
+        listaPreguntas = phrases.obtenerTodos();
+        List<Phrase> aux = new ArrayList<>();
         for(int i = 0; i<listaPreguntas.size();i++){
             if(listaPreguntas.get(i).getDificultad().equals(dificultad)){
                 aux.add(listaPreguntas.get(i));
@@ -33,15 +32,19 @@ public class RetoFraseFacilBuilder implements Builder {
         }
         Random random = new Random();
         int resultado = random.nextInt(aux.size());
-        Question res = aux.get(resultado);
+        Phrase res = aux.get(resultado);
         return res;
     }
     public void buildTimer(){
         frase.setTimer(120);
     }
-    public void buildDificultad(){ frase.setDificultad("Facil"); } //Medio Dificil
+    public void buildDificultad(){ frase.setDificultad("Facil"); }
     public void buildRespuestas(){
-
+        for(int i = 0; i < listaPreguntas.size();i++) {
+            if (listaPreguntas.get(i).getIdPregunta() == preguntaFiltrada.getIdPregunta()) {
+                frase.setRespuesta(listaPreguntas.get(i).getFrase());
+            }
+        }
     }
 
     public Frase getTipo(){

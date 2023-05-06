@@ -65,24 +65,18 @@ public class Gestor extends AppCompatActivity {
         }
 
         Frase tipoFrase = new Frase();
-        tipoFrase.setDificultad("Facil");
-        tipoFrase.setTimer(120);
-        tipoFrase.setEnunciado("Descripción");
-        tipoFrase.setRespuesta("HOLA P");
-
-        /*
         Director director = new Director();
-        RetoFraseFacilBuilder fraseFacilBuilder = new RetoPreguntaFacilBuilder();
-        RetoFraseMedioBuilder fraseMedioBuilder = new RetoPreguntaMedioBuilder();
-        RetoFraseDificilBuilder fraseDificilBuilder = new RetoPreguntaDificilBuilder();
+        RetoFraseFacilBuilder fraseFacilBuilder = new RetoFraseFacilBuilder();
+        RetoFraseMedioBuilder fraseMedioBuilder = new RetoFraseMedioBuilder();
+        RetoFraseDificilBuilder fraseDificilBuilder = new RetoFraseDificilBuilder();
         if (numPreg < 4) {
-            director.construirPregunta(fraseFacilBuilder);
+            director.construirFrase(fraseFacilBuilder);
             tipoFrase = fraseFacilBuilder.getTipo();
         } else if (numPreg < 7) {
-            director.construirPregunta(fraseMedioBuilder);
+            director.construirFrase(fraseMedioBuilder);
             tipoFrase = fraseMedioBuilder.getTipo();
         } else if (numPreg <= 10) {
-            director.construirPregunta(fraseDificilBuilder);
+            director.construirFrase(fraseDificilBuilder);
             tipoFrase = fraseDificilBuilder.getTipo();
         }else{
             UserDAO userdao = new UserDAO();
@@ -96,7 +90,7 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
-        */
+
 
 
 

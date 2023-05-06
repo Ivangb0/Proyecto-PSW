@@ -22,8 +22,8 @@ public class RetoFraseFacilBuilder implements Builder, Serializable {
         frase.setEnunciado(preguntaFiltrada.getDescripcion());
     }
     private Phrase filtrarDificultad(String dificultad){
-        PhraseDAO phrases = new PhraseDAO();
-        listaPreguntas = phrases.obtenerTodos();
+        PhraseDAO frase = new PhraseDAO();
+        listaPreguntas = frase.obtenerTodos();
         List<Phrase> aux = new ArrayList<>();
         for(int i = 0; i<listaPreguntas.size();i++){
             if(listaPreguntas.get(i).getDificultad().equals(dificultad)){

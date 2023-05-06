@@ -1,12 +1,10 @@
 package com.example.odswix;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +39,7 @@ public class JugarPartida extends AppCompatActivity {
     }
     public void configuracion (View view){
         Intent intent = new Intent(this, menu_configuracion.class);
+        intent.putExtra("user", usuario);
         intent.putExtra("muted", appMuted);
         startActivity(intent);
     }

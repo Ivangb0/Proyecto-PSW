@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-@DatabaseTable
+@DatabaseTable(tableName = "frase")
 public class Phrase implements Serializable {
     @DatabaseField(id = true)
     public int id_frase;
@@ -23,7 +23,7 @@ public class Phrase implements Serializable {
 
     Phrase(){}
 
-    public Phrase (int idPreg, String difi, int ods, String enunci, int puntosPreg, String phrase){
+    public Phrase (int idPreg, String difi, int ods, String enunci, int puntosPreg, String frase){
         // Verificar que la dificultad sea "facil", "medio" o "dificil"
         if (difi.equals("facil") || difi.equals("medio") || difi.equals("dificil")) {
             this.id_frase = idPreg;
@@ -31,7 +31,7 @@ public class Phrase implements Serializable {
             this.id_ods = ods;
             this.descripcion = enunci;
             this.puntos = puntosPreg;
-            this.frase=phrase;
+            this.frase=frase;
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +17,19 @@ public class CatalogoRetos extends AppCompatActivity {
     private String tipo = null;
     boolean init;
     boolean appMuted;
+
+    public static Button botonPregunta;
+    public static Button botonFrase;
+    public static Button botonMixto;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        botonPregunta = (Button) findViewById(R.id.button9);
+        botonFrase = (Button) findViewById(R.id.button17);
+        botonMixto = (Button) findViewById(R.id.button20);
 
         //Ocultar menu desplazable
         requestWindowFeature(Window.FEATURE_NO_TITLE);

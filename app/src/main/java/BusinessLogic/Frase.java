@@ -7,7 +7,6 @@ public class Frase implements Serializable {
     private int timer;
     private String dificultad;
     private String respuesta;
-    private Question question;
 
     public Frase(){}
 

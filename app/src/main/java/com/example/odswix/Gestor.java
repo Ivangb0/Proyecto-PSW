@@ -7,10 +7,18 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
-import CalsesBuilder.*;
+import CalsesBuilder.Director;
+import CalsesBuilder.RetoFraseDificilBuilder;
+import CalsesBuilder.RetoFraseFacilBuilder;
+import CalsesBuilder.RetoFraseMedioBuilder;
+import CalsesBuilder.RetoPreguntaDificilBuilder;
+import CalsesBuilder.RetoPreguntaFacilBuilder;
+import CalsesBuilder.RetoPreguntaMedioBuilder;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -51,7 +59,12 @@ public class Gestor extends AppCompatActivity {
     }
 
     private void cuestionAleatoria() {
-
+        Random random = new Random();
+        int resultado = random.nextInt(2);
+        if(resultado == 0)
+            cuestionFrase();
+        else
+            cuestionPregunta();
     }
     private void cuestionFrase() {
 
@@ -65,24 +78,18 @@ public class Gestor extends AppCompatActivity {
         }
 
         Frase tipoFrase = new Frase();
-        tipoFrase.setDificultad("Facil");
-        tipoFrase.setTimer(120);
-        tipoFrase.setEnunciado("Descripción");
-        tipoFrase.setRespuesta("HOLA P");
-
-        /*
         Director director = new Director();
-        RetoFraseFacilBuilder fraseFacilBuilder = new RetoPreguntaFacilBuilder();
-        RetoFraseMedioBuilder fraseMedioBuilder = new RetoPreguntaMedioBuilder();
-        RetoFraseDificilBuilder fraseDificilBuilder = new RetoPreguntaDificilBuilder();
+        RetoFraseFacilBuilder fraseFacilBuilder = new RetoFraseFacilBuilder();
+        RetoFraseMedioBuilder fraseMedioBuilder = new RetoFraseMedioBuilder();
+        RetoFraseDificilBuilder fraseDificilBuilder = new RetoFraseDificilBuilder();
         if (numPreg < 4) {
-            director.construirPregunta(fraseFacilBuilder);
+            director.construirFrase(fraseFacilBuilder);
             tipoFrase = fraseFacilBuilder.getTipo();
         } else if (numPreg < 7) {
-            director.construirPregunta(fraseMedioBuilder);
+            director.construirFrase(fraseMedioBuilder);
             tipoFrase = fraseMedioBuilder.getTipo();
         } else if (numPreg <= 10) {
-            director.construirPregunta(fraseDificilBuilder);
+            director.construirFrase(fraseDificilBuilder);
             tipoFrase = fraseDificilBuilder.getTipo();
         }else{
             UserDAO userdao = new UserDAO();
@@ -96,7 +103,7 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
-        */
+
 
 
 

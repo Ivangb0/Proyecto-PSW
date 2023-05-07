@@ -142,6 +142,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPuntAcum.setText(String.valueOf(puntosAcum));
         textViewTiempo.setText(String.valueOf(tipoFrase.getTimer()));
         textViewVidas.setText(String.valueOf(vidas));
+        textView27.setText(tipoFrase.getDificultad());
         textViewPtosCon.setText(String.valueOf(PtosConsolidados));
         checkConsolidar(consolidado);
         enunciado.setText(tipoFrase.getEnunciado());

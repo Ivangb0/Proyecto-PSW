@@ -1,21 +1,20 @@
 package com.example.odswix;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
 
 public class menu_configuracion extends AppCompatActivity {
+    private User usuario = null;
     TextView txtVol;
     boolean appMuted;
     ImageButton muteButton;
@@ -37,6 +36,8 @@ public class menu_configuracion extends AppCompatActivity {
         muteButton.setImageResource(R.drawable.audio_muted);
 
         Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+
+        usuario = (User) intent.getSerializableExtra("user");
     }
     public void silenciarConfig(View view){
         if (appMuted){
@@ -51,6 +52,7 @@ public class menu_configuracion extends AppCompatActivity {
     }
     public void cerrarConfig(View view){
         Intent intent = new Intent(this, JugarPartida.class);
+        intent.putExtra("user", usuario);
         intent.putExtra("muted", appMuted);
         finishAfterTransition();
         startActivity(intent);

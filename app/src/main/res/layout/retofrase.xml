@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/sostenibleinicio">
 
     <TextView
         android:id="@+id/textViewPuntosXPreg2"
@@ -11,6 +12,7 @@
         android:layout_height="17dp"
         android:layout_marginTop="40dp"
         android:text="Puntos:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/textView20"
         app:layout_constraintHorizontal_bias="0.0"
@@ -24,6 +26,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="40dp"
         android:text="Puntos:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +47,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="38dp"
         android:text="Puntuación acumulada:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/buttonPistas2"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
 
@@ -53,6 +57,7 @@
         android:layout_height="33dp"
         android:layout_marginStart="1dp"
         android:text="500"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView36"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
 
@@ -63,6 +68,7 @@
         android:layout_marginStart="38dp"
         android:layout_marginBottom="20dp"
         android:text="Puntuación consolidada:"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonPistas2" />
 
@@ -73,6 +79,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginBottom="18dp"
         android:text="500"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView36" />
 
@@ -95,6 +102,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="3dp"
         android:text="Pregunta:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewPuntosXPreg"
         app:layout_constraintEnd_toStartOf="@+id/textViewNumPreg"
@@ -107,6 +115,7 @@
         android:layout_height="21dp"
         android:layout_marginTop="20dp"
         android:text="Pregunta"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView35"
         app:layout_constraintTop_toTopOf="parent" />
@@ -118,6 +127,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="3dp"
         android:text="Dificultad:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textViewNumPreg2"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -129,6 +139,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
         android:text="Dificultad:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textViewNumPreg2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -139,6 +150,7 @@
         android:layout_height="26dp"
         android:layout_marginTop="12dp"
         android:text="TextView"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -150,6 +162,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="12dp"
         android:text="Vidas:"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textTiempo"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -161,6 +174,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="21dp"
         android:text="TextView"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView34"
         app:layout_constraintTop_toBottomOf="@+id/textViewNumPreg2" />
@@ -172,19 +186,24 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
         android:text="Tiempo"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
     <TextView
         android:id="@+id/enunciado"
-        android:layout_width="wrap_content"
+        android:layout_width="376dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
         android:text="Error"
+        android:textColor="#000000"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <ScrollView
         android:id="@+id/letras"

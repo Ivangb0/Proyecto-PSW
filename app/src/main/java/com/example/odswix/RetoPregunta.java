@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -428,7 +427,7 @@ public class RetoPregunta extends AppCompatActivity {
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
-            guardarAciertoCobertura();
+            //guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -439,7 +438,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
-            guardarAciertoCobertura();
+           // guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -450,7 +449,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
-            guardarAciertoCobertura();
+           // guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -461,7 +460,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
-            guardarAciertoCobertura();
+           // guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -470,7 +469,7 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else {
-            guardarFalloCobertura();
+            //guardarFalloCobertura();
             soundFallo.start();
             int preg;
             for (preg = 0; preg < 4; preg++) {

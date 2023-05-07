@@ -43,7 +43,7 @@ public class RetoPreguntaFacilBuilder implements Builder, Serializable {
     public void buildTimer(){
         pregunta.setTimer(30);
     }
-    public void buildDificultad(){ pregunta.setDificultad("Facil"); } //Medio Dificil
+    public void buildDificultad(){ pregunta.setDificultad("Facil"); }
     public void buildRespuestas(){
         respuestasPreg = recuperarRespuestas(preguntaFiltrada.getIdPregunta());
         pregunta.setRespuestas(respuestasPreg);

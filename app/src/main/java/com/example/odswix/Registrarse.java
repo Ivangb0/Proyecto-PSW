@@ -28,7 +28,7 @@ public class Registrarse extends AppCompatActivity {
     private String contraseña = "";
     private String ConfirmContr = "";
     Cobertura[] arrayCoberturas;
-    CoberturaDAO coberturaDAO = new CoberturaDAO();
+    CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,7 +230,7 @@ public class Registrarse extends AppCompatActivity {
                         ps2.setInt(4,0);
                         ps2.executeUpdate();
                         arrayCoberturas[i] = new Cobertura(id_ods,usuario.id_user,0,0);
-
+                        coberturaDAOPreg.actualizar(arrayCoberturas[i]);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

@@ -29,6 +29,7 @@ import BusinessLogic.Answer;
 import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
+import Persistence.AnswerDAO;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -64,10 +65,12 @@ public class RetoPregunta extends AppCompatActivity {
     private int PtosConsolidados = 0;
     private String tipo = null;
     UserDAO userdao = new UserDAO();
-    int contadorAciertos;
-    int contadorFallos;
+
     CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
-    Cobertura cob;
+    public Cobertura cob;
+    List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
+    User usu = IniciarSesion.usuario;
+    int idCoberturaUser = usu.getIdUser();
 
     int numODS;
     @Override
@@ -361,23 +364,45 @@ public class RetoPregunta extends AppCompatActivity {
 
         }
 
-        /*public void getCoberturaBD(){
-            CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
-            coberturaDAOPreg.ob
-            contadorAciertos = coberturaDAOPreg.;
-            contadorFallos =
-                    usuario.esta
-        }*/
 
+    private List<Cobertura> recuperarCoberturas (int id_user) {
+        CoberturaDAO coberturas = new CoberturaDAO();
+        listaCoberturas = coberturas.obtenerTodos();
+        List<Cobertura> cober = new ArrayList<Cobertura>();
+        for (int i = 0; i < listaCoberturas.size(); i++) {
+            if (listaCoberturas.get(i).getId_user() == id_user) {
+                cober.add(listaCoberturas.get(i));
+            }
+        }
+        return cober;
+    }
     public void guardarAciertoCobertura(){
-        //cob = (this.numODS,this.usuario.id_user,this.cob.getAciertos(),this.cob.getFallos());
-        Cobertura cob2 = new Cobertura(numODS, usuario.id_user, cob.getAciertos()+1,cob.getFallos());
-        coberturaDAOPreg.actualizar(cob2);
+        recuperarCoberturas(idCoberturaUser);
+        int aciertos;
+        List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
+        for(int i = 0; i<cobs.size(); i++){
+            if(cobs.get(i).getId_ods() == this.numODS){
+                System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+                aciertos = cobs.get(i).getAciertos() +1;
+                System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + aciertos);
+                cobs.get(i).setAciertos(aciertos);
+                coberturaDAOPreg.actualizar(cobs.get(i));
+            }
+        }
     }
 
     public void guardarFalloCobertura(){
-        Cobertura cob3 = new Cobertura(numODS, usuario.id_user, cob.getAciertos(),cob.getFallos()+1);
-        coberturaDAOPreg.actualizar(cob3);
+        recuperarCoberturas(idCoberturaUser);
+        int fallos;
+        List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
+        for(int i = 0; i<cobs.size(); i++){
+            if(cobs.get(i).getId_ods() == this.numODS){
+                fallos = cobs.get(i).getFallos() +1;
+                cobs.get(i).setAciertos(fallos);
+                coberturaDAOPreg.actualizar(cobs.get(i));
+            }
+        }
     }
 
     @SuppressLint("ResourceAsColor")

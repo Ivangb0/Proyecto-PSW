@@ -18,14 +18,14 @@ public class CoberturaOds extends AppCompatActivity {
     TextView[] textViewPerc;
     ProgressBar[] progressBarPerc;
     double porcentajeAciertos;
-    CoberturaDAO cobDAO;
+    CoberturaDAO coberturaDAOPreg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coberturaods);
 
-        cobDAO = new CoberturaDAO();
+        coberturaDAOPreg = new CoberturaDAO();
         textViewPerc = new TextView[17];
         progressBarPerc = new ProgressBar[17];
 
@@ -67,8 +67,8 @@ public class CoberturaOds extends AppCompatActivity {
     }
 
     public void setProgresos() {
-        listaAciertos = cobDAO.getListaAciertos();
-        listaFallos = cobDAO.getListaFallos();
+        listaAciertos = coberturaDAOPreg.getListaAciertos();
+        listaFallos = coberturaDAOPreg.getListaFallos();
         for (int i = 0; i < progressBarPerc.length; i++) {
             porcentajeAciertos = Math.round(listaAciertos.get(i) / (listaAciertos.get(i) + listaFallos.get(i)) * 100);
             progressBarPerc[i].setProgress( (int) porcentajeAciertos);

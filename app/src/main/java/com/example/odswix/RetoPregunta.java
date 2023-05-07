@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -379,33 +380,56 @@ public class RetoPregunta extends AppCompatActivity {
     public void guardarAciertoCobertura(){
         recuperarCoberturas(idCoberturaUser);
         int aciertos;
+        int fallos;
+        //PreparedStatement psAcierto = SingletonSQL.insertar("INSERT INTO cobertura (id_ods, id_user, aciertos, fallos) " + "VALUES (?, ?, ?, ?)" );
+        PreparedStatement psAcierto = SingletonSQL.insertar("UPDATE cobertura SET aciertos = ? WHERE id_ods = ? AND id_user = ? AND  fallos = ?");
+
         List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
         for(int i = 0; i<cobs.size(); i++){
             if(cobs.get(i).getId_ods() == this.numODS){
                 System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
+                fallos = cobs.get(i).getFallos();
                 aciertos = cobs.get(i).getAciertos() +1;
                 System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + aciertos);
                 cobs.get(i).setAciertos(aciertos);
+                cobs.get(i).setFallos(fallos);
 
-                //singleton INSERT
-                coberturaDAOPreg.actualizar(cobs.get(i));
+                try {
+                    psAcierto.setInt(1,aciertos);
+                    psAcierto.setInt(2,this.numODS);
+                    psAcierto.setInt(3,usu.getIdUser());
+                    psAcierto.setInt(4,fallos);
+                    psAcierto.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                //coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }
     }
-
     public void guardarFalloCobertura(){
         recuperarCoberturas(idCoberturaUser);
         int fallos;
-        //PreparedStatement psFallo = SingletonSQL.insertar()
+        int aciertos;
+        PreparedStatement psFallo = SingletonSQL.insertar("UPDATE cobertura SET fallos = ? WHERE id_ods = ? AND id_user = ? AND aciertos = ?");
+
         List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
         for(int i = 0; i<cobs.size(); i++){
             if(cobs.get(i).getId_ods() == this.numODS){
                 fallos = cobs.get(i).getFallos() +1;
-                cobs.get(i).setAciertos(fallos);
-
-                //singleton INSERT
-                coberturaDAOPreg.actualizar(cobs.get(i));
+                aciertos = cobs.get(i).getAciertos();
+                cobs.get(i).setFallos(fallos);
+                cobs.get(i).setAciertos(aciertos);
+                try {
+                    psFallo.setInt(1,fallos);
+                    psFallo.setInt(2,this.numODS);
+                    psFallo.setInt(3,usu.getIdUser());
+                    psFallo.setInt(4,aciertos);
+                    psFallo.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                //coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }
     }
@@ -433,7 +457,7 @@ public class RetoPregunta extends AppCompatActivity {
         if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
-            //guardarAciertoCobertura();
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -444,7 +468,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
-           // guardarAciertoCobertura();
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -455,7 +479,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
-           // guardarAciertoCobertura();
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -466,7 +490,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
-           // guardarAciertoCobertura();
+            guardarAciertoCobertura();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -475,7 +499,7 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else {
-            //guardarFalloCobertura();
+            guardarFalloCobertura();
             soundFallo.start();
             int preg;
             for (preg = 0; preg < 4; preg++) {

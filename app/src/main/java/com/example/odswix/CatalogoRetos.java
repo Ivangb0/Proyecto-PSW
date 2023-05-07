@@ -27,9 +27,6 @@ public class CatalogoRetos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        botonPregunta = (Button) findViewById(R.id.button9);
-        botonFrase = (Button) findViewById(R.id.button17);
-        botonMixto = (Button) findViewById(R.id.button20);
 
         //Ocultar menu desplazable
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -42,6 +39,10 @@ public class CatalogoRetos extends AppCompatActivity {
 
         appMuted = (boolean) intent.getSerializableExtra("muted");
         Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG).show();
+
+        botonPregunta = (Button) findViewById(R.id.button9);
+        botonFrase = (Button) findViewById(R.id.button17);
+        botonMixto = (Button) findViewById(R.id.button20);
     }
     public void mixta(View view){
         Intent intent = new Intent(this, Gestor.class);

@@ -9,7 +9,7 @@ public class ContextoStrategy {
     private Button botonPregunta;
     private Button botonFrase;
     private Button botonMixto;
-    
+
 
     public ContextoStrategy(Strategy part, Button bot){
         asignarBotones();

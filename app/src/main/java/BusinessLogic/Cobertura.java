@@ -9,7 +9,7 @@ public class Cobertura implements Serializable {
     @DatabaseField(id = true)
     public int id_ods;
 
-    @DatabaseField(id = true)
+    @DatabaseField
     public int id_user;
 
     @DatabaseField

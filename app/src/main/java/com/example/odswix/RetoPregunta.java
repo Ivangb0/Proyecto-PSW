@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -386,6 +387,8 @@ public class RetoPregunta extends AppCompatActivity {
                 aciertos = cobs.get(i).getAciertos() +1;
                 System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + aciertos);
                 cobs.get(i).setAciertos(aciertos);
+
+                //singleton INSERT
                 coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }
@@ -394,11 +397,14 @@ public class RetoPregunta extends AppCompatActivity {
     public void guardarFalloCobertura(){
         recuperarCoberturas(idCoberturaUser);
         int fallos;
+        //PreparedStatement psFallo = SingletonSQL.insertar()
         List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
         for(int i = 0; i<cobs.size(); i++){
             if(cobs.get(i).getId_ods() == this.numODS){
                 fallos = cobs.get(i).getFallos() +1;
                 cobs.get(i).setAciertos(fallos);
+
+                //singleton INSERT
                 coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }

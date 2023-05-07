@@ -23,6 +23,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import BusinessLogic.Frase;
@@ -33,6 +34,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private Frase tipoFrase = null;
     private String frase = "";
     private String comprFrase;
+    private String modFrase;
+    private String caracteres;
     private String respuesta = "";
     GridLayout gridLayoutHuecos;
     private int numPregunta = 0;
@@ -48,6 +51,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private int puntosPregunta = 0;
     private int PtosConsolidados = 0;
     private String tipo = null;
+    private int porcentaje = 0;
 
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
@@ -126,17 +130,18 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
 
-
         comprFrase = frase.replace(" ", "");
-
 
         textViewNumPreg.setText(String.valueOf(numPregunta));
         if (tipoFrase.getDificultad().equals("Facil")) {
             textViewPuntosXPreg.setText("100");
+            porcentaje = Math.round(comprFrase.length() * 30/100);
         } else if (tipoFrase.getDificultad().equals("Medio")) {
             textViewPuntosXPreg.setText("200");
+            porcentaje = Math.round(comprFrase.length() * 20/100);
         } else if (tipoFrase.getDificultad().equals("Dificil")) {
             textViewPuntosXPreg.setText("300");
+            porcentaje = Math.round(comprFrase.length() * 10/100);
         }
         buttonSiguiente.setText("Siguiente");
         textViewPuntAcum.setText(String.valueOf(puntosAcum));
@@ -146,9 +151,25 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPtosCon.setText(String.valueOf(PtosConsolidados));
         checkConsolidar(consolidado);
         enunciado.setText(tipoFrase.getEnunciado());
+
+        prepHuecos();
         setHuecos();
         setImages();
         reiniciarTimer();
+
+    }
+
+    private void prepHuecos(){
+        modFrase = frase;
+        Random random = new Random();
+        for(int i = 0; i < porcentaje;) {
+            int r = random.nextInt(comprFrase.length());
+            String letra = String.valueOf(modFrase.charAt(r));
+            if(!letra.equals("#") && !letra.equals(" ")) {
+                modFrase = modFrase.replaceFirst(letra, "#");
+                i++;
+            }
+        }
     }
     private void checkConsolidar(Boolean consolidar){
         if(consolidar){
@@ -162,26 +183,35 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         ScrollView layout = findViewById(R.id.huecos);
         gridLayoutHuecos = new GridLayout(this);
         gridLayoutHuecos.setColumnCount(9);
-
         for (int i = 0; i < frase.length(); i++) {
+
+            GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+            layoutParams.height = 100;
+            layoutParams.width = 100;
+            layoutParams.setMargins(8, 0, 8, 8);
+
+            String letraMod = String.valueOf(modFrase.charAt(i));
             char letra = frase.charAt(i);
+
+            if(letraMod.equals("#")){
+                Button button = new Button(this);
+                button.setClickable(false);
+                button.setText(Character.toString(letra));
+                gridLayoutHuecos.addView(button, layoutParams);
+            } else {
+
                 ImageButton ibutton = new ImageButton(this);
                 ibutton.setClickable(false);
 
-            ibutton.setOnDragListener(this);
+                ibutton.setOnDragListener(this);
 
-                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
-                layoutParams.height = 100;
-                layoutParams.width = 100;
-                layoutParams.setMargins(8, 0, 8, 8);
+                gridLayoutHuecos.addView(ibutton, layoutParams);
+                if (Character.isWhitespace(letra)) {
+                    ibutton.setVisibility(View.INVISIBLE);
+                } else {
 
-            gridLayoutHuecos.addView(ibutton, layoutParams);
-            if (Character.isWhitespace(letra)) {
-                ibutton.setVisibility(View.INVISIBLE);
-            }
-            else {
-
-                ibutton.setBackgroundResource(R.drawable.hueco);
+                    ibutton.setBackgroundResource(R.drawable.hueco);
+                }
             }
         }
         layout.addView(gridLayoutHuecos);
@@ -240,19 +270,22 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         String desFrase = desordenarFrase();
         for (int i = 0; i < desFrase.length(); i++) {
             char letra = desFrase.charAt(i);
-            if (!Character.isWhitespace(letra)) {
-                Button button = new Button(this);
-                button.setClickable(false);
-                button.setText(Character.toString(letra));
+            if(!String.valueOf(letra).equals("#")) {
+                if (!Character.isWhitespace(letra)) {
+                    Button button = new Button(this);
+                    button.setClickable(false);
+                    button.setText(Character.toString(letra));
+                    button.setBackgroundColor(0xE0F33F);
 
-                button.setOnTouchListener(this);
+                    button.setOnTouchListener(this);
 
-                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
-                layoutParams.height=100;
-                layoutParams.width=100;
-                layoutParams.setMargins(8, 0, 8, 8);
+                    GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+                    layoutParams.height = 100;
+                    layoutParams.width = 100;
+                    layoutParams.setMargins(8, 0, 8, 8);
 
-                gridLayout.addView(button, layoutParams);
+                    gridLayout.addView(button, layoutParams);
+                }
             }
         }
         layout.addView(gridLayout);
@@ -269,7 +302,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         return false;
     }
     private String desordenarFrase(){
-        char[] cadena = frase.toCharArray();
+        char[] cadena = modFrase.toCharArray();
         List<Character> lista = new ArrayList<Character>();
 
         for (char c : cadena) {

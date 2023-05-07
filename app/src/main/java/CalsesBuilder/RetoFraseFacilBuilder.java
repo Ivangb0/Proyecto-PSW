@@ -36,7 +36,7 @@ public class RetoFraseFacilBuilder implements Builder, Serializable {
         return res;
     }
     public void buildTimer(){
-        frase.setTimer(12);
+        frase.setTimer(120);
     }
     public void buildDificultad(){ frase.setDificultad("Facil"); }
     public void buildRespuestas(){

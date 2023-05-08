@@ -279,6 +279,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         return false;
     }
     private void setImages(){
+        cambiarImagenODS();
         ScrollView layout = findViewById(R.id.letras);
         GridLayout gridLayout = new GridLayout(this);
         gridLayout.setColumnCount(9);
@@ -417,6 +418,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPtosCon.setVisibility(View.INVISIBLE);
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
+        imageViewODSFrase.setVisibility(View.INVISIBLE);
     }
 
     public void comprobar(View view) {
@@ -497,14 +499,12 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         intent.putExtra("puntosCons", PtosConsolidados);
         intent.putExtra("user", usuario);
         intent.putExtra("tipo", tipo);
-
         startActivity(intent);
         this.finish();
     }
 
-    //El problema esta en este metodo
     public void cambiarImagenODS() {
-        //numODS = preguntaFiltrada.get
+        numODS = tipoFrase.getPhrase().getOds();
         // numODS = pregunta.getQuestion().getOds();
         int pictureID = getResources().getIdentifier("ods" + numODS, "drawable", getPackageName());
         Drawable picture = getResources().getDrawable(pictureID);

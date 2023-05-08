@@ -350,8 +350,8 @@
 
     <ImageView
         android:id="@+id/imageViewODS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="103dp"
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewPuntAcum2"
         app:layout_constraintStart_toEndOf="@+id/button10"

@@ -191,8 +191,9 @@ public class RetoPregunta extends AppCompatActivity {
         buttonPistas.setClickable(false);
         buttonPistas.setBackgroundColor(0xFFA7A7A7);
 
-        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+        if(puntosAcum >= (puntosPregunta / 2) && puntosAcum != 0) {
             buttonPistas.setClickable(true);
+            buttonPistas.setBackgroundColor(0xFF6200EE);
         }
     }
     private void checkConsolidar(Boolean consolidar){
@@ -330,7 +331,8 @@ public class RetoPregunta extends AppCompatActivity {
     }
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);
-        textViewPtosObtend.setText(String.valueOf(puntosPregunta));
+        if(pistaPressed){textViewPtosObtend.setText(String.valueOf(puntosPregunta/2));}
+        else{textViewPtosObtend.setText(String.valueOf(puntosPregunta));}
         textViewPtosObtend.setVisibility(View.VISIBLE);
         textViewPtosTots.setVisibility(View.VISIBLE);
         textViewPtosAcums.setText(String.valueOf(puntosAcum));
@@ -366,13 +368,11 @@ public class RetoPregunta extends AppCompatActivity {
             textView21.setText("Respuesta incorrecta.");
             puntosCuandoCorrecta();
             textViewPtosObtend.setText("0");
-
             buttonConsolidar.setVisibility(View.INVISIBLE);
             buttonConsolidar.setClickable(false);
             esconderTodo();
             mostrarSiguiente();
             checkVidasACero();
-
         }
 
 
@@ -418,7 +418,6 @@ public class RetoPregunta extends AppCompatActivity {
         int fallos;
         int aciertos;
         PreparedStatement psFallo = SingletonSQL.insertar("UPDATE cobertura SET fallos = ? WHERE id_ods = ? AND id_user = ? AND aciertos = ?");
-
         List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
         for(int i = 0; i<cobs.size(); i++){
             if(cobs.get(i).getId_ods() == this.numODS){
@@ -657,6 +656,7 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }
             pistaPressed = true;
+            buttonPistas.setBackgroundColor(0xFFA7A7A7);
         }
     }
 

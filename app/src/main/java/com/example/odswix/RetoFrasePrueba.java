@@ -3,6 +3,7 @@ package com.example.odswix;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.DragEvent;
@@ -13,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,14 +22,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import BusinessLogic.Cobertura;
 import BusinessLogic.Frase;
+import BusinessLogic.Phrase;
 import BusinessLogic.User;
+import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
 public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragListener, View.OnTouchListener {
@@ -65,6 +72,13 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     TextView textViewPtosTots; TextView textViewPtosAcums; ScrollView letras;
     TextView textViewTiempoC; TextView textViewTiempoCons; ScrollView huecos;
     TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
+
+    List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
+    int idCoberturaUser;
+    int numODS;
+    ImageView imageViewODSFrase;
+    private Phrase phrase = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +127,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPuntConsol = (TextView) findViewById(R.id.textViewPuntConsol2);
         textViewPuntAcum = (TextView) findViewById(R.id.textViewPuntAcum2);
         textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon2);
+        imageViewODSFrase = (ImageView) findViewById(R.id.imageViewODS);
 
 
 
@@ -151,6 +166,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPtosCon.setText(String.valueOf(PtosConsolidados));
         checkConsolidar(consolidado);
         enunciado.setText(tipoFrase.getEnunciado());
+        idCoberturaUser =  usuario.getIdUser();
 
         prepHuecos();
         setHuecos();
@@ -420,12 +436,14 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
             }
         }
         if(comprFrase.equals(respuesta)) {
+            guardarAciertoCobertura();
             buttonAbandonar.setVisibility(View.INVISIBLE);
             buttonAbandonar.setClickable(false);
             countDownTimer.cancel();
             respuestaCorrecta();
             timerConsolidar();
         }
+        guardarFalloCobertura();
     }
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);
@@ -483,6 +501,81 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         startActivity(intent);
         this.finish();
     }
+
+    //El problema esta en este metodo
+    public void cambiarImagenODS() {
+        //numODS = preguntaFiltrada.get
+        // numODS = pregunta.getQuestion().getOds();
+        int pictureID = getResources().getIdentifier("ods" + numODS, "drawable", getPackageName());
+        Drawable picture = getResources().getDrawable(pictureID);
+        imageViewODSFrase.setImageDrawable(picture);
+    }
+
+    private List<Cobertura> recuperarCoberturas (int id_user) {
+        CoberturaDAO coberturas = new CoberturaDAO();
+        listaCoberturas = coberturas.obtenerTodos();
+        List<Cobertura> cober = new ArrayList<Cobertura>();
+        for (int i = 0; i < listaCoberturas.size(); i++) {
+            if (listaCoberturas.get(i).getId_user() == id_user) {
+                cober.add(listaCoberturas.get(i));
+            }
+        }
+        return cober;
+    }
+    public void guardarAciertoCobertura(){
+        recuperarCoberturas(idCoberturaUser);
+        int aciertos;
+        int fallos;
+        PreparedStatement psAcierto = SingletonSQL.insertar("UPDATE cobertura SET aciertos = ? WHERE id_ods = ? AND id_user = ? AND  fallos = ?");
+
+        List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
+        for(int i = 0; i<cobs.size(); i++){
+            if(cobs.get(i).getId_ods() == this.numODS){
+                fallos = cobs.get(i).getFallos();
+                aciertos = cobs.get(i).getAciertos() +1;
+                cobs.get(i).setAciertos(aciertos);
+                cobs.get(i).setFallos(fallos);
+
+                try {
+                    psAcierto.setInt(1,aciertos);
+                    psAcierto.setInt(2,this.numODS);
+                    psAcierto.setInt(3,usuario.getIdUser());
+                    psAcierto.setInt(4,fallos);
+                    psAcierto.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    public void guardarFalloCobertura(){
+        recuperarCoberturas(idCoberturaUser);
+        int fallos;
+        int aciertos;
+        PreparedStatement psFallo = SingletonSQL.insertar("UPDATE cobertura SET fallos = ? WHERE id_ods = ? AND id_user = ? AND aciertos = ?");
+
+        List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
+        for(int i = 0; i<cobs.size(); i++){
+            if(cobs.get(i).getId_ods() == this.numODS){
+                fallos = cobs.get(i).getFallos() +1;
+                aciertos = cobs.get(i).getAciertos();
+                cobs.get(i).setFallos(fallos);
+                cobs.get(i).setAciertos(aciertos);
+                try {
+                    psFallo.setInt(1,fallos);
+                    psFallo.setInt(2,this.numODS);
+                    psFallo.setInt(3,usuario.getIdUser());
+                    psFallo.setInt(4,aciertos);
+                    psFallo.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+
     @Override
     public void onBackPressed() {}
 }

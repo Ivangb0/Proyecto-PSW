@@ -30,7 +30,6 @@ import BusinessLogic.Answer;
 import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
-import Persistence.AnswerDAO;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -392,16 +391,13 @@ public class RetoPregunta extends AppCompatActivity {
         recuperarCoberturas(idCoberturaUser);
         int aciertos;
         int fallos;
-        //PreparedStatement psAcierto = SingletonSQL.insertar("INSERT INTO cobertura (id_ods, id_user, aciertos, fallos) " + "VALUES (?, ?, ?, ?)" );
         PreparedStatement psAcierto = SingletonSQL.insertar("UPDATE cobertura SET aciertos = ? WHERE id_ods = ? AND id_user = ? AND  fallos = ?");
 
         List<Cobertura> cobs = recuperarCoberturas(idCoberturaUser);
         for(int i = 0; i<cobs.size(); i++){
             if(cobs.get(i).getId_ods() == this.numODS){
-                System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 fallos = cobs.get(i).getFallos();
                 aciertos = cobs.get(i).getAciertos() +1;
-                System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + aciertos);
                 cobs.get(i).setAciertos(aciertos);
                 cobs.get(i).setFallos(fallos);
 
@@ -414,7 +410,6 @@ public class RetoPregunta extends AppCompatActivity {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                //coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }
     }
@@ -440,7 +435,6 @@ public class RetoPregunta extends AppCompatActivity {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                //coberturaDAOPreg.actualizar(cobs.get(i));
             }
         }
     }

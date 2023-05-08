@@ -15,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -71,9 +70,7 @@ public class RetoPregunta extends AppCompatActivity {
     List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
     User usu = IniciarSesion.usuario;
     int idCoberturaUser = usu.getIdUser();
-
     boolean pistaPressed = false;
-
     int numODS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +95,7 @@ public class RetoPregunta extends AppCompatActivity {
         PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
         duration = pregunta.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
-
-        appMuted = (boolean) intent.getSerializableExtra("muted");
+        appMuted = (boolean) intent.getBooleanExtra("muted", false);
 
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
@@ -176,24 +172,21 @@ public class RetoPregunta extends AppCompatActivity {
         checkConsolidar(consolidado);
         reiniciarTimer();
 
-        muteButton.setImageResource(R.drawable.audio_on);
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
-        if (appMuted){
-            soundBackground.setVolume(0,0);
-            soundAcierto.setVolume(0,0);
-            soundDerrota.setVolume(0,0);
-            soundFallo.setVolume(0,0);
-            soundVictoria.setVolume(0,0);
-            soundCountdown10s.setVolume(0,0);
-        }
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+
+
 
         buttonPistas.setClickable(false);
         buttonPistas.setBackgroundColor(0xFFA7A7A7);
 
+
         if(puntosAcum >= (puntosPregunta / 2) && puntosAcum != 0) {
             buttonPistas.setClickable(true);
             buttonPistas.setBackgroundColor(0xFF6200EE);
+        }
+        if (appMuted) {
+            silenciarTodo();
+        } else {
+            dessilenciarTodo();
         }
     }
     private void checkConsolidar(Boolean consolidar){
@@ -229,7 +222,6 @@ public class RetoPregunta extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
-
     public void reiniciarTimer() {
         countDownTimer = new CountDownTimer(duration * 1000, 1000) {
             @Override
@@ -317,6 +309,24 @@ public class RetoPregunta extends AppCompatActivity {
         buttonAbandonar.setClickable(false);
         muteButton.setVisibility(View.INVISIBLE);
     }
+    public void dessilenciarTodo(){
+        muteButton.setImageResource(R.drawable.audio_on);
+        soundBackground.setVolume(1, 1);
+        soundAcierto.setVolume(1, 1);
+        soundDerrota.setVolume(1, 1);
+        soundFallo.setVolume(1, 1);
+        soundVictoria.setVolume(1, 1);
+        soundCountdown10s.setVolume(1, 1);
+    }
+    public void silenciarTodo(){
+        muteButton.setImageResource(R.drawable.audio_muted);
+        soundBackground.setVolume(0, 0);
+        soundAcierto.setVolume(0, 0);
+        soundDerrota.setVolume(0, 0);
+        soundFallo.setVolume(0, 0);
+        soundVictoria.setVolume(0, 0);
+        soundCountdown10s.setVolume(0, 0);
+    }
     public void pressConsolidar(View view){
         textView5.setText("");
         PtosConsolidados = puntosAcum;
@@ -338,7 +348,6 @@ public class RetoPregunta extends AppCompatActivity {
         textViewPtosAcums.setText(String.valueOf(puntosAcum));
         textViewPtosAcums.setVisibility(View.VISIBLE);
     }
-
     public void respuestaCorrecta() {
         numPregunta++;
         if(pistaPressed) {
@@ -351,7 +360,6 @@ public class RetoPregunta extends AppCompatActivity {
         mostrarSiguiente();
 
     }
-
     public void checkVidasACero(){
         if (vidas == 0) {
             textView21.setText("Game Over.");
@@ -361,8 +369,6 @@ public class RetoPregunta extends AppCompatActivity {
             buttonSiguiente.setText("Volver al menu");
         }
     }
-
-
     public void handlerRespIncorrecta(){
             buttonSiguiente.setText("Vuelve a intentarlo");
             textView21.setText("Respuesta incorrecta.");
@@ -374,8 +380,6 @@ public class RetoPregunta extends AppCompatActivity {
             mostrarSiguiente();
             checkVidasACero();
         }
-
-
     private List<Cobertura> recuperarCoberturas (int id_user) {
         CoberturaDAO coberturas = new CoberturaDAO();
         listaCoberturas = coberturas.obtenerTodos();
@@ -437,7 +441,6 @@ public class RetoPregunta extends AppCompatActivity {
             }
         }
     }
-
     @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
         buttonAbandonar.setVisibility(View.INVISIBLE);
@@ -613,25 +616,12 @@ public class RetoPregunta extends AppCompatActivity {
     public void silenciarReto(View view){
         if (appMuted){
             appMuted = false;
-            muteButton.setImageResource(R.drawable.audio_muted);
-            soundCountdown10s.setVolume(0,0);
-            soundVictoria.setVolume(0,0);
-            soundFallo.setVolume(0,0);
-            soundDerrota.setVolume(0,0);
-            soundBackground.setVolume(0,0);
-            soundAcierto.setVolume(0,0);
+            silenciarTodo();
         }else{
             appMuted = true;
-            muteButton.setImageResource(R.drawable.audio_on);
-            soundCountdown10s.setVolume(1,1);
-            soundVictoria.setVolume(1,1);
-            soundFallo.setVolume(1,1);
-            soundDerrota.setVolume(1,1);
-            soundBackground.setVolume(1,1);
-            soundAcierto.setVolume(1,1);
+            dessilenciarTodo();
         }
     }
-
     public void botonPistas(View view){
         if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
             buttonPistas.setClickable(false);
@@ -659,7 +649,6 @@ public class RetoPregunta extends AppCompatActivity {
             buttonPistas.setBackgroundColor(0xFFA7A7A7);
         }
     }
-
     public void randomized1(int rand){
         switch(rand){
             case 1:
@@ -682,7 +671,6 @@ public class RetoPregunta extends AppCompatActivity {
                 break;
         }
     }
-
     public void randomized2(int rand){
         switch(rand){
             case 1:
@@ -705,7 +693,6 @@ public class RetoPregunta extends AppCompatActivity {
                 break;
         }
     }
-
     public void randomized3(int rand){
         switch(rand){
             case 1:
@@ -728,7 +715,6 @@ public class RetoPregunta extends AppCompatActivity {
                 break;
         }
     }
-
     public void randomized4(int rand){
         switch(rand){
             case 1:
@@ -751,8 +737,6 @@ public class RetoPregunta extends AppCompatActivity {
                 break;
         }
     }
-
-
     @Override
     public void onBackPressed() {}
 }

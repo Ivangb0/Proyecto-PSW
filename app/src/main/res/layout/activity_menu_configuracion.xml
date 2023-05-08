@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="silenciar"
-    tools:context=".menu_configuracion"
-    android:background="@drawable/sosteniblesubsuelo">
+    android:background="@drawable/sosteniblesubsuelo"
+    tools:context=".menu_configuracion">
 
     <TextView
         android:id="@+id/textViewVol"

@@ -7,7 +7,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,26 +28,33 @@ public class menu_configuracion extends AppCompatActivity {
 
         setContentView(R.layout.activity_menu_configuracion);
         Intent intent = getIntent();
-        appMuted = (Boolean) intent.getSerializableExtra("muted");
+
 
         txtVol = findViewById(R.id.textViewVol);
         muteButton = (ImageButton) findViewById(R.id.imageMute);
-        muteButton.setImageResource(R.drawable.audio_muted);
 
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+        appMuted = (boolean) intent.getBooleanExtra("muted", false);
+
+        if (appMuted){
+            muteButton.setImageResource(R.drawable.audio_muted);
+        }else{
+            muteButton.setImageResource(R.drawable.audio_on);
+        }
+
+
 
         usuario = (User) intent.getSerializableExtra("user");
     }
     public void silenciarConfig(View view){
         if (appMuted){
             appMuted = false;
-            muteButton.setImageResource(R.drawable.audio_muted);
+            muteButton.setImageResource(R.drawable.audio_on);
 
         }else{
             appMuted = true;
-            muteButton.setImageResource(R.drawable.audio_on);
+            muteButton.setImageResource(R.drawable.audio_muted);
         }
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+
     }
     public void cerrarConfig(View view){
         Intent intent = new Intent(this, JugarPartida.class);

@@ -43,7 +43,7 @@ public class Gestor extends AppCompatActivity {
 
         setVariables();
         Intent intent = getIntent();
-        //appMuted = (boolean) intent.getSerializableExtra("muted");
+        appMuted = (boolean) intent.getBooleanExtra("muted", false);
 
         switch (tipo) {
             case "mixta":

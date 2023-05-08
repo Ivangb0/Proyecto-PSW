@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,8 +27,9 @@ public class JugarPartida extends AppCompatActivity {
         setContentView(R.layout.jugarpartida);
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
+        appMuted = intent.getBooleanExtra("muted",false);
 
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+
     }
     public void jugar (View view){
         Intent intent = new Intent(this, CatalogoRetos.class);

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,8 +37,7 @@ public class CatalogoRetos extends AppCompatActivity {
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
 
-        appMuted = (boolean) intent.getSerializableExtra("muted");
-        Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG).show();
+        appMuted = (boolean) intent.getBooleanExtra("muted",false);
 
         botonPregunta = (Button) findViewById(R.id.button9);
         botonFrase = (Button) findViewById(R.id.button17);

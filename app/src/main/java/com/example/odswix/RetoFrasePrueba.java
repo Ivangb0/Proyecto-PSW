@@ -1,9 +1,11 @@
 package com.example.odswix;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.DragEvent;
@@ -59,6 +61,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private int PtosConsolidados = 0;
     private String tipo = null;
     private int porcentaje = 0;
+    boolean appMuted; ImageButton muteButton;
 
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
@@ -72,6 +75,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     TextView textViewPtosTots; TextView textViewPtosAcums; ScrollView letras;
     TextView textViewTiempoC; TextView textViewTiempoCons; ScrollView huecos;
     TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
+    MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
+    MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
 
     List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
     int idCoberturaUser;
@@ -80,6 +85,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private Phrase phrase = null;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +111,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
         duration = tipoFrase.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
+        appMuted = intent.getBooleanExtra("muted", false);
 
 
         textView28 = (TextView) findViewById(R.id.textView28);
@@ -168,6 +175,32 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         enunciado.setText(tipoFrase.getEnunciado());
         idCoberturaUser =  usuario.getIdUser();
 
+        soundAcierto = MediaPlayer.create(getApplicationContext(),R.raw.acierto);
+        soundFallo = MediaPlayer.create(getApplicationContext(),R.raw.musicafracaso);
+        soundBackground = MediaPlayer.create(getApplicationContext(),R.raw.backgroundmusic);
+        soundCountdown10s = MediaPlayer.create(getApplicationContext(),R.raw.countdown10secs);
+        soundVictoria = MediaPlayer.create(getApplicationContext(),R.raw.victoria);
+        soundDerrota = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+        soundBackground.start();
+        muteButton = (ImageButton) findViewById(R.id.imageMute3);
+
+        if (appMuted) {
+            muteButton.setImageResource(R.drawable.audio_muted);
+            soundBackground.setVolume(0, 0);
+            soundAcierto.setVolume(0, 0);
+            soundDerrota.setVolume(0, 0);
+            soundFallo.setVolume(0, 0);
+            soundVictoria.setVolume(0, 0);
+            soundCountdown10s.setVolume(0, 0);
+        } else {
+            muteButton.setImageResource(R.drawable.audio_on);
+            soundBackground.setVolume(1, 1);
+            soundAcierto.setVolume(1, 1);
+            soundDerrota.setVolume(1, 1);
+            soundFallo.setVolume(1, 1);
+            soundVictoria.setVolume(1, 1);
+            soundCountdown10s.setVolume(1, 1);
+        }
         prepHuecos();
         setHuecos();
         setImages();
@@ -351,8 +384,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
                 });
                 if(millisUntilFinished <= 11000){
-                    //soundBackground.stop();
-                    //soundCountdown10s.start();
+                    soundBackground.stop();
+                    soundCountdown10s.start();
                 }
 
             }
@@ -419,6 +452,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
         imageViewODSFrase.setVisibility(View.INVISIBLE);
+        muteButton.setVisibility(View.INVISIBLE);
     }
 
     public void comprobar(View view) {
@@ -460,6 +494,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         numPregunta++;
         puntosAcum += puntosPregunta;
         textView21.setText("Respuesta correcta.");
+        soundAcierto.start();
+        soundBackground.stop();
         puntosCuandoCorrecta();
         esconderTodo();
         buttonSiguiente.setText("Siguiente");
@@ -473,11 +509,34 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
             buttonSiguiente.setText("Volver al menu");
+            soundDerrota.start();
+            soundBackground.stop();
+        }
+    }
+    public void silenciarRetoFrase(View view) {
+        if (appMuted) {
+            appMuted = false;
+            muteButton.setImageResource(R.drawable.audio_muted);
+            soundCountdown10s.setVolume(0, 0);
+            soundVictoria.setVolume(0, 0);
+            soundFallo.setVolume(0, 0);
+            soundDerrota.setVolume(0, 0);
+            soundBackground.setVolume(0, 0);
+            soundAcierto.setVolume(0, 0);
+        } else {
+            appMuted = true;
+            muteButton.setImageResource(R.drawable.audio_on);
+            soundCountdown10s.setVolume(1, 1);
+            soundVictoria.setVolume(1, 1);
+            soundFallo.setVolume(1, 1);
+            soundDerrota.setVolume(1, 1);
+            soundBackground.setVolume(1, 1);
+            soundAcierto.setVolume(1, 1);
         }
     }
     public void botonAbandonar(View view){
         countDownTimer.cancel();
-        //soundBackground.stop();
+        soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
         UserDAO userdao = new UserDAO();

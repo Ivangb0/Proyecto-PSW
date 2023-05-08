@@ -184,9 +184,21 @@ public class RetoPregunta extends AppCompatActivity {
             buttonPistas.setBackgroundColor(0xFF6200EE);
         }
         if (appMuted) {
-            silenciarTodo();
+            muteButton.setImageResource(R.drawable.audio_muted);
+            soundBackground.setVolume(0, 0);
+            soundAcierto.setVolume(0, 0);
+            soundDerrota.setVolume(0, 0);
+            soundFallo.setVolume(0, 0);
+            soundVictoria.setVolume(0, 0);
+            soundCountdown10s.setVolume(0, 0);
         } else {
-            dessilenciarTodo();
+            muteButton.setImageResource(R.drawable.audio_on);
+            soundBackground.setVolume(1, 1);
+            soundAcierto.setVolume(1, 1);
+            soundDerrota.setVolume(1, 1);
+            soundFallo.setVolume(1, 1);
+            soundVictoria.setVolume(1, 1);
+            soundCountdown10s.setVolume(1, 1);
         }
     }
     private void checkConsolidar(Boolean consolidar){
@@ -309,7 +321,7 @@ public class RetoPregunta extends AppCompatActivity {
         buttonAbandonar.setClickable(false);
         muteButton.setVisibility(View.INVISIBLE);
     }
-    public void dessilenciarTodo(){
+    /*public void dessilenciarTodo(){
         muteButton.setImageResource(R.drawable.audio_on);
         soundBackground.setVolume(1, 1);
         soundAcierto.setVolume(1, 1);
@@ -319,14 +331,13 @@ public class RetoPregunta extends AppCompatActivity {
         soundCountdown10s.setVolume(1, 1);
     }
     public void silenciarTodo(){
-        muteButton.setImageResource(R.drawable.audio_muted);
         soundBackground.setVolume(0, 0);
         soundAcierto.setVolume(0, 0);
         soundDerrota.setVolume(0, 0);
         soundFallo.setVolume(0, 0);
         soundVictoria.setVolume(0, 0);
         soundCountdown10s.setVolume(0, 0);
-    }
+    }*/
     public void pressConsolidar(View view){
         textView5.setText("");
         PtosConsolidados = puntosAcum;
@@ -465,6 +476,7 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
+            disableButonsAnswers();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -476,6 +488,7 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
+            disableButonsAnswers();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -487,6 +500,7 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
+            disableButonsAnswers();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -498,6 +512,7 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
+            disableButonsAnswers();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -507,6 +522,7 @@ public class RetoPregunta extends AppCompatActivity {
 
         } else {
             guardarFalloCobertura();
+            disableButonsAnswers();
             soundFallo.start();
             int preg;
             for (preg = 0; preg < 4; preg++) {
@@ -610,16 +626,35 @@ public class RetoPregunta extends AppCompatActivity {
         Intent abandonarpartida = new Intent(this, AbandonarPartida.class);
         abandonarpartida.putExtra("pntsFin", PtosConsolidados);
         abandonarpartida.putExtra("user", usuario);
+        abandonarpartida.putExtra("muted", appMuted);
         startActivity(abandonarpartida);
         this.finish();
     }
-    public void silenciarReto(View view){
+    public void disableButonsAnswers(){
+        botonResp1.setClickable(false);
+        botonResp2.setClickable(false);
+        botonResp3.setClickable(false);
+        botonResp4.setClickable(false);
+    }
+    public void silenciarRetoPregunta(View view){
         if (appMuted){
             appMuted = false;
-            silenciarTodo();
+            muteButton.setImageResource(R.drawable.audio_muted);
+            soundCountdown10s.setVolume(0,0);
+            soundVictoria.setVolume(0,0);
+            soundFallo.setVolume(0,0);
+            soundDerrota.setVolume(0,0);
+            soundBackground.setVolume(0,0);
+            soundAcierto.setVolume(0,0);
         }else{
             appMuted = true;
-            dessilenciarTodo();
+            muteButton.setImageResource(R.drawable.audio_on);
+            soundCountdown10s.setVolume(1,1);
+            soundVictoria.setVolume(1,1);
+            soundFallo.setVolume(1,1);
+            soundDerrota.setVolume(1,1);
+            soundBackground.setVolume(1,1);
+            soundAcierto.setVolume(1,1);
         }
     }
     public void botonPistas(View view){

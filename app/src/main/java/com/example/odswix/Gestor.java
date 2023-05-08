@@ -100,6 +100,7 @@ public class Gestor extends AppCompatActivity {
             userdao.actualizar(usuario);
             intent.putExtra("pntsFin", puntosAcum);
             intent.putExtra("user", usuario);
+            intent.putExtra("muted",appMuted);
             startActivity(intent);
             this.finish();
         }
@@ -152,6 +153,7 @@ public class Gestor extends AppCompatActivity {
             userdao.actualizar(usuario);
             intent.putExtra("pntsFin", puntosAcum);
             intent.putExtra("user", usuario);
+            intent.putExtra("muted",appMuted);
             startActivity(intent);
             this.finish();
         }

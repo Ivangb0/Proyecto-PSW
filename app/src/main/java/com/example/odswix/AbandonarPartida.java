@@ -17,6 +17,7 @@ public class AbandonarPartida extends AppCompatActivity{
     public User usuario = null;
     TextView textView40;
     Button buttonContinuarAlMenu;
+    boolean appMuted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class AbandonarPartida extends AppCompatActivity{
         setContentView(R.layout.abandonarpartida);
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
+        appMuted = intent.getBooleanExtra("muted", false);
+
         buttonContinuarAlMenu = (Button) findViewById(R.id.buttonContinuarAlMenu);
         textView29 = (TextView) findViewById(R.id.textView29);
         textView40 = (TextView) findViewById(R.id.textView40);
@@ -39,6 +42,7 @@ public class AbandonarPartida extends AppCompatActivity{
     public void irAlMenu(View view){
         Intent jugarPartida = new Intent(this, JugarPartida.class);
         jugarPartida.putExtra("user", usuario);
+        jugarPartida.putExtra("muted",appMuted);
         startActivity(jugarPartida);
         startActivity(jugarPartida);
         this.finish();

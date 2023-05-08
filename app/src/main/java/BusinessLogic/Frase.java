@@ -7,6 +7,7 @@ public class Frase implements Serializable {
     private int timer;
     private String dificultad;
     private String respuesta;
+    private Phrase phrase;
 
     public Frase(){}
 
@@ -35,9 +36,9 @@ public class Frase implements Serializable {
         return this.respuesta;
     }
 
-    /*public void setQuestion(Question question){
-        this.question = question;
+    public void setPhrase(Phrase phrase){
+        this.phrase = phrase;
     }
-    public Question getQuestion(){ return this.question; }
-     */
+    public Phrase getPhrase(){ return this.phrase; }
+
 }

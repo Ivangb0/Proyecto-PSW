@@ -19,6 +19,7 @@ public class RetoFraseDificilBuilder implements Builder, Serializable {
     }
     public void buildEnunciado(){
         preguntaFiltrada = filtrarDificultad(this.frase.getDificultad());
+        frase.setPhrase(preguntaFiltrada);
         frase.setEnunciado(preguntaFiltrada.getDescripcion());
     }
     private Phrase filtrarDificultad(String dificultad){

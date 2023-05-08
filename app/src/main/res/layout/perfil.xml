@@ -20,8 +20,10 @@
         android:text="Volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button14" />
+        app:layout_constraintTop_toBottomOf="@+id/button14"
+        app:layout_constraintVertical_bias="0.181" />
 
     <Button
         android:id="@+id/button14"
@@ -39,7 +41,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/puntosUser"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <TextView
         android:id="@+id/textView18"
@@ -82,13 +84,12 @@
         android:id="@+id/Bcambiarcontr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="28dp"
         android:onClick="cambiarPassword"
-        android:text="Cambiar Contraseña"
+        android:text="Cambiar"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/Bvercontraseña" />
 
     <ImageButton
         android:id="@+id/Bvercontraseña"
@@ -155,33 +156,33 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/imageView13"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@android:drawable/ic_lock_idle_lock" />
+        app:layout_constraintTop_toBottomOf="@+id/errUsername"
+        app:srcCompat="@android:drawable/btn_star" />
 
     <TextView
-        android:id="@+id/contraseñaUser"
+        android:id="@+id/emailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Error"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/emailUser" />
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/nivelUser" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Contraseña: "
         android:textAlignment="textEnd"
@@ -189,60 +190,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="45dp"
-        android:layout_weight="1"
-        android:text="Email: "
-        android:textAlignment="textEnd"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <TextView
-        android:id="@+id/emailUser"
+        android:id="@+id/contraseñaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Error"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/nivelUser" />
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/emailUser" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="48dp"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errUsername"
-        app:srcCompat="@android:drawable/btn_star" />
-
-    <Button
-        android:id="@+id/button5"
+    <TextView
+        android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
-        android:onClick="cambiarUsername"
-        android:text="Cambiar "
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="27dp"
+        android:layout_weight="1"
+        android:text="Nivel: "
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/errUsername" />
 
     <TextView
@@ -250,23 +217,69 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="27dp"
         android:layout_weight="1"
         android:text="Error"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/errUsername" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="37dp"
         android:layout_weight="1"
-        android:text="Nivel: "
+        android:text="Email: "
         android:textAlignment="textEnd"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/errUsername" />
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:srcCompat="@android:drawable/ic_lock_idle_lock" />
+
+    <TextView
+        android:id="@+id/errPassword"
+        android:layout_width="218dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:text="TextView"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contraseñaUser" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="28dp"
+        android:onClick="cambiarUsername"
+        android:text="Cambiar "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/errUsername"
@@ -278,16 +291,5 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
-
-    <TextView
-        android:id="@+id/errPassword"
-        android:layout_width="218dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="28dp"
-        android:text="TextView"
-        android:textColor="#FF0000"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bvercontraseña" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

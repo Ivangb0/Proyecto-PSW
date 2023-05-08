@@ -6,58 +6,78 @@
     android:layout_height="match_parent"
     android:background="@drawable/sostenibleregistro">
 
-    <TextView
-        android:id="@+id/textViewNotBad"
-        android:layout_width="291dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="140dp"
-        android:text="¡Partida finalizada!"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="34sp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="162dp"
+        android:layout_height="133dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="196dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="140dp"
-        android:text="Puntuación obtenida:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad"
+        app:srcCompat="@drawable/palmas" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="89dp"
         android:layout_height="57dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="152dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="5"
         android:text="2000"
+        android:textColor="#f5cf12"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView40"
         app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="196dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="152dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="5"
+        android:text="Puntuación obtenida:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
+
+    <TextView
+        android:id="@+id/textViewNotBad"
+        android:layout_width="291dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="188dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="5"
+        android:text="¡Partida finalizada!"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonContinuarAlMenu"
         android:layout_width="207dp"
         android:layout_height="65dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:onClick="irAlMenu"
         android:text="Volver al menú"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="162dp"
-        android:layout_height="133dp"
-        android:layout_marginStart="124dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad"
-        app:srcCompat="@drawable/palmas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -222,7 +222,8 @@
         app:layout_constraintEnd_toStartOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonResp4"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="0.937"
+        android:onClick="botonPistas"/>
 
     <ImageButton
         android:id="@+id/buttonPausa"

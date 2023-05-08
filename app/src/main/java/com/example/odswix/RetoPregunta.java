@@ -73,6 +73,8 @@ public class RetoPregunta extends AppCompatActivity {
     User usu = IniciarSesion.usuario;
     int idCoberturaUser = usu.getIdUser();
 
+    boolean pistaPressed = false;
+
     int numODS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +188,13 @@ public class RetoPregunta extends AppCompatActivity {
             soundCountdown10s.setVolume(0,0);
         }
         Toast.makeText(this,"" + appMuted, Toast.LENGTH_LONG);
+
+        buttonPistas.setClickable(false);
+        buttonPistas.setBackgroundColor(0xFFA7A7A7);
+
+        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+            buttonPistas.setClickable(true);
+        }
     }
     private void checkConsolidar(Boolean consolidar){
         if(consolidar){
@@ -331,7 +340,9 @@ public class RetoPregunta extends AppCompatActivity {
 
     public void respuestaCorrecta() {
         numPregunta++;
-        puntosAcum += puntosPregunta;
+        if(pistaPressed) {
+            puntosAcum += (puntosPregunta / 2);
+        } else{ puntosAcum += puntosPregunta; }
         textView21.setText("Respuesta correcta.");
         puntosCuandoCorrecta();
         esconderTodo();
@@ -627,6 +638,127 @@ public class RetoPregunta extends AppCompatActivity {
             soundAcierto.setVolume(1,1);
         }
     }
+
+    public void botonPistas(View view){
+        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+            buttonPistas.setClickable(false);
+            int preg;
+            for (preg = 0; preg < 4; preg++) {
+                if (respuestasPreg.get(preg).esCorrecta) {
+                    int randomizer = (int) (Math.random() * 3) + 1;
+                    switch (preg) {
+                        case 0://la 1 es correcta
+                            randomized1(randomizer);
+                            break;
+                        case 1://la 2 es correcta
+                            randomized2(randomizer);
+                            break;
+                        case 2://la 3 es correcta
+                            randomized3(randomizer);
+                            break;
+                        case 3://la 4 es correcta
+                            randomized4(randomizer);
+                            break;
+                    }
+                }
+            }
+            pistaPressed = true;
+        }
+    }
+
+    public void randomized1(int rand){
+        switch(rand){
+            case 1:
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 2:
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 3:
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+        }
+    }
+
+    public void randomized2(int rand){
+        switch(rand){
+            case 1:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 2:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 3:
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+        }
+    }
+
+    public void randomized3(int rand){
+        switch(rand){
+            case 1:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 2:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 3:
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp4).setClickable(false);
+                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                break;
+        }
+    }
+
+    public void randomized4(int rand){
+        switch(rand){
+            case 1:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 2:
+                findViewById(R.id.buttonResp2).setClickable(false);
+                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                break;
+            case 3:
+                findViewById(R.id.buttonResp1).setClickable(false);
+                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
+                findViewById(R.id.buttonResp3).setClickable(false);
+                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                break;
+        }
+    }
+
+
     @Override
     public void onBackPressed() {}
 }

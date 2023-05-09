@@ -20,6 +20,7 @@
         android:contentDescription="muteButton"
         android:onClick="silenciarRetoPregunta"
         android:scaleType="fitCenter"
+        android:src="@drawable/audio_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

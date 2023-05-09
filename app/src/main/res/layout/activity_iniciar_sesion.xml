@@ -46,9 +46,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.7"
         android:text="INICIAR SESIÓN"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +87,6 @@
         android:id="@+id/txt_error"
         android:layout_width="346dp"
         android:layout_height="36dp"
-        android:layout_marginTop="18dp"
         android:lineSpacingExtra="8sp"
         android:textAlignment="center"
         android:textColor="#FF2424"
@@ -90,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_password" />
 
     <Button
         android:id="@+id/button4"
@@ -106,16 +110,14 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="175dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
         android:onClick="mostrarContraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_password"
-        app:srcCompat="@android:drawable/ic_menu_view" />
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/txt_password"
+        app:srcCompat="@android:drawable/ic_menu_view"
+        tools:layout_editor_absoluteY="298dp"
+        tools:srcCompat="@drawable/ojo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

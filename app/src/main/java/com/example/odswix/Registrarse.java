@@ -1,5 +1,6 @@
 package com.example.odswix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +31,9 @@ public class Registrarse extends AppCompatActivity {
     private String ConfirmContr = "";
     Cobertura[] arrayCoberturas;
     CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
+    ImageButton ojo1; ImageButton ojo2;
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -39,6 +43,11 @@ public class Registrarse extends AppCompatActivity {
 
         setContentView(R.layout.registrarusuario);
 
+        ojo1 = findViewById(R.id.imageOjo1);
+        ojo2 = findViewById(R.id.imageOjo2);
+
+        ojo1.setImageResource(R.drawable.ojo);
+        ojo2.setImageResource(R.drawable.ojo);
     }
     public void iniciarSes(View view){
         Intent intent = new Intent(this, IniciarSesion.class);

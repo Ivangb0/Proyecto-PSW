@@ -59,8 +59,8 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPuntosXPreg;TextView textViewPuntAcum; TextView textView6; TextView textViewTiempo;
     TextView textViewVidas; TextView textViewObtend; TextView textViewPtosObtend;
     TextView textViewPtosTots; TextView textViewPtosAcums; TextView textViewTiempoC; TextView textViewTiempoCons;
-    TextView textViewPuntConsol; TextView textViewPtosCon;
-
+    TextView textViewPuntConsol; TextView textViewPtosCon; TextView textView33; TextView textView26;
+    TextView textView30; TextView textView24; TextView textView23;
     //Buttons
     Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     Button buttonSiguiente; Button buttonConsolidar; Button buttonAbandonar;
@@ -106,6 +106,11 @@ public class RetoPregunta extends AppCompatActivity {
         buttonPausa = findViewById(R.id.buttonPausa);
         contenedorRespuesta =  findViewById(R.id.contenedorRespuesta);
         textView21 = findViewById(R.id.textView21);
+        textView24 = findViewById(R.id.textView24);
+        textView33 = findViewById(R.id.textView33);
+        textView26 = findViewById(R.id.textView26);
+        textView23 = findViewById(R.id.textView23);
+        textView30 = findViewById(R.id.textView30);
         idLayout = findViewById(R.id.idLayout);
         textViewNumPreg = findViewById(R.id.textViewNumPreg);
         textViewPuntosXPreg = findViewById(R.id.textViewPuntosXPreg);
@@ -283,6 +288,13 @@ public class RetoPregunta extends AppCompatActivity {
         }.start();
     }
     public void esconderTodo(){
+        textoDificultad.setVisibility(View.INVISIBLE);
+        textView23.setVisibility(View.INVISIBLE);
+        textView24.setVisibility(View.INVISIBLE);
+        textView30.setVisibility(View.INVISIBLE);
+        textView26.setVisibility(View.INVISIBLE);
+        textView33.setVisibility(View.INVISIBLE);
+        textoPregunta.setVisibility(View.INVISIBLE);
         botonResp1.setVisibility(View.INVISIBLE);
         botonResp2.setVisibility(View.INVISIBLE);
         botonResp3.setVisibility(View.INVISIBLE);
@@ -434,6 +446,7 @@ public class RetoPregunta extends AppCompatActivity {
     }
     @SuppressLint("ResourceAsColor")
     public void comprobarCorrecta(View view) {
+        buttonPistas.setClickable(false);
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
         textViewTiempoC.setVisibility(View.VISIBLE);

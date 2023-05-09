@@ -56,6 +56,8 @@ public class Gestor extends AppCompatActivity {
                 cuestionFrase();
                 break;
         }
+        usuario = (User) intent.getSerializableExtra("user");
+
     }
 
     private void cuestionAleatoria() {

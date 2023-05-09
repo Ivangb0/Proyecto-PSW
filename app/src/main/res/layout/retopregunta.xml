@@ -12,11 +12,12 @@
     <ImageButton
         android:id="@+id/imageMute2"
         android:layout_width="56dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@color/purple_500"
+        android:contentDescription="muteButton"
         android:onClick="silenciarRetoPregunta"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +25,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="155dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
         android:layout_marginBottom="80dp"
         android:text="Puntuación acumulada:"
@@ -155,8 +156,8 @@
 
     <TextView
         android:id="@+id/textViewPuntAcum"
-        android:layout_width="85dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="1dp"
         android:text="500"
@@ -417,8 +418,8 @@
         android:id="@+id/textViewPuntConsol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
         android:text="Puntuación consolidada:"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/buttonPistas"
@@ -426,10 +427,10 @@
 
     <TextView
         android:id="@+id/textViewPtosCon"
-        android:layout_width="73dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
         android:text="500"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView6"

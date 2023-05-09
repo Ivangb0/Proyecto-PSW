@@ -1,6 +1,7 @@
 package com.example.odswix;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,7 +15,8 @@ import BusinessLogic.User;
 public class JugarPartida extends AppCompatActivity {
     private User usuario = null;
     boolean appMuted = false;
-
+    Sound sound = new Sound();
+MediaPlayer soundBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,16 @@ public class JugarPartida extends AppCompatActivity {
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted",false);
+        soundBackground = sound.getSoundBackground(this);
 
+        soundBackground.start();
+        soundBackground.setLooping(true);
+
+        if(appMuted){
+            soundBackground.setVolume(0,0);
+        }else{
+            soundBackground.setVolume(1,1);
+        }
 
     }
     public void jugar (View view){

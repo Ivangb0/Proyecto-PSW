@@ -34,50 +34,48 @@ import Persistence.UserDAO;
 
 public class RetoPregunta extends AppCompatActivity {
     private Pregunta pregunta = null;
+
+    private int puntosAcumTotales = 0; private int puntosPregunta = 0; private int PtosConsolidados = 0;
+    private String tipo = null;
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
     boolean consolidado;
+    List<Answer> respuestasPreg = new ArrayList<>();
+    User usuario = IniciarSesion.usuario;
+    int duration; int durationCons = 21; int idCoberturaUser = usuario.getIdUser(); int numODS;
+    UserDAO userdao = new UserDAO();
+    List<Cobertura> listaCoberturas = new ArrayList<>();
+    boolean pistaPressed = false; boolean appMuted;
+    Sound sound = new Sound();
+    RelativeLayout contenedorRespuesta;
+    ConstraintLayout idLayout;
+    CountDownTimer countDownTimerCons;
     CountDownTimer countDownTimer;
-    List<Answer> respuestasPreg = new ArrayList<Answer>();
-    int duration;
-    int durationCons = 21;
+    ImageView imageViewODS;
 
-    Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
-    RelativeLayout contenedorRespuesta; TextView textView21; TextView textView20;
-    TextView textView26; TextView textView25; TextView textView5; TextView textView24;
-    Button buttonPistas; ImageButton buttonPausa; ConstraintLayout idLayout;
-    TextView textoPregunta; TextView textoDificultad; TextView textViewNumPreg;
-    TextView textViewPuntosXPreg; TextView textView23; Button buttonSiguiente;
-    TextView textViewPuntAcum; TextView textView6; TextView textViewTiempo;
-    TextView textView30; TextView textView33; TextView textViewVidas;
-    Button buttonConsolidar; TextView textViewObtend; TextView textViewPtosObtend;
-    TextView textViewPtosTots; TextView textViewPtosAcums; CountDownTimer countDownTimerCons;
-    TextView textViewTiempoC; TextView textViewTiempoCons; ImageView imageViewODS;
-    TextView textViewPuntConsol; TextView textViewPtosCon; Button buttonAbandonar;
+    //TextViews
+    TextView textView21; TextView textoPregunta; TextView textoDificultad; TextView textViewNumPreg;
+    TextView textViewPuntosXPreg;TextView textViewPuntAcum; TextView textView6; TextView textViewTiempo;
+    TextView textViewVidas; TextView textViewObtend; TextView textViewPtosObtend;
+    TextView textViewPtosTots; TextView textViewPtosAcums; TextView textViewTiempoC; TextView textViewTiempoCons;
+    TextView textViewPuntConsol; TextView textViewPtosCon;
+
+    //Buttons
+    Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
+    Button buttonSiguiente; Button buttonConsolidar; Button buttonAbandonar;
+    ImageButton buttonPausa; ImageButton muteButton;
+
+    //MediaPlayers
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
-    ImageButton muteButton; boolean appMuted;
-    private User usuario;
-    private int puntosAcumTotales = 0;
-    private int puntosPregunta = 0;
-    private int PtosConsolidados = 0;
-    private String tipo = null;
-    UserDAO userdao = new UserDAO();
-
-    CoberturaDAO coberturaDAOPreg = new CoberturaDAO();
-    public Cobertura cob;
-    List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
-    User usu = IniciarSesion.usuario;
-    int idCoberturaUser = usu.getIdUser();
-    boolean pistaPressed = false;
-    int numODS;
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Ocultar menu desplazable
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.retopregunta);
@@ -90,59 +88,53 @@ public class RetoPregunta extends AppCompatActivity {
         numPregunta = (int) intent.getSerializableExtra("numPregunta");
         vidas = (int) intent.getSerializableExtra("vidas");
         consolidado = (boolean) intent.getSerializableExtra("consolidado");
-        puntosAcum = (int) intent.getSerializableExtra("pntsAcum");;
+        puntosAcum = (int) intent.getSerializableExtra("pntsAcum");
         respuestasPreg = pregunta.getRespuestas();
-        PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");;
+        PtosConsolidados = (int) intent.getSerializableExtra("pntsCons");
         duration = pregunta.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
-        appMuted = (boolean) intent.getBooleanExtra("muted", false);
+        appMuted = intent.getBooleanExtra("muted", false);
 
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
 
-        botonResp1 = (Button) findViewById(R.id.buttonResp1);
-        botonResp2 = (Button) findViewById(R.id.buttonResp2);
-        botonResp3 = (Button) findViewById(R.id.buttonResp3);
-        botonResp4 = (Button) findViewById(R.id.buttonResp4);
-        textView20 = (TextView) findViewById(R.id.textView20);
-        buttonPistas = (Button) findViewById(R.id.buttonPistas);
-        buttonPausa = (ImageButton) findViewById(R.id.buttonPausa);
-        textView5 = (TextView) findViewById(R.id.textView5);
-        textView24 = (TextView) findViewById(R.id.textView24);
-        textView25 = (TextView) findViewById(R.id.textViewPuntAcum);
-        textView26 = (TextView) findViewById(R.id.textView26);
-        contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
-        textView21 = (TextView) findViewById(R.id.textView21);
-        idLayout = (ConstraintLayout) findViewById(R.id.idLayout);
-        textViewNumPreg = (TextView) findViewById(R.id.textViewNumPreg);
-        textViewPuntosXPreg = (TextView) findViewById(R.id.textViewPuntosXPreg);
-        textView23 = (TextView) findViewById(R.id.textView23);
-        buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
-        textViewPuntAcum = (TextView) findViewById(R.id.textViewPuntAcum);
-        textView6 = (TextView) findViewById(R.id.textView6);
-        textViewTiempo = (TextView) findViewById(R.id.textViewTiempo);
-        textView30 = (TextView) findViewById(R.id.textView30);
-        textView33 = (TextView) findViewById(R.id.textView33);
-        textViewVidas = (TextView) findViewById(R.id.textViewVidas);
-        buttonConsolidar = (Button) findViewById(R.id.buttonConsolidar);
-        textViewObtend = (TextView) findViewById(R.id.textViewObtend);
-        textViewPtosObtend = (TextView) findViewById(R.id.textViewPtosObtend);
-        textViewPtosTots = (TextView) findViewById(R.id.textViewPtosTots);
-        textViewPtosAcums = (TextView) findViewById(R.id.textViewPtosAcums);
-        textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
-        textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
-        imageViewODS = (ImageView) findViewById(R.id.imageViewODS);
-        textViewPuntConsol = (TextView) findViewById(R.id.textViewPuntConsol);
-        textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon);
-        buttonAbandonar = (Button) findViewById(R.id.buttonAbandonar);
-        soundAcierto = MediaPlayer.create(getApplicationContext(),R.raw.acierto);
-        soundFallo = MediaPlayer.create(getApplicationContext(),R.raw.musicafracaso);
-        soundBackground = MediaPlayer.create(getApplicationContext(),R.raw.backgroundmusic);
-        soundCountdown10s = MediaPlayer.create(getApplicationContext(),R.raw.countdown10secs);
-        soundVictoria = MediaPlayer.create(getApplicationContext(),R.raw.victoria);
-        soundDerrota = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+        botonResp1 = findViewById(R.id.buttonResp1);
+        botonResp2 = findViewById(R.id.buttonResp2);
+        botonResp3 = findViewById(R.id.buttonResp3);
+        botonResp4 = findViewById(R.id.buttonResp4);
+        buttonPistas = findViewById(R.id.buttonPistas);
+        buttonPausa = findViewById(R.id.buttonPausa);
+        contenedorRespuesta =  findViewById(R.id.contenedorRespuesta);
+        textView21 = findViewById(R.id.textView21);
+        idLayout = findViewById(R.id.idLayout);
+        textViewNumPreg = findViewById(R.id.textViewNumPreg);
+        textViewPuntosXPreg = findViewById(R.id.textViewPuntosXPreg);
+        buttonSiguiente = findViewById(R.id.buttonSiguiente);
+        textViewPuntAcum = findViewById(R.id.textViewPuntAcum);
+        textView6 = findViewById(R.id.textView6);
+        textViewTiempo = findViewById(R.id.textViewTiempo);
+        textViewVidas = findViewById(R.id.textViewVidas);
+        buttonConsolidar = findViewById(R.id.buttonConsolidar);
+        textViewObtend = findViewById(R.id.textViewObtend);
+        textViewPtosObtend = findViewById(R.id.textViewPtosObtend);
+        textViewPtosTots = findViewById(R.id.textViewPtosTots);
+        textViewPtosAcums = findViewById(R.id.textViewPtosAcums);
+        textViewTiempoC = findViewById(R.id.textViewTiempoC);
+        textViewTiempoCons = findViewById(R.id.textViewTiempoCons);
+        imageViewODS = findViewById(R.id.imageViewODS);
+        textViewPuntConsol = findViewById(R.id.textViewPuntConsol);
+        textViewPtosCon = findViewById(R.id.textViewPtosCon);
+        buttonAbandonar = findViewById(R.id.buttonAbandonar);
+        muteButton = findViewById(R.id.imageMute2);
+
+        soundAcierto = sound.getSoundAcierto(this);
+        soundFallo = sound.getSoundFallo(this);
+        soundBackground = sound.getSoundBackground(this);
+        soundCountdown10s = sound.getSoundCountdown10s(this);
+        soundVictoria = sound.getSoundVictoria(this);
+        soundDerrota = sound.getSoundDerrota(this);
         soundBackground.start();
-        muteButton = (ImageButton) findViewById(R.id.imageMute2);
+        soundBackground.setLooping(true);
 
         cambiarImagenODS();
         buttonAbandonar.setVisibility(View.INVISIBLE);
@@ -211,10 +203,7 @@ public class RetoPregunta extends AppCompatActivity {
     }
     private void mostrarSiguiente(){
         contenedorRespuesta.setVisibility(View.VISIBLE);
-        botonResp1.setClickable(false);
-        botonResp2.setClickable(false);
-        botonResp3.setClickable(false);
-        botonResp4.setClickable(false);
+        disableButonsAnswers();
     }
     public void siguientePregunta(View view) {
         countDownTimerCons.cancel();
@@ -294,25 +283,17 @@ public class RetoPregunta extends AppCompatActivity {
         }.start();
     }
     public void esconderTodo(){
-        textView20.setVisibility(View.INVISIBLE);
         botonResp1.setVisibility(View.INVISIBLE);
         botonResp2.setVisibility(View.INVISIBLE);
         botonResp3.setVisibility(View.INVISIBLE);
         botonResp4.setVisibility(View.INVISIBLE);
         buttonPausa.setVisibility(View.INVISIBLE);
         buttonPistas.setVisibility(View.INVISIBLE);
-        textView5.setVisibility(View.INVISIBLE);
-        textView24.setVisibility(View.INVISIBLE);
-        textView25.setVisibility(View.INVISIBLE);
-        textView26.setVisibility(View.INVISIBLE);
         textViewNumPreg.setVisibility(View.INVISIBLE);
         textViewPuntosXPreg.setVisibility(View.INVISIBLE);
-        textView23.setVisibility(View.INVISIBLE);
         textView6.setVisibility(View.INVISIBLE);
         textViewPuntAcum.setVisibility(View.INVISIBLE);
         textViewTiempo.setVisibility(View.INVISIBLE);
-        textView30.setVisibility(View.INVISIBLE);
-        textView33.setVisibility(View.INVISIBLE);
         textViewVidas.setVisibility(View.INVISIBLE);
         imageViewODS.setVisibility(View.INVISIBLE);
         textViewPuntConsol.setVisibility(View.INVISIBLE);
@@ -339,7 +320,6 @@ public class RetoPregunta extends AppCompatActivity {
         soundCountdown10s.setVolume(0, 0);
     }*/
     public void pressConsolidar(View view){
-        textView5.setText("");
         PtosConsolidados = puntosAcum;
         consolidado = true;
         buttonSiguiente.performClick();
@@ -394,7 +374,7 @@ public class RetoPregunta extends AppCompatActivity {
     private List<Cobertura> recuperarCoberturas (int id_user) {
         CoberturaDAO coberturas = new CoberturaDAO();
         listaCoberturas = coberturas.obtenerTodos();
-        List<Cobertura> cober = new ArrayList<Cobertura>();
+        List<Cobertura> cober = new ArrayList<>();
         for (int i = 0; i < listaCoberturas.size(); i++) {
             if (listaCoberturas.get(i).getId_user() == id_user) {
                 cober.add(listaCoberturas.get(i));
@@ -419,7 +399,7 @@ public class RetoPregunta extends AppCompatActivity {
                 try {
                     psAcierto.setInt(1,aciertos);
                     psAcierto.setInt(2,this.numODS);
-                    psAcierto.setInt(3,usu.getIdUser());
+                    psAcierto.setInt(3,usuario.getIdUser());
                     psAcierto.setInt(4,fallos);
                     psAcierto.executeUpdate();
                 } catch (SQLException e) {
@@ -443,7 +423,7 @@ public class RetoPregunta extends AppCompatActivity {
                 try {
                     psFallo.setInt(1,fallos);
                     psFallo.setInt(2,this.numODS);
-                    psFallo.setInt(3,usu.getIdUser());
+                    psFallo.setInt(3,usuario.getIdUser());
                     psFallo.setInt(4,aciertos);
                     psFallo.executeUpdate();
                 } catch (SQLException e) {
@@ -472,9 +452,9 @@ public class RetoPregunta extends AppCompatActivity {
 
 
 
-        if (findViewById(R.id.buttonResp1).isPressed() && respuestasPreg.get(0).esCorrecta) {
+        if (botonResp1.isPressed() && respuestasPreg.get(0).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
-            findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
+            botonResp1.setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -484,9 +464,9 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }, 5000);
 
-        } else if (findViewById(R.id.buttonResp2).isPressed() && respuestasPreg.get(1).esCorrecta) {
+        } else if (botonResp2.isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
-            findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
+            botonResp2.setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -496,9 +476,9 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }, 5000);
 
-        } else if (findViewById(R.id.buttonResp3).isPressed() && respuestasPreg.get(2).esCorrecta) {
+        } else if (botonResp3.isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
-            findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
+            botonResp3.setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -508,9 +488,9 @@ public class RetoPregunta extends AppCompatActivity {
                 }
             }, 5000);
 
-        } else if (findViewById(R.id.buttonResp4).isPressed() && respuestasPreg.get(3).esCorrecta) {
+        } else if (botonResp4.isPressed() && respuestasPreg.get(3).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
-            findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+            botonResp4.setBackgroundColor(0xFF008F39);
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -532,10 +512,10 @@ public class RetoPregunta extends AppCompatActivity {
             }
             switch (preg){
                 case 0:
-                    if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
-                    findViewById(R.id.buttonResp1).setBackgroundColor(0xFF008F39);
+                    if (botonResp2.isPressed()){botonResp2.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp3.isPressed()){botonResp3.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp4.isPressed()){botonResp4.setBackgroundColor(0xFFFF0000);}
+                    botonResp1.setBackgroundColor(0xFF008F39);
                     Handler handler0 = new Handler();
                     handler0.postDelayed(new Runnable() {
                         public void run() {
@@ -552,10 +532,10 @@ public class RetoPregunta extends AppCompatActivity {
                     }, 5000);
                     break;
                 case 1:
-                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
-                    findViewById(R.id.buttonResp2).setBackgroundColor(0xFF008F39);
+                    if (botonResp1.isPressed()){botonResp1.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp3.isPressed()){botonResp3.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp4.isPressed()){botonResp4.setBackgroundColor(0xFFFF0000);}
+                    botonResp2.setBackgroundColor(0xFF008F39);
                     Handler handler1 = new Handler();
                     handler1.postDelayed(new Runnable() {
                         public void run() {
@@ -573,10 +553,10 @@ public class RetoPregunta extends AppCompatActivity {
                     }, 5000);
                     break;
                 case 2:
-                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp4).isPressed()){findViewById(R.id.buttonResp4).setBackgroundColor(0xFFFF0000);}
-                    findViewById(R.id.buttonResp3).setBackgroundColor(0xFF008F39);
+                    if (botonResp1.isPressed()){botonResp1.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp2.isPressed()){botonResp2.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp4.isPressed()){botonResp4.setBackgroundColor(0xFFFF0000);}
+                    botonResp3.setBackgroundColor(0xFF008F39);
                     Handler handler2 = new Handler();
                     handler2.postDelayed(new Runnable() {
                         public void run() {
@@ -593,10 +573,10 @@ public class RetoPregunta extends AppCompatActivity {
                     }, 5000);
                     break;
                 case 3:
-                    if (findViewById(R.id.buttonResp1).isPressed()){findViewById(R.id.buttonResp1).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp2).isPressed()){findViewById(R.id.buttonResp2).setBackgroundColor(0xFFFF0000);}
-                    else if (findViewById(R.id.buttonResp3).isPressed()){findViewById(R.id.buttonResp3).setBackgroundColor(0xFFFF0000);}
-                    findViewById(R.id.buttonResp4).setBackgroundColor(0xFF008F39);
+                    if (botonResp1.isPressed()){botonResp1.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp2.isPressed()){botonResp2.setBackgroundColor(0xFFFF0000);}
+                    else if (botonResp3.isPressed()){botonResp3.setBackgroundColor(0xFFFF0000);}
+                    botonResp4.setBackgroundColor(0xFF008F39);
                     Handler handler3 = new Handler();
                     handler3.postDelayed(new Runnable() {
                         public void run() {
@@ -631,6 +611,7 @@ public class RetoPregunta extends AppCompatActivity {
         this.finish();
     }
     public void disableButonsAnswers(){
+        muteButton.setClickable(false);
         botonResp1.setClickable(false);
         botonResp2.setClickable(false);
         botonResp3.setClickable(false);
@@ -687,88 +668,88 @@ public class RetoPregunta extends AppCompatActivity {
     public void randomized1(int rand){
         switch(rand){
             case 1:
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 2:
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 3:
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
         }
     }
     public void randomized2(int rand){
         switch(rand){
             case 1:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 2:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 3:
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
         }
     }
     public void randomized3(int rand){
         switch(rand){
             case 1:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 2:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 3:
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp4).setClickable(false);
-                findViewById(R.id.buttonResp4).setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
+                botonResp4.setClickable(false);
+                botonResp4.setBackgroundColor(0xFFA7A7A7);
                 break;
         }
     }
     public void randomized4(int rand){
         switch(rand){
             case 1:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 2:
-                findViewById(R.id.buttonResp2).setClickable(false);
-                findViewById(R.id.buttonResp2).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                botonResp2.setClickable(false);
+                botonResp2.setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
                 break;
             case 3:
-                findViewById(R.id.buttonResp1).setClickable(false);
-                findViewById(R.id.buttonResp1).setBackgroundColor(0xFFA7A7A7);
-                findViewById(R.id.buttonResp3).setClickable(false);
-                findViewById(R.id.buttonResp3).setBackgroundColor(0xFFA7A7A7);
+                botonResp1.setClickable(false);
+                botonResp1.setBackgroundColor(0xFFA7A7A7);
+                botonResp3.setClickable(false);
+                botonResp3.setBackgroundColor(0xFFA7A7A7);
                 break;
         }
     }

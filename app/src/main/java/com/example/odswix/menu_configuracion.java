@@ -14,7 +14,6 @@ import BusinessLogic.User;
 
 public class menu_configuracion extends AppCompatActivity {
     private User usuario = null;
-    TextView txtVol;
     boolean appMuted;
     ImageButton muteButton;
 
@@ -29,21 +28,16 @@ public class menu_configuracion extends AppCompatActivity {
         setContentView(R.layout.activity_menu_configuracion);
         Intent intent = getIntent();
 
-
-        txtVol = findViewById(R.id.textViewVol);
         muteButton = (ImageButton) findViewById(R.id.imageMute);
 
         appMuted = (boolean) intent.getBooleanExtra("muted", false);
+        usuario = (User) intent.getSerializableExtra("user");
 
         if (appMuted){
             muteButton.setImageResource(R.drawable.audio_muted);
         }else{
             muteButton.setImageResource(R.drawable.audio_on);
         }
-
-
-
-        usuario = (User) intent.getSerializableExtra("user");
     }
     public void silenciarConfig(View view){
         if (appMuted){
@@ -54,7 +48,6 @@ public class menu_configuracion extends AppCompatActivity {
             appMuted = true;
             muteButton.setImageResource(R.drawable.audio_muted);
         }
-
     }
     public void cerrarConfig(View view){
         Intent intent = new Intent(this, JugarPartida.class);

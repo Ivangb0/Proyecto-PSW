@@ -44,7 +44,6 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private String frase = "";
     private String comprFrase;
     private String modFrase;
-    private String caracteres;
     private String respuesta = "";
     GridLayout gridLayoutHuecos;
     private int numPregunta = 0;

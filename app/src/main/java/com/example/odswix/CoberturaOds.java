@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import BusinessLogic.User;
 import Persistence.CoberturaDAO;
 
 public class CoberturaOds extends AppCompatActivity {
@@ -19,15 +20,17 @@ public class CoberturaOds extends AppCompatActivity {
     ProgressBar[] progressBarPerc;
     double porcentajeAciertos;
     CoberturaDAO coberturaDAOPreg;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coberturaods);
-
+        Intent intent = getIntent();
         coberturaDAOPreg = new CoberturaDAO();
         textViewPerc = new TextView[17];
         progressBarPerc = new ProgressBar[17];
+        user = (User) intent.getSerializableExtra("user");
 
         progressBarPerc[0] = (ProgressBar) findViewById(R.id.progressBarPerc1);
         textViewPerc[0] = (TextView) findViewById(R.id.textViewPerc1);
@@ -78,7 +81,9 @@ public class CoberturaOds extends AppCompatActivity {
 
     public void volverDeCobertura(View view){
         Intent salirCobertura = new Intent(this, JugarPartida.class);
+        salirCobertura.putExtra("user", user);
         finishAfterTransition();
         startActivity(salirCobertura);
+
     }
 }

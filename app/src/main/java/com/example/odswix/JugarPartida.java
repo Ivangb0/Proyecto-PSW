@@ -57,6 +57,7 @@ public class JugarPartida extends AppCompatActivity {
 
     public void clickCobertura(View view){
         Intent irCobertura = new Intent(this, CoberturaOds.class);
+        irCobertura.putExtra("user", usuario);
         finishAfterTransition();
         startActivity(irCobertura);
     }

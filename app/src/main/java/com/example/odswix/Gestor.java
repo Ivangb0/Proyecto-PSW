@@ -183,13 +183,5 @@ public class Gestor extends AppCompatActivity {
         if(consolidado)puntosCons = (int) intent.getSerializableExtra("puntosCons");
         puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
         tipo = (String) intent.getSerializableExtra("tipo");
-        /*init = (boolean) intent.getSerializableExtra("init");
-        if(init){
-            numPreg = 1;
-            puntosAcum = 0;
-            puntosCons = 0;
-            vidas = 2;
-            consolidado = false;
-        } else{   */
     }
 }

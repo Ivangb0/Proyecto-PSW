@@ -41,6 +41,7 @@ public class Gestor extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         setVariables();
         Intent intent = getIntent();
         appMuted = (boolean) intent.getBooleanExtra("muted", false);
@@ -176,20 +177,19 @@ public class Gestor extends AppCompatActivity {
     private void setVariables(){
         Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
-        init = (boolean) intent.getSerializableExtra("init");
+        numPreg = (int) intent.getSerializableExtra("numPreg");
+        consolidado = (boolean) intent.getSerializableExtra("consolidado");
+        vidas = (int) intent.getSerializableExtra("vidasPreg");
+        if(consolidado)puntosCons = (int) intent.getSerializableExtra("puntosCons");
+        puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
+        tipo = (String) intent.getSerializableExtra("tipo");
+        /*init = (boolean) intent.getSerializableExtra("init");
         if(init){
             numPreg = 1;
             puntosAcum = 0;
             puntosCons = 0;
             vidas = 2;
             consolidado = false;
-        } else{
-            numPreg = (int) intent.getSerializableExtra("numPreg");
-            consolidado = (boolean) intent.getSerializableExtra("consolidado");
-            vidas = (int) intent.getSerializableExtra("vidasPreg");
-            if(consolidado)puntosCons = (int) intent.getSerializableExtra("puntosCons");
-            puntosAcum = puntosAcum + (int) intent.getSerializableExtra("puntosAcum");
-        }
-        tipo = (String) intent.getSerializableExtra("tipo");
+        } else{   */
     }
 }

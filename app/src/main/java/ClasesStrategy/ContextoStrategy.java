@@ -1,16 +1,19 @@
 package ClasesStrategy;
 
-import android.widget.Button;
+import android.content.Context;
 
-import com.example.odswix.CatalogoRetos;
+import BusinessLogic.User;
 
 public class ContextoStrategy {
     private Strategy partida;
-    private Button botonPregunta;
-    private Button botonFrase;
-    private Button botonMixto;
 
-
+    public ContextoStrategy(Strategy estrategia){
+        partida = estrategia;
+    }
+    public void elegirTipo(Context context, String tipo, User usuario, boolean appMuted){
+        partida.aplicarTipo(context, tipo, usuario, appMuted);
+    }
+} /*
     public ContextoStrategy(Strategy part, Button bot){
         asignarBotones();
         this.partida = part;
@@ -46,4 +49,4 @@ public class ContextoStrategy {
         if(botonMixto.isPressed()) return true;
         else return false;
     }
-}
+}*/

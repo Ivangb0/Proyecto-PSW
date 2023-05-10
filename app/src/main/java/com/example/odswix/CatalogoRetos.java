@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
+import ClasesStrategy.ContextoStrategy;
+import ClasesStrategy.RetoMixtoStrategy;
+import ClasesStrategy.RetoPreguntaStrategy;
 
 public class CatalogoRetos extends AppCompatActivity {
     private User usuario = null;
@@ -18,15 +19,12 @@ public class CatalogoRetos extends AppCompatActivity {
     boolean init;
     boolean appMuted;
 
-    public static Button botonPregunta;
-    public static Button botonFrase;
-    public static Button botonMixto;
+    ContextoStrategy context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         //Ocultar menu desplazable
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -38,38 +36,22 @@ public class CatalogoRetos extends AppCompatActivity {
         usuario = (User) intent.getSerializableExtra("user");
 
         appMuted = (boolean) intent.getBooleanExtra("muted",false);
-
-        botonPregunta = (Button) findViewById(R.id.button9);
-        botonFrase = (Button) findViewById(R.id.button17);
-        botonMixto = (Button) findViewById(R.id.button20);
     }
+
     public void mixta(View view){
-        Intent intent = new Intent(this, Gestor.class);
-        tipo = "mixta";
-        intent.putExtra("tipo",tipo);
-        intent.putExtra("init", init);
-        intent.putExtra("user", usuario);
-        finishAfterTransition();
-        startActivity(intent);
+        context = new ContextoStrategy(new RetoMixtoStrategy());
+        context.elegirTipo(this,"mixto",usuario, appMuted);
+        this.finish();
     }
     public void pregunta(View view){
-        Intent intent = new Intent(this, Gestor.class);
-        tipo = "pregunta";
-        intent.putExtra("tipo",tipo);
-        intent.putExtra("init", init);
-        intent.putExtra("user", usuario);
-        intent.putExtra("muted", appMuted);
-        finishAfterTransition();
-        startActivity(intent);
+        context = new ContextoStrategy(new RetoPreguntaStrategy());
+        context.elegirTipo(this,"pregunta",usuario, appMuted);
+        this.finish();
     }
     public void frase(View view){
-        Intent intent = new Intent(this, Gestor.class);
-        tipo = "frase";
-        intent.putExtra("tipo",tipo);
-        intent.putExtra("init", init);
-        intent.putExtra("user", usuario);
-        finishAfterTransition();
-        startActivity(intent);
+        context = new ContextoStrategy(new RetoMixtoStrategy());
+        context.elegirTipo(this,"frase",usuario, appMuted);
+        this.finish();
     }
     public void cancelar(View view){
         Intent intent = new Intent(this, JugarPartida.class);

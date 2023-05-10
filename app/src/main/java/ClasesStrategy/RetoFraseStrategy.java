@@ -1,16 +1,25 @@
 package ClasesStrategy;
 
-import BusinessLogic.Frase;
+import android.content.Context;
+import android.content.Intent;
+
+import com.example.odswix.Gestor;
+
+import BusinessLogic.User;
 
 public class RetoFraseStrategy implements Strategy {
-    private Frase frase;
-
-    //Constructor
-    public RetoFraseStrategy(Frase fras){
-        this.frase = fras;
-    }
 
     @Override
-    public void elegirTipoReto() {
+    public void aplicarTipo(Context context, String tipo, User usuario, boolean appMuted) {
+        Intent intent = new Intent(context, Gestor.class);
+        intent.putExtra("tipo",tipo);
+        intent.putExtra("user", usuario);
+        intent.putExtra("muted", appMuted);
+        intent.putExtra("numPreg", 1);
+        intent.putExtra("puntosAcum", 0);
+        intent.putExtra("puntosCons", 0);
+        intent.putExtra("vidasPreg", 2);
+        intent.putExtra("consolidado", false);
+        context.startActivity(intent);
     }
 }

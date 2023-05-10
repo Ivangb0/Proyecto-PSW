@@ -159,15 +159,12 @@
         android:id="@+id/textViewPuntAcum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="26dp"
         android:text="500"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp4"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView5"
@@ -430,12 +427,12 @@
         android:id="@+id/textViewPtosCon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="10dp"
         android:text="500"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResp4" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <Button
         android:id="@+id/buttonAbandonar"

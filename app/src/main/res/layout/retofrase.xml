@@ -220,10 +220,12 @@
 
     <ScrollView
         android:id="@+id/letras"
-        android:layout_width="409dp"
+        android:layout_width="389dp"
         android:layout_height="236dp"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="1dp"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/huecos">
@@ -232,9 +234,12 @@
 
     <ScrollView
         android:id="@+id/huecos"
-        android:layout_width="408dp"
+        android:layout_width="389dp"
         android:layout_height="219dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="3dp"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="@color/design_default_color_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enunciado">
@@ -369,5 +374,16 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewPuntAcum2"
         app:layout_constraintStart_toEndOf="@+id/button10"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/incorrectText"
+        android:layout_width="108dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="Incorrecto Intenta de nuevo"
+        android:textColor="@color/design_default_color_error"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPistas2"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

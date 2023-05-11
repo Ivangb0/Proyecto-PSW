@@ -47,7 +47,7 @@ public class Gestor extends AppCompatActivity {
         appMuted = (boolean) intent.getBooleanExtra("muted", false);
 
         switch (tipo) {
-            case "mixta":
+            case "mixto":
                 cuestionAleatoria();
                 break;
             case "pregunta":

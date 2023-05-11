@@ -69,7 +69,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     TextView textoPregunta; TextView textoDificultad; TextView textViewNumPreg;
     TextView textViewPuntosXPreg; TextView textView37; Button buttonSiguiente;
     TextView textViewPuntAcum; TextView textView36; TextView textViewTiempo;
-    TextView textView34; TextView textView32; TextView textViewVidas;
+    TextView textView34; TextView textView32; TextView textViewVidas; TextView incorrectText;
     Button buttonConsolidar; TextView textViewObtend; TextView textViewPtosObtend;
     TextView textViewPtosTots; TextView textViewPtosAcums; ScrollView letras;
     TextView textViewTiempoC; TextView textViewTiempoCons; ScrollView huecos;
@@ -134,7 +134,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         textViewPuntAcum = (TextView) findViewById(R.id.textViewPuntAcum2);
         textViewPtosCon = (TextView) findViewById(R.id.textViewPtosCon2);
         imageViewODSFrase = (ImageView) findViewById(R.id.imageViewODS);
-
+        incorrectText = (TextView) findViewById(R.id.incorrectText);
 
 
         contenedorRespuesta =  (RelativeLayout) findViewById(R.id.contenedorRespuesta);
@@ -147,6 +147,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
         textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
         textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
+        incorrectText.setVisibility(View.INVISIBLE);
 
         buttonAbandonar.setVisibility(View.INVISIBLE);
         buttonAbandonar.setClickable(false);
@@ -405,6 +406,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                 checkVidasACero();
                 esconderTodo();
                 timerConsolidar();
+                guardarFalloCobertura();
             }
         }.start();
     }
@@ -428,6 +430,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         }.start();
     }
     public void esconderTodo(){
+        incorrectText.setVisibility(View.INVISIBLE);
         textView28.setVisibility(View.INVISIBLE);
         textView27.setVisibility(View.INVISIBLE);
         textView32.setVisibility(View.INVISIBLE);
@@ -455,7 +458,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     }
 
     public void comprobar(View view) {
-
+        incorrectText.setVisibility(View.INVISIBLE);
         puntosPregunta = 0;
         puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
@@ -477,8 +480,9 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
             countDownTimer.cancel();
             respuestaCorrecta();
             timerConsolidar();
+        } else{
+            incorrectText.setVisibility(View.VISIBLE);
         }
-        guardarFalloCobertura();
     }
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);

@@ -61,6 +61,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private String tipo = null;
     private int porcentaje = 0;
     boolean appMuted; ImageButton muteButton;
+    Sound sound = new Sound();
 
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
@@ -174,12 +175,13 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         enunciado.setText(tipoFrase.getEnunciado());
         idCoberturaUser =  usuario.getIdUser();
 
-        soundAcierto = MediaPlayer.create(getApplicationContext(),R.raw.acierto);
-        soundFallo = MediaPlayer.create(getApplicationContext(),R.raw.musicafracaso);
-        soundBackground = MediaPlayer.create(getApplicationContext(),R.raw.backgroundmusic);
-        soundCountdown10s = MediaPlayer.create(getApplicationContext(),R.raw.countdown10secs);
-        soundVictoria = MediaPlayer.create(getApplicationContext(),R.raw.victoria);
-        soundDerrota = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+        soundAcierto = sound.getSoundAcierto(this);
+        soundFallo = sound.getSoundFallo(this);
+        soundBackground = sound.getSoundBackground(this);
+        soundCountdown10s = sound.getSoundCountdown10s(this);
+        soundVictoria = sound.getSoundVictoria(this);
+        soundDerrota = sound.getSoundDerrota(this);
+
         soundBackground.start();
         muteButton = (ImageButton) findViewById(R.id.imageMute3);
 

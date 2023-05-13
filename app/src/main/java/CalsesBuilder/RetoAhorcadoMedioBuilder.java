@@ -1,6 +1,6 @@
 package CalsesBuilder;
 
-public class RetoAhorcadoBuilder implements Builder {
+public class RetoAhorcadoMedioBuilder implements Builder {
     public void reset() {
 
     }

@@ -30,13 +30,18 @@ public class User implements Serializable {
     public int perdidas;
     @DatabaseField
     public int abandonadas;
-
+    @DatabaseField
+    public int aciertos;
+    @DatabaseField
+    public int fallos;
+    @DatabaseField
+    public int tiempoUso;
 
     //constructor vacio para que la libreria del DAO funcione
     User(){}
 
     //constructor de la clase user
-    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband){
+    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband, int acie, int fall, int tiempoU){
         this.id_user = idUs;
         this.username = usern;
         this.email = email;
@@ -47,6 +52,9 @@ public class User implements Serializable {
         this.ganadas = ganad;
         this.perdidas = perdi;
         this.abandonadas = aband;
+        this.aciertos = acie;
+        this.fallos = fall;
+        this.tiempoUso = tiempoU;
     }
 
     //metodos get de los atributos de la clase user
@@ -82,7 +90,9 @@ public class User implements Serializable {
 
     public int getPerdidas() {return perdidas;}
     public int getAbandonadas() {return abandonadas;}
-
+    public int getAciertos(){return aciertos;}
+    public int getFallos(){return fallos;}
+    public int getTiempoUso(){return tiempoUso;}
 
     //metodos set de los atributos de la clase user
     public void setUsername (String newUsername){
@@ -114,4 +124,10 @@ public class User implements Serializable {
     public void setPerdidas (int newPerdidas) { this.perdidas = newPerdidas;}
 
     public void setAbandonadas (int newAbandonadas) { this.abandonadas = newAbandonadas;}
+
+    public void setAciertos (int newAciertos) {this.aciertos = newAciertos;}
+
+    public void setFallos (int newFallos) {this.fallos = newFallos;}
+
+    public void setTiempoUso (int newTiempoUso) {this.tiempoUso = newTiempoUso;}
 }

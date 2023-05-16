@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <TextView
+        android:id="@+id/textViewTiempoUso"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="68dp"
+        android:text="Tiempo de uso:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAband" />
+
     <Button
         android:id="@+id/buttonVolverStats"
         android:layout_width="124dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="128dp"
         android:onClick="volverDeEstadisticas"
         android:text="Volver"
         app:layout_constraintStart_toStartOf="@+id/textViewAband"
@@ -32,7 +43,7 @@
         android:id="@+id/imageView5"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="8dp"
         android:background="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/textViewEstadisticas"
@@ -83,8 +94,8 @@
         android:id="@+id/textViewGlob"
         android:layout_width="223dp"
         android:layout_height="27dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="48dp"
         android:text="Aciertos globales: "
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -122,4 +133,14 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textViewLost" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/time" />
 </androidx.constraintlayout.widget.ConstraintLayout>

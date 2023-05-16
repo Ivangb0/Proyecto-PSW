@@ -18,6 +18,13 @@ public class RetoAhorcado extends AppCompatActivity {
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
+
+    int aciertoStat;
+    int falloStat;
+    int wonStat;
+    int lostStat;
+    int abandonedStat;
+    int tiempoStat;
     boolean consolidado;
     CountDownTimer countDownTimer;
     CountDownTimer countDownTimerCons;
@@ -57,6 +64,17 @@ public class RetoAhorcado extends AppCompatActivity {
         appMuted = intent.getBooleanExtra("muted", false);
         tipo = (String) intent.getSerializableExtra("tipo");
     }
+
+
+    /* este metodo es para las estadisticas
+    public void asignarStats() {
+        aciertoStat = usuario.getAciertos();
+        falloStat = usuario.getFallos();
+        wonStat = usuario.getGanadas();
+        lostStat = usuario.getPerdidas();
+        abandonedStat = usuario.getAbandonadas();
+        tiempoStat = usuario.getTiempoUso();
+    }*/
     @Override
     public void onBackPressed() {}
 }

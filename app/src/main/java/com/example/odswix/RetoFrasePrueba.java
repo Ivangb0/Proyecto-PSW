@@ -50,6 +50,14 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private int vidas = 0;
     private int puntosAcum = 0;
     boolean consolidado;
+
+    int aciertoStat;
+    int falloStat;
+    int wonStat;
+    int lostStat;
+    int abandonedStat;
+    int tiempoStat;
+
     CountDownTimer countDownTimer;
     CountDownTimer countDownTimerCons;
     int duration;
@@ -112,6 +120,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         duration = tipoFrase.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted", false);
+        asignarStats();
 
 
         textView28 = (TextView) findViewById(R.id.textView28);
@@ -210,7 +219,15 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
     }
 
-    private void prepHuecos(){
+    public void asignarStats() {
+        aciertoStat = usuario.getAciertos();
+        falloStat = usuario.getFallos();
+        wonStat = usuario.getGanadas();
+        lostStat = usuario.getPerdidas();
+        abandonedStat = usuario.getAbandonadas();
+        tiempoStat = usuario.getTiempoUso();
+    }
+        private void prepHuecos(){
         modFrase = frase;
         Random random = new Random();
         for(int i = 0; i < porcentaje;) {
@@ -395,6 +412,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
             public void onFinish() {
                 duration = 30;
                 vidas--;
+                falloStat++;
                 esconderTodo();
                 if(puntosAcum >= puntosPregunta*2) puntosAcum -= puntosPregunta*2;
                 else puntosAcum = 0;
@@ -465,6 +483,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
         if (numPregunta == 10) {
+            wonStat++;
             buttonSiguiente.setText("Acabar");
         }
 
@@ -496,6 +515,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     }
 
     public void respuestaCorrecta() {
+        aciertoStat++;
         numPregunta++;
         puntosAcum += puntosPregunta;
         textView21.setText("Respuesta correcta.");
@@ -510,6 +530,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
     public void checkVidasACero(){
         if (vidas == 0) {
+            lostStat++;
             textView21.setText("Game Over.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -542,6 +563,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     public void botonAbandonar(View view){
         countDownTimer.cancel();
         soundBackground.stop();
+        abandonedStat++;
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
         UserDAO userdao = new UserDAO();

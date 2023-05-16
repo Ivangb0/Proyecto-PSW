@@ -34,12 +34,12 @@ import Persistence.UserDAO;
 
 public class RetoPregunta extends AppCompatActivity {
 
-    static int aciertoStat;
-    static int falloStat;
-    static int wonStat;
-    static int lostStat;
-    static int abandonedStat;
-    static int tiempoStat;
+    int aciertoStat;
+    int falloStat;
+    int wonStat;
+    int lostStat;
+    int abandonedStat;
+    int tiempoStat;
 
     private Pregunta pregunta = null;
     private int puntosAcumTotales = 0; private int puntosPregunta = 0; private int PtosConsolidados = 0;

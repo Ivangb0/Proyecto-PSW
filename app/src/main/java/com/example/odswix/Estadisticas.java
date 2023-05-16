@@ -19,7 +19,6 @@ public class Estadisticas extends AppCompatActivity {
     TextView textViewTiempoUso;
 
     User usu;
-    int global;
     int aciertos;
     int fallos;
     int partidasGanadas;
@@ -43,9 +42,8 @@ public class Estadisticas extends AppCompatActivity {
     }
 
     public void setStatsUser(){
-        global = usu.getAciertos() / (usu.getFallos() + usu.getAciertos());
         textViewUserStats.setText("Usuario: " + usu.getUsername());
-        textViewGlobStats.setText("Aciertos globales: " + global);
+        textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + usu.getFallos());
         textViewWonStats.setText("Partidas ganadas: " + usu.getGanadas());
         textViewLostStats.setText("Partidas perdidas: " + usu.getPerdidas());
         textViewAbandStats.setText("Partidas abandonadas: " + usu.getAbandonadas());

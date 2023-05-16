@@ -33,8 +33,15 @@ import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
 public class RetoPregunta extends AppCompatActivity {
-    private Pregunta pregunta = null;
 
+    static int aciertoStat;
+    static int falloStat;
+    static int wonStat;
+    static int lostStat;
+    static int abandonedStat;
+    static int tiempoStat;
+
+    private Pregunta pregunta = null;
     private int puntosAcumTotales = 0; private int puntosPregunta = 0; private int PtosConsolidados = 0;
     private String tipo = null;
     private int numPregunta = 0;
@@ -94,7 +101,7 @@ public class RetoPregunta extends AppCompatActivity {
         duration = pregunta.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted", false);
-
+        asignarStats();
         textoPregunta = findViewById(R.id.textView5);
         textoDificultad = findViewById(R.id.textView20);
 
@@ -197,6 +204,15 @@ public class RetoPregunta extends AppCompatActivity {
             soundVictoria.setVolume(1, 1);
             soundCountdown10s.setVolume(1, 1);
         }
+    }
+
+    public void asignarStats(){
+        aciertoStat = usuario.getAciertos();
+        falloStat = usuario.getFallos();
+        wonStat = usuario.getGanadas();
+        lostStat = usuario.getPerdidas();
+        abandonedStat = usuario.getAbandonadas();
+        tiempoStat = usuario.getTiempoUso();
     }
     private void checkConsolidar(Boolean consolidar){
         if(consolidar){
@@ -367,6 +383,7 @@ public class RetoPregunta extends AppCompatActivity {
     }
     public void checkVidasACero(){
         if (vidas == 0) {
+            lostStat++;
             textView21.setText("Game Over.");
             esconderTodo();
             mostrarSiguiente();
@@ -461,6 +478,7 @@ public class RetoPregunta extends AppCompatActivity {
         puntosPregunta = Integer.parseInt(textViewPuntosXPreg.getText().toString());
 
         if (numPregunta == 10) {
+            wonStat++;
             soundVictoria.start();
             buttonSiguiente.setText("Acabar");
         }
@@ -470,6 +488,7 @@ public class RetoPregunta extends AppCompatActivity {
         if (botonResp1.isPressed() && respuestasPreg.get(0).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             botonResp1.setBackgroundColor(0xFF008F39);
+            aciertoStat++;
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -482,6 +501,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (botonResp2.isPressed() && respuestasPreg.get(1).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             botonResp2.setBackgroundColor(0xFF008F39);
+            aciertoStat++;
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -494,6 +514,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (botonResp3.isPressed() && respuestasPreg.get(2).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             botonResp3.setBackgroundColor(0xFF008F39);
+            aciertoStat++;
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -506,6 +527,7 @@ public class RetoPregunta extends AppCompatActivity {
         } else if (botonResp4.isPressed() && respuestasPreg.get(3).esCorrecta) {
             if(numPregunta < 10) soundAcierto.start();
             botonResp4.setBackgroundColor(0xFF008F39);
+            aciertoStat++;
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -516,6 +538,7 @@ public class RetoPregunta extends AppCompatActivity {
             }, 5000);
 
         } else {
+            falloStat++;
             guardarFalloCobertura();
             disableButonsAnswers();
             soundFallo.start();
@@ -613,6 +636,7 @@ public class RetoPregunta extends AppCompatActivity {
 
     }
     public void botonAbandonar(View view){
+        abandonedStat++;
         countDownTimer.cancel();
         soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();

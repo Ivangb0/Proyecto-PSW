@@ -63,6 +63,7 @@ public class RetoAhorcado extends AppCompatActivity {
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted", false);
         tipo = (String) intent.getSerializableExtra("tipo");
+
     }
 
 

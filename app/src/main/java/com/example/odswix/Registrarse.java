@@ -184,7 +184,7 @@ public class Registrarse extends AppCompatActivity {
 
                 usuario = new User(id + 1, textUser.getText().toString(),
                         textEmail.getText().toString(), textPassword.getText().toString(),
-                        0, 0, 0);
+                        0, 0, 0,0,0,0,0,0,0);
 
                 establecerCoberturaBD();
 

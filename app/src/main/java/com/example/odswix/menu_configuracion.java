@@ -66,7 +66,7 @@ public class menu_configuracion extends AppCompatActivity {
     public void cerrarApp(View view){
         finishAffinity();
     }
-    
+
     @Override
     public void onBackPressed() {}
 }

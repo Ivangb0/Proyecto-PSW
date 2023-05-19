@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainmenu">
 
+    <ScrollView
+        android:id="@+id/letras"
+        android:layout_width="389dp"
+        android:layout_height="236dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/teal_700"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPistas3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/huecos"
+        android:layout_width="389dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAhorcado">
+
+    </ScrollView>
+
     <TextView
         android:id="@+id/textViewPuntAcum3"
         android:layout_width="wrap_content"
@@ -194,4 +224,23 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView44"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoAhorcado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="6dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <ImageView
+        android:id="@+id/imageAhorcado"
+        android:layout_width="52dp"
+        android:layout_height="61dp"
+        tools:layout_editor_absoluteX="281dp"
+        tools:layout_editor_absoluteY="117dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

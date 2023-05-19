@@ -46,6 +46,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private String modFrase;
     private String respuesta = "";
     GridLayout gridLayoutHuecos;
+    GridLayout gridLayoutLetras;
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
@@ -70,6 +71,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private int porcentaje = 0;
     boolean appMuted; ImageButton muteButton;
     Sound sound = new Sound();
+    boolean pistaPressed = false;
 
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
@@ -333,8 +335,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     private void setImages(){
         cambiarImagenODS();
         ScrollView layout = findViewById(R.id.letras);
-        GridLayout gridLayout = new GridLayout(this);
-        gridLayout.setColumnCount(9);
+        gridLayoutLetras = new GridLayout(this);
+        gridLayoutLetras.setColumnCount(9);
 
         String desFrase = desordenarFrase();
         for (int i = 0; i < desFrase.length(); i++) {
@@ -353,11 +355,11 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                     layoutParams.width = 100;
                     layoutParams.setMargins(8, 0, 8, 8);
 
-                    gridLayout.addView(button, layoutParams);
+                    gridLayoutLetras.addView(button, layoutParams);
                 }
             }
         }
-        layout.addView(gridLayout);
+        layout.addView(gridLayoutLetras);
     }
 
     @Override
@@ -507,7 +509,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     }
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);
-        textViewPtosObtend.setText(String.valueOf(puntosPregunta));
+        if(pistaPressed){textViewPtosObtend.setText(String.valueOf(puntosPregunta/2));}
+        else{textViewPtosObtend.setText(String.valueOf(puntosPregunta));}
         textViewPtosObtend.setVisibility(View.VISIBLE);
         textViewPtosTots.setVisibility(View.VISIBLE);
         textViewPtosAcums.setText(String.valueOf(puntosAcum));
@@ -517,7 +520,9 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     public void respuestaCorrecta() {
         aciertoStat++;
         numPregunta++;
-        puntosAcum += puntosPregunta;
+        if(pistaPressed) {
+            puntosAcum += (puntosPregunta / 2);
+        } else{ puntosAcum += puntosPregunta; }
         textView21.setText("Respuesta correcta.");
         soundAcierto.start();
         soundBackground.stop();
@@ -661,6 +666,72 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         }
     }
 
+    public void pistas(View view) {
+        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+            boolean found = false;
+            char letra = ' ';
+            while (!found) {
+                Random random = new Random();
+                int res = random.nextInt(frase.length());
+                letra = frase.charAt(res);
+                found = !Character.isWhitespace(letra);
+            }
+            for(int i = 0; i < frase.length(); i++){
+                if(frase.charAt(i) == letra &&
+                gridLayoutHuecos.getChildAt(i) instanceof ImageButton){
+                    ImageButton childImageButton = (ImageButton) gridLayoutHuecos.getChildAt(i);
+                    for(int j = 0; j < gridLayoutLetras.getChildCount(); j++) {
+                        View childButton = gridLayoutLetras.getChildAt(j);
+                        if(childButton instanceof Button) {
+                            Button button = (Button) gridLayoutLetras.getChildAt(j);
+                            if (button.getText().charAt(0) == letra) {
+                                gridLayoutHuecos.removeView(childImageButton);
+                                gridLayoutLetras.removeView(button);
+
+                                gridLayoutHuecos.addView(button, i);
+                                gridLayoutLetras.addView(childImageButton, j);
+                            }
+                        }
+                    }
+                }
+            }
+            /*pistaPressed = true;
+            buttonPistas.setClickable(false);
+            buttonPistas.setBackgroundColor(0xFFA7A7A7);*/
+        }
+
+            /*int countLetra = 0;
+            for (int i = 0; i < comprFrase.length(); i++) {
+                if (comprFrase.charAt(i) == letra) {
+                    countLetra++;
+                }
+            }*/
+        /*
+
+                int indexLetra = gridLayout1.indexOfChild(letraButton);
+                int indexHueco = gridLayout2.indexOfChild(huecoButton);
+
+                gridLayout1.removeView(letraButton);
+                gridLayout2.removeView(huecoButton);
+
+                gridLayout1.addView(huecoButton, indexLetra);
+                gridLayout2.addView(letraButton, indexHueco);
+
+
+        Random random = new Random();
+        int res = random.nextInt(modFrase.length());
+        modFrase.charAt(res)
+
+        respuesta = "";
+        for(int i = 0; i < gridLayoutHuecos.getChildCount(); i++) {
+            View button = gridLayoutHuecos.getChildAt(i);
+            if(button instanceof Button) {
+                respuesta += ((Button) gridLayoutHuecos.getChildAt(i)).getText();
+            }
+        }
+        if(comprFrase.equals(respuesta)) {
+         */
+    }
 
     @Override
     public void onBackPressed() {}

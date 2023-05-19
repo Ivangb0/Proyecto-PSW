@@ -674,14 +674,20 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
             Random random = new Random();
             int res = random.nextInt(comprFrase.length());
             letra = comprFrase.charAt(res);
-            
+
             for(int i = 0; i < frase.length(); i++){
                 if(frase.charAt(i) == letra){
                     gridLayoutHuecos.removeView(gridLayoutHuecos.getChildAt(i));
+
+                    GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+                    layoutParams.height = 100;
+                    layoutParams.width = 100;
+                    layoutParams.setMargins(8, 0, 8, 8);
+
                     Button button = new Button(this);
                     button.setClickable(false);
                     button.setText(Character.toString(letra));
-                    gridLayoutHuecos.addView(button, i);
+                    gridLayoutHuecos.addView(button, i, layoutParams);
                 }
             }
             /*pistaPressed = true;

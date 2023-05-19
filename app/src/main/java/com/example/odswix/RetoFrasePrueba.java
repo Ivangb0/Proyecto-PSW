@@ -668,64 +668,66 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
     public void pistas(View view) {
         if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
-            boolean found = false;
-            char letra = ' ';
 
             Random random = new Random();
-            int res = random.nextInt(comprFrase.length());
-            letra = comprFrase.charAt(res);
+            int res = random.nextInt(modFrase.length());
+            String letra = String.valueOf(modFrase.charAt(res));
 
-            for(int i = 0; i < frase.length(); i++){
-                if(frase.charAt(i) == letra){
-                    gridLayoutHuecos.removeView(gridLayoutHuecos.getChildAt(i));
+            if (!letra.equals("#") && !letra.equals(" ")) {
+                ScrollView huecos = findViewById(R.id.huecos);
+                huecos.removeView(gridLayoutHuecos);
+                setHuecos();
+
+                for (int i = 0; i < frase.length(); i++) {
+                    View child = gridLayoutHuecos.getChildAt(i);
+                    if (letra.equals(Character.toString(frase.charAt(i))) && child instanceof ImageButton) {
+                        gridLayoutHuecos.removeView(child);
+
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+                        layoutParams.height = 100;
+                        layoutParams.width = 100;
+                        layoutParams.setMargins(8, 0, 8, 8);
+
+                        Button button = new Button(this);
+                        button.setClickable(false);
+                        button.setText(letra);
+                        button.setBackgroundColor(0xCC84C0);
+                        gridLayoutHuecos.addView(button, i, layoutParams);
+                    }
+                }
+                pistaPressed = true;
+                buttonPistas.setClickable(false);
+                buttonPistas.setBackgroundColor(0xFFA7A7A7);
+                setImagesPistas(letra);
+            } else {
+                buttonPistas.performClick();
+            }
+
+        }
+    }
+    private void setImagesPistas(String letraPista){
+        gridLayoutLetras.removeAllViews();
+        String desFrase = desordenarFrase();
+        for (int i = 0; i < desFrase.length(); i++) {
+            char letra = desFrase.charAt(i);
+            if(!String.valueOf(letra).equals("#")) {
+                if (!Character.isWhitespace(letra) && !letraPista.equals(Character.toString(letra))) {
+                    Button button = new Button(this);
+                    button.setClickable(false);
+                    button.setText(Character.toString(letra));
+                    button.setBackgroundColor(0xE0F33F);
+
+                    button.setOnTouchListener(this);
 
                     GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
                     layoutParams.height = 100;
                     layoutParams.width = 100;
                     layoutParams.setMargins(8, 0, 8, 8);
 
-                    Button button = new Button(this);
-                    button.setClickable(false);
-                    button.setText(Character.toString(letra));
-                    gridLayoutHuecos.addView(button, i, layoutParams);
+                    gridLayoutLetras.addView(button, layoutParams);
                 }
             }
-            /*pistaPressed = true;
-            buttonPistas.setClickable(false);
-            buttonPistas.setBackgroundColor(0xFFA7A7A7);*/
         }
-
-            /*int countLetra = 0;
-            for (int i = 0; i < comprFrase.length(); i++) {
-                if (comprFrase.charAt(i) == letra) {
-                    countLetra++;
-                }
-            }*/
-        /*
-
-                int indexLetra = gridLayout1.indexOfChild(letraButton);
-                int indexHueco = gridLayout2.indexOfChild(huecoButton);
-
-                gridLayout1.removeView(letraButton);
-                gridLayout2.removeView(huecoButton);
-
-                gridLayout1.addView(huecoButton, indexLetra);
-                gridLayout2.addView(letraButton, indexHueco);
-
-
-        Random random = new Random();
-        int res = random.nextInt(modFrase.length());
-        modFrase.charAt(res)
-
-        respuesta = "";
-        for(int i = 0; i < gridLayoutHuecos.getChildCount(); i++) {
-            View button = gridLayoutHuecos.getChildAt(i);
-            if(button instanceof Button) {
-                respuesta += ((Button) gridLayoutHuecos.getChildAt(i)).getText();
-            }
-        }
-        if(comprFrase.equals(respuesta)) {
-         */
     }
 
     @Override

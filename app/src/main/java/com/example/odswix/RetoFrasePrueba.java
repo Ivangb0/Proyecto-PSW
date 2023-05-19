@@ -670,29 +670,18 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
             boolean found = false;
             char letra = ' ';
-            while (!found) {
-                Random random = new Random();
-                int res = random.nextInt(frase.length());
-                letra = frase.charAt(res);
-                found = !Character.isWhitespace(letra);
-            }
-            for(int i = 0; i < frase.length(); i++){
-                if(frase.charAt(i) == letra &&
-                gridLayoutHuecos.getChildAt(i) instanceof ImageButton){
-                    ImageButton childImageButton = (ImageButton) gridLayoutHuecos.getChildAt(i);
-                    for(int j = 0; j < gridLayoutLetras.getChildCount(); j++) {
-                        View childButton = gridLayoutLetras.getChildAt(j);
-                        if(childButton instanceof Button) {
-                            Button button = (Button) gridLayoutLetras.getChildAt(j);
-                            if (button.getText().charAt(0) == letra) {
-                                gridLayoutHuecos.removeView(childImageButton);
-                                gridLayoutLetras.removeView(button);
 
-                                gridLayoutHuecos.addView(button, i);
-                                gridLayoutLetras.addView(childImageButton, j);
-                            }
-                        }
-                    }
+            Random random = new Random();
+            int res = random.nextInt(comprFrase.length());
+            letra = comprFrase.charAt(res);
+            
+            for(int i = 0; i < frase.length(); i++){
+                if(frase.charAt(i) == letra){
+                    gridLayoutHuecos.removeView(gridLayoutHuecos.getChildAt(i));
+                    Button button = new Button(this);
+                    button.setClickable(false);
+                    button.setText(Character.toString(letra));
+                    gridLayoutHuecos.addView(button, i);
                 }
             }
             /*pistaPressed = true;

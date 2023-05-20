@@ -669,9 +669,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     }
 
     public AlertDialog openDialog(){
+        int puntosPista = Integer.parseInt(textViewPuntosXPreg.getText().toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(RetoFrasePrueba.this);
         builder.setTitle("¿Comprar pista?")
-                .setMessage("Si aciertas obtendrás " + puntosPregunta / 2 + " puntos")
+                .setMessage("Si aciertas obtendrás " + puntosPista / 2 + " puntos")
                 .setPositiveButton("No comprar", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -686,6 +687,43 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //aqui hay que meter el codigo del metodo pistas de abajo, pero se crea un popup nuevo cuando lo cierras
+                        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+
+                            Random random = new Random();
+                            int res = random.nextInt(modFrase.length());
+                            String letra = String.valueOf(modFrase.charAt(res));
+
+                            if (!letra.equals("#") && !letra.equals(" ")) {
+                                ScrollView huecos = findViewById(R.id.huecos);
+                                huecos.removeView(gridLayoutHuecos);
+                                setHuecos();
+
+                                for (int j = 0; j < frase.length(); j++) {
+                                    View child = gridLayoutHuecos.getChildAt(j);
+                                    if (letra.equals(Character.toString(frase.charAt(j))) && child instanceof ImageButton) {
+                                        gridLayoutHuecos.removeView(child);
+
+                                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+                                        layoutParams.height = 100;
+                                        layoutParams.width = 100;
+                                        layoutParams.setMargins(8, 0, 8, 8);
+
+                                        Button button = new Button(RetoFrasePrueba.this);
+                                        button.setClickable(false);
+                                        button.setText(letra);
+                                        button.setBackgroundColor(0xCC84C0);
+                                        gridLayoutHuecos.addView(button, j, layoutParams);
+                                    }
+                                }
+                                pistaPressed = true;
+                                buttonPistas.setClickable(false);
+                                buttonPistas.setBackgroundColor(0xFFA7A7A7);
+                                setImagesPistas(letra);
+                            } else {
+                                buttonPistas.performClick();
+                            }
+
+                        }
                     }
                 });
         return builder.create();
@@ -693,43 +731,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
     public void pistas(View view) {
         openDialog().show();
-        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
 
-            Random random = new Random();
-            int res = random.nextInt(modFrase.length());
-            String letra = String.valueOf(modFrase.charAt(res));
-
-            if (!letra.equals("#") && !letra.equals(" ")) {
-                ScrollView huecos = findViewById(R.id.huecos);
-                huecos.removeView(gridLayoutHuecos);
-                setHuecos();
-
-                for (int i = 0; i < frase.length(); i++) {
-                    View child = gridLayoutHuecos.getChildAt(i);
-                    if (letra.equals(Character.toString(frase.charAt(i))) && child instanceof ImageButton) {
-                        gridLayoutHuecos.removeView(child);
-
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
-                        layoutParams.height = 100;
-                        layoutParams.width = 100;
-                        layoutParams.setMargins(8, 0, 8, 8);
-
-                        Button button = new Button(this);
-                        button.setClickable(false);
-                        button.setText(letra);
-                        button.setBackgroundColor(0xCC84C0);
-                        gridLayoutHuecos.addView(button, i, layoutParams);
-                    }
-                }
-                pistaPressed = true;
-                buttonPistas.setClickable(false);
-                buttonPistas.setBackgroundColor(0xFFA7A7A7);
-                setImagesPistas(letra);
-            } else {
-                buttonPistas.performClick();
-            }
-
-        }
     }
     private void setImagesPistas(String letraPista){
         gridLayoutLetras.removeAllViews();

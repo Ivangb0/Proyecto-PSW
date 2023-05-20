@@ -44,13 +44,13 @@ public class RetoPregunta extends AppCompatActivity {
     int tiempoStat;
 
     private Pregunta pregunta = null;
-    private int puntosAcumTotales = 0; static int puntosPregunta = 0; private int PtosConsolidados = 0;
+    private int puntosAcumTotales = 0; int puntosPregunta = 0; private int PtosConsolidados = 0;
     private String tipo = null;
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
     boolean consolidado;
-    static List<Answer> respuestasPreg = new ArrayList<>();
+    List<Answer> respuestasPreg = new ArrayList<>();
     User usuario = IniciarSesion.usuario;
     int duration; int durationCons = 21; int idCoberturaUser = usuario.getIdUser(); int numODS;
     UserDAO userdao = new UserDAO();
@@ -71,7 +71,7 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPuntConsol; TextView textViewPtosCon; TextView textView33; TextView textView26;
     TextView textView30; TextView textView24; TextView textView23;
     //Buttons
-    static Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
+    Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     Button buttonSiguiente; Button buttonConsolidar; Button buttonAbandonar;
     ImageButton buttonPausa; ImageButton muteButton;
 

@@ -1,6 +1,7 @@
 package com.example.odswix;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -42,13 +44,13 @@ public class RetoPregunta extends AppCompatActivity {
     int tiempoStat;
 
     private Pregunta pregunta = null;
-    private int puntosAcumTotales = 0; private int puntosPregunta = 0; private int PtosConsolidados = 0;
+    private int puntosAcumTotales = 0; static int puntosPregunta = 0; private int PtosConsolidados = 0;
     private String tipo = null;
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
     boolean consolidado;
-    List<Answer> respuestasPreg = new ArrayList<>();
+    static List<Answer> respuestasPreg = new ArrayList<>();
     User usuario = IniciarSesion.usuario;
     int duration; int durationCons = 21; int idCoberturaUser = usuario.getIdUser(); int numODS;
     UserDAO userdao = new UserDAO();
@@ -69,7 +71,7 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPuntConsol; TextView textViewPtosCon; TextView textView33; TextView textView26;
     TextView textView30; TextView textView24; TextView textView23;
     //Buttons
-    Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
+    static Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     Button buttonSiguiente; Button buttonConsolidar; Button buttonAbandonar;
     ImageButton buttonPausa; ImageButton muteButton;
 
@@ -677,7 +679,57 @@ public class RetoPregunta extends AppCompatActivity {
             soundAcierto.setVolume(1,1);
         }
     }
+
+    public AlertDialog openDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RetoPregunta.this);
+        builder.setTitle("¿Comprar pista?")
+                .setMessage("Si aciertas obtendrás " + puntosPregunta / 2 + " puntos")
+                .setPositiveButton("No comprar", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                //nil
+                            }
+                        });
+                    }
+                }).setNegativeButton("Comprar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
+                            buttonPistas.setClickable(false);
+                            int preg;
+                            for (preg = 0; preg < 4; preg++) {
+                                if (respuestasPreg.get(preg).esCorrecta) {
+                                    int randomizer = (int) (Math.random() * 3) + 1;
+                                    switch (preg) {
+                                        case 0://la 1 es correcta
+                                            randomized1(randomizer);
+                                            break;
+                                        case 1://la 2 es correcta
+                                            randomized2(randomizer);
+                                            break;
+                                        case 2://la 3 es correcta
+                                            randomized3(randomizer);
+                                            break;
+                                        case 3://la 4 es correcta
+                                            randomized4(randomizer);
+                                            break;
+                                    }
+                                }
+                            }
+                            pistaPressed = true;
+                            buttonPistas.setBackgroundColor(0xFFA7A7A7);
+                        }
+                    }
+                });
+        return builder.create();
+    }
     public void botonPistas(View view){
+        openDialog().show();
+
+        /*
         if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
             buttonPistas.setClickable(false);
             int preg;
@@ -702,7 +754,7 @@ public class RetoPregunta extends AppCompatActivity {
             }
             pistaPressed = true;
             buttonPistas.setBackgroundColor(0xFFA7A7A7);
-        }
+        }*/
     }
     public void randomized1(int rand){
         switch(rand){

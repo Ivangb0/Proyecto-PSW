@@ -3,6 +3,7 @@ package com.example.odswix;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -21,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -666,7 +668,31 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         }
     }
 
+    public AlertDialog openDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(RetoFrasePrueba.this);
+        builder.setTitle("¿Comprar pista?")
+                .setMessage("Si aciertas obtendrás " + puntosPregunta / 2 + " puntos")
+                .setPositiveButton("No comprar", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                //nil
+                            }
+                        });
+                    }
+                }).setNegativeButton("Comprar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //aqui hay que meter el codigo del metodo pistas de abajo, pero se crea un popup nuevo cuando lo cierras
+                    }
+                });
+        return builder.create();
+    }
+
     public void pistas(View view) {
+        openDialog().show();
         if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
 
             Random random = new Random();

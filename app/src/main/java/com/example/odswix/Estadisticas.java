@@ -52,7 +52,7 @@ public class Estadisticas extends AppCompatActivity {
 
     public void volverDeEstadisticas(View view){
         Intent salirEstadisticas = new Intent(this, Perfil.class);
-        //salirEstadisticas.putExtra("user", user);
+        salirEstadisticas.putExtra("user", usu);
         finishAfterTransition();
         startActivity(salirEstadisticas);
     }

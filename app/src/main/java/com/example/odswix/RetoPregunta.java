@@ -386,6 +386,10 @@ public class RetoPregunta extends AppCompatActivity {
     public void checkVidasACero(){
         if (vidas == 0) {
             lostStat++;
+
+            usuario.setPerdidas(lostStat);
+            userdao.actualizar(usuario);
+
             textView21.setText("Game Over.");
             esconderTodo();
             mostrarSiguiente();
@@ -481,6 +485,10 @@ public class RetoPregunta extends AppCompatActivity {
 
         if (numPregunta == 10) {
             wonStat++;
+
+            usuario.setGanadas(wonStat);
+            userdao.actualizar(usuario);
+
             soundVictoria.start();
             buttonSiguiente.setText("Acabar");
         }
@@ -491,6 +499,10 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             botonResp1.setBackgroundColor(0xFF008F39);
             aciertoStat++;
+
+            usuario.setAciertos(aciertoStat);
+            userdao.actualizar(usuario);
+
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -504,6 +516,10 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             botonResp2.setBackgroundColor(0xFF008F39);
             aciertoStat++;
+
+            usuario.setAciertos(aciertoStat);
+            userdao.actualizar(usuario);
+
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -517,6 +533,10 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             botonResp3.setBackgroundColor(0xFF008F39);
             aciertoStat++;
+
+            usuario.setAciertos(aciertoStat);
+            userdao.actualizar(usuario);
+
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -530,6 +550,10 @@ public class RetoPregunta extends AppCompatActivity {
             if(numPregunta < 10) soundAcierto.start();
             botonResp4.setBackgroundColor(0xFF008F39);
             aciertoStat++;
+
+            usuario.setAciertos(aciertoStat);
+            userdao.actualizar(usuario);
+
             guardarAciertoCobertura();
             disableButonsAnswers();
             Handler handler = new Handler();
@@ -541,6 +565,10 @@ public class RetoPregunta extends AppCompatActivity {
 
         } else {
             falloStat++;
+
+            usuario.setFallos(falloStat);
+            userdao.actualizar(usuario);
+
             guardarFalloCobertura();
             disableButonsAnswers();
             soundFallo.start();
@@ -639,6 +667,10 @@ public class RetoPregunta extends AppCompatActivity {
     }
     public void botonAbandonar(View view){
         abandonedStat++;
+
+        usuario.setAbandonadas(abandonedStat);
+        userdao.actualizar(usuario);
+
         countDownTimer.cancel();
         soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
@@ -728,33 +760,6 @@ public class RetoPregunta extends AppCompatActivity {
     }
     public void botonPistas(View view){
         openDialog().show();
-
-        /*
-        if(usuario.getPuntosAcumTotales() >= (puntosPregunta / 2)) {
-            buttonPistas.setClickable(false);
-            int preg;
-            for (preg = 0; preg < 4; preg++) {
-                if (respuestasPreg.get(preg).esCorrecta) {
-                    int randomizer = (int) (Math.random() * 3) + 1;
-                    switch (preg) {
-                        case 0://la 1 es correcta
-                            randomized1(randomizer);
-                            break;
-                        case 1://la 2 es correcta
-                            randomized2(randomizer);
-                            break;
-                        case 2://la 3 es correcta
-                            randomized3(randomizer);
-                            break;
-                        case 3://la 4 es correcta
-                            randomized4(randomizer);
-                            break;
-                    }
-                }
-            }
-            pistaPressed = true;
-            buttonPistas.setBackgroundColor(0xFFA7A7A7);
-        }*/
     }
     public void randomized1(int rand){
         switch(rand){

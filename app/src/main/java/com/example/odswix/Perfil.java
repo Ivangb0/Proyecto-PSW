@@ -26,6 +26,7 @@ public class Perfil extends AppCompatActivity {
     User usuario = null;
     String contraseña = "";
     boolean visible = false;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -181,6 +182,13 @@ public class Perfil extends AppCompatActivity {
         Intent intent = new Intent(this, Armario.class);
         intent.putExtra("user", usuario);
         startActivity(intent);
+        this.finish();
+    }
+
+    public void buttonStats (View view){
+        Intent intentStats = new Intent(this, Estadisticas.class);
+        intentStats.putExtra("user", usuario);
+        startActivity(intentStats);
         this.finish();
     }
     @Override

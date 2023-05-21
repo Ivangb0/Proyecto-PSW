@@ -75,6 +75,9 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     Sound sound = new Sound();
     boolean pistaPressed = false;
 
+    UserDAO userdao = new UserDAO();
+
+
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
     TextView textView28; TextView textView25; TextView enunciado; TextView textView35;
@@ -417,6 +420,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
                 duration = 30;
                 vidas--;
                 falloStat++;
+
+                usuario.setFallos(falloStat);
+                userdao.actualizar(usuario);
+
                 esconderTodo();
                 if(puntosAcum >= puntosPregunta*2) puntosAcum -= puntosPregunta*2;
                 else puntosAcum = 0;
@@ -488,6 +495,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
         if (numPregunta == 10) {
             wonStat++;
+
+            usuario.setGanadas(wonStat);
+            userdao.actualizar(usuario);
+
             buttonSiguiente.setText("Acabar");
         }
 
@@ -521,6 +532,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
     public void respuestaCorrecta() {
         aciertoStat++;
+
+        usuario.setAciertos(aciertoStat);
+        userdao.actualizar(usuario);
+
         numPregunta++;
         if(pistaPressed) {
             puntosAcum += (puntosPregunta / 2);
@@ -538,6 +553,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     public void checkVidasACero(){
         if (vidas == 0) {
             lostStat++;
+
+            usuario.setPerdidas(lostStat);
+            userdao.actualizar(usuario);
+
             textView21.setText("Game Over.");
             esconderTodo();
             contenedorRespuesta.setVisibility(View.VISIBLE);
@@ -571,6 +590,10 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         countDownTimer.cancel();
         soundBackground.stop();
         abandonedStat++;
+
+        usuario.setAbandonadas(abandonedStat);
+        userdao.actualizar(usuario);
+
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();
         usuario.setPuntosAcumTotales(puntosAcumTotales);
         UserDAO userdao = new UserDAO();

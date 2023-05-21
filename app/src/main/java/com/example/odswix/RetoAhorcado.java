@@ -76,6 +76,10 @@ public class RetoAhorcado extends AppCompatActivity {
         abandonedStat = usuario.getAbandonadas();
         tiempoStat = usuario.getTiempoUso();
     }*/
+
+
+
+
     @Override
     public void onBackPressed() {}
 }

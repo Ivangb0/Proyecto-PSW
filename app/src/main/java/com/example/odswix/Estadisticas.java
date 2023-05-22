@@ -17,13 +17,7 @@ public class Estadisticas extends AppCompatActivity {
     TextView textViewLostStats;
     TextView textViewAbandStats;
     TextView textViewTiempoUso;
-
     User usu;
-    int aciertos;
-    int fallos;
-    int partidasGanadas;
-    int partidasPerdidas;
-    int partidasAbandonadas;
 
     @Override
     protected void onCreate(Bundle savedInstance){

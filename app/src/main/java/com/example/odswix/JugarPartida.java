@@ -36,6 +36,12 @@ public class JugarPartida extends AppCompatActivity {
         finishAfterTransition();
         startActivity(intent);
     }
+    public void guiaUsuario (View view){
+        Intent intent = new Intent(this, GuiaUsuario.class);
+        intent.putExtra("user", usuario);
+        intent.putExtra("muted", appMuted);
+        startActivity(intent);
+    }
     public void configuracion (View view){
         Intent intent = new Intent(this, menu_configuracion.class);
         intent.putExtra("user", usuario);

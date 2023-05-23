@@ -19,4 +19,12 @@ public class Director implements Serializable {
         builder.buildTimer();
         builder.buildRespuestas();
     }
+
+    public void construirAhorcado(Builder builder){
+        builder.reset();
+        builder.buildDificultad();
+        builder.buildEnunciado();
+        builder.buildTimer();
+        builder.buildRespuestas();
+    }
 }

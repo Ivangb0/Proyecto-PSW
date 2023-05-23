@@ -2,39 +2,116 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imagenAhorcado"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainmenu">
 
-    <ScrollView
-        android:id="@+id/letras"
-        android:layout_width="389dp"
-        android:layout_height="236dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/teal_700"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPistas3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </ScrollView>
-
-    <ScrollView
-        android:id="@+id/huecos"
-        android:layout_width="389dp"
-        android:layout_height="219dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="6dp"
-        android:backgroundTint="@color/design_default_color_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <RelativeLayout
+        android:id="@+id/contenedorRespuesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAhorcado">
+        app:layout_constraintTop_toBottomOf="@+id/textoDescripAhorcado">
 
-    </ScrollView>
+        <TextView
+            android:id="@+id/textViewPtosTots"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonSiguiente"
+            android:layout_marginStart="61dp"
+            android:layout_marginBottom="55dp"
+            android:layout_toEndOf="@+id/buttonConsolidar"
+            android:text="Puntos Acumulados:" />
+
+        <TextView
+            android:id="@+id/textViewPtosAcums"
+            android:layout_width="82dp"
+            android:layout_height="24dp"
+            android:layout_alignEnd="@+id/textViewPtosTots"
+            android:layout_alignBottom="@+id/buttonSiguiente"
+            android:layout_marginStart="51dp"
+            android:layout_marginEnd="-11dp"
+            android:layout_marginBottom="13dp"
+            android:layout_toEndOf="@+id/buttonSiguiente"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewObtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewPtosTots"
+            android:layout_marginStart="62dp"
+            android:layout_marginBottom="36dp"
+            android:layout_toEndOf="@+id/buttonConsolidar"
+            android:text="Puntos obtenidos" />
+
+        <TextView
+            android:id="@+id/textViewPtosObtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewPtosAcums"
+            android:layout_marginStart="-110dp"
+            android:layout_marginBottom="70dp"
+            android:layout_toEndOf="@+id/textViewObtend"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="156dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="26dp"
+            android:text="Respuesta incorrecta."
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonConsolidar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView21"
+            android:layout_marginStart="-156dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/textView21"
+            android:onClick="pressConsolidar"
+            android:text="Consolidar" />
+
+        <Button
+            android:id="@+id/buttonSiguiente"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView21"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="60dp"
+            android:onClick="siguientePregunta"
+            android:text="Siguiente pregunta" />
+
+        <TextView
+            android:id="@+id/textViewTiempoC"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_above="@+id/textViewObtend"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="7dp"
+            android:layout_toEndOf="@+id/textView21"
+            android:text="Tiempo:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewTiempoCons"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_above="@+id/textViewObtend"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="9dp"
+            android:layout_toEndOf="@+id/textViewTiempoC"
+            android:text="TextView"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textViewPuntAcum3"
@@ -47,7 +124,7 @@
         app:layout_constraintStart_toEndOf="@+id/buttonPistas3" />
 
     <TextView
-        android:id="@+id/textViewPtosCon4"
+        android:id="@+id/textViewPuntosAcumAho"
         android:layout_width="73dp"
         android:layout_height="21dp"
         android:text="500"
@@ -141,8 +218,8 @@
         android:text="Vidas:"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textTiempo2"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+        app:layout_constraintStart_toEndOf="@+id/textViewTiempoAhorc"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDificultadAho" />
 
     <TextView
         android:id="@+id/textViewPuntosXPreg3"
@@ -168,7 +245,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/textTiempo2"
+        android:id="@+id/textViewTiempoAhorc"
         android:layout_width="58dp"
         android:layout_height="24dp"
         android:layout_marginStart="2dp"
@@ -180,7 +257,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewPuntosXPreg3" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/textViewDificultadAho"
         android:layout_width="112dp"
         android:layout_height="18dp"
         android:layout_marginStart="25dp"
@@ -226,21 +303,311 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textoAhorcado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="6dp"
+        android:id="@+id/textoDescripAhorcado"
+        android:layout_width="174dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="55dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <ImageView
-        android:id="@+id/imageAhorcado"
-        android:layout_width="52dp"
-        android:layout_height="61dp"
-        tools:layout_editor_absoluteX="281dp"
-        tools:layout_editor_absoluteY="117dp"
+        android:id="@+id/imagenOdsAhorcado"
+        android:layout_width="81dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="220dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageMute4"
+        app:layout_constraintTop_toBottomOf="@+id/imageMute4"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageViewAhorcado"
+        android:layout_width="176dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="88dp"
+        app:layout_constraintEnd_toStartOf="@+id/imagenOdsAhorcado"
+        app:layout_constraintTop_toBottomOf="@+id/textoDescripAhorcado"
+        app:srcCompat="@drawable/ahorcado1" />
+
+    <TextView
+        android:id="@+id/textViewRespuesta"
+        android:layout_width="204dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/imagenOdsAhorcado"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAhorcado" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutTeclado"
+        android:layout_width="410dp"
+        android:layout_height="209dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPistas3"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/buttonKeyR"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyE"
+            android:text="R"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyT"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyR"
+            android:text="T"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyY"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyT"
+            android:text="Y"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyU"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyY"
+            android:text="U"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyI"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyU"
+            android:text="I"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyO"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyI"
+            android:text="O"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyP"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyO"
+            android:text="P"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyE"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyW"
+            android:text="E"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyQ"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="4dp"
+            android:text="Q"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyW"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/buttonKeyQ"
+            android:text="W"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buttonKeyA"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="3dp"
+            android:text="A"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyS"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyA"
+            android:text="S"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyD"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyS"
+            android:text="D"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyF"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyD"
+            android:text="F"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyG"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyF"
+            android:text="G"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyH"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyG"
+            android:text="H"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyJ"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyH"
+            android:text="J"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyK"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyJ"
+            android:text="K"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyL"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+
+            android:layout_toRightOf="@id/buttonKeyK"
+            android:text="L"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyÑ"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyQ"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyL"
+            android:text="Ñ"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyZ"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="3dp"
+            android:text="Z"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyX"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyZ"
+            android:text="X"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyC"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyX"
+            android:text="C"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyV"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyC"
+            android:text="V"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyB"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyV"
+            android:text="B"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyN"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyB"
+            android:text="N"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonKeyM"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonKeyA"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/buttonKeyN"
+            android:text="M"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

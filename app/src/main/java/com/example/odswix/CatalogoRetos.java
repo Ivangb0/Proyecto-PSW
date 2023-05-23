@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
 import ClasesStrategy.ContextoStrategy;
+import ClasesStrategy.RetoAhorcadoStrategy;
 import ClasesStrategy.RetoMixtoStrategy;
 import ClasesStrategy.RetoPreguntaStrategy;
 
@@ -53,6 +54,13 @@ public class CatalogoRetos extends AppCompatActivity {
         context.elegirTipo(this,"frase",usuario, appMuted);
         this.finish();
     }
+
+    public void ahorcado(View view){
+        context = new ContextoStrategy(new RetoAhorcadoStrategy());
+        context.elegirTipo(this, "ahorcado",usuario, appMuted);
+        this.finish();
+    }
+
     public void cancelar(View view){
         Intent intent = new Intent(this, JugarPartida.class);
         intent.putExtra("user", usuario);

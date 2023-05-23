@@ -9,16 +9,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
+import BusinessLogic.Ahorcado;
 import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
 import CalsesBuilder.Director;
+import CalsesBuilder.RetoAhorcadoDificilBuilder;
+import CalsesBuilder.RetoAhorcadoFacilBuilder;
+import CalsesBuilder.RetoAhorcadoMedioBuilder;
 import CalsesBuilder.RetoFraseDificilBuilder;
 import CalsesBuilder.RetoFraseFacilBuilder;
 import CalsesBuilder.RetoFraseMedioBuilder;
 import CalsesBuilder.RetoPreguntaDificilBuilder;
 import CalsesBuilder.RetoPreguntaFacilBuilder;
 import CalsesBuilder.RetoPreguntaMedioBuilder;
+import ClasesStrategy.RetoAhorcadoStrategy;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -162,6 +167,59 @@ public class Gestor extends AppCompatActivity {
         }
 
         intent.putExtra("cuestion", pregunta);
+        intent.putExtra("vidas", vidas);
+        intent.putExtra("numPregunta", numPreg);
+        intent.putExtra("consolidado", consolidado);
+        intent.putExtra("pntsAcum", puntosAcum);
+        intent.putExtra("pntsCons", puntosCons);
+        intent.putExtra("user", usuario);
+        intent.putExtra("tipo", tipo);
+        intent.putExtra("muted",appMuted);
+        startActivity(intent);
+
+    }
+
+    private void cuestionAhorcado() {
+
+        Intent intent = new Intent(this, RetoPregunta.class);
+
+        if (vidas <= 0) {
+            intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        }
+
+        Director director = new Director();
+        Ahorcado ahorcado = new Ahorcado();
+        RetoAhorcadoFacilBuilder ahorcadoFacilBuilder = new RetoAhorcadoFacilBuilder();
+        RetoAhorcadoMedioBuilder ahorcadoMedioBuilder = new RetoAhorcadoMedioBuilder();
+        RetoAhorcadoDificilBuilder ahorcadoDificilBuilder = new RetoAhorcadoDificilBuilder();
+
+        if (numPreg < 4) {
+            director.construirAhorcado(ahorcadoFacilBuilder);
+            ahorcado = ahorcadoFacilBuilder.getTipo();
+        } else if (numPreg < 7) {
+            director.construirAhorcado(ahorcadoMedioBuilder);
+            ahorcado = ahorcadoMedioBuilder.getTipo();
+        } else if (numPreg <= 10) {
+            director.construirAhorcado(ahorcadoDificilBuilder);
+            ahorcado = ahorcadoDificilBuilder.getTipo();
+        }else{
+            UserDAO userdao = new UserDAO();
+
+            intent = new Intent(this, PartidaFinalizada.class);
+            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
+            usuario.setPuntosAcumTotales(puntosAcumTotales);
+            userdao.actualizar(usuario);
+            intent.putExtra("pntsFin", puntosAcum);
+            intent.putExtra("user", usuario);
+            intent.putExtra("muted",appMuted);
+            startActivity(intent);
+            this.finish();
+        }
+
+        intent.putExtra("cuestion", ahorcado);
         intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
         intent.putExtra("consolidado", consolidado);

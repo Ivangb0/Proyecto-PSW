@@ -1,6 +1,9 @@
 package CalsesBuilder;
 
+import BusinessLogic.Ahorcado;
+
 public class RetoAhorcadoMedioBuilder implements Builder {
+    private Ahorcado ahorcado;
     public void reset() {
 
     }
@@ -16,4 +19,8 @@ public class RetoAhorcadoMedioBuilder implements Builder {
     public void buildRespuestas(){
 
     }
+    public Ahorcado getTipo(){
+        return ahorcado;
+    }
+
 }

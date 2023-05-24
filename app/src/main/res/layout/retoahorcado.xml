@@ -354,6 +354,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyE"
+            android:onClick="letraPulsada"
             android:text="R"
             android:textSize="14sp" />
 
@@ -362,6 +363,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyR"
+            android:onClick="letraPulsada"
             android:text="T"
             android:textSize="14sp" />
 
@@ -370,6 +372,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyT"
+            android:onClick="letraPulsada"
             android:text="Y"
             android:textSize="14sp" />
 
@@ -378,6 +381,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyY"
+            android:onClick="letraPulsada"
             android:text="U"
             android:textSize="14sp" />
 
@@ -386,6 +390,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyU"
+            android:onClick="letraPulsada"
             android:text="I"
             android:textSize="14sp" />
 
@@ -394,6 +399,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyI"
+            android:onClick="letraPulsada"
             android:text="O"
             android:textSize="14sp" />
 
@@ -402,6 +408,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyO"
+            android:onClick="letraPulsada"
             android:text="P"
             android:textSize="14sp" />
 
@@ -410,6 +417,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyW"
+            android:onClick="letraPulsada"
             android:text="E"
             android:textSize="14sp" />
 
@@ -418,6 +426,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_marginLeft="4dp"
+            android:onClick="letraPulsada"
             android:text="Q"
             android:textSize="14sp" />
 
@@ -426,6 +435,7 @@
             android:layout_width="40dp"
             android:layout_height="50dp"
             android:layout_toRightOf="@id/buttonKeyQ"
+            android:onClick="letraPulsada"
             android:text="W"
             android:textSize="12sp" />
 
@@ -436,6 +446,7 @@
             android:layout_below="@id/buttonKeyQ"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="3dp"
+            android:onClick="letraPulsada"
             android:text="A"
             android:textSize="14sp" />
 
@@ -447,6 +458,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyA"
+            android:onClick="letraPulsada"
             android:text="S"
             android:textSize="14sp" />
 
@@ -458,6 +470,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyS"
+            android:onClick="letraPulsada"
             android:text="D"
             android:textSize="14sp" />
 
@@ -469,6 +482,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyD"
+            android:onClick="letraPulsada"
             android:text="F"
             android:textSize="14sp" />
 
@@ -480,6 +494,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyF"
+            android:onClick="letraPulsada"
             android:text="G"
             android:textSize="14sp" />
 
@@ -491,6 +506,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyG"
+            android:onClick="letraPulsada"
             android:text="H"
             android:textSize="14sp" />
 
@@ -502,6 +518,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyH"
+            android:onClick="letraPulsada"
             android:text="J"
             android:textSize="14sp" />
 
@@ -513,6 +530,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyJ"
+            android:onClick="letraPulsada"
             android:text="K"
             android:textSize="14sp" />
 
@@ -524,6 +542,7 @@
             android:layout_marginTop="3dp"
 
             android:layout_toRightOf="@id/buttonKeyK"
+            android:onClick="letraPulsada"
             android:text="L"
             android:textSize="14sp" />
 
@@ -534,6 +553,7 @@
             android:layout_below="@id/buttonKeyQ"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyL"
+            android:onClick="letraPulsada"
             android:text="Ñ"
             android:textSize="14sp" />
 
@@ -544,6 +564,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginLeft="65dp"
             android:layout_marginTop="3dp"
+            android:onClick="letraPulsada"
             android:text="Z"
             android:textSize="14sp" />
 
@@ -554,6 +575,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyZ"
+            android:onClick="letraPulsada"
             android:text="X"
             android:textSize="14sp" />
 
@@ -564,6 +586,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyX"
+            android:onClick="letraPulsada"
             android:text="C"
             android:textSize="14sp" />
 
@@ -574,6 +597,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyC"
+            android:onClick="letraPulsada"
             android:text="V"
             android:textSize="14sp" />
 
@@ -584,6 +608,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyV"
+            android:onClick="letraPulsada"
             android:text="B"
             android:textSize="14sp" />
 
@@ -594,6 +619,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyB"
+            android:onClick="letraPulsada"
             android:text="N"
             android:textSize="14sp" />
 
@@ -604,6 +630,7 @@
             android:layout_below="@id/buttonKeyA"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/buttonKeyN"
+            android:onClick="letraPulsada"
             android:text="M"
             android:textSize="14sp" />
 

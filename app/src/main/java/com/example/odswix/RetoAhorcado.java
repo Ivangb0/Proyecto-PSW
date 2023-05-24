@@ -25,6 +25,9 @@ import java.util.concurrent.TimeUnit;
 import BusinessLogic.Ahorcado;
 import BusinessLogic.Cobertura;
 import BusinessLogic.User;
+import ClasesDecorator.BaseImage;
+import ClasesDecorator.Image;
+import ClasesDecorator.ImageDecorator;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -64,7 +67,7 @@ public class RetoAhorcado extends AppCompatActivity {
     TextView textViewVidas3;
 
     ImageView imagenOdsAhorcado;
-    ImageView imageViewAhorcado;
+    public static ImageView imageViewAhorcado;
     TextView textViewTiempoAhorc;
     TextView textoDescripAhorcado;
     TextView textViewRespuesta;
@@ -77,6 +80,7 @@ public class RetoAhorcado extends AppCompatActivity {
     int idCoberturaUser;
     int numODS;
     boolean pistaPressed = false;
+    Button botonLetra;
 
     TextView textView21;
     TextView textViewPtosObtend;
@@ -101,6 +105,25 @@ public class RetoAhorcado extends AppCompatActivity {
     TextView textView3;
     TextView textView44;
     UserDAO userdao = new UserDAO();
+    String respuesta;
+    char charPulsado;
+    String respuestaOculta;
+    String numImagenAhorcado;
+
+
+    int numFallos;
+    Image baseImage;
+    Image decoratedImage2;
+    Image decoratedImage3;
+    Image decoratedImage4;
+    Image decoratedImage5;
+    Image decoratedImage6;
+    Image decoratedImage7;
+    Image decoratedImage8;
+    Image decoratedImage9;
+    Image decoratedImage10;
+    Image decoratedImage11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,6 +207,9 @@ public class RetoAhorcado extends AppCompatActivity {
         textoDescripAhorcado.setText(tipoAhorcado.getEnunciado());
         idCoberturaUser = usuario.getIdUser();
 
+        //mecanica del juego
+        respuesta = ahorcado.getRespuesta();
+
         soundAcierto = sound.getSoundAcierto(this);
         soundFallo = sound.getSoundFallo(this);
         soundBackground = sound.getSoundBackground(this);
@@ -231,6 +257,90 @@ public class RetoAhorcado extends AppCompatActivity {
 
         */
 
+    public String ocultarRespuesta(){
+        for(int i = 0; i< respuesta.length(); i++){
+            char letra = respuesta.charAt(i);
+            if(letra != ' ') {
+                respuestaOculta = respuesta.replace(".", "_");
+            }
+        }
+        return respuestaOculta;
+    }
+
+    //metodo del decorator
+    public void cambiarFotoAhorcado(){
+        baseImage = new BaseImage(R.drawable.ahorcado1);
+        decoratedImage2 = new ImageDecorator(baseImage, R.drawable.ahorcado2);
+
+        decoratedImage3 = new ImageDecorator(decoratedImage2, R.drawable.ahorcado3);
+        decoratedImage4 = new ImageDecorator(decoratedImage3, R.drawable.ahorcado4);
+        decoratedImage5 = new ImageDecorator(decoratedImage4, R.drawable.ahorcado5);
+        decoratedImage6 = new ImageDecorator(decoratedImage5, R.drawable.ahorcado6);
+        decoratedImage7 = new ImageDecorator(decoratedImage6, R.drawable.ahorcado7);
+        decoratedImage8 = new ImageDecorator(decoratedImage7, R.drawable.ahorcado8);
+        decoratedImage9 = new ImageDecorator(decoratedImage8, R.drawable.ahorcado9);
+        decoratedImage10 = new ImageDecorator(decoratedImage9, R.drawable.ahorcado10);
+        decoratedImage11 = new ImageDecorator(decoratedImage10, R.drawable.ahorcado11);
+
+        if(numFallos == 1) {
+            decoratedImage2.display();
+        }
+        else if(numFallos == 2){
+            decoratedImage3.display();
+        }
+        else if(numFallos == 3){
+            decoratedImage4.display();
+        }
+        else if(numFallos == 4){
+            decoratedImage5.display();
+        }
+        else if(numFallos == 5){
+            decoratedImage6.display();
+        }
+        else if(numFallos == 6){
+            decoratedImage7.display();
+        }
+        else if(numFallos == 7){
+            decoratedImage8.display();
+        }
+        else if(numFallos == 8){
+            decoratedImage9.display();
+        }
+        else if(numFallos == 9){
+            decoratedImage10.display();
+        }
+        else if(numFallos == 10){
+            decoratedImage11.display();
+        }
+    }
+
+    public char letraPulsada(View view){
+        if(view instanceof Button) {
+            botonLetra = (Button) view;
+            charPulsado = botonLetra.getText().charAt(0);
+        }
+        comprobarLetra();
+        return charPulsado;
+    }
+
+    public void comprobarLetra(){
+        if(respuesta.contains(String.valueOf(charPulsado))){
+            botonLetra.setBackgroundColor(0xFF008F39);
+            botonLetra.setClickable(false);
+            for(int i = 0; i < respuestaOculta.length(); i++){
+                if(respuesta.charAt(i) == charPulsado){
+                    respuestaOculta.replace("_", "charPulsado");
+                }
+            }
+        }
+        else{
+            botonLetra.setBackgroundColor(0xFFFF0000);
+            botonLetra.setClickable(false);
+            cambiarFotoAhorcado();
+            //numImagenAhorcado = imageViewAhorcado.
+            //imageViewAhorcado.setImageDrawable(R.drawable.ahorcado);
+        }
+    }
 
     public void reiniciarTimer() {
         countDownTimer = new CountDownTimer(duration * 1000, 1000) {

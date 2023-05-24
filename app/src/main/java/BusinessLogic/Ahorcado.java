@@ -7,7 +7,7 @@ public class Ahorcado implements Serializable {
     private int timer;
     private String dificultad;
     private String respuesta;
-    private Phrase phrase;
+    private Hanged hanged;
 
     public Ahorcado(){}
 
@@ -36,8 +36,8 @@ public class Ahorcado implements Serializable {
         return this.respuesta;
     }
 
-    public void setPhrase(Phrase phrase){
-        this.phrase = phrase;
+    public void setHanged(Hanged hanged){
+        this.hanged = hanged;
     }
-    public Phrase getPhrase(){ return this.phrase; }
+    public Hanged getHanged(){ return this.hanged; }
 }

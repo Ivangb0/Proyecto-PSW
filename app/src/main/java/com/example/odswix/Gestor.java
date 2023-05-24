@@ -74,8 +74,10 @@ public class Gestor extends AppCompatActivity {
         int resultado = random.nextInt(2);
         if(resultado == 0)
             cuestionFrase();
-        else
+        else if(resultado == 1)
             cuestionPregunta();
+        else
+            cuestionAhorcado();
     }
     private void cuestionFrase() {
 
@@ -184,7 +186,7 @@ public class Gestor extends AppCompatActivity {
 
     private void cuestionAhorcado() {
 
-        Intent intent = new Intent(this, RetoPregunta.class);
+        Intent intent = new Intent(this, RetoAhorcado.class);
 
         if (vidas <= 0) {
             intent = new Intent(this, JugarPartida.class);

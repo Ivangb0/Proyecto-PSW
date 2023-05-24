@@ -80,6 +80,10 @@
             android:name=".Estadisticas"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".RetoAhorcado"
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -50,6 +50,8 @@ public class Hanged implements Serializable {
         return respuesta;
     }
 
+
+
     public int getPuntosPregunta() { return puntos; }
 
     //metodos set de la clase Question

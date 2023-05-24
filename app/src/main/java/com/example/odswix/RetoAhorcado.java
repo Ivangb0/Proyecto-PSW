@@ -136,6 +136,8 @@ public class RetoAhorcado extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        tipo = (String) intent.getSerializableExtra("tipo");
+
         ahorcado = (Ahorcado) intent.getSerializableExtra("cuestion");
         numPregunta = (int) intent.getSerializableExtra("numPregunta");
         vidas = (int) intent.getSerializableExtra("vidas");
@@ -145,7 +147,6 @@ public class RetoAhorcado extends AppCompatActivity {
         duration = ahorcado.getTimer();
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted", false);
-        tipo = (String) intent.getSerializableExtra("tipo");
         asignarStats();
 
         textViewNumPreg3 = (TextView) findViewById(R.id.textViewNumPreg3);
@@ -182,33 +183,33 @@ public class RetoAhorcado extends AppCompatActivity {
         buttonAbandonar3.setClickable(false);
 
 
-
-        //faltan por definir las cosas del contenedor de respuestas, aunque esta ya puesto en el xml
-
         textViewNumPreg3.setText(String.valueOf(numPregunta));
-        if(tipoAhorcado.getDificultad().equals("Facil")){
+        if(ahorcado.getDificultad().equals("Facil")){
             textViewPuntosXPreg3.setText("100");
             //aqui en retofrase hay algo de porcentaje
         }
-        else if(tipoAhorcado.getDificultad().equals("Medio")) {
+        else if(ahorcado.getDificultad().equals("Medio")) {
             textViewPuntosXPreg3.setText("200");
             //aqui tambien
-        } else if (tipoAhorcado.getDificultad().equals("Dificil")) {
+        } else if (ahorcado.getDificultad().equals("Dificil")) {
             textViewPuntosXPreg3.setText("300");
             //aqui tambien
         }
         buttonSiguiente.setText("Siguiente");
         textViewPuntosAcumAho.setText(String.valueOf(puntosAcum));
-        textViewTiempoAhorc.setText(String.valueOf(tipoAhorcado.getTimer()));
+        textViewTiempoAhorc.setText(String.valueOf(ahorcado.getTimer()));
         textViewVidas3.setText(String.valueOf(vidas));
-        textViewDificultadAho.setText(tipoAhorcado.getDificultad());
+        textViewDificultadAho.setText(ahorcado.getDificultad());
         textViewPtosCon3.setText(String.valueOf(PtosConsolidados));
         checkConsolidar(consolidado);
-        textoDescripAhorcado.setText(tipoAhorcado.getEnunciado());
+        textoDescripAhorcado.setText(ahorcado.getEnunciado());
         idCoberturaUser = usuario.getIdUser();
 
         //mecanica del juego
         respuesta = ahorcado.getRespuesta();
+        textViewRespuesta.setText(ocultarRespuesta());
+        ocultarRespuesta();
+
 
         soundAcierto = sound.getSoundAcierto(this);
         soundFallo = sound.getSoundFallo(this);
@@ -258,10 +259,15 @@ public class RetoAhorcado extends AppCompatActivity {
         */
 
     public String ocultarRespuesta(){
+        respuestaOculta = respuesta;
+
+        //StringBuilder respuestaOcultaBuilder = new StringBuilder();
+
+        System.out.println("ESTTAMOS OCULTANDO CON Ç____________");
         for(int i = 0; i< respuesta.length(); i++){
             char letra = respuesta.charAt(i);
             if(letra != ' ') {
-                respuestaOculta = respuesta.replace(".", "_");
+                respuestaOculta = respuestaOculta.replace(letra, '_');
             }
         }
         return respuestaOculta;
@@ -327,9 +333,9 @@ public class RetoAhorcado extends AppCompatActivity {
         if(respuesta.contains(String.valueOf(charPulsado))){
             botonLetra.setBackgroundColor(0xFF008F39);
             botonLetra.setClickable(false);
-            for(int i = 0; i < respuestaOculta.length(); i++){
+            for(int i = 0; i < respuesta.length(); i++){
                 if(respuesta.charAt(i) == charPulsado){
-                    respuestaOculta.replace("_", "charPulsado");
+                    respuestaOculta.replace("_", String.valueOf(charPulsado));
                 }
             }
         }
@@ -388,7 +394,7 @@ public class RetoAhorcado extends AppCompatActivity {
     }
 
     public void cambiarImagenODS() {
-        numODS = tipoAhorcado.getPhrase().getOds();
+        numODS = ahorcado.getHanged().getOds();
         // numODS = pregunta.getQuestion().getOds();
         int pictureID = getResources().getIdentifier("ods" + numODS, "drawable", getPackageName());
         Drawable picture = getResources().getDrawable(pictureID);
@@ -607,6 +613,7 @@ public class RetoAhorcado extends AppCompatActivity {
         intent.putExtra("user", usuario);
         intent.putExtra("tipo", tipo);
         startActivity(intent);
+        ocultarRespuesta();
         this.finish();
     }
 

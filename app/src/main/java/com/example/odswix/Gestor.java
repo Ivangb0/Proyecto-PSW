@@ -61,6 +61,9 @@ public class Gestor extends AppCompatActivity {
             case "frase":
                 cuestionFrase();
                 break;
+            case "ahorcado":
+                cuestionAhorcado();
+                break;
         }
         usuario = (User) intent.getSerializableExtra("user");
 

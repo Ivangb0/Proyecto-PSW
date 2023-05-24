@@ -161,8 +161,8 @@ public class Registrarse extends AppCompatActivity {
     public void registro(View vista){
         try {
             if(emptyTest() && userTest() && emailTest() && passwordTest()) {
-                PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcumTotales, trofeos, medallas) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement ps = SingletonSQL.insertar("INSERT INTO user (id_user, username, email, password, puntosAcumTotales, trofeos, medallas, nivel) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
                 ResultSet rs = SingletonSQL.consultar("SELECT MAX(id_user) FROM user");
                 int id = 0;
@@ -179,12 +179,13 @@ public class Registrarse extends AppCompatActivity {
                 ps.setInt(5, 0);
                 ps.setInt(6, 0);
                 ps.setInt(7, 0);
+                ps.setInt(8, 1);
 
                 ps.executeUpdate();
 
                 usuario = new User(id + 1, textUser.getText().toString(),
                         textEmail.getText().toString(), textPassword.getText().toString(),
-                        0, 0, 0,0,0,0,0,0,0);
+                        0, 0, 0,0,0,0,0,0,0,1);
 
                 establecerCoberturaBD();
 

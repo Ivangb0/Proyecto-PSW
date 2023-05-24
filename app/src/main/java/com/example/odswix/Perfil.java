@@ -26,6 +26,7 @@ public class Perfil extends AppCompatActivity {
     User usuario = null;
     String contraseña = "";
     boolean visible = false;
+    int nivel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class Perfil extends AppCompatActivity {
         password.setText(user.getPassword());
         TextView score = findViewById(R.id.puntosUser);
         score.setText(String.valueOf(user.getPuntosAcumTotales()));
+        TextView tvNivel = findViewById(R.id.nivelUser);
+        tvNivel.setText(String.valueOf(usuario.getNivel()));
     }
 
     public void cambiarUsername(View view){

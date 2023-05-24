@@ -10,11 +10,11 @@
         android:id="@+id/buttonAhorcado"
         android:layout_width="168dp"
         android:layout_height="111dp"
-        android:layout_marginStart="120dp"
         android:layout_marginTop="184dp"
         android:onClick="ahorcado"
-        android:text="Ahorcado"
-        android:textSize="20sp"
+        android:text="@string/Catalogo3"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -26,8 +26,8 @@
         android:layout_marginEnd="130dp"
         android:layout_marginBottom="56dp"
         android:onClick="mixta"
-        android:text="Partida Mixta"
-        android:textSize="20sp"
+        android:text="@string/Catalogo4"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/button13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,11 +39,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:onClick="frase"
-        android:text="Completar Frase"
-        android:textSize="18sp"
+        android:text="@string/Catalogo2"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
-        app:layout_constraintStart_toEndOf="@+id/button9"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
@@ -72,15 +70,15 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
         android:onClick="pregunta"
-        android:text="Pregunta"
-        android:textSize="20sp"
+        android:text="@string/Catalogo1"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <Button
         android:id="@+id/button13"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="26dp"
         android:onClick="cancelar"

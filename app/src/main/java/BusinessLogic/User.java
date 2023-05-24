@@ -37,11 +37,15 @@ public class User implements Serializable {
     @DatabaseField
     public int tiempoUso;
 
+    @DatabaseField
+    public int nivel;
+
+
     //constructor vacio para que la libreria del DAO funcione
     User(){}
 
     //constructor de la clase user
-    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband, int acie, int fall, int tiempoU){
+    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband, int acie, int fall, int tiempoU, int nivel){
         this.id_user = idUs;
         this.username = usern;
         this.email = email;
@@ -55,6 +59,7 @@ public class User implements Serializable {
         this.aciertos = acie;
         this.fallos = fall;
         this.tiempoUso = tiempoU;
+        this.nivel = nivel;
     }
 
     //metodos get de los atributos de la clase user
@@ -93,6 +98,7 @@ public class User implements Serializable {
     public int getAciertos(){return aciertos;}
     public int getFallos(){return fallos;}
     public int getTiempoUso(){return tiempoUso;}
+    public int getNivel(){return nivel;}
 
     //metodos set de los atributos de la clase user
     public void setUsername (String newUsername){
@@ -130,4 +136,6 @@ public class User implements Serializable {
     public void setFallos (int newFallos) {this.fallos = newFallos;}
 
     public void setTiempoUso (int newTiempoUso) {this.tiempoUso = newTiempoUso;}
+
+    public void setNivel (int newNivel) {this.nivel = newNivel;}
 }

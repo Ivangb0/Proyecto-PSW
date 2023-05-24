@@ -332,24 +332,6 @@ public class RetoPregunta extends AppCompatActivity {
         buttonAbandonar.setClickable(false);
         muteButton.setVisibility(View.INVISIBLE);
     }
-    /*No se porque pero si lo hago con los metodos explota la app, lo miraré para el siguiente sprint
-    public void dessilenciarTodo(){
-        muteButton.setImageResource(R.drawable.audio_on);
-        soundBackground.setVolume(1, 1);
-        soundAcierto.setVolume(1, 1);
-        soundDerrota.setVolume(1, 1);
-        soundFallo.setVolume(1, 1);
-        soundVictoria.setVolume(1, 1);
-        soundCountdown10s.setVolume(1, 1);
-    }
-    public void silenciarTodo(){
-        soundBackground.setVolume(0, 0);
-        soundAcierto.setVolume(0, 0);
-        soundDerrota.setVolume(0, 0);
-        soundFallo.setVolume(0, 0);
-        soundVictoria.setVolume(0, 0);
-        soundCountdown10s.setVolume(0, 0);
-    }*/
 
     public void pressConsolidar(View view){
         PtosConsolidados = puntosAcum;

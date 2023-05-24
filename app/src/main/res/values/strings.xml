@@ -9,5 +9,8 @@
     <string name="GuiaUsuario7">Armario:\nEn este apartado podemos observar la colección de medallas del usuario.</string>
     <string name="GuiaUsuario8">Estadisticas:\nEn este apartado podemos observar las estadísticas conseguidas del usuario.</string>
     <string name="GuiaUsuario9">Cobertura ODS:\nEn este apartado podemos observar el progreso que lleva el usuario en cada ODS dependiendo de los retos que se hayan completado sobre cada una.</string>
-
+    <string name="Catalogo1">Pregunta</string>
+    <string name="Catalogo2">Completar\nfrase</string>
+    <string name="Catalogo3">Ahorcado</string>
+    <string name="Catalogo4">Partida\nmixta</string>
 </resources>

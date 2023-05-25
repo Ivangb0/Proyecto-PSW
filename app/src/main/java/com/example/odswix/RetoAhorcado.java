@@ -209,6 +209,7 @@ public class RetoAhorcado extends AppCompatActivity {
         respuesta = ahorcado.getRespuesta();
         textViewRespuesta.setText(ocultarRespuesta());
         ocultarRespuesta();
+        numFallos = 0;
 
 
         soundAcierto = sound.getSoundAcierto(this);
@@ -260,10 +261,6 @@ public class RetoAhorcado extends AppCompatActivity {
 
     public String ocultarRespuesta(){
         respuestaOculta = respuesta;
-
-        //StringBuilder respuestaOcultaBuilder = new StringBuilder();
-
-        System.out.println("ESTTAMOS OCULTANDO CON Ç____________");
         for(int i = 0; i< respuesta.length(); i++){
             char letra = respuesta.charAt(i);
             if(letra != ' ') {
@@ -288,35 +285,40 @@ public class RetoAhorcado extends AppCompatActivity {
         decoratedImage10 = new ImageDecorator(decoratedImage9, R.drawable.ahorcado10);
         decoratedImage11 = new ImageDecorator(decoratedImage10, R.drawable.ahorcado11);
 
-        if(numFallos == 1) {
-            decoratedImage2.display();
-        }
-        else if(numFallos == 2){
-            decoratedImage3.display();
-        }
-        else if(numFallos == 3){
-            decoratedImage4.display();
-        }
-        else if(numFallos == 4){
-            decoratedImage5.display();
-        }
-        else if(numFallos == 5){
-            decoratedImage6.display();
-        }
-        else if(numFallos == 6){
-            decoratedImage7.display();
-        }
-        else if(numFallos == 7){
-            decoratedImage8.display();
-        }
-        else if(numFallos == 8){
-            decoratedImage9.display();
-        }
-        else if(numFallos == 9){
-            decoratedImage10.display();
-        }
-        else if(numFallos == 10){
-            decoratedImage11.display();
+        switch (numFallos) {
+            case 1:
+                decoratedImage2.display();
+                break;
+            case 2:
+                decoratedImage3.display();
+                break;
+            case 3:
+                decoratedImage4.display();
+                break;
+            case 4:
+                decoratedImage5.display();
+                break;
+            case 5:
+                decoratedImage6.display();
+                break;
+            case 6:
+                decoratedImage7.display();
+                break;
+            case 7:
+                decoratedImage8.display();
+                break;
+            case 8:
+                decoratedImage9.display();
+                break;
+            case 9:
+                decoratedImage10.display();
+                break;
+            case 10:
+                decoratedImage11.display();
+                break;
+            default:
+                // Acción en caso de que numFallos no esté dentro del rango válido
+                break;
         }
     }
 
@@ -341,6 +343,7 @@ public class RetoAhorcado extends AppCompatActivity {
         }
         else{
             botonLetra.setBackgroundColor(0xFFFF0000);
+            numFallos++;
             botonLetra.setClickable(false);
             cambiarFotoAhorcado();
             //numImagenAhorcado = imageViewAhorcado.

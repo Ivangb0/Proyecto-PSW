@@ -346,7 +346,7 @@ public class RetoAhorcado extends AppCompatActivity {
  */
 public void comprobarLetra(){
     System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAA FI IF IF");
-    String tvr = textViewRespuesta.toString();
+    String tvr = textViewRespuesta.getText().toString();
     String result = "";
     char[] respuestaArray = tvr.toCharArray();
     if(respuesta.contains(String.valueOf(charPulsado))){
@@ -359,10 +359,11 @@ public void comprobarLetra(){
                 respuestaArray[i] = charPulsado;
             }
         }
-        result = String.valueOf(charPulsado);
+        //result = String.valueOf(respuestaArray);
+        result = new String(respuestaArray);
+        System.out.println(result);
         textViewRespuesta.setText(result);
         textViewRespuesta.requestLayout();
-
     }
 
         else{

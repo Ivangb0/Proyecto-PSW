@@ -331,23 +331,48 @@ public class RetoAhorcado extends AppCompatActivity {
         return charPulsado;
     }
 
-    public void comprobarLetra(){
-        if(respuesta.contains(String.valueOf(charPulsado))){
-            botonLetra.setBackgroundColor(0xFF008F39);
-            botonLetra.setClickable(false);
-            for(int i = 0; i < respuesta.length(); i++){
-                if(respuesta.charAt(i) == charPulsado){
-                    respuestaOculta.replace("_", String.valueOf(charPulsado));
-                }
+/*
+    public String ocultarRespuesta(){
+        respuestaOculta = respuesta;
+        for(int i = 0; i< respuesta.length(); i++){
+            char letra = respuesta.charAt(i);
+            if(letra != ' ') {
+                respuestaOculta = respuestaOculta.replace(letra, '_');
             }
         }
+        return respuestaOculta;
+    }
+            textViewRespuesta.setText(ocultarRespuesta());
+ */
+public void comprobarLetra(){
+    System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAA FI IF IF");
+    String tvr = textViewRespuesta.toString();
+    String result = "";
+    char[] respuestaArray = tvr.toCharArray();
+    if(respuesta.contains(String.valueOf(charPulsado))){
+        botonLetra.setBackgroundColor(0xFF008F39);
+        botonLetra.setClickable(false);
+        for(int i = 0; i < respuesta.length(); i++){
+
+            if(respuesta.charAt(i) == charPulsado){
+                System.out.println("GE ENTREADO EN LE FI IF IF");
+                respuestaArray[i] = charPulsado;
+            }
+        }
+        result = String.valueOf(charPulsado);
+        textViewRespuesta.setText(result);
+        textViewRespuesta.requestLayout();
+
+    }
+
         else{
-            botonLetra.setBackgroundColor(0xFFFF0000);
-            numFallos++;
-            botonLetra.setClickable(false);
-            cambiarFotoAhorcado();
-            //numImagenAhorcado = imageViewAhorcado.
-            //imageViewAhorcado.setImageDrawable(R.drawable.ahorcado);
+            if(numFallos == 10) System.out.println("HASTA AQUI HEMOS LLEGADO");
+            else{
+                botonLetra.setBackgroundColor(0xFFFF0000);
+                numFallos++;
+                botonLetra.setClickable(false);
+                cambiarFotoAhorcado();
+            }
         }
     }
 

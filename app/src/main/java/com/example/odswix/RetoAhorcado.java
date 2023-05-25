@@ -51,7 +51,7 @@ public class RetoAhorcado extends AppCompatActivity {
     CountDownTimer countDownTimer;
     CountDownTimer countDownTimerCons;
     int duration;
-    int durationCons = 21;
+    int durationCons = 17;
     private User usuario;
     private int puntosAcumTotales = 0;
     private int puntosPregunta = 0;
@@ -81,6 +81,7 @@ public class RetoAhorcado extends AppCompatActivity {
     int numODS;
     boolean pistaPressed = false;
     Button botonLetra;
+    TextView textViewTiempoC;
 
     TextView textView21;
     TextView textViewPtosObtend;
@@ -179,9 +180,9 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewPtosTots = (TextView) findViewById(R.id.textViewPtosTots);
         textViewPtosAcums = (TextView) findViewById(R.id.textViewPtosAcums);
         textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
+        textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
         buttonAbandonar3.setVisibility(View.INVISIBLE);
         buttonAbandonar3.setClickable(false);
-
 
         textViewNumPreg3.setText(String.valueOf(numPregunta));
         if(ahorcado.getDificultad().equals("Facil")){
@@ -344,7 +345,27 @@ public class RetoAhorcado extends AppCompatActivity {
     }
             textViewRespuesta.setText(ocultarRespuesta());
  */
+    private void mostrarSiguiente(){
+        contenedorRespuesta.setVisibility(View.VISIBLE);
+        //disableButonsAnswers();
+    }
+    public void handlerRespIncorrecta(){
+        soundBackground.stop();
+        buttonSiguiente.setText("Vuelve a intentarlo");
+        textView21.setText("Respuesta incorrecta.");
+        puntosCuandoCorrecta();
+        textViewPtosObtend.setText("0");
+        buttonConsolidar.setVisibility(View.INVISIBLE);
+        buttonConsolidar.setClickable(false);
+        esconderTodo();
+        mostrarSiguiente();
+        checkVidasACero();
+    }
 public void comprobarLetra(){
+
+
+
+
     System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAA FI IF IF");
     String tvr = textViewRespuesta.getText().toString();
     String result = "";
@@ -367,7 +388,37 @@ public void comprobarLetra(){
     }
 
         else{
-            if(numFallos == 10) System.out.println("HASTA AQUI HEMOS LLEGADO");
+            vidas--;
+            if(numFallos == 9) {
+                handlerRespIncorrecta();
+                buttonPistas3.setClickable(false);
+                buttonAbandonar3.setVisibility(View.INVISIBLE);
+                buttonAbandonar3.setClickable(false);
+                textViewTiempoC.setVisibility(View.VISIBLE);
+                textViewTiempoCons.setVisibility(View.VISIBLE);
+                soundBackground.stop();
+                soundCountdown10s.stop();
+                countDownTimer.cancel();
+                timerConsolidar();
+                puntosPregunta = 0;
+                puntosPregunta = Integer.parseInt(textViewPuntosXPreg3.getText().toString());
+
+                System.out.println("HASTA AQUI HEMOS LLEGADO");
+                falloStat++;
+                usuario.setFallos(falloStat);
+                userdao.actualizar(usuario);
+
+                guardarFalloCobertura();
+                soundFallo.start();
+
+                if (puntosAcum >= puntosPregunta * 2 || PtosConsolidados >= puntosPregunta *2) {
+                    puntosAcum -= puntosPregunta * 2;
+                    PtosConsolidados -= puntosPregunta*2;
+                } else {
+                    puntosAcum = 0;
+                    PtosConsolidados = 0;
+                }
+            }
             else{
                 botonLetra.setBackgroundColor(0xFFFF0000);
                 numFallos++;

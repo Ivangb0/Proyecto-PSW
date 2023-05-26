@@ -133,7 +133,7 @@ public class RetoPregunta extends AppCompatActivity {
         textViewPtosTots = findViewById(R.id.textViewPtosTots);
         textViewPtosAcums = findViewById(R.id.textViewPtosAcums);
         textViewTiempoC = findViewById(R.id.textViewTiempoC);
-        textViewTiempoCons = findViewById(R.id.textViewTiempoCons);
+        textViewTiempoCons = findViewById(R.id.textViewTiempoCons3);
         imageViewODS = findViewById(R.id.imageViewODS);
         textViewPuntConsol = findViewById(R.id.textViewPuntConsol);
         textViewPtosCon = findViewById(R.id.textViewPtosCon);

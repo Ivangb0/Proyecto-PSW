@@ -101,7 +101,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textViewTiempoCons"
+            android:id="@+id/textViewTiempoCons3"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_above="@+id/textViewObtend"
@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Puntuación consolidada:"
+        android:text="Puntuación acumulada:"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/textViewPuntConsol3"
         app:layout_constraintStart_toEndOf="@+id/buttonPistas3" />

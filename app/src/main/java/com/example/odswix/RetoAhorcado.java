@@ -54,7 +54,7 @@ public class RetoAhorcado extends AppCompatActivity {
     int durationCons = 17;
     private User usuario;
     private int puntosAcumTotales = 0;
-    private int puntosPregunta = 0;
+    private int puntosPregunta;
     private int PtosConsolidados = 0;
     private String tipo = null;
     private int porcentaje = 0;
@@ -93,7 +93,7 @@ public class RetoAhorcado extends AppCompatActivity {
     TextView textViewObtend;
     TextView textViewPtosTots;
     TextView textViewPtosAcums;
-    TextView textViewTiempoCons;
+    TextView textViewTiempoCons3;
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
     List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
@@ -179,7 +179,7 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewObtend = (TextView) findViewById(R.id.textViewObtend);
         textViewPtosTots = (TextView) findViewById(R.id.textViewPtosTots);
         textViewPtosAcums = (TextView) findViewById(R.id.textViewPtosAcums);
-        textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
+        textViewTiempoCons3 = (TextView) findViewById(R.id.textViewTiempoCons3);
         textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
         buttonAbandonar3.setVisibility(View.INVISIBLE);
         buttonAbandonar3.setClickable(false);
@@ -205,6 +205,9 @@ public class RetoAhorcado extends AppCompatActivity {
         checkConsolidar(consolidado);
         textoDescripAhorcado.setText(ahorcado.getEnunciado());
         idCoberturaUser = usuario.getIdUser();
+        textViewPuntosAcumAho.setText(String.valueOf(puntosAcum));
+        textViewPtosCon3.setText(String.valueOf(PtosConsolidados));
+
 
         //mecanica del juego
         respuesta = ahorcado.getRespuesta();
@@ -363,9 +366,6 @@ public class RetoAhorcado extends AppCompatActivity {
     }
 public void comprobarLetra(){
 
-
-
-
     System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAA FI IF IF");
     String tvr = textViewRespuesta.getText().toString();
     String result = "";
@@ -385,22 +385,30 @@ public void comprobarLetra(){
         System.out.println(result);
         textViewRespuesta.setText(result);
         textViewRespuesta.requestLayout();
+
+            if(result.equals(respuesta)){
+                //acabamos
+
+                timerConsolidar();
+                countDownTimer.cancel();
+                respuestaCorrecta();
+                guardarAciertoCobertura();
+            }
     }
 
         else{
-            vidas--;
+
             if(numFallos == 9) {
+                vidas--;
                 handlerRespIncorrecta();
                 buttonPistas3.setClickable(false);
                 buttonAbandonar3.setVisibility(View.INVISIBLE);
                 buttonAbandonar3.setClickable(false);
                 textViewTiempoC.setVisibility(View.VISIBLE);
-                textViewTiempoCons.setVisibility(View.VISIBLE);
-                soundBackground.stop();
+                textViewTiempoCons3.setVisibility(View.VISIBLE);
                 soundCountdown10s.stop();
                 countDownTimer.cancel();
                 timerConsolidar();
-                puntosPregunta = 0;
                 puntosPregunta = Integer.parseInt(textViewPuntosXPreg3.getText().toString());
 
                 System.out.println("HASTA AQUI HEMOS LLEGADO");
@@ -475,7 +483,6 @@ public void comprobarLetra(){
 
     public void cambiarImagenODS() {
         numODS = ahorcado.getHanged().getOds();
-        // numODS = pregunta.getQuestion().getOds();
         int pictureID = getResources().getIdentifier("ods" + numODS, "drawable", getPackageName());
         Drawable picture = getResources().getDrawable(pictureID);
         imagenOdsAhorcado.setImageDrawable(picture);
@@ -554,7 +561,7 @@ public void comprobarLetra(){
                     @Override
                     public void run() {
                         String time = String.format("%2d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
-                        textViewTiempoCons.setText(time);
+                        textViewTiempoCons3.setText(time);
                     }
                 });
             }
@@ -603,6 +610,8 @@ public void comprobarLetra(){
 
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);
+        System.out.println("ESTOS SON LOS PUNTOSPREGUNTA" + puntosPregunta);
+        System.out.println("PUNTOS XPREG3 " + textViewPuntosXPreg3.getText().toString());
         if(pistaPressed){textViewPtosObtend.setText(String.valueOf(puntosPregunta/2));}
         else{textViewPtosObtend.setText(String.valueOf(puntosPregunta));}
         textViewPtosObtend.setVisibility(View.VISIBLE);
@@ -682,7 +691,7 @@ public void comprobarLetra(){
         tiempoStat = usuario.getTiempoUso();
     }
     public void siguientePregunta(View view) {
-        countDownTimerCons.cancel();
+        //countDownTimerCons.cancel();
         Intent intent = new Intent(this, Gestor.class);
         intent.putExtra("numPreg", numPregunta);
         intent.putExtra("puntosAcum", puntosAcum);
@@ -692,16 +701,16 @@ public void comprobarLetra(){
         intent.putExtra("puntosCons", PtosConsolidados);
         intent.putExtra("user", usuario);
         intent.putExtra("tipo", tipo);
+        intent.putExtra("muted", appMuted);
         startActivity(intent);
-        ocultarRespuesta();
-        this.finish();
+        //ocultarRespuesta();
+        //this.finish();
     }
 
 
     //se llamara cuando se complete la palabra
     public void respuestaCorrecta() {
         aciertoStat++;
-
         usuario.setAciertos(aciertoStat);
         userdao.actualizar(usuario);
 

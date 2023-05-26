@@ -163,7 +163,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         buttonConsolidar = (Button) findViewById(R.id.buttonConsolidar);
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
         textViewTiempoC = (TextView) findViewById(R.id.textViewTiempoC);
-        textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons);
+        textViewTiempoCons = (TextView) findViewById(R.id.textViewTiempoCons3);
         incorrectText.setVisibility(View.INVISIBLE);
 
         buttonAbandonar.setVisibility(View.INVISIBLE);

@@ -611,9 +611,9 @@ public void comprobarLetra(){
     public void puntosCuandoCorrecta(){
         textViewObtend.setVisibility(View.VISIBLE);
         System.out.println("ESTOS SON LOS PUNTOSPREGUNTA" + puntosPregunta);
-        System.out.println("PUNTOS XPREG3 " + textViewPuntosXPreg3.getText().toString());
-        if(pistaPressed){textViewPtosObtend.setText(String.valueOf(puntosPregunta/2));}
-        else{textViewPtosObtend.setText(String.valueOf(puntosPregunta));}
+        System.out.println("PUNTOS XPREG3 " + Integer.parseInt(textViewPuntosXPreg3.getText().toString()));
+        if(pistaPressed){textViewPtosObtend.setText(String.valueOf(Integer.parseInt(textViewPuntosXPreg3.getText().toString())/2));}
+        else{textViewPtosObtend.setText(String.valueOf(Integer.parseInt(textViewPuntosXPreg3.getText().toString())));}
         textViewPtosObtend.setVisibility(View.VISIBLE);
         textViewPtosTots.setVisibility(View.VISIBLE);
         textViewPtosAcums.setText(String.valueOf(puntosAcum));
@@ -716,8 +716,8 @@ public void comprobarLetra(){
 
         numPregunta++;
         if(pistaPressed) {
-            puntosAcum += (puntosPregunta / 2);
-        } else{ puntosAcum += puntosPregunta; }
+            puntosAcum += (Integer.parseInt(textViewPuntosXPreg3.getText().toString()) / 2);
+        } else{ puntosAcum += Integer.parseInt(textViewPuntosXPreg3.getText().toString()); }
         textView21.setText("Respuesta correcta.");
         soundAcierto.start();
         soundBackground.stop();

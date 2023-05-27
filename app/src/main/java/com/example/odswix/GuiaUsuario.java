@@ -28,6 +28,10 @@ public class GuiaUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        usuario = (User) intent.getSerializableExtra("user");
+        appMuted = (boolean) intent.getBooleanExtra("muted", false);
         setContentView(R.layout.activity_guia_usuario);
         ivRetoPregunta = findViewById(R.id.imageView15);
         ivRetoFrase = findViewById(R.id.imageView16);

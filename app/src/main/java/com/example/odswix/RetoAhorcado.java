@@ -1,6 +1,7 @@
 package com.example.odswix;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -397,7 +398,7 @@ public void comprobarLetra(){
                         guardarAciertoCobertura();
 
                     }
-                }, 2000);
+                }, 1000);
 
             }
     }

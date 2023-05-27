@@ -1,12 +1,11 @@
 package com.example.odswix;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
 
@@ -52,6 +51,10 @@ public class GuiaUsuario extends AppCompatActivity {
         //ivEstadisticas.setImageResource(R.drawable.estadisticas);
         ivConfiguracion.setImageResource(R.drawable.configuracion);
         //ivRetoAhorcado.setImageResource(R.drawable.retoahorcado);
+
+        Intent intent = getIntent();
+        usuario = (User) intent.getSerializableExtra("user");
+        appMuted = intent.getBooleanExtra("muted",false);
     }
     public void volverMainMenu (View view){
         Intent intent = new Intent(this, JugarPartida.class);

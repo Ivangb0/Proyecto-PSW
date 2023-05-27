@@ -35,8 +35,6 @@ import Persistence.UserDAO;
 public class RetoAhorcado extends AppCompatActivity {
     private Ahorcado ahorcado;
 
-    private Ahorcado tipoAhorcado = null;
-
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
@@ -357,6 +355,7 @@ public class RetoAhorcado extends AppCompatActivity {
         buttonSiguiente.setText("Vuelve a intentarlo");
         textView21.setText("Respuesta incorrecta.");
         puntosCuandoCorrecta();
+        textViewPtosAcums.setText(String.valueOf(puntosPregunta));
         textViewPtosObtend.setText("0");
         buttonConsolidar.setVisibility(View.INVISIBLE);
         buttonConsolidar.setClickable(false);
@@ -691,7 +690,7 @@ public void comprobarLetra(){
         tiempoStat = usuario.getTiempoUso();
     }
     public void siguientePregunta(View view) {
-        //countDownTimerCons.cancel();
+        countDownTimerCons.cancel();
         Intent intent = new Intent(this, Gestor.class);
         intent.putExtra("numPreg", numPregunta);
         intent.putExtra("puntosAcum", puntosAcum);

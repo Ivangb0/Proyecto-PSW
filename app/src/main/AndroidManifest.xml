@@ -23,6 +23,11 @@
             android:name=".RetoPregunta"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".MainPrueba"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Gestor"
             android:exported="false"

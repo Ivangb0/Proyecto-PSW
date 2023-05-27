@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -387,11 +388,17 @@ public void comprobarLetra(){
 
             if(result.equals(respuesta)){
                 //acabamos
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        timerConsolidar();
+                        countDownTimer.cancel();
+                        respuestaCorrecta();
+                        guardarAciertoCobertura();
 
-                timerConsolidar();
-                countDownTimer.cancel();
-                respuestaCorrecta();
-                guardarAciertoCobertura();
+                    }
+                }, 2000);
+
             }
     }
 

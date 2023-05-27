@@ -52,7 +52,7 @@ public class GuiaUsuario extends AppCompatActivity {
         ivConfiguracion.setImageResource(R.drawable.configuracion);
         //ivRetoAhorcado.setImageResource(R.drawable.retoahorcado);
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         usuario = (User) intent.getSerializableExtra("user");
         appMuted = intent.getBooleanExtra("muted",false);
     }

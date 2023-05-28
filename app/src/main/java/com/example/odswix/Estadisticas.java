@@ -8,8 +8,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
+import ClasesObserver.EstadisticasObservable;
+import ClasesObserver.EstadisticasObserver;
+import ClasesObserver.GestorEstadisticas;
 
-public class Estadisticas extends AppCompatActivity {
+public class Estadisticas extends AppCompatActivity implements EstadisticasObserver {
 
     TextView textViewUserStats;
     TextView textViewGlobStats;
@@ -18,6 +21,16 @@ public class Estadisticas extends AppCompatActivity {
     TextView textViewAbandStats;
     TextView textViewTiempoUso;
     User usu;
+    GestorEstadisticas gestorEstadisticas;
+
+    private int obsAciertos;
+    private int obsFallos;
+    private int obsGanadas;
+    private int obsPerdidas;
+    private int obsAbandonadas;
+
+
+    public Estadisticas(){}
 
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -43,7 +56,25 @@ public class Estadisticas extends AppCompatActivity {
         textViewLostStats.setText("Partidas perdidas: " + usu.getPerdidas());
         textViewAbandStats.setText("Partidas abandonadas: " + usu.getAbandonadas());
         textViewTiempoUso.setText("Tiempo de uso: " + usu.getTiempoUso());
+
     }
+
+    //observer
+    @Override
+    public void onEstadisticasActualizadas(int aciertos, int fallos, int ganadas, int perdidas, int abandonadas) {
+
+        int aciertosYFallos = usu.getAciertos() + usu.getFallos();
+        textViewUserStats.setText("Usuario: " + usu.getUsername());
+        textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + aciertosYFallos);
+        textViewWonStats.setText("Partidas ganadas: " + usu.getGanadas());
+        textViewLostStats.setText("Partidas perdidas: " + usu.getPerdidas());
+        textViewAbandStats.setText("Partidas abandonadas: " + usu.getAbandonadas());
+        textViewTiempoUso.setText("Tiempo de uso: " + usu.getTiempoUso());
+    }
+    public Estadisticas(GestorEstadisticas gestorEstadisticas){
+        this.gestorEstadisticas = gestorEstadisticas;
+    }
+
 
     public void volverDeEstadisticas(View view){
         Intent salirEstadisticas = new Intent(this, Perfil.class);
@@ -51,5 +82,6 @@ public class Estadisticas extends AppCompatActivity {
         finishAfterTransition();
         startActivity(salirEstadisticas);
     }
+
 
 }

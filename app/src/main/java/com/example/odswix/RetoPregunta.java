@@ -31,6 +31,7 @@ import BusinessLogic.Answer;
 import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
+import ClasesObserver.GestorEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -78,6 +79,11 @@ public class RetoPregunta extends AppCompatActivity {
     //MediaPlayers
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
+
+    private GestorEstadisticas gestorEstadisticas;
+
+    public RetoPregunta(){}
+
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,6 +212,20 @@ public class RetoPregunta extends AppCompatActivity {
             soundVictoria.setVolume(1, 1);
             soundCountdown10s.setVolume(1, 1);
         }
+    }
+
+    public RetoPregunta(GestorEstadisticas gestorEstadisticas){
+        this.gestorEstadisticas = gestorEstadisticas;
+    }
+
+    public void obsActualizarEstadisticas(){
+        int obsAciertos = aciertoStat;
+        int obsFallos = falloStat;
+        int obsGanadas = wonStat;
+        int obsPerdidas = lostStat;
+        int obsAbandonadas = abandonedStat;
+
+        gestorEstadisticas.actualizarEstadisticas(obsAciertos,obsFallos,obsGanadas,obsPerdidas,obsAbandonadas);
     }
 
     public void asignarStats(){
@@ -377,6 +397,7 @@ public class RetoPregunta extends AppCompatActivity {
             mostrarSiguiente();
             soundDerrota.start();
             buttonSiguiente.setText("Volver al menu");
+            obsActualizarEstadisticas();
         }
     }
     public void handlerRespIncorrecta(){
@@ -467,10 +488,9 @@ public class RetoPregunta extends AppCompatActivity {
 
         if (numPregunta == 10) {
             wonStat++;
-
+            obsActualizarEstadisticas();
             usuario.setGanadas(wonStat);
             userdao.actualizar(usuario);
-
             soundVictoria.start();
             buttonSiguiente.setText("Acabar");
         }
@@ -652,7 +672,7 @@ public class RetoPregunta extends AppCompatActivity {
 
         usuario.setAbandonadas(abandonedStat);
         userdao.actualizar(usuario);
-
+        obsActualizarEstadisticas();
         countDownTimer.cancel();
         soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();

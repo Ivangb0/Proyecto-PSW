@@ -94,6 +94,7 @@ public class RetoPregunta extends AppCompatActivity {
         tipo = (String) intent.getSerializableExtra("tipo");
 
         pregunta = (Pregunta) intent.getSerializableExtra("cuestion");
+        numPregunta = (int) intent.getSerializableExtra("numPregunta");
         vidas = (int) intent.getSerializableExtra("vidas");
         consolidado = (boolean) intent.getSerializableExtra("consolidado");
         puntosAcum = (int) intent.getSerializableExtra("pntsAcum");

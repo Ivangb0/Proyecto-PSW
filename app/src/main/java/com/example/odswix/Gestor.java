@@ -23,7 +23,6 @@ import CalsesBuilder.RetoFraseMedioBuilder;
 import CalsesBuilder.RetoPreguntaDificilBuilder;
 import CalsesBuilder.RetoPreguntaFacilBuilder;
 import CalsesBuilder.RetoPreguntaMedioBuilder;
-import ClasesStrategy.RetoAhorcadoStrategy;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -69,9 +68,18 @@ public class Gestor extends AppCompatActivity {
 
     }
 
+    public void checkVidas(int vidas){
+        if (vidas <= 0) {
+            Intent intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        }
+    }
+
     private void cuestionAleatoria() {
         Random random = new Random();
-        int resultado = random.nextInt(2);
+        int resultado = random.nextInt(3);
         if(resultado == 0)
             cuestionFrase();
         else if(resultado == 1)
@@ -83,43 +91,9 @@ public class Gestor extends AppCompatActivity {
 
         Intent intent = new Intent(this, RetoFrasePrueba.class);
 
-        if (vidas <= 0) {
-            intent = new Intent(this, JugarPartida.class);
-            intent.putExtra("user", usuario);
-            startActivity(intent);
-            this.finish();
-        }
+        checkVidas(vidas);
 
-        Frase tipoFrase = new Frase();
-        Director director = new Director();
-        RetoFraseFacilBuilder fraseFacilBuilder = new RetoFraseFacilBuilder();
-        RetoFraseMedioBuilder fraseMedioBuilder = new RetoFraseMedioBuilder();
-        RetoFraseDificilBuilder fraseDificilBuilder = new RetoFraseDificilBuilder();
-        if (numPreg < 4) {
-            director.construirFrase(fraseFacilBuilder);
-            tipoFrase = fraseFacilBuilder.getTipo();
-        } else if (numPreg < 7) {
-            director.construirFrase(fraseMedioBuilder);
-            tipoFrase = fraseMedioBuilder.getTipo();
-        } else if (numPreg <= 10) {
-            director.construirFrase(fraseDificilBuilder);
-            tipoFrase = fraseDificilBuilder.getTipo();
-        }else{
-            UserDAO userdao = new UserDAO();
-
-            intent = new Intent(this, PartidaFinalizada.class);
-            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
-            usuario.setPuntosAcumTotales(puntosAcumTotales);
-            userdao.actualizar(usuario);
-            intent.putExtra("pntsFin", puntosAcum);
-            intent.putExtra("user", usuario);
-            intent.putExtra("muted",appMuted);
-            startActivity(intent);
-            this.finish();
-        }
-
-
-
+        Frase tipoFrase = construirFrase(numPreg);
 
         intent.putExtra("cuestion", tipoFrase);
         intent.putExtra("vidas", vidas);
@@ -132,35 +106,26 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("muted",appMuted);
         startActivity(intent);
     }
-    private void cuestionPregunta() {
 
-        Intent intent = new Intent(this, RetoPregunta.class);
-
-        if (vidas <= 0) {
-            intent = new Intent(this, JugarPartida.class);
-            intent.putExtra("user", usuario);
-            startActivity(intent);
-            this.finish();
-        }
-
+    public Frase construirFrase(int nPreg){
+        Frase tipoFrase = new Frase();
         Director director = new Director();
-        Pregunta pregunta = new Pregunta();
-        RetoPreguntaFacilBuilder preguntaFacilBuilder = new RetoPreguntaFacilBuilder();
-        RetoPreguntaMedioBuilder preguntaMedioBuilder = new RetoPreguntaMedioBuilder();
-        RetoPreguntaDificilBuilder preguntaDificilBuilder = new RetoPreguntaDificilBuilder();
-        if (numPreg < 4) {
-            director.construirPregunta(preguntaFacilBuilder);
-            pregunta = preguntaFacilBuilder.getTipo();
-        } else if (numPreg < 7) {
-            director.construirPregunta(preguntaMedioBuilder);
-            pregunta = preguntaMedioBuilder.getTipo();
-        } else if (numPreg <= 10) {
-            director.construirPregunta(preguntaDificilBuilder);
-            pregunta = preguntaDificilBuilder.getTipo();
+        RetoFraseFacilBuilder fraseFacilBuilder = new RetoFraseFacilBuilder();
+        RetoFraseMedioBuilder fraseMedioBuilder = new RetoFraseMedioBuilder();
+        RetoFraseDificilBuilder fraseDificilBuilder = new RetoFraseDificilBuilder();
+        if (nPreg < 4) {
+            director.construirFrase(fraseFacilBuilder);
+            tipoFrase = fraseFacilBuilder.getTipo();
+        } else if (nPreg < 7) {
+            director.construirFrase(fraseMedioBuilder);
+            tipoFrase = fraseMedioBuilder.getTipo();
+        } else if (nPreg <= 10) {
+            director.construirFrase(fraseDificilBuilder);
+            tipoFrase = fraseDificilBuilder.getTipo();
         }else{
             UserDAO userdao = new UserDAO();
 
-            intent = new Intent(this, PartidaFinalizada.class);
+            Intent intent = new Intent(this, PartidaFinalizada.class);
             puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
             usuario.setPuntosAcumTotales(puntosAcumTotales);
             userdao.actualizar(usuario);
@@ -170,8 +135,18 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
+        return tipoFrase;
+    }
 
-        intent.putExtra("cuestion", pregunta);
+    private void cuestionPregunta() {
+
+        Intent intent = new Intent(this, RetoPregunta.class);
+
+        checkVidas(vidas);
+
+        Pregunta preg = construirPregunta(numPreg);
+
+        intent.putExtra("cuestion", preg);
         intent.putExtra("vidas", vidas);
         intent.putExtra("numPregunta", numPreg);
         intent.putExtra("consolidado", consolidado);
@@ -184,36 +159,25 @@ public class Gestor extends AppCompatActivity {
 
     }
 
-    private void cuestionAhorcado() {
-
-        Intent intent = new Intent(this, RetoAhorcado.class);
-
-        if (vidas <= 0) {
-            intent = new Intent(this, JugarPartida.class);
-            intent.putExtra("user", usuario);
-            startActivity(intent);
-            this.finish();
-        }
-
+    public Pregunta construirPregunta(int nPreg){
         Director director = new Director();
-        Ahorcado ahorcado = new Ahorcado();
-        RetoAhorcadoFacilBuilder ahorcadoFacilBuilder = new RetoAhorcadoFacilBuilder();
-        RetoAhorcadoMedioBuilder ahorcadoMedioBuilder = new RetoAhorcadoMedioBuilder();
-        RetoAhorcadoDificilBuilder ahorcadoDificilBuilder = new RetoAhorcadoDificilBuilder();
-
-        if (numPreg < 4) {
-            director.construirAhorcado(ahorcadoFacilBuilder);
-            ahorcado = ahorcadoFacilBuilder.getTipo();
-        } else if (numPreg < 7) {
-            director.construirAhorcado(ahorcadoMedioBuilder);
-            ahorcado = ahorcadoMedioBuilder.getTipo();
-        } else if (numPreg <= 10) {
-            director.construirAhorcado(ahorcadoDificilBuilder);
-            ahorcado = ahorcadoDificilBuilder.getTipo();
+        Pregunta pregunta = new Pregunta();
+        RetoPreguntaFacilBuilder preguntaFacilBuilder = new RetoPreguntaFacilBuilder();
+        RetoPreguntaMedioBuilder preguntaMedioBuilder = new RetoPreguntaMedioBuilder();
+        RetoPreguntaDificilBuilder preguntaDificilBuilder = new RetoPreguntaDificilBuilder();
+        if (nPreg < 4) {
+            director.construirPregunta(preguntaFacilBuilder);
+            pregunta = preguntaFacilBuilder.getTipo();
+        } else if (nPreg < 7) {
+            director.construirPregunta(preguntaMedioBuilder);
+            pregunta = preguntaMedioBuilder.getTipo();
+        } else if (nPreg <= 10) {
+            director.construirPregunta(preguntaDificilBuilder);
+            pregunta = preguntaDificilBuilder.getTipo();
         }else{
             UserDAO userdao = new UserDAO();
 
-            intent = new Intent(this, PartidaFinalizada.class);
+            Intent intent = new Intent(this, PartidaFinalizada.class);
             puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
             usuario.setPuntosAcumTotales(puntosAcumTotales);
             userdao.actualizar(usuario);
@@ -223,6 +187,16 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
+        return pregunta;
+    }
+
+    private void cuestionAhorcado() {
+
+        Intent intent = new Intent(this, RetoAhorcado.class);
+
+        checkVidas(vidas);
+
+        Ahorcado ahorcado = construirAhorcado(numPreg);
 
         intent.putExtra("cuestion", ahorcado);
         intent.putExtra("vidas", vidas);
@@ -234,7 +208,38 @@ public class Gestor extends AppCompatActivity {
         intent.putExtra("tipo", tipo);
         intent.putExtra("muted",appMuted);
         startActivity(intent);
+    }
 
+    public Ahorcado construirAhorcado(int npreg){
+        Director director = new Director();
+        Ahorcado ahorcado = new Ahorcado();
+        RetoAhorcadoFacilBuilder ahorcadoFacilBuilder = new RetoAhorcadoFacilBuilder();
+        RetoAhorcadoMedioBuilder ahorcadoMedioBuilder = new RetoAhorcadoMedioBuilder();
+        RetoAhorcadoDificilBuilder ahorcadoDificilBuilder = new RetoAhorcadoDificilBuilder();
+
+        if (npreg < 4) {
+            director.construirAhorcado(ahorcadoFacilBuilder);
+            ahorcado = ahorcadoFacilBuilder.getTipo();
+        } else if (npreg < 7) {
+            director.construirAhorcado(ahorcadoMedioBuilder);
+            ahorcado = ahorcadoMedioBuilder.getTipo();
+        } else if (npreg <= 10) {
+            director.construirAhorcado(ahorcadoDificilBuilder);
+            ahorcado = ahorcadoDificilBuilder.getTipo();
+        }else{
+            UserDAO userdao = new UserDAO();
+
+            Intent intent = new Intent(this, PartidaFinalizada.class);
+            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
+            usuario.setPuntosAcumTotales(puntosAcumTotales);
+            userdao.actualizar(usuario);
+            intent.putExtra("pntsFin", puntosAcum);
+            intent.putExtra("user", usuario);
+            intent.putExtra("muted",appMuted);
+            startActivity(intent);
+            this.finish();
+        }
+        return ahorcado;
     }
 
     private void setVariables(){

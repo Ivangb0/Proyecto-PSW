@@ -40,7 +40,7 @@ public class RetoAhorcadoDificilBuilder implements Builder{
 
     }
     public void buildDificultad(){
-        ahorcado.setDificultad("Medio");
+        ahorcado.setDificultad("Dificil");
 
     }
     public void buildRespuestas(){

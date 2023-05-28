@@ -13,16 +13,6 @@ import BusinessLogic.Ahorcado;
 import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
-import CalsesBuilder.Director;
-import CalsesBuilder.RetoAhorcadoDificilBuilder;
-import CalsesBuilder.RetoAhorcadoFacilBuilder;
-import CalsesBuilder.RetoAhorcadoMedioBuilder;
-import CalsesBuilder.RetoFraseDificilBuilder;
-import CalsesBuilder.RetoFraseFacilBuilder;
-import CalsesBuilder.RetoFraseMedioBuilder;
-import CalsesBuilder.RetoPreguntaDificilBuilder;
-import CalsesBuilder.RetoPreguntaFacilBuilder;
-import CalsesBuilder.RetoPreguntaMedioBuilder;
 import Persistence.UserDAO;
 
 public class Gestor extends AppCompatActivity {
@@ -93,7 +83,23 @@ public class Gestor extends AppCompatActivity {
 
         checkVidas(vidas);
 
-        Frase tipoFrase = construirFrase(numPreg);
+        if(numPreg > 10){
+            UserDAO userdao = new UserDAO();
+
+            intent = new Intent(this, PartidaFinalizada.class);
+            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
+            usuario.setPuntosAcumTotales(puntosAcumTotales);
+            userdao.actualizar(usuario);
+            intent.putExtra("pntsFin", puntosAcum);
+            intent.putExtra("user", usuario);
+            intent.putExtra("muted",appMuted);
+            startActivity(intent);
+            this.finish();
+        }
+
+        GestorConstructor gestor = new GestorConstructor();
+        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+        Frase tipoFrase = gestor.construirFrase(numPreg);
 
         intent.putExtra("cuestion", tipoFrase);
         intent.putExtra("vidas", vidas);
@@ -107,25 +113,17 @@ public class Gestor extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public Frase construirFrase(int nPreg){
-        Frase tipoFrase = new Frase();
-        Director director = new Director();
-        RetoFraseFacilBuilder fraseFacilBuilder = new RetoFraseFacilBuilder();
-        RetoFraseMedioBuilder fraseMedioBuilder = new RetoFraseMedioBuilder();
-        RetoFraseDificilBuilder fraseDificilBuilder = new RetoFraseDificilBuilder();
-        if (nPreg < 4) {
-            director.construirFrase(fraseFacilBuilder);
-            tipoFrase = fraseFacilBuilder.getTipo();
-        } else if (nPreg < 7) {
-            director.construirFrase(fraseMedioBuilder);
-            tipoFrase = fraseMedioBuilder.getTipo();
-        } else if (nPreg <= 10) {
-            director.construirFrase(fraseDificilBuilder);
-            tipoFrase = fraseDificilBuilder.getTipo();
-        }else{
+
+    private void cuestionPregunta() {
+
+        Intent intent = new Intent(this, RetoPregunta.class);
+
+        checkVidas(vidas);
+
+        if(numPreg > 10){
             UserDAO userdao = new UserDAO();
 
-            Intent intent = new Intent(this, PartidaFinalizada.class);
+            intent = new Intent(this, PartidaFinalizada.class);
             puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
             usuario.setPuntosAcumTotales(puntosAcumTotales);
             userdao.actualizar(usuario);
@@ -135,16 +133,10 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
-        return tipoFrase;
-    }
 
-    private void cuestionPregunta() {
-
-        Intent intent = new Intent(this, RetoPregunta.class);
-
-        checkVidas(vidas);
-
-        Pregunta preg = construirPregunta(numPreg);
+        GestorConstructor gestor = new GestorConstructor();
+        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+        Pregunta preg = gestor.construirPregunta( numPreg);
 
         intent.putExtra("cuestion", preg);
         intent.putExtra("vidas", vidas);
@@ -159,25 +151,16 @@ public class Gestor extends AppCompatActivity {
 
     }
 
-    public Pregunta construirPregunta(int nPreg){
-        Director director = new Director();
-        Pregunta pregunta = new Pregunta();
-        RetoPreguntaFacilBuilder preguntaFacilBuilder = new RetoPreguntaFacilBuilder();
-        RetoPreguntaMedioBuilder preguntaMedioBuilder = new RetoPreguntaMedioBuilder();
-        RetoPreguntaDificilBuilder preguntaDificilBuilder = new RetoPreguntaDificilBuilder();
-        if (nPreg < 4) {
-            director.construirPregunta(preguntaFacilBuilder);
-            pregunta = preguntaFacilBuilder.getTipo();
-        } else if (nPreg < 7) {
-            director.construirPregunta(preguntaMedioBuilder);
-            pregunta = preguntaMedioBuilder.getTipo();
-        } else if (nPreg <= 10) {
-            director.construirPregunta(preguntaDificilBuilder);
-            pregunta = preguntaDificilBuilder.getTipo();
-        }else{
+    private void cuestionAhorcado() {
+
+        Intent intent = new Intent(this, RetoAhorcado.class);
+
+        checkVidas(vidas);
+
+        if(numPreg > 10){
             UserDAO userdao = new UserDAO();
 
-            Intent intent = new Intent(this, PartidaFinalizada.class);
+            intent = new Intent(this, PartidaFinalizada.class);
             puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
             usuario.setPuntosAcumTotales(puntosAcumTotales);
             userdao.actualizar(usuario);
@@ -187,16 +170,10 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
-        return pregunta;
-    }
 
-    private void cuestionAhorcado() {
-
-        Intent intent = new Intent(this, RetoAhorcado.class);
-
-        checkVidas(vidas);
-
-        Ahorcado ahorcado = construirAhorcado(numPreg);
+        GestorConstructor gestor = new GestorConstructor();
+        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+        Ahorcado ahorcado = gestor.construirAhorcado(numPreg);
 
         intent.putExtra("cuestion", ahorcado);
         intent.putExtra("vidas", vidas);
@@ -210,37 +187,7 @@ public class Gestor extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public Ahorcado construirAhorcado(int npreg){
-        Director director = new Director();
-        Ahorcado ahorcado = new Ahorcado();
-        RetoAhorcadoFacilBuilder ahorcadoFacilBuilder = new RetoAhorcadoFacilBuilder();
-        RetoAhorcadoMedioBuilder ahorcadoMedioBuilder = new RetoAhorcadoMedioBuilder();
-        RetoAhorcadoDificilBuilder ahorcadoDificilBuilder = new RetoAhorcadoDificilBuilder();
 
-        if (npreg < 4) {
-            director.construirAhorcado(ahorcadoFacilBuilder);
-            ahorcado = ahorcadoFacilBuilder.getTipo();
-        } else if (npreg < 7) {
-            director.construirAhorcado(ahorcadoMedioBuilder);
-            ahorcado = ahorcadoMedioBuilder.getTipo();
-        } else if (npreg <= 10) {
-            director.construirAhorcado(ahorcadoDificilBuilder);
-            ahorcado = ahorcadoDificilBuilder.getTipo();
-        }else{
-            UserDAO userdao = new UserDAO();
-
-            Intent intent = new Intent(this, PartidaFinalizada.class);
-            puntosAcumTotales = puntosAcum + usuario.getPuntosAcumTotales();
-            usuario.setPuntosAcumTotales(puntosAcumTotales);
-            userdao.actualizar(usuario);
-            intent.putExtra("pntsFin", puntosAcum);
-            intent.putExtra("user", usuario);
-            intent.putExtra("muted",appMuted);
-            startActivity(intent);
-            this.finish();
-        }
-        return ahorcado;
-    }
 
     private void setVariables(){
         Intent intent = getIntent();

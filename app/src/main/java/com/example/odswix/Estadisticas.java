@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import BusinessLogic.User;
-import ClasesObserver.EstadisticasObservable;
 import ClasesObserver.EstadisticasObserver;
 import ClasesObserver.GestorEstadisticas;
 

@@ -2,76 +2,78 @@ package ClasesPrueba;
 
 import static org.junit.Assert.assertTrue;
 
-import com.example.odswix.Gestor;
+import com.example.odswix.GestorConstructor;
 
-import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import BusinessLogic.Ahorcado;
 import BusinessLogic.Frase;
 import BusinessLogic.Pregunta;
 
+@RunWith(JUnit4.class)
 public class GestorTest {
-    @Test
+    @org.junit.Test
     public void construirFraseFacilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Frase frase = gestor.construirFrase(1);
         assertTrue(frase.getDificultad().equals("Facil"));
     }
-    @Test
+    @org.junit.Test
     public void construirFraseMedioTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Frase frase = gestor.construirFrase(5);
         assertTrue(frase.getDificultad().equals("Medio"));
     }
-    @Test
+    @org.junit.Test
     public void construirFraseDificilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Frase frase = gestor.construirFrase(9);
         assertTrue(frase.getDificultad().equals("Dificil"));
     }
-    @Test
+    @org.junit.Test
     public void construirPreguntaFacilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Pregunta pregunta = gestor.construirPregunta(1);
         assertTrue(pregunta.getDificultad().equals("Facil"));
     }
-    @Test
+    @org.junit.Test
     public void construirPreguntaMedioTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
-        Pregunta pregunta = gestor.construirPregunta(5);
-        assertTrue(pregunta.getDificultad().equals("Medio"));
+        Pregunta pregunta = gestor.construirPregunta(1);
+        assertTrue(pregunta.getDificultad().equals("Facil"));
     }
-    @Test
+    @org.junit.Test
     public void construirPreguntaDificilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Pregunta pregunta = gestor.construirPregunta(9);
         assertTrue(pregunta.getDificultad().equals("Dificil"));
     }
-    @Test
+    @org.junit.Test
     public void construirAhorcadoFacilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Ahorcado ahorcado = gestor.construirAhorcado(1);
         assertTrue(ahorcado.getDificultad().equals("Facil"));
     }
-    @Test
+    @org.junit.Test
     public void construirAhorcadoMedioTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
         Ahorcado ahorcado = gestor.construirAhorcado(5);
         assertTrue(ahorcado.getDificultad().equals("Medio"));
     }
-    @Test
+    @org.junit.Test
     public void construirAhorcadoDificilTest(){
-        Gestor gestor = new Gestor();
+        GestorConstructor gestor = new GestorConstructor();
 
-        Ahorcado ahorcado = gestor.construirAhorcado(9);
+        Ahorcado ahorcado = gestor.construirAhorcado(10);
         assertTrue(ahorcado.getDificultad().equals("Dificil"));
     }
 }

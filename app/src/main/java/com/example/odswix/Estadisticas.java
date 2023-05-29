@@ -24,14 +24,6 @@ public class Estadisticas extends AppCompatActivity {
     User usu;
     GestorEstadisticas gestorEstadisticas;
 
-    private int obsAciertos;
-    private int obsFallos;
-    private int obsGanadas;
-    private int obsPerdidas;
-    private int obsAbandonadas;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstance){
 
@@ -54,9 +46,8 @@ public class Estadisticas extends AppCompatActivity {
     }
 
     public void setStatsUser(User usu){
-        int aciertosYFallos = usu.getAciertos() + usu.getFallos();
         textViewUserStats.setText("Usuario: " + usu.getUsername());
-        textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + aciertosYFallos);
+        textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + (usu.getAciertos() + usu.getFallos()));
         textViewWonStats.setText("Partidas ganadas: " + usu.getGanadas());
         textViewLostStats.setText("Partidas perdidas: " + usu.getPerdidas());
         textViewAbandStats.setText("Partidas abandonadas: " + usu.getAbandonadas());

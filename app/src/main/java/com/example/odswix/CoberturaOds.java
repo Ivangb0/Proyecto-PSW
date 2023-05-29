@@ -106,12 +106,12 @@ public class CoberturaOds extends AppCompatActivity {
         listaFallos = coberturaDAOPreg.getListaFallos();
         for (int i = 0; i < progressBarPerc.length; i++) {
             porcentajeAciertos = Math.round(listaAciertos.get(i) / (listaAciertos.get(i) + listaFallos.get(i)) * 100);
-            progressBarPerc[i].setProgress( (int) porcentajeAciertos);
+            progressBarPerc[i].setProgress((int) porcentajeAciertos);
             textViewPerc[i].setText(String.valueOf(porcentajeAciertos) + "%");
         }
     }
 
-    public void volverDeCobertura(View view){
+    public void volverDeCobertura(View view) {
         Intent salirCobertura = new Intent(this, JugarPartida.class);
         salirCobertura.putExtra("user", user);
         finishAfterTransition();
@@ -119,123 +119,62 @@ public class CoberturaOds extends AppCompatActivity {
 
     }
 
+    private void openURL(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
     public void clickOds1(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/poverty/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/poverty/");
     }
+
     public void clickOds2(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/hunger/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
-    }
+        openURL("https://www.un.org/sustainabledevelopment/es/hunger/");
+        }
     public void clickOds3(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/health/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/health/");
     }
     public void clickOds4(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/education/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/education/");
     }
     public void clickOds5(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/gender-equality/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/gender-equality/");
     }
     public void clickOds6(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/water-and-sanitation/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/water-and-sanitation/");
     }
     public void clickOds7(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/energy/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/energy/");
     }
     public void clickOds8(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/economic-growth/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/economic-growth/");
     }
     public void clickOds9(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/infrastructure/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/infrastructure/");
     }
     public void clickOds10(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/inequality/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/inequality/");
     }
     public void clickOds11(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/cities/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/cities/");
     }
     public void clickOds12(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/");
     }
     public void clickOds13(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/climate-change-2/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/climate-change-2/");
     }
     public void clickOds14(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/oceans/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/oceans/");
     }
     public void clickOds15(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/biodiversity/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/biodiversity/");
     }
     public void clickOds16(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/peace-justice/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/peace-justice/");
     }
     public void clickOds17(View view){
-        String url = "https://www.un.org/sustainabledevelopment/es/globalpartnerships/";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        openURL("https://www.un.org/sustainabledevelopment/es/globalpartnerships/");
     }
 }

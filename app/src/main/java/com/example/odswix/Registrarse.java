@@ -53,7 +53,7 @@ public class Registrarse extends AppCompatActivity {
         Intent intent = new Intent(this, IniciarSesion.class);
         startActivity(intent);
     }
-    public boolean emptyTest(){
+    private boolean emptyTest(){
         TextView Eempty = findViewById(R.id.Eempty);
         EditText textUser= findViewById(R.id.usuario);
         TextView textEmail = findViewById(R.id.email);

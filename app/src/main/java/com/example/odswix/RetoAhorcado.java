@@ -30,6 +30,7 @@ import BusinessLogic.User;
 import ClasesDecorator.BaseImage;
 import ClasesDecorator.Image;
 import ClasesDecorator.ImageDecorator;
+import ClasesObserver.GestorEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -109,7 +110,10 @@ public class RetoAhorcado extends AppCompatActivity {
     String respuesta;
     char charPulsado;
     String respuestaOculta;
-    String numImagenAhorcado;
+
+    private GestorEstadisticas gestorEstadisticas;
+
+    public RetoAhorcado(){}
 
 
     int numFallos;
@@ -128,6 +132,8 @@ public class RetoAhorcado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        gestorEstadisticas = new GestorEstadisticas();
 
         //Ocultar menu desplazable
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -278,7 +284,6 @@ public class RetoAhorcado extends AppCompatActivity {
     public void cambiarFotoAhorcado(){
         baseImage = new BaseImage(R.drawable.ahorcado1);
         decoratedImage2 = new ImageDecorator(baseImage, R.drawable.ahorcado2);
-
         decoratedImage3 = new ImageDecorator(decoratedImage2, R.drawable.ahorcado3);
         decoratedImage4 = new ImageDecorator(decoratedImage3, R.drawable.ahorcado4);
         decoratedImage5 = new ImageDecorator(decoratedImage4, R.drawable.ahorcado5);
@@ -335,19 +340,6 @@ public class RetoAhorcado extends AppCompatActivity {
         return charPulsado;
     }
 
-/*
-    public String ocultarRespuesta(){
-        respuestaOculta = respuesta;
-        for(int i = 0; i< respuesta.length(); i++){
-            char letra = respuesta.charAt(i);
-            if(letra != ' ') {
-                respuestaOculta = respuestaOculta.replace(letra, '_');
-            }
-        }
-        return respuestaOculta;
-    }
-            textViewRespuesta.setText(ocultarRespuesta());
- */
     private void mostrarSiguiente(){
         contenedorRespuesta.setVisibility(View.VISIBLE);
         //disableButonsAnswers();
@@ -420,6 +412,7 @@ public void comprobarLetra(){
 
                 System.out.println("HASTA AQUI HEMOS LLEGADO");
                 falloStat++;
+                gestorEstadisticas.notificarEstadisticasActualizadas();
                 usuario.setFallos(falloStat);
                 userdao.actualizar(usuario);
 
@@ -654,6 +647,7 @@ public void comprobarLetra(){
         soundBackground.stop();
         abandonedStat++;
 
+        gestorEstadisticas.notificarEstadisticasActualizadas();
         usuario.setAbandonadas(abandonedStat);
         userdao.actualizar(usuario);
 
@@ -672,6 +666,7 @@ public void comprobarLetra(){
         if (vidas == 0) {
             lostStat++;
 
+            gestorEstadisticas.notificarEstadisticasActualizadas();
             usuario.setPerdidas(lostStat);
             userdao.actualizar(usuario);
 

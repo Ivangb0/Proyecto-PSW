@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import BusinessLogic.User;
+import ClasesObserver.EstadisticasObserver;
+import ClasesObserver.GestorEstadisticas;
+import ClasesObserver.ObserverPerfil;
 
 
 public class Perfil extends AppCompatActivity {
@@ -30,6 +33,9 @@ public class Perfil extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        GestorEstadisticas observer = new GestorEstadisticas();
+        observer.registrarObserver(new ObserverPerfil(this));
 
         //Ocultar menu desplazable
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -59,7 +65,7 @@ public class Perfil extends AppCompatActivity {
         tvNivel.setText(String.valueOf(usuario.getNivel()));
     }
 
-    public void onEstadisticasActualizadas() {
+    public void obserSetDatos() {
         setData(usuario);
     }
 

@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import BusinessLogic.User;
 import ClasesObserver.EstadisticasObserver;
 import ClasesObserver.GestorEstadisticas;
+import ClasesObserver.ObserverEstadisticas;
+import ClasesObserver.ObserverPerfil;
 
-public class Estadisticas extends AppCompatActivity implements EstadisticasObserver {
+public class Estadisticas extends AppCompatActivity {
 
     TextView textViewUserStats;
     TextView textViewGlobStats;
@@ -32,6 +34,11 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
 
     @Override
     protected void onCreate(Bundle savedInstance){
+
+        GestorEstadisticas observer = new GestorEstadisticas();
+        observer.registrarObserver(new ObserverEstadisticas(this));
+
+
         super.onCreate(savedInstance);
         setContentView(R.layout.estadisticas);
         Intent intent = getIntent();
@@ -43,10 +50,10 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
         textViewLostStats = (TextView) findViewById(R.id.textViewLost);
         textViewAbandStats = (TextView) findViewById(R.id.textViewAband);
         textViewTiempoUso = (TextView) findViewById(R.id.textViewTiempoUso);
-        setStatsUser();
+        setStatsUser(usu);
     }
 
-    public void setStatsUser(){
+    public void setStatsUser(User usu){
         int aciertosYFallos = usu.getAciertos() + usu.getFallos();
         textViewUserStats.setText("Usuario: " + usu.getUsername());
         textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + aciertosYFallos);
@@ -58,9 +65,9 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
     }
 
     //observer
-    @Override
-    public void onEstadisticasActualizadas() {
-        //setStatsUser();
+
+    public void obserSetData() {
+        setStatsUser(usu);
     }
 
     public Estadisticas() {

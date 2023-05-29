@@ -33,7 +33,6 @@ import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
 import ClasesObserver.GestorEstadisticas;
-import ClasesObserver.ObserverEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -217,12 +216,6 @@ public class RetoPregunta extends AppCompatActivity {
             soundCountdown10s.setVolume(1, 1);
         }
     }
-
-    public RetoPregunta(GestorEstadisticas gestorEstadisticas){
-        this.gestorEstadisticas = gestorEstadisticas;
-    }
-
-
 
     public void asignarStats(){
         aciertoStat = usuario.getAciertos();
@@ -484,7 +477,8 @@ public class RetoPregunta extends AppCompatActivity {
 
         if (numPregunta == 10) {
             wonStat++;
-            gestorEstadisticas.notificarEstadisticasActualizadas();            usuario.setGanadas(wonStat);
+            gestorEstadisticas.notificarEstadisticasActualizadas();
+            usuario.setGanadas(wonStat);
             userdao.actualizar(usuario);
             soundVictoria.start();
             buttonSiguiente.setText("Acabar");

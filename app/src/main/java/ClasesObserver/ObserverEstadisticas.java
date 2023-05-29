@@ -11,6 +11,6 @@ public class ObserverEstadisticas implements EstadisticasObserver {
     }
     @Override
     public void onEstadisticasActualizadas() {
-        estadisticas.onEstadisticasActualizadas();
+        estadisticas.obserSetData();
     }
 }

@@ -38,6 +38,7 @@ import BusinessLogic.Cobertura;
 import BusinessLogic.Frase;
 import BusinessLogic.Phrase;
 import BusinessLogic.User;
+import ClasesObserver.GestorEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -99,6 +100,9 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
     ImageView imageViewODSFrase;
     private Phrase phrase = null;
 
+    GestorEstadisticas gestorEstadisticas;
+
+    public RetoFrasePrueba(){}
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -110,8 +114,6 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.retofrase);
-
-
 
         Intent intent = getIntent();
 
@@ -129,6 +131,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         appMuted = intent.getBooleanExtra("muted", false);
         asignarStats();
 
+        gestorEstadisticas = new GestorEstadisticas();
 
         textView28 = (TextView) findViewById(R.id.textView28);
         textView27 = (TextView) findViewById(R.id.textView27);
@@ -496,6 +499,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         if (numPregunta == 10) {
             wonStat++;
 
+            gestorEstadisticas.notificarEstadisticasActualizadas();
             usuario.setGanadas(wonStat);
             userdao.actualizar(usuario);
 
@@ -554,6 +558,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         if (vidas == 0) {
             lostStat++;
 
+            gestorEstadisticas.notificarEstadisticasActualizadas();
             usuario.setPerdidas(lostStat);
             userdao.actualizar(usuario);
 
@@ -591,6 +596,7 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
         soundBackground.stop();
         abandonedStat++;
 
+        gestorEstadisticas.notificarEstadisticasActualizadas();
         usuario.setAbandonadas(abandonedStat);
         userdao.actualizar(usuario);
 

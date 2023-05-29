@@ -58,15 +58,6 @@ public class Gestor extends AppCompatActivity {
 
     }
 
-    public void checkVidas(int vidas){
-        if (vidas <= 0) {
-            Intent intent = new Intent(this, JugarPartida.class);
-            intent.putExtra("user", usuario);
-            startActivity(intent);
-            this.finish();
-        }
-    }
-
     private void cuestionAleatoria() {
         Random random = new Random();
         int resultado = random.nextInt(3);
@@ -77,11 +68,10 @@ public class Gestor extends AppCompatActivity {
         else
             cuestionAhorcado();
     }
+
     private void cuestionFrase() {
 
         Intent intent = new Intent(this, RetoFrasePrueba.class);
-
-        checkVidas(vidas);
 
         if(numPreg > 10){
             UserDAO userdao = new UserDAO();
@@ -96,21 +86,27 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
+        if(vidas <= 0){
+            intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        } else {
+            GestorConstructor gestor = new GestorConstructor();
+            gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+            Frase tipoFrase = gestor.construirFrase(numPreg);
 
-        GestorConstructor gestor = new GestorConstructor();
-        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
-        Frase tipoFrase = gestor.construirFrase(numPreg);
-
-        intent.putExtra("cuestion", tipoFrase);
-        intent.putExtra("vidas", vidas);
-        intent.putExtra("numPregunta", numPreg);
-        intent.putExtra("consolidado", consolidado);
-        intent.putExtra("pntsAcum", puntosAcum);
-        intent.putExtra("pntsCons", puntosCons);
-        intent.putExtra("user", usuario);
-        intent.putExtra("tipo", tipo);
-        intent.putExtra("muted",appMuted);
-        startActivity(intent);
+            intent.putExtra("cuestion", tipoFrase);
+            intent.putExtra("vidas", vidas);
+            intent.putExtra("numPregunta", numPreg);
+            intent.putExtra("consolidado", consolidado);
+            intent.putExtra("pntsAcum", puntosAcum);
+            intent.putExtra("pntsCons", puntosCons);
+            intent.putExtra("user", usuario);
+            intent.putExtra("tipo", tipo);
+            intent.putExtra("muted", appMuted);
+            startActivity(intent);
+        }
     }
 
 
@@ -118,8 +114,6 @@ public class Gestor extends AppCompatActivity {
 
         Intent intent = new Intent(this, RetoPregunta.class);
 
-        checkVidas(vidas);
-
         if(numPreg > 10){
             UserDAO userdao = new UserDAO();
 
@@ -133,30 +127,33 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
+        if(vidas <= 0){
+            intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        } else {
+            GestorConstructor gestor = new GestorConstructor();
+            gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+            Pregunta preg = gestor.construirPregunta(numPreg);
 
-        GestorConstructor gestor = new GestorConstructor();
-        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
-        Pregunta preg = gestor.construirPregunta( numPreg);
-
-        intent.putExtra("cuestion", preg);
-        intent.putExtra("vidas", vidas);
-        intent.putExtra("numPregunta", numPreg);
-        intent.putExtra("consolidado", consolidado);
-        intent.putExtra("pntsAcum", puntosAcum);
-        intent.putExtra("pntsCons", puntosCons);
-        intent.putExtra("user", usuario);
-        intent.putExtra("tipo", tipo);
-        intent.putExtra("muted",appMuted);
-        startActivity(intent);
-
+            intent.putExtra("cuestion", preg);
+            intent.putExtra("vidas", vidas);
+            intent.putExtra("numPregunta", numPreg);
+            intent.putExtra("consolidado", consolidado);
+            intent.putExtra("pntsAcum", puntosAcum);
+            intent.putExtra("pntsCons", puntosCons);
+            intent.putExtra("user", usuario);
+            intent.putExtra("tipo", tipo);
+            intent.putExtra("muted", appMuted);
+            startActivity(intent);
+        }
     }
 
     private void cuestionAhorcado() {
 
         Intent intent = new Intent(this, RetoAhorcado.class);
 
-        checkVidas(vidas);
-
         if(numPreg > 10){
             UserDAO userdao = new UserDAO();
 
@@ -170,21 +167,27 @@ public class Gestor extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         }
+        if(vidas <= 0){
+            intent = new Intent(this, JugarPartida.class);
+            intent.putExtra("user", usuario);
+            startActivity(intent);
+            this.finish();
+        } else {
+            GestorConstructor gestor = new GestorConstructor();
+            gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
+            Ahorcado ahorcado = gestor.construirAhorcado(numPreg);
 
-        GestorConstructor gestor = new GestorConstructor();
-        gestor.init(usuario, puntosAcumTotales, puntosAcum, appMuted);
-        Ahorcado ahorcado = gestor.construirAhorcado(numPreg);
-
-        intent.putExtra("cuestion", ahorcado);
-        intent.putExtra("vidas", vidas);
-        intent.putExtra("numPregunta", numPreg);
-        intent.putExtra("consolidado", consolidado);
-        intent.putExtra("pntsAcum", puntosAcum);
-        intent.putExtra("pntsCons", puntosCons);
-        intent.putExtra("user", usuario);
-        intent.putExtra("tipo", tipo);
-        intent.putExtra("muted",appMuted);
-        startActivity(intent);
+            intent.putExtra("cuestion", ahorcado);
+            intent.putExtra("vidas", vidas);
+            intent.putExtra("numPregunta", numPreg);
+            intent.putExtra("consolidado", consolidado);
+            intent.putExtra("pntsAcum", puntosAcum);
+            intent.putExtra("pntsCons", puntosCons);
+            intent.putExtra("user", usuario);
+            intent.putExtra("tipo", tipo);
+            intent.putExtra("muted", appMuted);
+            startActivity(intent);
+        }
     }
 
 

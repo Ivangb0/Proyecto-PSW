@@ -59,6 +59,10 @@ public class Perfil extends AppCompatActivity {
         tvNivel.setText(String.valueOf(usuario.getNivel()));
     }
 
+    public void onEstadisticasActualizadas() {
+        setData(usuario);
+    }
+
     public void cambiarUsername(View view){
         TextView email = findViewById(R.id.emailUser);
         EditText input = new EditText(this);

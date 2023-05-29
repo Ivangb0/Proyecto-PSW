@@ -29,7 +29,6 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
     private int obsAbandonadas;
 
 
-    public Estadisticas(){}
 
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -60,16 +59,10 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
 
     //observer
     @Override
-    public void onEstadisticasActualizadas(int aciertos, int fallos, int ganadas, int perdidas, int abandonadas) {
-
-        int aciertosYFallos = usu.getAciertos() + usu.getFallos();
-        textViewUserStats.setText("Usuario: " + usu.getUsername());
-        textViewGlobStats.setText("Aciertos globales: " + usu.getAciertos() + " / " + aciertosYFallos);
-        textViewWonStats.setText("Partidas ganadas: " + usu.getGanadas());
-        textViewLostStats.setText("Partidas perdidas: " + usu.getPerdidas());
-        textViewAbandStats.setText("Partidas abandonadas: " + usu.getAbandonadas());
-        textViewTiempoUso.setText("Tiempo de uso: " + usu.getTiempoUso());
+    public void onEstadisticasActualizadas() {
+        setStatsUser();
     }
+
     public Estadisticas(GestorEstadisticas gestorEstadisticas){
         this.gestorEstadisticas = gestorEstadisticas;
     }

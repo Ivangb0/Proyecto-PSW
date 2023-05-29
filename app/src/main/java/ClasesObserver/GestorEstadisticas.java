@@ -8,12 +8,6 @@ import java.util.List;
 public class GestorEstadisticas {
 
     private List<EstadisticasObserver> observers = new ArrayList<>();
-    private int obsAciertos;
-    private int obsFallos;
-    private int obsGanadas;
-    private int obsPerdidas;
-    private int obsAbandonadas;
-    //EstadisticasObservable estadisticasObservable;
 
 
     public void registrarObserver(EstadisticasObserver observer){
@@ -24,18 +18,10 @@ public class GestorEstadisticas {
         observers.remove(observer);
     }
 
-    public void actualizarEstadisticas(int obsAci, int obsFall, int obsGan, int obsPer, int obsAba){
-        this.obsAciertos = obsAci;
-        this.obsFallos = obsFall;
-        this.obsGanadas = obsGan;
-        this.obsPerdidas = obsPer;
-        this.obsAbandonadas = obsAba;
-        notificarEstadisticasActualizadas();
-    }
 
-    private void notificarEstadisticasActualizadas() {
+    public void notificarEstadisticasActualizadas() {
         for(EstadisticasObserver observer : observers){
-            observer.onEstadisticasActualizadas(obsAciertos,obsFallos,obsGanadas,obsPerdidas,obsAbandonadas);
+            observer.onEstadisticasActualizadas();
         }
     }
 

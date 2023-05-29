@@ -25,6 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 import java.util.concurrent.TimeUnit;
 
 import BusinessLogic.Answer;
@@ -32,6 +33,7 @@ import BusinessLogic.Cobertura;
 import BusinessLogic.Pregunta;
 import BusinessLogic.User;
 import ClasesObserver.GestorEstadisticas;
+import ClasesObserver.ObserverEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
 
@@ -225,7 +227,8 @@ public class RetoPregunta extends AppCompatActivity {
         int obsPerdidas = lostStat;
         int obsAbandonadas = abandonedStat;
 
-        gestorEstadisticas.actualizarEstadisticas(obsAciertos,obsFallos,obsGanadas,obsPerdidas,obsAbandonadas);
+        //gestorEstadisticas.actualizarEstadisticas(obsAciertos,obsFallos,obsGanadas,obsPerdidas,obsAbandonadas);
+        gestorEstadisticas.notificarEstadisticasActualizadas();
     }
 
     public void asignarStats(){

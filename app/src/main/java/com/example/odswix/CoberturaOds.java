@@ -3,15 +3,20 @@ package com.example.odswix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.net.URL;
 import java.util.List;
 
 import BusinessLogic.User;
 import Persistence.CoberturaDAO;
+
+import android.content.Intent;
+import android.net.Uri;
 
 public class CoberturaOds extends AppCompatActivity {
     private List<Double> listaAciertos;
@@ -21,6 +26,8 @@ public class CoberturaOds extends AppCompatActivity {
     double porcentajeAciertos;
     CoberturaDAO coberturaDAOPreg;
     private User user;
+
+    ImageView[] imageODS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,31 @@ public class CoberturaOds extends AppCompatActivity {
         progressBarPerc[16] = (ProgressBar) findViewById(R.id.progressBarPerc17);
         textViewPerc[16] = (TextView) findViewById(R.id.textViewPerc17);
         setProgresos();
+
+        imageODS = new ImageView[17];
+
+        /*for(int i = 0; i<18; i++){
+            int resourceId = getResources().getIdentifier("imageViewODS" + i, "id", getPackageName());
+            imageODS[i] = (ImageView) findViewById(resourceId);
+        }*/
+
+        imageODS[0] = (ImageView) findViewById(R.id.imageViewODS1);
+        imageODS[1] = (ImageView) findViewById(R.id.imageViewODS2);
+        imageODS[2] = (ImageView) findViewById(R.id.imageViewODS3);
+        imageODS[3] = (ImageView) findViewById(R.id.imageViewODS4);
+        imageODS[4] = (ImageView) findViewById(R.id.imageViewODS5);
+        imageODS[5] = (ImageView) findViewById(R.id.imageViewODS6);
+        imageODS[6] = (ImageView) findViewById(R.id.imageViewODS7);
+        imageODS[7] = (ImageView) findViewById(R.id.imageViewODS8);
+        imageODS[8] = (ImageView) findViewById(R.id.imageViewODS9);
+        imageODS[9] = (ImageView) findViewById(R.id.imageViewODS10);
+        imageODS[10] = (ImageView) findViewById(R.id.imageViewODS11);
+        imageODS[11] = (ImageView) findViewById(R.id.imageViewODS12);
+        imageODS[12] = (ImageView) findViewById(R.id.imageViewODS13);
+        imageODS[13] = (ImageView) findViewById(R.id.imageViewODS14);
+        imageODS[14] = (ImageView) findViewById(R.id.imageViewODS15);
+        imageODS[15] = (ImageView) findViewById(R.id.imageViewODS16);
+        imageODS[16] = (ImageView) findViewById(R.id.imageViewODS17);
     }
 
     public void setProgresos() {
@@ -85,5 +117,125 @@ public class CoberturaOds extends AppCompatActivity {
         finishAfterTransition();
         startActivity(salirCobertura);
 
+    }
+
+    public void clickOds1(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/poverty/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds2(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/hunger/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds3(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/health/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds4(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/education/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds5(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/gender-equality/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds6(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/water-and-sanitation/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds7(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/energy/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds8(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/economic-growth/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds9(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/infrastructure/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds10(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/inequality/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds11(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/cities/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds12(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds13(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/climate-change-2/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds14(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/oceans/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds15(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/biodiversity/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds16(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/peace-justice/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+    public void clickOds17(View view){
+        String url = "https://www.un.org/sustainabledevelopment/es/globalpartnerships/";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }

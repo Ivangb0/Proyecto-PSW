@@ -21,7 +21,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS14"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc14"
-            app:srcCompat="@drawable/ods17" />
+            app:srcCompat="@drawable/ods17"
+            android:onClick="clickOds17"
+            android:clickable="true"/>
 
         <ProgressBar
             android:id="@+id/progressBarPerc17"
@@ -40,7 +42,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS13"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc13"
-            app:srcCompat="@drawable/ods16" />
+            app:srcCompat="@drawable/ods16"
+            android:onClick="clickOds16"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc17"
@@ -81,7 +85,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS10"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc10"
-            app:srcCompat="@drawable/ods13" />
+            app:srcCompat="@drawable/ods13"
+            android:onClick="clickOds13"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc13"
@@ -122,7 +128,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS12"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc12"
-            app:srcCompat="@drawable/ods15" />
+            app:srcCompat="@drawable/ods15"
+            android:onClick="clickOds15"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/imageViewODS14"
@@ -131,7 +139,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS11"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc11"
-            app:srcCompat="@drawable/ods14" />
+            app:srcCompat="@drawable/ods14"
+            android:onClick="clickOds14"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc15"
@@ -171,7 +181,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS9"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc9"
-            app:srcCompat="@drawable/ods12" />
+            app:srcCompat="@drawable/ods12"
+            android:onClick="clickOds12"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc12"
@@ -191,7 +203,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS7"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc7"
-            app:srcCompat="@drawable/ods10" />
+            app:srcCompat="@drawable/ods10"
+            android:onClick="clickOds10"
+            android:clickable="true"/>
 
         <ProgressBar
             android:id="@+id/progressBarPerc12"
@@ -210,7 +224,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS8"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc8"
-            app:srcCompat="@drawable/ods11" />
+            app:srcCompat="@drawable/ods11"
+            android:onClick="clickOds11"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc11"
@@ -261,7 +277,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS4"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc4"
-            app:srcCompat="@drawable/ods7" />
+            app:srcCompat="@drawable/ods7"
+            android:onClick="clickOds7"
+            android:clickable="true"/>
 
         <ProgressBar
             android:id="@+id/progressBarPerc8"
@@ -291,7 +309,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS6"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc6"
-            app:srcCompat="@drawable/ods9" />
+            app:srcCompat="@drawable/ods9"
+            android:onClick="clickOds9"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc9"
@@ -342,7 +362,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS5"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc5"
-            app:srcCompat="@drawable/ods8" />
+            app:srcCompat="@drawable/ods8"
+            android:onClick="clickOds8"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/imageViewODS4"
@@ -351,7 +373,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS1"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc1"
-            app:srcCompat="@drawable/ods4" />
+            app:srcCompat="@drawable/ods4"
+            android:onClick="clickOds4"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/imageViewODS6"
@@ -360,7 +384,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS3"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc3"
-            app:srcCompat="@drawable/ods6" />
+            app:srcCompat="@drawable/ods6"
+            android:onClick="clickOds6"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc6"
@@ -411,7 +437,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/imageViewODS2"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerc2"
-            app:srcCompat="@drawable/ods5" />
+            app:srcCompat="@drawable/ods5"
+            android:onClick="clickOds5"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/textViewPerc5"
@@ -486,7 +514,10 @@
             app:layout_constraintEnd_toStartOf="@+id/textViewCobertura"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
-            app:srcCompat="@drawable/ods1" />
+            app:srcCompat="@drawable/ods1"
+            android:onClick="clickOds1"
+            android:clickable="true"
+            />
 
         <TextView
             android:id="@+id/textViewCobertura"
@@ -513,7 +544,9 @@
             android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="@+id/textViewCobertura"
             app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
-            app:srcCompat="@drawable/ods2" />
+            app:srcCompat="@drawable/ods2"
+            android:onClick="clickOds2"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/imageViewODS3"
@@ -525,7 +558,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewCobertura"
             app:layout_constraintTop_toBottomOf="@+id/textViewCobertura"
-            app:srcCompat="@drawable/ods3" />
+            app:srcCompat="@drawable/ods3"
+            android:onClick="clickOds3"
+            android:clickable="true"/>
 
         <ProgressBar
             android:id="@+id/progressBarPerc1"

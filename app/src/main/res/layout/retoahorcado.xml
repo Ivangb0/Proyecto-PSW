@@ -322,7 +322,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageMute4"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <com.example.odswix.MyImageView
+    <com.example.odswix.ImageViewAhorcado
         android:id="@+id/imageViewAhorcado"
         android:layout_width="176dp"
         android:layout_height="144dp"

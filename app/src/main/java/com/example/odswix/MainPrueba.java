@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainPrueba extends AppCompatActivity {
-    private MyImageView imageView;
+    private ImageViewAhorcado imageView;
     private Button drawButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

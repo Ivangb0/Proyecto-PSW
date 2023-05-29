@@ -8,18 +8,18 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-public class MyImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageView {
     private boolean shouldDrawLine = false;
 
-    public MyImageView(Context context) {
+    public ImageViewAhorcado(Context context) {
         super(context);
     }
 
-    public MyImageView(Context context, AttributeSet attrs) {
+    public ImageViewAhorcado(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ImageViewAhorcado(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
     @Override
@@ -40,13 +40,16 @@ public class MyImageView extends androidx.appcompat.widget.AppCompatImageView {
             Canvas bitmapCanvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, bitmapCanvas.getWidth(), bitmapCanvas.getHeight());
             drawable.draw(bitmapCanvas);
+
             Paint paint = new Paint();
-            paint.setColor(Color.RED);
-            paint.setStrokeWidth(25);
+            paint.setColor(Color.BLACK);
+            paint.setStrokeWidth(80);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/4, bitmapCanvas.getHeight()-400, bitmapCanvas.getWidth()/4, 500, paint);
+            /*
             Paint paintOjos = new Paint();
             paintOjos.setColor(Color.BLUE);
             paintOjos.setStrokeWidth(10);
-            bitmapCanvas.drawLine(0, 0, bitmapCanvas.getWidth(), bitmapCanvas.getHeight(), paint);
+
 
             int width = bitmapCanvas.getWidth();
             int height = bitmapCanvas.getHeight();
@@ -82,7 +85,7 @@ public class MyImageView extends androidx.appcompat.widget.AppCompatImageView {
                     cabezaCenterX - eyeSize, cabezaCenterY + eyeSize, paintOjos);
 
 
-
+            */
             setImageBitmap(bitmap);
             shouldDrawLine = false;
         }

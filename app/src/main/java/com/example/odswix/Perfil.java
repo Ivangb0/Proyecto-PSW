@@ -204,6 +204,14 @@ public class Perfil extends AppCompatActivity {
         startActivity(intentStats);
         this.finish();
     }
+
+    public void buttonRanking (View view){
+        Intent intentRanking = new Intent(this, RankingUsuarios.class);
+        intentRanking.putExtra("user", usuario);
+        startActivity(intentRanking);
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {}
 }

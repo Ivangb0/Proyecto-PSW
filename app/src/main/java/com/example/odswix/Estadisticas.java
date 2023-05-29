@@ -35,7 +35,7 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
         super.onCreate(savedInstance);
         setContentView(R.layout.estadisticas);
         Intent intent = getIntent();
-        usu = IniciarSesion.usuario;
+        usu = (User) intent.getSerializableExtra("user");
 
         textViewUserStats = (TextView) findViewById(R.id.textViewUserStats);
         textViewGlobStats = (TextView) findViewById(R.id.textViewGlob);
@@ -60,9 +60,12 @@ public class Estadisticas extends AppCompatActivity implements EstadisticasObser
     //observer
     @Override
     public void onEstadisticasActualizadas() {
-        setStatsUser();
+        //setStatsUser();
     }
 
+    public Estadisticas() {
+        // Código del constructor (si es necesario)
+    }
     public Estadisticas(GestorEstadisticas gestorEstadisticas){
         this.gestorEstadisticas = gestorEstadisticas;
     }

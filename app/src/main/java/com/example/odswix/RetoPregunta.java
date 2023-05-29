@@ -91,6 +91,8 @@ public class RetoPregunta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        gestorEstadisticas = new GestorEstadisticas();
+
         //Ocultar menu desplazable
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -220,16 +222,7 @@ public class RetoPregunta extends AppCompatActivity {
         this.gestorEstadisticas = gestorEstadisticas;
     }
 
-    public void obsActualizarEstadisticas(){
-        int obsAciertos = aciertoStat;
-        int obsFallos = falloStat;
-        int obsGanadas = wonStat;
-        int obsPerdidas = lostStat;
-        int obsAbandonadas = abandonedStat;
 
-        //gestorEstadisticas.actualizarEstadisticas(obsAciertos,obsFallos,obsGanadas,obsPerdidas,obsAbandonadas);
-        gestorEstadisticas.notificarEstadisticasActualizadas();
-    }
 
     public void asignarStats(){
         aciertoStat = usuario.getAciertos();
@@ -400,7 +393,7 @@ public class RetoPregunta extends AppCompatActivity {
             mostrarSiguiente();
             soundDerrota.start();
             buttonSiguiente.setText("Volver al menu");
-            obsActualizarEstadisticas();
+            gestorEstadisticas.notificarEstadisticasActualizadas();
         }
     }
     public void handlerRespIncorrecta(){
@@ -491,8 +484,7 @@ public class RetoPregunta extends AppCompatActivity {
 
         if (numPregunta == 10) {
             wonStat++;
-            obsActualizarEstadisticas();
-            usuario.setGanadas(wonStat);
+            gestorEstadisticas.notificarEstadisticasActualizadas();            usuario.setGanadas(wonStat);
             userdao.actualizar(usuario);
             soundVictoria.start();
             buttonSiguiente.setText("Acabar");
@@ -675,7 +667,7 @@ public class RetoPregunta extends AppCompatActivity {
 
         usuario.setAbandonadas(abandonedStat);
         userdao.actualizar(usuario);
-        obsActualizarEstadisticas();
+        gestorEstadisticas.notificarEstadisticasActualizadas();
         countDownTimer.cancel();
         soundBackground.stop();
         puntosAcumTotales = PtosConsolidados + usuario.getPuntosAcumTotales();

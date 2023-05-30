@@ -1,4 +1,4 @@
-package ClasesDecorator2;
+package ClasesDecorator;
 
 import com.example.odswix.ImageViewAhorcado;
 
@@ -12,6 +12,6 @@ public class DibujoEstandar implements Dibujo{
 
     @Override
     public void dibujar() {
-        System.out.println("Dibujo estandar");
+
     }
 }

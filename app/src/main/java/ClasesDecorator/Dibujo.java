@@ -1,4 +1,4 @@
-package ClasesDecorator2;
+package ClasesDecorator;
 
 public interface Dibujo {
 

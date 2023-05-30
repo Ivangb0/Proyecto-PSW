@@ -8,18 +8,18 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ClasesDecorator2.Dibujo;
-import ClasesDecorator2.DibujoBrazoDer;
-import ClasesDecorator2.DibujoBrazoIzq;
-import ClasesDecorator2.DibujoCabeza;
-import ClasesDecorator2.DibujoCuerda;
-import ClasesDecorator2.DibujoEstandar;
-import ClasesDecorator2.DibujoMastilHorizontal;
-import ClasesDecorator2.DibujoMastilVertical;
-import ClasesDecorator2.DibujoOjos;
-import ClasesDecorator2.DibujoPiernaDer;
-import ClasesDecorator2.DibujoPiernaIzq;
-import ClasesDecorator2.DibujoTronco;
+import ClasesDecorator.Dibujo;
+import ClasesDecorator.DibujoBrazoDer;
+import ClasesDecorator.DibujoBrazoIzq;
+import ClasesDecorator.DibujoCabeza;
+import ClasesDecorator.DibujoCuerda;
+import ClasesDecorator.DibujoEstandar;
+import ClasesDecorator.DibujoMastilHorizontal;
+import ClasesDecorator.DibujoMastilVertical;
+import ClasesDecorator.DibujoOjos;
+import ClasesDecorator.DibujoPiernaDer;
+import ClasesDecorator.DibujoPiernaIzq;
+import ClasesDecorator.DibujoTronco;
 
 public class MainPrueba extends AppCompatActivity {
     private ImageViewAhorcado imageView;

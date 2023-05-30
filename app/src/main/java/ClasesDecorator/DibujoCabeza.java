@@ -1,4 +1,4 @@
-package ClasesDecorator2;
+package ClasesDecorator;
 
 import com.example.odswix.ImageViewAhorcado;
 

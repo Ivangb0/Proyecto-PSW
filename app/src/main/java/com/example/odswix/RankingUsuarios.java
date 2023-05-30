@@ -2,19 +2,10 @@ package com.example.odswix;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import android.widget.LinearLayout;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.odswix.R;
 
 import BusinessLogic.User;
 
@@ -36,4 +27,7 @@ public class RankingUsuarios extends AppCompatActivity {
         usuario = (User) intent.getSerializableExtra("user");
 
     }
+
+    @Override
+    public void onBackPressed() {}
 }

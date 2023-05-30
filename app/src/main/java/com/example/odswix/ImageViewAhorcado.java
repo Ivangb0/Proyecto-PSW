@@ -57,7 +57,7 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
                 Canvas bitmapCanvasMastVer = new Canvas(bitmapMastVer);
                 drawableMastVer.setBounds(0, 0, bitmapCanvasMastVer.getWidth(), bitmapCanvasMastVer.getHeight());
                 drawableMastVer.draw(bitmapCanvasMastVer);
-                bitmapCanvas.drawLine(bitmapCanvasMastVer.getWidth() / 4, bitmapCanvasMastVer.getHeight() - 400, bitmapCanvasMastVer.getWidth() / 4, 500, paintPalo);
+                bitmapCanvasMastVer.drawLine(bitmapCanvasMastVer.getWidth() / 4, bitmapCanvasMastVer.getHeight() - 400, bitmapCanvasMastVer.getWidth() / 4, 500, paintPalo);
                 setImageBitmap(bitmapMastVer);
                 drawMastilVer = false;
 

@@ -26,21 +26,18 @@ import java.util.concurrent.TimeUnit;
 import BusinessLogic.Ahorcado;
 import BusinessLogic.Cobertura;
 import BusinessLogic.User;
-import ClasesDecorator.Image;
-
-import ClasesDecorator.ImageDecorator;
-import ClasesDecorator2.Dibujo;
-import ClasesDecorator2.DibujoBrazoDer;
-import ClasesDecorator2.DibujoBrazoIzq;
-import ClasesDecorator2.DibujoCabeza;
-import ClasesDecorator2.DibujoCuerda;
-import ClasesDecorator2.DibujoEstandar;
-import ClasesDecorator2.DibujoMastilHorizontal;
-import ClasesDecorator2.DibujoMastilVertical;
-import ClasesDecorator2.DibujoOjos;
-import ClasesDecorator2.DibujoPiernaDer;
-import ClasesDecorator2.DibujoPiernaIzq;
-import ClasesDecorator2.DibujoTronco;
+import ClasesDecorator.Dibujo;
+import ClasesDecorator.DibujoBrazoDer;
+import ClasesDecorator.DibujoBrazoIzq;
+import ClasesDecorator.DibujoCabeza;
+import ClasesDecorator.DibujoCuerda;
+import ClasesDecorator.DibujoEstandar;
+import ClasesDecorator.DibujoMastilHorizontal;
+import ClasesDecorator.DibujoMastilVertical;
+import ClasesDecorator.DibujoOjos;
+import ClasesDecorator.DibujoPiernaDer;
+import ClasesDecorator.DibujoPiernaIzq;
+import ClasesDecorator.DibujoTronco;
 import ClasesObserver.GestorEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
@@ -52,7 +49,7 @@ public class RetoAhorcado extends AppCompatActivity {
     private int numPregunta = 0;
     private int vidas = 0;
     private int puntosAcum = 0;
-
+    private ImageViewAhorcado imageView;
     int aciertoStat;
     int falloStat;
     int wonStat;
@@ -126,19 +123,7 @@ public class RetoAhorcado extends AppCompatActivity {
 
     public RetoAhorcado(){}
 
-
     int numFallos;
-    Image baseImage;
-    Image decoratedImage2;
-    Image decoratedImage3;
-    Image decoratedImage4;
-    Image decoratedImage5;
-    Image decoratedImage6;
-    Image decoratedImage7;
-    Image decoratedImage8;
-    Image decoratedImage9;
-    Image decoratedImage10;
-    Image decoratedImage11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +138,8 @@ public class RetoAhorcado extends AppCompatActivity {
         setContentView(R.layout.retoahorcado);
 
         Intent intent = getIntent();
+
+        imageView = findViewById(R.id.imageViewAhorcado);
 
         tipo = (String) intent.getSerializableExtra("tipo");
 
@@ -291,109 +278,53 @@ public class RetoAhorcado extends AppCompatActivity {
         return respuestaOculta;
     }
 
-    //metodo del decorator2, el nuevo, comentado porque da un error que dice que falta por inicializar las variables que se pasan como parametros a los nuevos dibujos
-    /*
-    public void cambiarDibujo(){
-        Dibujo dibujo = new DibujoEstandar("Dibujo estandar");
+    public void cambiarFotoAhorcado(){
+        Dibujo dibujo = new DibujoEstandar(imageView);
         dibujo.dibujar();
         switch (numFallos) {
             case 1:
-                Dibujo dibujoMastilVertical = new DibujoMastilVertical(dibujo);
+                Dibujo dibujoMastilVertical = new DibujoMastilVertical(dibujo, imageView);
                 dibujoMastilVertical.dibujar();
                 break;
             case 2:
-                Dibujo dibujoMastilHorizontal = new DibujoMastilHorizontal(dibujoMastilVertical);
+                Dibujo dibujoMastilHorizontal = new DibujoMastilHorizontal(dibujo, imageView);
                 dibujoMastilHorizontal.dibujar();
                 break;
             case 3:
-                Dibujo dibujoCuerda = new DibujoCuerda(dibujoMastilHorizontal);
+                Dibujo dibujoCuerda = new DibujoCuerda(dibujo, imageView);
                 dibujoCuerda.dibujar();
                 break;
             case 4:
-                Dibujo dibujoCabeza = new DibujoCabeza(dibujoCuerda);
+                Dibujo dibujoCabeza = new DibujoCabeza(dibujo, imageView);
                 dibujoCabeza.dibujar();
                 break;
             case 5:
-                Dibujo dibujoTronco = new DibujoTronco(dibujoCabeza);
+                Dibujo dibujoTronco = new DibujoTronco(dibujo, imageView);
                 dibujoTronco.dibujar();
                 break;
             case 6:
-                Dibujo dibujoBrazoIzq = new DibujoBrazoIzq(dibujoTronco);
+                Dibujo dibujoBrazoIzq = new DibujoBrazoIzq(dibujo, imageView);
                 dibujoBrazoIzq.dibujar();
                 break;
             case 7:
-                Dibujo dibujoBrazoDer = new DibujoBrazoDer(dibujoBrazoIzq);
+                Dibujo dibujoBrazoDer = new DibujoBrazoDer(dibujo, imageView);
                 dibujoBrazoDer.dibujar();
                 break;
             case 8:
-                Dibujo dibujoPiernaIzq = new DibujoPiernaIzq(dibujoBrazoDer);
+                Dibujo dibujoPiernaIzq = new DibujoPiernaIzq(dibujo, imageView);
                 dibujoPiernaIzq.dibujar();
                 break;
             case 9:
-                Dibujo dibujoPiernaDer = new DibujoPiernaDer(dibujoPiernaIzq);
+                Dibujo dibujoPiernaDer = new DibujoPiernaDer(dibujo, imageView);
                 dibujoPiernaDer.dibujar();
                 break;
             case 10:
-                Dibujo dibujoOjos = new DibujoOjos(dibujoPiernaDer);
+                Dibujo dibujoOjos = new DibujoOjos(dibujo, imageView);
                 dibujoOjos.dibujar();
                 break;
             default:
-                // Acción en caso de que numFallos no esté dentro del rango válido
                 break;
         }
-    }
-    */
-
-    //metodo del decorator
-
-    public void cambiarFotoAhorcado(){
-       /* baseImage = new BaseImage(R.drawable.ahorcado1);
-        decoratedImage2 = new ImageDecorator(baseImage, R.drawable.ahorcado2);
-        decoratedImage3 = new ImageDecorator(decoratedImage2, R.drawable.ahorcado3);
-        decoratedImage4 = new ImageDecorator(decoratedImage3, R.drawable.ahorcado4);
-        decoratedImage5 = new ImageDecorator(decoratedImage4, R.drawable.ahorcado5);
-        decoratedImage6 = new ImageDecorator(decoratedImage5, R.drawable.ahorcado6);
-        decoratedImage7 = new ImageDecorator(decoratedImage6, R.drawable.ahorcado7);
-        decoratedImage8 = new ImageDecorator(decoratedImage7, R.drawable.ahorcado8);
-        decoratedImage9 = new ImageDecorator(decoratedImage8, R.drawable.ahorcado9);
-        decoratedImage10 = new ImageDecorator(decoratedImage9, R.drawable.ahorcado10);
-        decoratedImage11 = new ImageDecorator(decoratedImage10, R.drawable.ahorcado11);
-
-        switch (numFallos) {
-            case 1:
-                decoratedImage2.display();
-                break;
-            case 2:
-                decoratedImage3.display();
-                break;
-            case 3:
-                decoratedImage4.display();
-                break;
-            case 4:
-                decoratedImage5.display();
-                break;
-            case 5:
-                decoratedImage6.display();
-                break;
-            case 6:
-                decoratedImage7.display();
-                break;
-            case 7:
-                decoratedImage8.display();
-                break;
-            case 8:
-                decoratedImage9.display();
-                break;
-            case 9:
-                decoratedImage10.display();
-                break;
-            case 10:
-                decoratedImage11.display();
-                break;
-            default:
-                // Acción en caso de que numFallos no esté dentro del rango válido
-                break;
-        }*/
     }
 
     public char letraPulsada(View view){
@@ -424,7 +355,6 @@ public class RetoAhorcado extends AppCompatActivity {
     }
 public void comprobarLetra(){
 
-    System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAA FI IF IF");
     String tvr = textViewRespuesta.getText().toString();
     String result = "";
     char[] respuestaArray = tvr.toCharArray();
@@ -465,7 +395,6 @@ public void comprobarLetra(){
             if(numFallos == 9) {
                 vidas--;
                 handlerRespIncorrecta();
-                buttonPistas3.setClickable(false);
                 buttonAbandonar3.setVisibility(View.INVISIBLE);
                 buttonAbandonar3.setClickable(false);
                 textViewTiempoC.setVisibility(View.VISIBLE);
@@ -650,7 +579,6 @@ public void comprobarLetra(){
 
     public void esconderTodo(){
         relativeLayoutTeclado.setVisibility(View.INVISIBLE);
-        buttonPistas3.setVisibility(View.INVISIBLE);
         textViewPuntAcum3.setVisibility(View.INVISIBLE);
         textViewPuntosAcumAho.setVisibility(View.INVISIBLE);
         textViewPuntConsol3.setVisibility(View.INVISIBLE);

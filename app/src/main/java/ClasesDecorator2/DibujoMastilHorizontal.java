@@ -10,6 +10,6 @@ public class DibujoMastilHorizontal extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        super.getImage().drawOjos();
+        super.getImage().drawMastilHor();
     }
 }

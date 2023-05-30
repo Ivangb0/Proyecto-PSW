@@ -9,6 +9,7 @@ public class DibujoBrazoIzq extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawBrazoIzq();
     }
 }

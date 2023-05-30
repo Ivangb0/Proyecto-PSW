@@ -10,6 +10,7 @@ public class DibujoPiernaIzq extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawPiernaIzq();
     }
 }

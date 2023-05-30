@@ -10,6 +10,7 @@ public class DibujoOjos extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawOjos();
     }
 }

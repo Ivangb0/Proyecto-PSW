@@ -10,6 +10,7 @@ public class DibujoTronco extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawTronco();
     }
 }

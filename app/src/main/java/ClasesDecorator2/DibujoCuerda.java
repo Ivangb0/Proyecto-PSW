@@ -10,6 +10,7 @@ public class DibujoCuerda extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawCuerda();
     }
 }

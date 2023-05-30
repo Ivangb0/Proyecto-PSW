@@ -10,6 +10,7 @@ public class DibujoCabeza extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+
+        super.getImage().drawCabeza();
     }
 }

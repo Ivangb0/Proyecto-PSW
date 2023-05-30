@@ -10,6 +10,6 @@ public class DibujoMastilVertical extends DibujoDecorator{
 
     @Override
     public void dibujar() {
-        super.getImage().drawLine();
+        super.getImage().drawMastilVer();
     }
 }

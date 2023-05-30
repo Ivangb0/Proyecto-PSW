@@ -39,13 +39,14 @@ public class User implements Serializable {
 
     @DatabaseField
     public int nivel;
+    public int experiencia;
 
 
     //constructor vacio para que la libreria del DAO funcione
     User(){}
 
     //constructor de la clase user
-    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband, int acie, int fall, int tiempoU, int nivel){
+    public User (int idUs, String usern, String email, String pswrd, int ptosAcum, int trof, int medals, int ganad, int perdi, int aband, int acie, int fall, int tiempoU, int nivel, int exp){
         this.id_user = idUs;
         this.username = usern;
         this.email = email;
@@ -60,6 +61,7 @@ public class User implements Serializable {
         this.fallos = fall;
         this.tiempoUso = tiempoU;
         this.nivel = nivel;
+        this.experiencia = exp;
     }
 
     //metodos get de los atributos de la clase user
@@ -100,6 +102,10 @@ public class User implements Serializable {
     public int getTiempoUso(){return tiempoUso;}
     public int getNivel(){return nivel;}
 
+    public int getExperiencia() {
+        return experiencia;
+    }
+
     //metodos set de los atributos de la clase user
     public void setUsername (String newUsername){
         this.username = newUsername;
@@ -138,4 +144,8 @@ public class User implements Serializable {
     public void setTiempoUso (int newTiempoUso) {this.tiempoUso = newTiempoUso;}
 
     public void setNivel (int newNivel) {this.nivel = newNivel;}
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
 }

@@ -9,7 +9,7 @@
     android:fillViewport="true"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
-    android:background="@drawable/mainmenu">
+    android:background="@drawable/questionback2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView59"
             app:layout_constraintStart_toStartOf="@+id/textView59"
             app:layout_constraintTop_toBottomOf="@+id/textView59"
-            tools:srcCompat="@drawable/cobertura" />
+            tools:srcCompat="@drawable/gcobertura" />
 
         <ImageView
             android:id="@+id/imageView20"
@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView57"
             app:layout_constraintStart_toStartOf="@+id/textView57"
             app:layout_constraintTop_toBottomOf="@+id/textView57"
-            tools:srcCompat="@drawable/armario" />
+            tools:srcCompat="@drawable/garmario" />
 
         <TextView
             android:id="@+id/textView58"
@@ -43,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario8"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView20"
             app:layout_constraintStart_toStartOf="@+id/imageView20"
             app:layout_constraintTop_toBottomOf="@+id/imageView20" />
@@ -55,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView58"
             app:layout_constraintStart_toStartOf="@+id/textView58"
             app:layout_constraintTop_toBottomOf="@+id/textView58"
-            tools:srcCompat="@drawable/armario" />
+            tools:srcCompat="@drawable/stats"/>
 
         <TextView
             android:id="@+id/textView59"
@@ -63,6 +65,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario9"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView21"
             app:layout_constraintStart_toStartOf="@+id/imageView21"
             app:layout_constraintTop_toBottomOf="@+id/imageView21" />
@@ -75,7 +79,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView55"
             app:layout_constraintStart_toStartOf="@+id/textView55"
             app:layout_constraintTop_toBottomOf="@+id/textView55"
-            tools:srcCompat="@drawable/perfil" />
+            tools:srcCompat="@drawable/gperfil" />
 
         <TextView
             android:id="@+id/textView57"
@@ -83,6 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario7"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView19"
             app:layout_constraintStart_toStartOf="@+id/imageView19"
             app:layout_constraintTop_toBottomOf="@+id/imageView19" />
@@ -93,6 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario6"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView18"
             app:layout_constraintStart_toStartOf="@+id/imageView18"
             app:layout_constraintTop_toBottomOf="@+id/imageView18" />
@@ -103,6 +111,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario4"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView16"
             app:layout_constraintStart_toStartOf="@+id/imageView16"
             app:layout_constraintTop_toBottomOf="@+id/imageView16" />
@@ -113,6 +123,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario3"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView15"
             app:layout_constraintStart_toStartOf="@+id/imageView15"
             app:layout_constraintTop_toBottomOf="@+id/imageView15" />
@@ -123,6 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario5"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView17"
             app:layout_constraintStart_toStartOf="@+id/imageView17"
             app:layout_constraintTop_toBottomOf="@+id/imageView17" />
@@ -133,6 +147,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/GuiaUsuario2"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView11"
             app:layout_constraintStart_toStartOf="@+id/imageView11"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -160,6 +176,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/GuiaUsuario1"
+            android:textColor="#000000"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/textViewGuiaUsuario"
             app:layout_constraintStart_toStartOf="@+id/textViewGuiaUsuario"
             app:layout_constraintTop_toBottomOf="@+id/textViewGuiaUsuario" />
@@ -185,7 +203,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView54"
             app:layout_constraintStart_toStartOf="@+id/textView54"
             app:layout_constraintTop_toBottomOf="@+id/textView54"
-            tools:srcCompat="@drawable/armarioguia" />
+            tools:srcCompat="@drawable/gcatalogo" />
 
         <ImageView
             android:id="@+id/imageView15"
@@ -195,7 +213,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView56"
             app:layout_constraintStart_toStartOf="@+id/textView56"
             app:layout_constraintTop_toBottomOf="@+id/textView56"
-            tools:srcCompat="@drawable/retopregunta" />
+            tools:srcCompat="@drawable/gretopregunta" />
 
         <ImageView
             android:id="@+id/imageView16"
@@ -205,7 +223,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView51"
             app:layout_constraintStart_toStartOf="@+id/textView51"
             app:layout_constraintTop_toBottomOf="@+id/textView51"
-            tools:srcCompat="@drawable/retofrase" />
+            tools:srcCompat="@drawable/gretofrase" />
 
         <ImageView
             android:id="@+id/imageView17"
@@ -215,7 +233,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView52"
             app:layout_constraintStart_toStartOf="@+id/textView52"
             app:layout_constraintTop_toBottomOf="@+id/textView52"
-            tools:srcCompat="@drawable/retofrase" />
+            tools:srcCompat="@drawable/gretoahorcado" />
 
         <ImageView
             android:id="@+id/imageView18"
@@ -225,7 +243,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView53"
             app:layout_constraintStart_toStartOf="@+id/textView53"
             app:layout_constraintTop_toBottomOf="@+id/textView53"
-            tools:srcCompat="@drawable/armarioguia" />
+            tools:srcCompat="@drawable/gconfig" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

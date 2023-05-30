@@ -42,19 +42,16 @@ public class GuiaUsuario extends AppCompatActivity {
         ivConfiguracion = findViewById(R.id.imageView18);
         ivRetoAhorcado = findViewById(R.id.imageView17);
 
-        ivRetoPregunta.setImageResource(R.drawable.retopregunta);
-        ivRetoFrase.setImageResource(R.drawable.retofrase);
-        ivArmario.setImageResource(R.drawable.armarioguia);
-        ivCobertura.setImageResource(R.drawable.cobertura);
-        ivEscogerReto.setImageResource(R.drawable.escogerreto);
-        ivPerfil.setImageResource(R.drawable.perfil);
-        //ivEstadisticas.setImageResource(R.drawable.estadisticas);
-        ivConfiguracion.setImageResource(R.drawable.configuracion);
-        //ivRetoAhorcado.setImageResource(R.drawable.retoahorcado);
+        ivRetoPregunta.setImageResource(R.drawable.gretopregunta);
+        ivRetoFrase.setImageResource(R.drawable.gretofrase);
+        ivArmario.setImageResource(R.drawable.garmario);
+        ivCobertura.setImageResource(R.drawable.gcobertura);
+        ivEscogerReto.setImageResource(R.drawable.gcatalogo);
+        ivPerfil.setImageResource(R.drawable.gperfil);
+        ivEstadisticas.setImageResource(R.drawable.stats);
+        ivConfiguracion.setImageResource(R.drawable.gconfig);
+        ivRetoAhorcado.setImageResource(R.drawable.gretoahorcado);
 
-        //Intent intent = getIntent();
-        usuario = (User) intent.getSerializableExtra("user");
-        appMuted = intent.getBooleanExtra("muted",false);
     }
     public void volverMainMenu (View view){
         Intent intent = new Intent(this, JugarPartida.class);

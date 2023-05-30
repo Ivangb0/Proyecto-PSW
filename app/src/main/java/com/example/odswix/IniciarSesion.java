@@ -116,8 +116,9 @@ public class IniciarSesion extends AppCompatActivity {
             int fallos = getListIntegersDB("fallos").get(i);
             int tiempoUso = getListIntegersDB("tiempoUso").get(i);
             int nivel = getListIntegersDB("nivel").get(i);
+            int experiencia = getListIntegersDB("experiencia").get(i);
 
-            usuario = new User(id,username,email,password,puntos,trofeos,medallas,ganadas,perdidas,abandonadas,aciertos,fallos,tiempoUso,nivel);
+            usuario = new User(id,username,email,password,puntos,trofeos,medallas,ganadas,perdidas,abandonadas,aciertos,fallos,tiempoUso,nivel,experiencia);
 
 
             Intent jugarPartida = new Intent(this, JugarPartida.class);

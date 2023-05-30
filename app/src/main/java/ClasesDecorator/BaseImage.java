@@ -1,19 +1,17 @@
 package ClasesDecorator;
 
-import android.widget.ImageView;
-
-import com.example.odswix.RetoAhorcado;
+import com.example.odswix.ImageViewAhorcado;
+import com.example.odswix.R;
 
 public class BaseImage implements Image {
-    private int resourceId;
 
-    ImageView imageViewAhorcado = RetoAhorcado.imageViewAhorcado;
+    ImageViewAhorcado image;
 
-    public BaseImage(int resourceId) {
-            this.resourceId = resourceId;
+    public BaseImage(ImageViewAhorcado image) {
+            this.image = image;
     }
     @Override
     public void display() {
-        imageViewAhorcado.setImageResource(resourceId);
+        image.setImageResource(R.drawable.ahorcado1);
     }
 }

@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 
 public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageView {
     private boolean shouldDrawLine = false;
+    private boolean drawOjos = false;
 
     public ImageViewAhorcado(Context context) {
         super(context);
@@ -79,7 +80,7 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             paintPierDer.setColor(Color.BLACK);
             paintPierDer.setStrokeWidth(80);*/
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/2+300,bitmapCanvas.getWidth() - 750, bitmapCanvas.getHeight()/2+550,  paintPalo);
-
+ /*
             Paint paintOjos = new Paint();
             paintOjos.setColor(Color.RED);
             paintOjos.setStrokeWidth(20);
@@ -87,7 +88,7 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+150, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+100, bitmapCanvas.getHeight()/3+50, paintOjos);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+250, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+300, bitmapCanvas.getHeight()/3+50, paintOjos);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+300, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+250, bitmapCanvas.getHeight()/3+50, paintOjos);
-            /*
+
             Paint paintOjos = new Paint();
             paintOjos.setColor(Color.BLUE);
             paintOjos.setStrokeWidth(10);
@@ -130,11 +131,38 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             */
             setImageBitmap(bitmap);
             shouldDrawLine = false;
+        }else if(drawOjos) {
+            Drawable drawable = getDrawable();
+            if (drawable == null) {
+                return;
+            }
+
+
+
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas bitmapCanvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, bitmapCanvas.getWidth(), bitmapCanvas.getHeight());
+            drawable.draw(bitmapCanvas);
+
+            Paint paintOjos = new Paint();
+            paintOjos.setColor(Color.BLACK);
+            paintOjos.setStrokeWidth(15);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 100, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 150, bitmapCanvas.getHeight() / 3 + 50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 150, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 100, bitmapCanvas.getHeight() / 3 + 50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 250, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 300, bitmapCanvas.getHeight() / 3 + 50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 300, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 250, bitmapCanvas.getHeight() / 3 + 50, paintOjos);
+
+            setImageBitmap(bitmap);
+            drawOjos = false;
         }
     }
 
     public void drawLine() {
         shouldDrawLine = true;
+        invalidate();
+    }
+    public void drawOjos() {
+        drawOjos = true;
         invalidate();
     }
 }

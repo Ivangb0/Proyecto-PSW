@@ -1,27 +1,23 @@
 package ClasesDecorator;
 
-import android.widget.ImageView;
+import com.example.odswix.ImageViewAhorcado;
 
-import com.example.odswix.R;
-import com.example.odswix.RetoAhorcado;
-
-public class ImageDecorator implements Image {
+public abstract class ImageDecorator implements Image {
     private Image image;
-    private int newResourceId;
-    ImageView imageViewAhorcado;
+    private ImageViewAhorcado imagen;
 
-    public ImageDecorator(Image image, int newResourceId) {
+    public ImageDecorator(Image image, ImageViewAhorcado imagen) {
         this.image = image;
-        this.newResourceId = newResourceId;
+        this.imagen = imagen;
     }
-
+/*
     @Override
-    public void display() {
+    public void display(ImageViewAhorcado imagen) {
         // Primero, muestra la imagen original
         image.display();
 
         // Luego, cambia la imagen por otra
         imageViewAhorcado = RetoAhorcado.imageViewAhorcado;
         imageViewAhorcado.setImageResource(newResourceId);
-    }
+    }*/
 }

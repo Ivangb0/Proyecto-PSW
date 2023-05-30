@@ -1,7 +1,6 @@
 package com.example.odswix;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -27,8 +26,8 @@ import java.util.concurrent.TimeUnit;
 import BusinessLogic.Ahorcado;
 import BusinessLogic.Cobertura;
 import BusinessLogic.User;
-import ClasesDecorator.BaseImage;
 import ClasesDecorator.Image;
+
 import ClasesDecorator.ImageDecorator;
 import ClasesDecorator2.Dibujo;
 import ClasesDecorator2.DibujoBrazoDer;
@@ -348,7 +347,7 @@ public class RetoAhorcado extends AppCompatActivity {
     //metodo del decorator
 
     public void cambiarFotoAhorcado(){
-        baseImage = new BaseImage(R.drawable.ahorcado1);
+       /* baseImage = new BaseImage(R.drawable.ahorcado1);
         decoratedImage2 = new ImageDecorator(baseImage, R.drawable.ahorcado2);
         decoratedImage3 = new ImageDecorator(decoratedImage2, R.drawable.ahorcado3);
         decoratedImage4 = new ImageDecorator(decoratedImage3, R.drawable.ahorcado4);
@@ -394,7 +393,7 @@ public class RetoAhorcado extends AppCompatActivity {
             default:
                 // Acción en caso de que numFallos no esté dentro del rango válido
                 break;
-        }
+        }*/
     }
 
     public char letraPulsada(View view){

@@ -3,7 +3,7 @@
     <string name="GuiaUsuario1">Bienvenido a ¿Quién quiere ser sostenible?\nActualmente existen 3 tipos de reto (Pregunta, Completar frase y Ahorcado) con la posibilidad de jugar una partida con retos mixtos.</string>
     <string name="GuiaUsuario2">Reto pregunta:\nEste tipo de reto consiste en responder una pregunta aleatoria sobre una ODS. Se te otorgarán 4 opciones de las cuales 3 son falsas y sólo 1 correcta.\nSi cumples con los requisitos puedes optar a una pista por reto, la pista consiste en eliminar 2 de las opciones falsas.</string>
     <string name="GuiaUsuario3">Reto completar frase:\nEste tipo de reto consiste en completar una afirmación aleatoria sobre una ODS. Se te otorgarán unas cuantas letras de la frase y un conjunto de letras que tendrás que introducir en los huecos.\nSi cumples con los requisitos puedes optar a una pista por reto, la pista consiste en que unas cuantas letras se colocarán automaticamente en la frase.</string>
-    <string name="GuiaUsuario4">Reto ahorcado:\nEste tipo de reto consiste en RELLENAR CUANDO TENGAMOS ACABADO EL AHORCADO...</string>
+    <string name="GuiaUsuario4">Reto ahorcado:\nEste tipo de reto consiste en completar todas las letras de una o varias palabras utilizando el teclado que se muestra en pantalla, solo existen 9 oportunidades para ganar y las oportunidades se mostrarán en la imagen del ahorcado, cuantas mas partes aparezcan en el cuerpo con menos oportunidades contarás.</string>
     <string name="GuiaUsuario5">Configuración:\nEn este menu estan disponibles botones para configurar ajustes de la aplicación como el volumen, idioma...</string>
     <string name="GuiaUsuario6">Perfil:\nEn este menu podemos observar y modificar distintos datos del usuario con el que se haya iniciado sesión y acceder al armario y las estadisticas del jugador.</string>
     <string name="GuiaUsuario7">Armario:\nEn este apartado podemos observar la colección de medallas del usuario.</string>
@@ -13,4 +13,5 @@
     <string name="Catalogo2">Completar\nfrase</string>
     <string name="Catalogo3">Ahorcado</string>
     <string name="Catalogo4">Partida\nmixta</string>
+    <string name="RetoBloqueado">Reto bloqueado</string>
 </resources>

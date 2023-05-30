@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -43,10 +43,10 @@
         android:text="¿Quién quiere ser sostenible?"
         android:textAlignment="center"
         android:textColor="#000000"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/bpartida"
@@ -67,8 +67,8 @@
         android:id="@+id/bperfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="146dp"
         android:onClick="perfil"
         android:text="Ver Perfil"
@@ -100,16 +100,16 @@
         android:onClick="cerrarSes"
         android:text="Cerrar Sesión"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonCobertura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="36dp"
         android:onClick="clickCobertura"
         android:text="Cobertura"
-        app:layout_constraintStart_toEndOf="@+id/btnCerrarSesion"
-        app:layout_constraintTop_toBottomOf="@+id/bperfil" />
+        app:layout_constraintStart_toEndOf="@+id/bperfil"
+        app:layout_constraintTop_toBottomOf="@+id/bconfiguracion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

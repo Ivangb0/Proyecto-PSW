@@ -117,11 +117,10 @@
         android:id="@+id/textViewPuntAcum3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:text="Puntuación acumulada:"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/textViewPuntConsol3"
-        app:layout_constraintStart_toEndOf="@+id/buttonPistas3" />
+        app:layout_constraintStart_toStartOf="@+id/textViewPuntConsol3" />
 
     <TextView
         android:id="@+id/textViewPuntosAcumAho"
@@ -146,22 +145,12 @@
         android:id="@+id/textViewPuntConsol3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="16dp"
         android:text="Puntuación consolidada:"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonPistas3" />
-
-    <Button
-        android:id="@+id/buttonPistas3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Pistas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayoutTeclado" />
 
     <ImageButton
         android:id="@+id/imageMute4"
@@ -347,8 +336,7 @@
         android:id="@+id/relativeLayoutTeclado"
         android:layout_width="410dp"
         android:layout_height="209dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPistas3"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPuntAcum3"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button

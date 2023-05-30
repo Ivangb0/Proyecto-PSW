@@ -174,7 +174,7 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewPtosObtend = (TextView) findViewById(R.id.textViewPtosObtend);
         contenedorRespuesta = (RelativeLayout) findViewById(R.id.contenedorRespuesta);
         relativeLayoutTeclado = (RelativeLayout) findViewById(R.id.relativeLayoutTeclado);
-        buttonPistas3 = (Button) findViewById(R.id.buttonPistas3);
+        //buttonPistas3 = (Button) findViewById(R.id.buttonPistas3);
         textViewPuntAcum3 = (TextView) findViewById(R.id.textViewPuntAcum3);
         textViewPuntConsol3 = (TextView) findViewById(R.id.textViewPuntConsol3);
         textView11 = (TextView) findViewById(R.id.textView11);

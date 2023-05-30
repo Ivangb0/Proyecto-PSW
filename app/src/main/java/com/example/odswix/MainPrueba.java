@@ -22,7 +22,7 @@ public class MainPrueba extends AppCompatActivity {
         setContentView(R.layout.retoahorcado);
 
         imageView = findViewById(R.id.imageViewAhorcado);
-        drawButton = findViewById(R.id.buttonPistas3);
+        //drawButton = findViewById(R.id.buttonPistas3);
         drawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

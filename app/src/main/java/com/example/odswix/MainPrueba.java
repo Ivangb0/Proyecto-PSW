@@ -8,15 +8,23 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ClasesDecorator.BaseImage;
-import ClasesDecorator.Image;
-import ClasesDecorator.OjosImage;
-import ClasesDecorator.TorsoImage;
+import ClasesDecorator2.Dibujo;
+import ClasesDecorator2.DibujoBrazoDer;
+import ClasesDecorator2.DibujoBrazoIzq;
+import ClasesDecorator2.DibujoCabeza;
+import ClasesDecorator2.DibujoCuerda;
+import ClasesDecorator2.DibujoEstandar;
+import ClasesDecorator2.DibujoMastilHorizontal;
+import ClasesDecorator2.DibujoMastilVertical;
+import ClasesDecorator2.DibujoOjos;
+import ClasesDecorator2.DibujoPiernaDer;
+import ClasesDecorator2.DibujoPiernaIzq;
+import ClasesDecorator2.DibujoTronco;
 
 public class MainPrueba extends AppCompatActivity {
     private ImageViewAhorcado imageView;
     private Button drawButton;
-    int n = 0;
+    int n = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +43,53 @@ public class MainPrueba extends AppCompatActivity {
         drawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Image baseImage = new BaseImage(imageView);
-                Image torsoImage = new TorsoImage(baseImage, imageView);
-                Image ojosImage = new OjosImage(baseImage, imageView);
-                if(n==0) {
-                    torsoImage.display(); n++;
-                }else {
-                    ojosImage.display();
+
+                Dibujo dibujo = new DibujoEstandar(imageView);
+                dibujo.dibujar();
+                switch (n) {
+                    case 1:
+                        Dibujo dibujoMastilVertical = new DibujoMastilVertical(dibujo, imageView);
+                        dibujoMastilVertical.dibujar(); n++;
+                        break;
+                    case 2:
+                        Dibujo dibujoMastilHorizontal = new DibujoMastilHorizontal(dibujo, imageView);
+                        dibujoMastilHorizontal.dibujar(); n++;
+                        break;
+                    case 3:
+                        Dibujo dibujoCuerda = new DibujoCuerda(dibujo, imageView);
+                        dibujoCuerda.dibujar(); n++;
+                        break;
+                    case 4:
+                        Dibujo dibujoCabeza = new DibujoCabeza(dibujo, imageView);
+                        dibujoCabeza.dibujar(); n++;
+                        break;
+                    case 5:
+                        Dibujo dibujoTronco = new DibujoTronco(dibujo, imageView);
+                        dibujoTronco.dibujar(); n++;
+                        break;
+                    case 6:
+                        Dibujo dibujoBrazoIzq = new DibujoBrazoIzq(dibujo, imageView);
+                        dibujoBrazoIzq.dibujar(); n++;
+                        break;
+                    case 7:
+                        Dibujo dibujoBrazoDer = new DibujoBrazoDer(dibujo, imageView);
+                        dibujoBrazoDer.dibujar(); n++;
+                        break;
+                    case 8:
+                        Dibujo dibujoPiernaIzq = new DibujoPiernaIzq(dibujo, imageView);
+                        dibujoPiernaIzq.dibujar(); n++;
+                        break;
+                    case 9:
+                        Dibujo dibujoPiernaDer = new DibujoPiernaDer(dibujo, imageView);
+                        dibujoPiernaDer.dibujar(); n++;
+                        break;
+                    case 10:
+                        Dibujo dibujoOjos = new DibujoOjos(dibujo, imageView);
+                        dibujoOjos.dibujar(); n++;
+                        break;
+                    default:
+                        // Acción en caso de que numFallos no esté dentro del rango válido
+                        break;
                 }
             }
         });

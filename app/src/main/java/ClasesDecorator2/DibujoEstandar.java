@@ -1,11 +1,13 @@
 package ClasesDecorator2;
 
-public class DibujoEstandar implements Dibujo{
+import com.example.odswix.ImageViewAhorcado;
 
+public class DibujoEstandar implements Dibujo{
+    private ImageViewAhorcado imageView;
     private String nombre;
 
-    public DibujoEstandar(String s){
-        nombre=s;
+    public DibujoEstandar(ImageViewAhorcado imageView){
+        this.imageView=imageView;
     }
 
     @Override

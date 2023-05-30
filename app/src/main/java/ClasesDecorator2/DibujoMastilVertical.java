@@ -1,13 +1,15 @@
 package ClasesDecorator2;
 
+import com.example.odswix.ImageViewAhorcado;
+
 public class DibujoMastilVertical extends DibujoDecorator{
 
-    public DibujoMastilVertical(Dibujo dibujo) {
-        super(dibujo);
+    public DibujoMastilVertical(Dibujo dibujo, ImageViewAhorcado imageView) {
+        super(dibujo,imageView);
     }
 
     @Override
     public void dibujar() {
-        getDibujo().dibujar();
+        super.getImage().drawLine();
     }
 }

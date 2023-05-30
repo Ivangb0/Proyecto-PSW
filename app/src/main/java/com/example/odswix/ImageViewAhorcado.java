@@ -145,7 +145,7 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             drawable.draw(bitmapCanvas);
 
             Paint paintOjos = new Paint();
-            paintOjos.setColor(Color.BLACK);
+            paintOjos.setColor(Color.RED);
             paintOjos.setStrokeWidth(15);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 100, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 150, bitmapCanvas.getHeight() / 3 + 50, paintOjos);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 2 + 150, bitmapCanvas.getHeight() / 3, bitmapCanvas.getWidth() / 2 + 100, bitmapCanvas.getHeight() / 3 + 50, paintOjos);

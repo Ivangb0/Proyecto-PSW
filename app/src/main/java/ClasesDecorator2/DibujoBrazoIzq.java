@@ -1,8 +1,10 @@
 package ClasesDecorator2;
 
+import com.example.odswix.ImageViewAhorcado;
+
 public class DibujoBrazoIzq extends DibujoDecorator{
-    public DibujoBrazoIzq(Dibujo dibujo) {
-        super(dibujo);
+    public DibujoBrazoIzq(Dibujo dibujo, ImageViewAhorcado imageView) {
+        super(dibujo,imageView);
     }
 
     @Override

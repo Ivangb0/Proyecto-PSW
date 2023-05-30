@@ -30,6 +30,18 @@ import BusinessLogic.User;
 import ClasesDecorator.BaseImage;
 import ClasesDecorator.Image;
 import ClasesDecorator.ImageDecorator;
+import ClasesDecorator2.Dibujo;
+import ClasesDecorator2.DibujoBrazoDer;
+import ClasesDecorator2.DibujoBrazoIzq;
+import ClasesDecorator2.DibujoCabeza;
+import ClasesDecorator2.DibujoCuerda;
+import ClasesDecorator2.DibujoEstandar;
+import ClasesDecorator2.DibujoMastilHorizontal;
+import ClasesDecorator2.DibujoMastilVertical;
+import ClasesDecorator2.DibujoOjos;
+import ClasesDecorator2.DibujoPiernaDer;
+import ClasesDecorator2.DibujoPiernaIzq;
+import ClasesDecorator2.DibujoTronco;
 import ClasesObserver.GestorEstadisticas;
 import Persistence.CoberturaDAO;
 import Persistence.UserDAO;
@@ -280,7 +292,61 @@ public class RetoAhorcado extends AppCompatActivity {
         return respuestaOculta;
     }
 
+    //metodo del decorator2, el nuevo, comentado porque da un error que dice que falta por inicializar las variables que se pasan como parametros a los nuevos dibujos
+    /*
+    public void cambiarDibujo(){
+        Dibujo dibujo = new DibujoEstandar("Dibujo estandar");
+        dibujo.dibujar();
+        switch (numFallos) {
+            case 1:
+                Dibujo dibujoMastilVertical = new DibujoMastilVertical(dibujo);
+                dibujoMastilVertical.dibujar();
+                break;
+            case 2:
+                Dibujo dibujoMastilHorizontal = new DibujoMastilHorizontal(dibujoMastilVertical);
+                dibujoMastilHorizontal.dibujar();
+                break;
+            case 3:
+                Dibujo dibujoCuerda = new DibujoCuerda(dibujoMastilHorizontal);
+                dibujoCuerda.dibujar();
+                break;
+            case 4:
+                Dibujo dibujoCabeza = new DibujoCabeza(dibujoCuerda);
+                dibujoCabeza.dibujar();
+                break;
+            case 5:
+                Dibujo dibujoTronco = new DibujoTronco(dibujoCabeza);
+                dibujoTronco.dibujar();
+                break;
+            case 6:
+                Dibujo dibujoBrazoIzq = new DibujoBrazoIzq(dibujoTronco);
+                dibujoBrazoIzq.dibujar();
+                break;
+            case 7:
+                Dibujo dibujoBrazoDer = new DibujoBrazoDer(dibujoBrazoIzq);
+                dibujoBrazoDer.dibujar();
+                break;
+            case 8:
+                Dibujo dibujoPiernaIzq = new DibujoPiernaIzq(dibujoBrazoDer);
+                dibujoPiernaIzq.dibujar();
+                break;
+            case 9:
+                Dibujo dibujoPiernaDer = new DibujoPiernaDer(dibujoPiernaIzq);
+                dibujoPiernaDer.dibujar();
+                break;
+            case 10:
+                Dibujo dibujoOjos = new DibujoOjos(dibujoPiernaDer);
+                dibujoOjos.dibujar();
+                break;
+            default:
+                // Acción en caso de que numFallos no esté dentro del rango válido
+                break;
+        }
+    }
+    */
+
     //metodo del decorator
+
     public void cambiarFotoAhorcado(){
         baseImage = new BaseImage(R.drawable.ahorcado1);
         decoratedImage2 = new ImageDecorator(baseImage, R.drawable.ahorcado2);

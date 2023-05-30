@@ -44,8 +44,16 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             Paint paintPalo = new Paint();
             paintPalo.setColor(Color.BLACK);
             paintPalo.setStrokeWidth(80);
-            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/4, bitmapCanvas.getHeight()-400, bitmapCanvas.getWidth()/4, 500, paintPalo);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 4, bitmapCanvas.getHeight()-400, bitmapCanvas.getWidth()/4, 500, paintPalo);
 
+            //mastil horizontal
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth() / 4 + 1050,  460, bitmapCanvas.getWidth() / 4 -150,  460, paintPalo);
+
+            //cuerda
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2 +205, 430,bitmapCanvas.getWidth() / 4 + 770,  650, paintPalo);
+
+            //cabeza
+            bitmapCanvas.drawCircle(bitmapCanvas.getWidth()/2+195, bitmapCanvas.getHeight()/3 +50, 170, paintPalo);
 /*
             Paint paintTorso = new Paint();
             paintTorso.setColor(Color.BLACK);
@@ -73,8 +81,8 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/2+300,bitmapCanvas.getWidth() - 750, bitmapCanvas.getHeight()/2+550,  paintPalo);
 
             Paint paintOjos = new Paint();
-            paintOjos.setColor(Color.BLACK);
-            paintOjos.setStrokeWidth(15);
+            paintOjos.setColor(Color.RED);
+            paintOjos.setStrokeWidth(20);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+100, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+150, bitmapCanvas.getHeight()/3+50, paintOjos);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+150, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+100, bitmapCanvas.getHeight()/3+50, paintOjos);
             bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+250, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+300, bitmapCanvas.getHeight()/3+50, paintOjos);

@@ -30,6 +30,9 @@ public class Perfil extends AppCompatActivity {
     String contraseña = "";
     boolean visible = false;
     int nivel;
+    String popupUsername;
+    String popupPassword;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,14 +78,40 @@ public class Perfil extends AppCompatActivity {
         TextView username = findViewById(R.id.nombreUser);
 
         AlertDialog.Builder popout = new AlertDialog.Builder(this);
+        AlertDialog.Builder popoutConfirm = new AlertDialog.Builder(this);
+
         popout.setTitle("Cambiar nombre de usuario");
+        popoutConfirm.setTitle("Cambiar nombre de usuario");
         popout.setMessage("Ingrese el nuevo nombre de usuario:");
+        popoutConfirm.setMessage("¿Está seguro de que quiere cambiar su nombre de usuario?");
         popout.setView(input);
         popout.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {dialog.cancel();}
         });
-        popout.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        popoutConfirm.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {dialog.cancel();}
+        });
+
+        popoutConfirm.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    PreparedStatement ps = SingletonSQL.insertar("UPDATE user SET username = ? WHERE email = ?");
+                    ps.setString(1, popupUsername);
+                    ps.setString(2, email.getText().toString());
+                    ps.executeUpdate();
+                    username.setText(popupUsername);
+                    usuario.setUsername(popupUsername);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        });
+
+        popout.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -113,19 +142,18 @@ public class Perfil extends AppCompatActivity {
                     }
                     else{
                         err.setVisibility(View.INVISIBLE);
-                            PreparedStatement ps = SingletonSQL.insertar("UPDATE user SET username = ? WHERE email = ?");
-                            ps.setString(1, newUsername);
-                            ps.setString(2, email.getText().toString());
-                            ps.executeUpdate();
-                            username.setText(newUsername);
-                            usuario.setUsername(newUsername);
-
+                        dialog.cancel();
+                        popupUsername = newUsername;
+                        AlertDialog dialogConfirm = popoutConfirm.create();
+                        dialogConfirm.show();
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             }
+
         });
+
 
         AlertDialog dialog = popout.create();
         dialog.show();
@@ -136,14 +164,24 @@ public class Perfil extends AppCompatActivity {
         TextView password = findViewById(R.id.contraseñaUser);
 
         AlertDialog.Builder popout = new AlertDialog.Builder(this);
+        AlertDialog.Builder popoutConfirm = new AlertDialog.Builder(this);
+
         popout.setTitle("Cambiar contraseña");
+        popoutConfirm.setTitle("Cambiar contraseña");
         popout.setMessage("Ingrese la nueva contraseña:");
+        popoutConfirm.setMessage("¿Está seguro de que quiere cambiar su contraseña?");
+
         popout.setView(input);
         popout.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {dialog.cancel();}
         });
-        popout.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        popoutConfirm.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {dialog.cancel();}
+        });
+
+        popoutConfirm.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -169,6 +207,27 @@ public class Perfil extends AppCompatActivity {
                 }
             }
         });
+
+        popout.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                    String newPassword = input.getText().toString();
+                    TextView err = findViewById(R.id.errPassword);
+                    if(newPassword.isEmpty()) {
+                        err.setText("Debe de poner una contraseña");
+                        err.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        err.setVisibility(View.INVISIBLE);
+                        dialog.cancel();
+                        popupPassword = newPassword;
+                        AlertDialog dialogConfirm = popoutConfirm.create();
+                        dialogConfirm.show();
+                    }
+            }
+        });
+
+
 
         AlertDialog dialog = popout.create();
         dialog.show();

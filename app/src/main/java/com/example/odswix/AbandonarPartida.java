@@ -15,7 +15,7 @@ import BusinessLogic.User;
 public class AbandonarPartida extends AppCompatActivity{
     TextView textView29;
     public User usuario = null;
-    TextView textView40;
+
     Button buttonContinuarAlMenu;
     boolean appMuted;
 
@@ -34,8 +34,7 @@ public class AbandonarPartida extends AppCompatActivity{
 
         buttonContinuarAlMenu = (Button) findViewById(R.id.buttonContinuarAlMenu);
         textView29 = (TextView) findViewById(R.id.textView29);
-        textView40 = (TextView) findViewById(R.id.textView40);
-        textView29.setText(String.valueOf((int)intent.getSerializableExtra("pntsFin")));
+        textView29.setText("Puntuación consolidada: " + String.valueOf((int)intent.getSerializableExtra("pntsFin")) + " puntos");
 
     }
 

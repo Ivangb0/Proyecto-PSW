@@ -7,28 +7,10 @@
     android:background="@drawable/armario3">
 
     <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
-        android:shadowDy="1.5"
-        android:shadowRadius="5"
-        android:text="Armario"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
-
-    <TextView
         android:id="@+id/medallas"
         android:layout_width="35dp"
         android:layout_height="26dp"
+        android:layout_marginTop="440dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.5"
@@ -38,12 +20,10 @@
         android:textColor="#f5cf12"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Bvolver"
@@ -62,10 +42,9 @@
         android:layout_width="268dp"
         android:layout_height="39dp"
         android:text="Cada 5 partidas ganadas, se otorgará una medalla"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/Bvolver"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.865" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

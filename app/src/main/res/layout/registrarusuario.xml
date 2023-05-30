@@ -11,13 +11,12 @@
         android:id="@+id/imageOjo2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="41dp"
+        android:contentDescription="mostrarContraRegis"
         android:onClick="mostrarConfirmPassword"
         android:scaleType="fitCenter"
         android:src="@drawable/ojo"
         app:layout_constraintStart_toEndOf="@+id/confirmContr"
-        app:layout_constraintTop_toBottomOf="@+id/imageOjo1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <Button
         android:id="@+id/bregistro"
@@ -26,8 +25,8 @@
         android:layout_marginTop="15dp"
         android:onClick="registro"
         android:text="Registrarse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Eempty"
+        app:layout_constraintStart_toStartOf="@+id/Eempty"
         app:layout_constraintTop_toBottomOf="@+id/Eempty" />
 
     <Button
@@ -37,9 +36,9 @@
         android:layout_marginTop="15dp"
         android:onClick="iniciarSes"
         android:text="Iniciar Sesión"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bregistro"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bregistro"
         app:layout_constraintTop_toBottomOf="@+id/bregistro" />
 
     <TextView
@@ -55,6 +54,7 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
+        android:layout_centerHorizontal="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,9 +67,9 @@
         android:ems="10"
         android:hint="email@dominio.com"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
@@ -79,10 +79,9 @@
         android:text="Email ya registrado"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintEnd_toEndOf="@+id/textView45"
+        app:layout_constraintStart_toStartOf="@+id/textView45"
+        app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
     <TextView
         android:id="@+id/Epassword"
@@ -91,38 +90,35 @@
         android:text="Las contraseñas no coinciden"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmContr" />
+        app:layout_constraintEnd_toEndOf="@+id/textView49"
+        app:layout_constraintStart_toStartOf="@+id/textView49"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
     <EditText
         android:id="@+id/contraseña"
         android:layout_width="226dp"
         android:layout_height="51dp"
-        android:layout_marginTop="6dp"
         android:ems="10"
         android:hint="*******"
         android:inputType="text|textPassword"
         android:shadowColor="#000000"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
         android:id="@+id/usuario"
         android:layout_width="226dp"
         android:layout_height="51dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="User123"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
@@ -132,20 +128,20 @@
         android:text="Usuario ya registrado"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usuario" />
+        app:layout_constraintEnd_toEndOf="@+id/textView47"
+        app:layout_constraintStart_toStartOf="@+id/textView47"
+        app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
     <TextView
         android:id="@+id/Eempty"
         android:layout_width="249dp"
         android:layout_height="26dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:text="Los campos no pueden quedar vacios"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Epassword"
+        app:layout_constraintStart_toStartOf="@+id/Epassword"
         app:layout_constraintTop_toBottomOf="@+id/Epassword" />
 
     <EditText
@@ -157,21 +153,21 @@
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textColorHint="#040404"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView31"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <TextView
         android:id="@+id/textView31"
         android:layout_width="226dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="Confirmar Contraseña*"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/contraseña"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/contraseña"
         app:layout_constraintTop_toBottomOf="@+id/contraseña" />
 
     <TextView
@@ -181,71 +177,70 @@
         android:layout_marginTop="32dp"
         android:text="Nombre de Usuario*"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="226dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:text="Email*"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Euser"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/Euser"
         app:layout_constraintTop_toBottomOf="@+id/Euser" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="226dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:text="Contraseña*"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Eemail"
+        app:layout_constraintStart_toStartOf="@+id/Eemail"
         app:layout_constraintTop_toBottomOf="@+id/Eemail" />
 
     <ImageButton
         android:id="@+id/imageOjo1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="387dp"
         android:onClick="mostrarContraseña"
+        android:contentDescription="mostrarContraRegis"
         android:scaleType="fitCenter"
         android:src="@drawable/ojo"
         app:layout_constraintStart_toEndOf="@+id/contraseña"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:text="*Introduzca su email con el formato especificado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Eemail" />
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/textView47"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
         android:text="*Introducza su nombre de usuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Euser" />
+        app:layout_constraintEnd_toEndOf="@+id/usuario"
+        app:layout_constraintStart_toStartOf="@+id/usuario"
+        app:layout_constraintTop_toBottomOf="@+id/usuario" />
 
     <TextView
         android:id="@+id/textView49"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="2dp"
         android:text="*Mínimo 8 caracteres, una mayúscula y un número"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Epassword" />
+        app:layout_constraintEnd_toStartOf="@+id/imageOjo2"
+        app:layout_constraintStart_toStartOf="@+id/confirmContr"
+        app:layout_constraintTop_toBottomOf="@+id/confirmContr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

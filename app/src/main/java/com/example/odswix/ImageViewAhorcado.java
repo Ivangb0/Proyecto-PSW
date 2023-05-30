@@ -41,10 +41,44 @@ public class ImageViewAhorcado extends androidx.appcompat.widget.AppCompatImageV
             drawable.setBounds(0, 0, bitmapCanvas.getWidth(), bitmapCanvas.getHeight());
             drawable.draw(bitmapCanvas);
 
-            Paint paint = new Paint();
-            paint.setColor(Color.BLACK);
-            paint.setStrokeWidth(80);
-            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/4, bitmapCanvas.getHeight()-400, bitmapCanvas.getWidth()/4, 500, paint);
+            Paint paintPalo = new Paint();
+            paintPalo.setColor(Color.BLACK);
+            paintPalo.setStrokeWidth(80);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/4, bitmapCanvas.getHeight()-400, bitmapCanvas.getWidth()/4, 500, paintPalo);
+
+/*
+            Paint paintTorso = new Paint();
+            paintTorso.setColor(Color.BLACK);
+            paintTorso.setStrokeWidth(80);*/
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/3 + 200, bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/2+300, paintPalo);
+/*
+            Paint paintBrazIzq = new Paint();
+            paintBrazIzq.setColor(Color.BLACK);
+            paintBrazIzq.setStrokeWidth(80);*/
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/3 + 200, bitmapCanvas.getWidth()/2 - 50, bitmapCanvas.getHeight()/2+100, paintPalo);
+/*
+            Paint paintBrazDer = new Paint();
+            paintBrazDer.setColor(Color.BLACK);
+            paintBrazDer.setStrokeWidth(80);*/
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/3 + 200, bitmapCanvas.getWidth()/2 + 450, bitmapCanvas.getHeight()/2+100, paintPalo);
+/*
+            Paint paintPierIzq = new Paint();
+            paintPierIzq.setColor(Color.BLACK);
+            paintPierIzq.setStrokeWidth(80);*/
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/2+300,bitmapCanvas.getWidth()/2, bitmapCanvas.getHeight()/2+550,  paintPalo);
+/*
+            Paint paintPierDer = new Paint();
+            paintPierDer.setColor(Color.BLACK);
+            paintPierDer.setStrokeWidth(80);*/
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+200, bitmapCanvas.getHeight()/2+300,bitmapCanvas.getWidth() - 750, bitmapCanvas.getHeight()/2+550,  paintPalo);
+
+            Paint paintOjos = new Paint();
+            paintOjos.setColor(Color.BLACK);
+            paintOjos.setStrokeWidth(15);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+100, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+150, bitmapCanvas.getHeight()/3+50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+150, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+100, bitmapCanvas.getHeight()/3+50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+250, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+300, bitmapCanvas.getHeight()/3+50, paintOjos);
+            bitmapCanvas.drawLine(bitmapCanvas.getWidth()/2+300, bitmapCanvas.getHeight()/3, bitmapCanvas.getWidth()/2+250, bitmapCanvas.getHeight()/3+50, paintOjos);
             /*
             Paint paintOjos = new Paint();
             paintOjos.setColor(Color.BLUE);

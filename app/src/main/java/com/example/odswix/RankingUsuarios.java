@@ -58,8 +58,8 @@ public class RankingUsuarios extends AppCompatActivity {
             for (int i = 0; i < sqlName.size(); i++) {
                 if (userName.equals(sqlName.get(i))) {
                     UserData = String.valueOf(i+1) + " | " + userName + " | " + String.valueOf(usuario.getPuntosAcumTotales());
-                    break;
-                }
+                    break; //Aunque te diag que no es necesario, deja los String.valueOf, o te dará error
+                } //                BORRA LOS COMENTARIOS CUANDO TERMINES ******
             }
             userText.setText(UserData);
         } catch (java.sql.SQLException e) {

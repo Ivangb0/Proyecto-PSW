@@ -61,7 +61,7 @@ public class PartidaFinalizada extends AppCompatActivity {
     }
     public void expRestante(){
         if(nivel < 3) {
-            String textExpRest = "Experiencia restante para llegar al nivel " + (nivel + 1) + " : " + (100 - experiencia) + " puntos";
+            String textExpRest = "Experiencia restante para llegar \n al nivel " + (nivel + 1) + " : " + (100 - experiencia) + " puntos";
             expRestante.setText(textExpRest);
         }
     }

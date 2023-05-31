@@ -704,9 +704,10 @@ public class RetoPregunta extends AppCompatActivity {
     }
 
     public AlertDialog openDialog(){
+        int puntosPista = Integer.parseInt(textViewPuntosXPreg.getText().toString());
         AlertDialog.Builder builder = new AlertDialog.Builder(RetoPregunta.this);
         builder.setTitle("¿Comprar pista?")
-                .setMessage("Si aciertas obtendrás " + puntosPregunta / 2 + " puntos")
+                .setMessage("Si aciertas obtendrás " + puntosPista / 2 + " puntos")
                 .setPositiveButton("No comprar", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

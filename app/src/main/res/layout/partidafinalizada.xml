@@ -19,8 +19,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/expObt"
-        tools:layout_editor_absoluteX="76dp" />
+        app:layout_constraintStart_toStartOf="@+id/expObt"
+        app:layout_constraintTop_toBottomOf="@+id/expObt" />
 
     <TextView
         android:id="@+id/textView43"
@@ -35,13 +35,14 @@
         android:textColor="#f5cf12"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/expObt"
         app:layout_constraintStart_toEndOf="@+id/expObt"
-        tools:layout_editor_absoluteY="467dp" />
+        app:layout_constraintTop_toTopOf="@+id/expObt" />
 
     <TextView
         android:id="@+id/expObt"
-        android:layout_width="196dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
@@ -51,23 +52,23 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView40"
-        tools:layout_editor_absoluteX="76dp" />
+        app:layout_constraintStart_toStartOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="162dp"
         android:layout_height="133dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNotBad"
+        app:layout_constraintStart_toStartOf="@+id/textViewNotBad"
         app:layout_constraintTop_toBottomOf="@+id/textViewNotBad"
         app:srcCompat="@drawable/palmas" />
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="89dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
@@ -77,15 +78,15 @@
         android:textColor="#f5cf12"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView40"
         app:layout_constraintStart_toEndOf="@+id/textView40"
-        tools:layout_editor_absoluteY="385dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView40" />
 
     <TextView
         android:id="@+id/textView40"
-        android:layout_width="196dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="152dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.5"
@@ -94,15 +95,14 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotBad" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNotBad"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/textViewNotBad"
         android:layout_width="291dp"
         android:layout_height="42dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="80dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.5"
@@ -113,17 +113,19 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonContinuarAlMenu"
-        android:layout_width="207dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="92dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
         android:onClick="irAlMenu"
         android:text="Volver al menú"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="624dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

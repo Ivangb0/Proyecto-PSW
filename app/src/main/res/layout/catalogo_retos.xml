@@ -9,70 +9,64 @@
     <Button
         android:id="@+id/botonRetoAhor"
         android:layout_width="168dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="184dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="45dp"
         android:onClick="ahorcado"
         android:text="@string/Catalogo3"
         android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintEnd_toEndOf="@+id/botonRetoFrase"
+        app:layout_constraintStart_toStartOf="@+id/botonRetoPreg"
+        app:layout_constraintTop_toBottomOf="@+id/botonRetoPreg" />
 
     <Button
         android:id="@+id/botonRetoMixto"
-        android:layout_width="152dp"
+        android:layout_width="168dp"
         android:layout_height="112dp"
-        android:layout_marginStart="129dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="45dp"
         android:onClick="mixta"
         android:text="@string/Catalogo4"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/botonRetoAhor"
+        app:layout_constraintStart_toStartOf="@+id/botonRetoAhor"
+        app:layout_constraintTop_toBottomOf="@+id/botonRetoAhor" />
 
     <Button
         android:id="@+id/botonRetoFrase"
-        android:layout_width="152dp"
+        android:layout_width="168dp"
         android:layout_height="112dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="45dp"
         android:onClick="frase"
         android:text="@string/Catalogo2"
         android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="102dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="80dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.5"
         android:shadowRadius="5"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:text="¡Escoge un tipo de reto!"
+        android:textColor="@color/white"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonRetoPreg"
-        android:layout_width="152dp"
+        android:layout_width="168dp"
         android:layout_height="112dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="45dp"
         android:onClick="pregunta"
         android:text="@string/Catalogo1"
         android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <Button

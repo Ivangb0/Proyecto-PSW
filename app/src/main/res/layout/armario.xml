@@ -10,7 +10,6 @@
         android:id="@+id/medallas"
         android:layout_width="35dp"
         android:layout_height="26dp"
-        android:layout_marginTop="440dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
         android:shadowDy="1.5"
@@ -20,10 +19,12 @@
         android:textColor="#f5cf12"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625" />
 
     <Button
         android:id="@+id/Bvolver"
@@ -45,6 +46,8 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/Bvolver"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

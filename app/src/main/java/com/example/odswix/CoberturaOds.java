@@ -119,62 +119,62 @@ public class CoberturaOds extends AppCompatActivity {
 
     }
 
-    private void openURL(String url) {
+    private void openOdsURL(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
         intent.setData(Uri.parse(url));
         startActivity(intent);
     }
     public void clickOds1(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/poverty/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/poverty/");
     }
 
     public void clickOds2(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/hunger/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/hunger/");
         }
     public void clickOds3(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/health/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/health/");
     }
     public void clickOds4(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/education/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/education/");
     }
     public void clickOds5(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/gender-equality/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/gender-equality/");
     }
     public void clickOds6(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/water-and-sanitation/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/water-and-sanitation/");
     }
     public void clickOds7(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/energy/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/energy/");
     }
     public void clickOds8(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/economic-growth/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/economic-growth/");
     }
     public void clickOds9(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/infrastructure/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/infrastructure/");
     }
     public void clickOds10(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/inequality/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/inequality/");
     }
     public void clickOds11(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/cities/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/cities/");
     }
     public void clickOds12(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/");
     }
     public void clickOds13(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/climate-change-2/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/climate-change-2/");
     }
     public void clickOds14(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/oceans/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/oceans/");
     }
     public void clickOds15(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/biodiversity/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/biodiversity/");
     }
     public void clickOds16(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/peace-justice/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/peace-justice/");
     }
     public void clickOds17(View view){
-        openURL("https://www.un.org/sustainabledevelopment/es/globalpartnerships/");
+        openOdsURL("https://www.un.org/sustainabledevelopment/es/globalpartnerships/");
     }
 }

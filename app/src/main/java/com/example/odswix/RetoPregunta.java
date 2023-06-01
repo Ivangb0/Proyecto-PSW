@@ -72,12 +72,10 @@ public class RetoPregunta extends AppCompatActivity {
     TextView textViewPtosTots; TextView textViewPtosAcums; TextView textViewTiempoC; TextView textViewTiempoCons;
     TextView textViewPuntConsol; TextView textViewPtosCon; TextView textView33; TextView textView26;
     TextView textView30; TextView textView24; TextView textView23;
-    //Buttons
     Button buttonPistas; Button botonResp1; Button botonResp2; Button botonResp3; Button botonResp4;
     Button buttonSiguiente; Button buttonConsolidar; Button buttonAbandonar;
     ImageButton buttonPausa; ImageButton muteButton;
 
-    //MediaPlayers
     MediaPlayer soundAcierto; MediaPlayer soundFallo; MediaPlayer soundBackground;
     MediaPlayer soundCountdown10s; MediaPlayer soundVictoria; MediaPlayer soundDerrota;
 

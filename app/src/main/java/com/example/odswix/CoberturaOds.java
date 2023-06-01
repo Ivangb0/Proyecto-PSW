@@ -77,11 +77,6 @@ public class CoberturaOds extends AppCompatActivity {
 
         imageODS = new ImageView[17];
 
-        /*for(int i = 0; i<18; i++){
-            int resourceId = getResources().getIdentifier("imageViewODS" + i, "id", getPackageName());
-            imageODS[i] = (ImageView) findViewById(resourceId);
-        }*/
-
         imageODS[0] = (ImageView) findViewById(R.id.imageViewODS1);
         imageODS[1] = (ImageView) findViewById(R.id.imageViewODS2);
         imageODS[2] = (ImageView) findViewById(R.id.imageViewODS3);

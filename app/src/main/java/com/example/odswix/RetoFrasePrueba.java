@@ -81,9 +81,8 @@ public class RetoFrasePrueba extends AppCompatActivity implements View.OnDragLis
 
 
     RelativeLayout contenedorRespuesta; TextView textView21; TextView textView27;
-    TextView textView28; TextView textView25; TextView enunciado; TextView textView35;
-    Button buttonPistas; ConstraintLayout idLayout; Button buttonComprobar;
-    TextView textoPregunta; TextView textoDificultad; TextView textViewNumPreg;
+    TextView textView28;  TextView enunciado; TextView textView35;
+    Button buttonPistas;  Button buttonComprobar; TextView textViewNumPreg;
     TextView textViewPuntosXPreg; TextView textView37; Button buttonSiguiente;
     TextView textViewPuntAcum; TextView textView36; TextView textViewTiempo;
     TextView textView34; TextView textView32; TextView textViewVidas; TextView incorrectText;

@@ -55,13 +55,6 @@ public class menu_configuracion extends AppCompatActivity {
         finishAfterTransition();
         startActivity(intent);
     }
-    public void idiomaIngles(View view){
-        //IMPLEMENTAR METODO PARA CAMBIAR EL IDIOMA DE LA APP A INGLES
-    }
-
-    public void idiomaEspañol(View view){
-        //IMPLEMENTAR METODO PARA CAMBIAR EL IDIOMA DE LA APP A ESPAÑOL
-    }
 
     public void cerrarApp(View view){
         finishAffinity();

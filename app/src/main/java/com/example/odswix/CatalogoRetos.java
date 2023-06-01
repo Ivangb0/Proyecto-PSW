@@ -28,7 +28,6 @@ public class CatalogoRetos extends AppCompatActivity {
     Button botonRetoMixto;
     private User usuario = null;
 
-    private final String tipo = null;
     boolean init;
     boolean appMuted;
     private ContextoReto contextoReto;

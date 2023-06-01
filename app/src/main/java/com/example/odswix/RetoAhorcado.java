@@ -96,7 +96,6 @@ public class RetoAhorcado extends AppCompatActivity {
     TextView textViewPtosObtend;
     RelativeLayout contenedorRespuesta;
     RelativeLayout relativeLayoutTeclado;
-    Button buttonPistas3;
     TextView textViewPuntAcum3;
     TextView textViewPuntConsol3;
     TextView textViewObtend;
@@ -108,7 +107,7 @@ public class RetoAhorcado extends AppCompatActivity {
     List<Cobertura> listaCoberturas = new ArrayList<Cobertura>();
 
 
-    //textviews que no tienen importancia
+    //textviews que no se modifican
     TextView textView11;
     TextView textView39;
     TextView textView42;
@@ -172,7 +171,6 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewPtosObtend = (TextView) findViewById(R.id.textViewPtosObtend);
         contenedorRespuesta = (RelativeLayout) findViewById(R.id.contenedorRespuesta);
         relativeLayoutTeclado = (RelativeLayout) findViewById(R.id.relativeLayoutTeclado);
-        //buttonPistas3 = (Button) findViewById(R.id.buttonPistas3);
         textViewPuntAcum3 = (TextView) findViewById(R.id.textViewPuntAcum3);
         textViewPuntConsol3 = (TextView) findViewById(R.id.textViewPuntConsol3);
         textView11 = (TextView) findViewById(R.id.textView11);
@@ -191,14 +189,11 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewNumPreg3.setText(String.valueOf(numPregunta));
         if(ahorcado.getDificultad().equals("Facil")){
             textViewPuntosXPreg3.setText("100");
-            //aqui en retofrase hay algo de porcentaje
         }
         else if(ahorcado.getDificultad().equals("Medio")) {
             textViewPuntosXPreg3.setText("200");
-            //aqui tambien
         } else if (ahorcado.getDificultad().equals("Dificil")) {
             textViewPuntosXPreg3.setText("300");
-            //aqui tambien
         }
         buttonSiguiente.setText("Siguiente");
         textViewPuntosAcumAho.setText(String.valueOf(puntosAcum));
@@ -212,8 +207,6 @@ public class RetoAhorcado extends AppCompatActivity {
         textViewPuntosAcumAho.setText(String.valueOf(puntosAcum));
         textViewPtosCon3.setText(String.valueOf(PtosConsolidados));
 
-
-        //mecanica del juego
         respuesta = ahorcado.getRespuesta();
         textViewRespuesta.setText(ocultarRespuesta());
         ocultarRespuesta();
@@ -247,25 +240,11 @@ public class RetoAhorcado extends AppCompatActivity {
             soundVictoria.setVolume(1, 1);
             soundCountdown10s.setVolume(1, 1);
         }
-        //prepHuecos();
-        //setHuecos();
-        //setImages();
+
         reiniciarTimer();
         cambiarImagenODS();
 
         }
-
-        /*
-        posibles metodos a implementar en retoAhorcado
-
-        metodo que coja la respuesta de la BD y la divida en un array o alguna estructura parecida estilo [H,O,L,A]
-        metodo que ponga el array en su textview pero con _ en lugar de letras
-        metodo que compruebe si la letra que pertenece al boton clickado esta en el array, haciendo un listener para todos los botones
-            metodo que cambie el "_" por la letra cuando sea correcta y que ponga el boton de color verde
-            metodo que se llame cuando se clicke una errónea, que ponga el boton en rojo y cambie la imagen por ahorcadon+1
-
-
-        */
 
     public String ocultarRespuesta(){
         respuestaOculta = respuesta;
@@ -368,7 +347,6 @@ public void comprobarLetra(){
                 respuestaArray[i] = charPulsado;
             }
         }
-        //result = String.valueOf(respuestaArray);
         result = new String(respuestaArray);
         System.out.println(result);
         textViewRespuesta.setText(result);
@@ -482,7 +460,6 @@ public void comprobarLetra(){
         imagenOdsAhorcado.setImageDrawable(picture);
     }
 
-    //en frase se llamaba en el metodo comprobar si estaba bien puesta la frase
     public void guardarAciertoCobertura(){
         recuperarCoberturas(idCoberturaUser);
         int aciertos;
@@ -698,12 +675,10 @@ public void comprobarLetra(){
         intent.putExtra("tipo", tipo);
         intent.putExtra("muted", appMuted);
         startActivity(intent);
-        //ocultarRespuesta();
-        //this.finish();
+
     }
 
 
-    //se llamara cuando se complete la palabra
     public void respuestaCorrecta() {
         aciertoStat++;
         usuario.setAciertos(aciertoStat);

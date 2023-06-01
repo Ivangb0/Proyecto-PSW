@@ -29,7 +29,6 @@ public class Perfil extends AppCompatActivity {
     User usuario = null;
     String contraseña = "";
     boolean visible = false;
-    int nivel;
     String popupUsername;
     String popupPassword;
 

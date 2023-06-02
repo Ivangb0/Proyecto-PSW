@@ -10,39 +10,35 @@
     <Button
         android:id="@+id/bvolver"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:onClick="volver"
         android:text="Volver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/button14"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button14"
-        app:layout_constraintVertical_bias="0.418" />
+        app:layout_constraintStart_toStartOf="@+id/button14"
+        app:layout_constraintTop_toBottomOf="@+id/button14" />
 
     <Button
         android:id="@+id/button14"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="40dp"
         android:layout_marginTop="56dp"
         android:layout_weight="1"
         android:onClick="armario"
         android:text="Armario"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
@@ -52,15 +48,13 @@
         android:textColor="@android:color/white"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bcambiarcontr" />
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/puntosUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
         android:layout_weight="1"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
@@ -71,40 +65,42 @@
         android:textColor="@android:color/holo_orange_light"
         android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/Bcambiarcontr" />
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
 
     <Button
         android:id="@+id/Bcambiarcontr"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
         android:onClick="cambiarPassword"
         android:text="Cambiar"
         android:textAlignment="viewStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bvercontraseña" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/Bvercontraseña"
+        app:layout_constraintStart_toEndOf="@+id/Bvercontraseña"
+        app:layout_constraintTop_toTopOf="@+id/Bvercontraseña" />
 
     <ImageButton
         android:id="@+id/Bvercontraseña"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
         android:layout_weight="1"
         android:backgroundTint="@color/purple_500"
         android:contentDescription="@string/app_name"
         android:onClick="mostrarPassword"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailUser"
+        app:layout_constraintBottom_toBottomOf="@+id/contraseñaUser"
+        app:layout_constraintStart_toEndOf="@+id/contraseñaUser"
+        app:layout_constraintTop_toTopOf="@+id/contraseñaUser"
         app:srcCompat="@drawable/ojo" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="350dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:shadowColor="#000000"
         android:shadowDx="1.5"
@@ -114,6 +110,7 @@
         android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,179 +130,175 @@
         android:id="@+id/nombreUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="64dp"
         android:layout_weight="1"
         android:text="Error"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
         android:text="Usuario: "
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errUsername"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:srcCompat="@android:drawable/btn_star" />
 
     <TextView
         android:id="@+id/emailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Error"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/nivelUser" />
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Contraseña: "
         android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
     <TextView
         android:id="@+id/contraseñaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Error"
+        app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/emailUser" />
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="27dp"
         android:layout_weight="1"
         android:text="Nivel: "
         android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/errUsername" />
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
     <TextView
         android:id="@+id/nivelUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="27dp"
         android:layout_weight="1"
         android:text="Error"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/errUsername" />
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="37dp"
         android:layout_weight="1"
         android:text="Email: "
         android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
         app:srcCompat="@android:drawable/ic_lock_idle_lock" />
 
     <TextView
         android:id="@+id/errPassword"
-        android:layout_width="218dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="TextView"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contraseñaUser" />
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="28dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="120dp"
         android:onClick="cambiarUsername"
         android:text="Cambiar "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nombreUser"
+        app:layout_constraintStart_toEndOf="@+id/nombreUser"
+        app:layout_constraintTop_toTopOf="@+id/nombreUser" />
 
     <TextView
         android:id="@+id/errUsername"
-        android:layout_width="260dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
         android:id="@+id/buttonStats"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
         android:onClick="buttonStats"
         android:text="Estadísticas"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button14"
         app:layout_constraintStart_toEndOf="@+id/button14"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toTopOf="@+id/button14" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
         android:onClick="buttonRanking"
         android:text="Ranking"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
-        tools:layout_editor_absoluteX="21dp" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button14"
+        app:layout_constraintEnd_toStartOf="@+id/button14"
+        app:layout_constraintTop_toTopOf="@+id/button14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
